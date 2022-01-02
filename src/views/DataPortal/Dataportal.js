@@ -28,7 +28,7 @@ const Dataportal = (props) => {
         }}
         {...rest}
       />
-      <Parallax image={require("assets/img/data2.jpg").default}>
+      <Parallax image={require("assets/img/data.png").default}>
         <div className={classes.container}>
           <GridContainer>
             <GridItem>

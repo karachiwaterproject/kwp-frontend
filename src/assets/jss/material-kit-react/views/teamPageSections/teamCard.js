@@ -16,7 +16,7 @@ const componentsStyle = {
   //     borderRight: "10px solid #CFB381",
   //   },
   cardContent: {
-    backgroundColor: "rgba(0, 0, 0)",
+    backgroundColor: "rgba(0, 0, 0, 0.8)",
     color: "white",
     position: "absolute",
     bottom: 0,

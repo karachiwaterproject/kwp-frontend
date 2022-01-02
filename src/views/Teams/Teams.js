@@ -29,61 +29,140 @@ const teams = "./../../assets/img/team/";
 
 const members = [
   {
-    name: "Member 1",
+    name: "Dr. Hassaan Furqan Khan",
+    role: "Co-Principal Investigator",
     avatar: require("./../../assets/img/team/1.jpg").default,
-    role: "details...",
-    contact: "contant",
+    details:
+      "project leader | research interests: water systems analysis, water pricing",
+    contact: "hassaan.khan@sse.habib.edu.pk",
   },
   {
-    name: "Member 2",
-    avatar: require("./../../assets/img/team/1.jpg").default,
-    details: "details...",
-    role: "details...",
-    contact: "contant",
+    name: "Dr. Nausheen H. Anwar",
+    role: "Co-Principal Investigator",
+    avatar: require("./../../assets/img/team/2.jpg").default,
+    details:
+      "advisor, socioeconomic studies | research interests: city and regional planning, climate change, infrastructures, inequality",
+    contact: "nhanwar@iba.edu.pk",
   },
   {
-    name: "Member 3",
-    avatar: require("./../../assets/img/team/1.jpg").default,
-    details: "details...",
-    role: "details...",
-    contact: "contant",
+    name: "Junaid Ahmed Memon",
+    role: "Co-Principal Investigator",
+    avatar: require("./../../assets/img/team/3.jpg").default,
+    details:
+      "technical lead (smart flowmeter development) | research interests: systems design, fluid flow measurement, wireless sensor networks and internet of things",
+    contact: "junaid.memon@sse.habib.edu.pk",
   },
   {
-    name: "Member 4",
-    avatar: require("./../../assets/img/team/1.jpg").default,
-    details: "details...",
-    role: "details...",
-    contact: "contant",
+    name: "Sana Khalil",
+    role: "Faculty Assistant",
+    avatar: require("./../../assets/img/team/4.jpg").default,
+    details:
+      "lead, water pricing | research interests: labor economics, applied econometrics, development economics",
+    contact: "sana.khalil@ahss.habib.edu.pk",
   },
   {
-    name: "Member 5",
-    avatar: require("./../../assets/img/team/1.jpg").default,
-    details: "details...",
-    role: "details...",
-    contact: "contant",
+    name: "Dr. Moiz Anis",
+    role: "Faculty Researcher",
+    avatar: require("./../../assets/img/team/5.jpg").default,
+    details:
+      "advisor, iot | research interests: cellular networks, internet of things, computer networking, and wireless communications.",
+    contact: "moiz.anis@sse.habib.edu.pk",
+  },
+  {
+    name: "Abdul Rehman Soomro",
+    role: "",
+    avatar: require("./../../assets/img/team/6.jpg").default,
+    role: "flowmeter hardware development | research interests: hydroinformatics, embedded systems, water metering",
+    contact: "abdul.soomro@sse.habib.edu.pk",
+  },
+  {
+    name: "Syed Ali Arshad",
+    role: "Research Assistant",
+    avatar: require("./../../assets/img/team/7.jpg").default,
+    details:
+      "lyari study | research interests: urban planning, climate change mitigation, ecological justice",
+    contact: "ali.arshad@sse.habib.edu.pk",
+  },
+  {
+    name: "Hiba Jamal",
+    role: "Research Assistant",
+    avatar: require("./../../assets/img/team/8.jpg").default,
+    details:
+      "full stack developer | research interests: computer vision, machine learning modelling",
+    contact: "hiba.jamal@habib.edu.pk",
   },
 ];
 
 const undergraduates = [
   {
-    name: "Member 1",
-    major: "major",
+    name: "Sarwan Shah",
+    major: "Electrical Engineering",
     year: "2021",
   },
   {
-    name: "Member 2",
-    major: "major",
+    name: "Neha Khatri",
+    major: "Social Development and Policy",
     year: "2021",
   },
   {
-    name: "Member 3",
-    major: "major",
+    name: "Aoun Hussain",
+    major: "Electrical Engineering",
     year: "2021",
   },
   {
-    name: "Member 4",
-    major: "major",
-    year: "2021",
+    name: "Ahsan Ali",
+    major: "Electrical Engineering",
+    year: "2022",
+  },
+  {
+    name: "Daniyal Saeed",
+    major: "Electrical Engineering",
+    year: "2022",
+  },
+  {
+    name: "Hunaina Khan",
+    major: "Social Development and Policy",
+    year: "2022",
+  },
+  {
+    name: "Markhan Mushtaque",
+    major: "Social Development and Policy",
+    year: "2022",
+  },
+  {
+    name: "Muhammad Hamza Raza",
+    major: "Social Development and Policy",
+    year: "2022",
+  },
+  {
+    name: "Sara Intikhab",
+    major: "Social Development and Policy",
+    year: "2022",
+  },
+  {
+    name: "Muhammad Ali Arif",
+    major: "Electrical Engineering",
+    year: "2023",
+  },
+  {
+    name: "Muhammad Aqib Khan",
+    major: "Electrical Engineering",
+    year: "2023",
+  },
+  {
+    name: "Yabudullah Ahmed Bakhtiar",
+    major: "Electrical Engineering",
+    year: "2023",
+  },
+  {
+    name: "Asad Tariq",
+    major: "Social Development and Policy",
+    year: "2023",
+  },
+  {
+    name: "Mohammad Hasan Tariq",
+    major: "Social Development and Policy",
+    year: "2023",
   },
 ];
 
@@ -117,13 +196,14 @@ const Teams = (props) => {
       </Parallax>
       <div className={classNames(classes.main, classes.mainRaised)}>
         <GridContainer className={classes.mainContainer}>
-          {members.map(({ name, avatar, role, contact }) => (
-            <GridItem xs={3} key={name}>
+          {members.map(({ name, avatar, role, contact, details }) => (
+            <GridItem xs={4} key={name}>
               <TeamCard
                 name={name}
                 avatar={avatar}
                 role={role}
                 contact={contact}
+                details={details}
               />
             </GridItem>
           ))}

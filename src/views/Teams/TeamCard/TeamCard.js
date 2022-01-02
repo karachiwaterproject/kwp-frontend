@@ -12,7 +12,7 @@ import { ArrowUpward, Settings } from "@material-ui/icons";
 import styles from "assets/jss/material-kit-react/views/teamPageSections/teamCard.js";
 const useStyles = makeStyles(styles);
 
-const TeamCard = ({ name, avatar, role, contact }) => {
+const TeamCard = ({ name, avatar, role, contact, details }) => {
   const classes = useStyles();
 
   return (
@@ -26,16 +26,18 @@ const TeamCard = ({ name, avatar, role, contact }) => {
 
         <Settings className={classes.icon} />
         <div className="extra-content">
-          <Typography gutterBottom style={{ fontWeight: "bolder" }}>
-            {name}
+          <Typography gutterBottom style={{ fontWeight: "100" }}>
+            <span style={{ fontWeight: "900" }}>{name}</span>
+            <br />
+            {role}
           </Typography>
 
           <Typography gutterBottom variant="body2">
-            Role: <br />
-            {role}
+            <span style={{ fontWeight: "bold" }}>Role:</span> <br />
+            {details}
           </Typography>
           <Typography gutterBottom variant="body2">
-            Contact: <br />
+            <span style={{ fontWeight: "bold" }}>Contact:</span> <br />
             {contact}
           </Typography>
         </div>
