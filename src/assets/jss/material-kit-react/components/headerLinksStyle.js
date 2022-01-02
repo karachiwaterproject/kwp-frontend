@@ -104,12 +104,24 @@ const headerLinksStyle = (theme) => ({
     marginRight: "4px",
   },
   dropdownLink: {
+    backgroundColor: "white",
     "&,&:hover,&:focus": {
       color: "inherit",
       textDecoration: "none",
       display: "block",
       padding: "10px 20px",
     },
+    "&:hover": {
+      backgroundColor: "grey",
+    },
+  },
+  activeLink: {
+    backgroundColor: "white",
+    color: "black",
+  },
+  activeDropdowLink: {
+    backgroundColor: "black",
+    color: "white",
   },
   ...tooltip,
   marginRight5: {

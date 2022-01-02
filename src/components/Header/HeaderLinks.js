@@ -1,7 +1,7 @@
 /*eslint-disable*/
 import React from "react";
 // react components for routing our app without refresh
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
@@ -28,21 +28,30 @@ export default function HeaderLinks(props) {
   return (
     <List className={classes.list}>
       <ListItem className={classes.listItem}>
-        <Link color="transparent" to="/" className={classes.navLink}>
+        <NavLink
+          color="transparent"
+          to="/home"
+          className={classes.navLink}
+          activeClassName={classes.activeLink}
+        >
           <i className={classes.socialIcons + " fas fa-home"} />
           <Typography variant="body2" style={{ marginLeft: 10 }}>
             Home
           </Typography>
-        </Link>
+        </NavLink>
       </ListItem>
 
       <ListItem className={classes.listItem}>
-        <Link to="/team" className={classes.navLink}>
+        <NavLink
+          to="/team"
+          className={classes.navLink}
+          activeClassName={classes.activeLink}
+        >
           <i className={classes.socialIcons + " fa fa-users"} />
           <Typography variant="body2" style={{ marginLeft: 10 }}>
             Team
           </Typography>
-        </Link>
+        </NavLink>
       </ListItem>
       <ListItem className={classes.listItem}>
         <CustomDropdown
@@ -54,27 +63,43 @@ export default function HeaderLinks(props) {
           }}
           buttonIcon={Apps}
           dropdownList={[
-            <Link to="/" className={classes.dropdownLink}>
+            <NavLink
+              to="/projects/develop-low-cost"
+              className={classes.dropdownLink}
+              activeClassName={classes.activeDropdowLink}
+            >
               Flowmeter Development
-            </Link>,
-            <Link to="/" className={classes.dropdownLink}>
+            </NavLink>,
+            <NavLink
+              to="/projects/water-security"
+              className={classes.dropdownLink}
+              activeClassName={classes.activeDropdowLink}
+            >
               Water in Liyari
-            </Link>,
-            <Link to="/" className={classes.dropdownLink}>
+            </NavLink>,
+            <NavLink
+              to="/projects/toward-sustainable/"
+              className={classes.dropdownLink}
+              activeClassName={classes.activeDropdowLink}
+            >
               Water Pricing
-            </Link>,
+            </NavLink>,
           ]}
         />
       </ListItem>
       <ListItem className={classes.listItem}>
-        <Link to="/dashboard" className={classes.navLink}>
+        <NavLink
+          to="/dashboard"
+          className={classes.navLink}
+          activeClassName={classes.activeLink}
+        >
           <i className={classes.socialIcons + " fas fa-chart-bar"} />
           <Typography variant="body2" style={{ marginLeft: 10 }}>
-            DataPortal
+            Dashboard
           </Typography>
-        </Link>
+        </NavLink>
       </ListItem>
-      <ListItem className={classes.listItem}>
+      <ListItem className={classes.listItem} style={{ marginLeft: 20 }}>
         <Button
           href="https://www.creative-tim.com/product/material-kit-react?ref=mkr-navbar"
           color="white"

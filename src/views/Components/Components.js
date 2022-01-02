@@ -38,7 +38,6 @@ export default function Components(props) {
   return (
     <div>
       <Header
-        brand="Material Kit React"
         rightLinks={<HeaderLinks />}
         fixed
         color="transparent"
