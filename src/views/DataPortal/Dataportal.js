@@ -19,9 +19,29 @@ import Card from "components/Card/Card";
 
 const useStyles = makeStyles(styles);
 
-const Dataportal = (props) => {
+import { login } from "../../actions/auth";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+
+const Dataportal = ({ login, isAuthenticated }) => {
   const classes = useStyles();
-  const { ...rest } = props;
+  // const { ...rest } = props;
+
+  const [formData, setFormData] = React.useState({
+    username: "",
+    password: "",
+  });
+
+  const { username, password } = formData;
+  const onChange = (e) =>
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  console.log(formData);
+
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    login(username, password);
+    alert("dsad");
+  };
 
   return (
     <div>
@@ -33,7 +53,7 @@ const Dataportal = (props) => {
           height: 400,
           color: "white",
         }}
-        {...rest}
+        // {...rest}
       />
       <Parallax image={require("assets/img/data.png").default}>
         <div className={classes.container}>
@@ -114,6 +134,7 @@ const Dataportal = (props) => {
             <form
               style={{ width: "100%", marginTop: "50px" }}
               className="leftFormBorder"
+              onSubmit={(e) => onSubmit(e)}
             >
               <GridContainer
                 className={classes.formContainer}
@@ -129,7 +150,10 @@ const Dataportal = (props) => {
                     style={{ width: "100%" }}
                     id="outlined-basic"
                     label="Username"
+                    name="username"
                     variant="outlined"
+                    value={username}
+                    onChange={(e) => onChange(e)}
                   />
                 </GridItem>
                 <GridItem className={classes.formFields}>
@@ -138,11 +162,21 @@ const Dataportal = (props) => {
                     id="outlined-basic"
                     label="Password"
                     type="password"
+                    name="password"
+                    value={password}
                     variant="outlined"
+                    onChange={(e) => onChange(e)}
                   />
                 </GridItem>
                 <GridItem className={classes.formFields}>
-                  <Button className={classes.darkButton}>Login</Button>
+                  <input
+                    type="submit"
+                    className={
+                      classes.darkButton +
+                      " MuiButtonBase-root MuiButton-root MuiButton-text"
+                    }
+                    value="Login"
+                  />
                 </GridItem>
               </GridContainer>
             </form>
@@ -154,4 +188,13 @@ const Dataportal = (props) => {
   );
 };
 
-export default Dataportal;
+Dataportal.propTypes = {
+  login: PropTypes.func.isRequired,
+  isAuthenticated: PropTypes.bool,
+};
+
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.auth.isAuthenticated,
+});
+
+export default connect(mapStateToProps, { login })(Dataportal);
