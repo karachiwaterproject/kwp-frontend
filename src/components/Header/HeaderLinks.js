@@ -20,19 +20,21 @@ import styles from "assets/jss/material-kit-react/components/headerLinksStyle.js
 import { Typography } from "@material-ui/core";
 
 import headerLogo from "./../../assets/img/hu-header-logo.svg";
+import GridContainer from "components/Grid/GridContainer";
+import GridItem from "components/Grid/GridItem";
 
 const useStyles = makeStyles(styles);
 
 export default function HeaderLinks(props) {
   const classes = useStyles();
   return (
-    <List className={classes.list}>
+    <GridContainer>
       <ListItem className={classes.listItem}>
         <NavLink
           color="transparent"
           to="/home"
           className={classes.navLink}
-          activeClassName={classes.activeLink}
+          activeClassName={classes.activeLink + " active-link"}
         >
           <i className={classes.socialIcons + " fas fa-home"} />
           <Typography variant="body2" style={{ marginLeft: 10 }}>
@@ -45,7 +47,7 @@ export default function HeaderLinks(props) {
         <NavLink
           to="/team"
           className={classes.navLink}
-          activeClassName={classes.activeLink}
+          activeClassName={classes.activeLink + " active-link"}
         >
           <i className={classes.socialIcons + " fa fa-users"} />
           <Typography variant="body2" style={{ marginLeft: 10 }}>
@@ -91,7 +93,7 @@ export default function HeaderLinks(props) {
         <NavLink
           to="/dashboard"
           className={classes.navLink}
-          activeClassName={classes.activeLink}
+          activeClassName={classes.activeLink + " active-link"}
         >
           <i className={classes.socialIcons + " fas fa-chart-bar"} />
           <Typography variant="body2" style={{ marginLeft: 10 }}>
@@ -109,6 +111,6 @@ export default function HeaderLinks(props) {
           <img src={headerLogo} height="45px" />
         </Button>
       </ListItem>
-    </List>
+    </GridContainer>
   );
 }

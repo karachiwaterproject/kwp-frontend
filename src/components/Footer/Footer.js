@@ -36,11 +36,11 @@ export default function Footer(props) {
           direction="row"
           alignItems="center"
         >
-          <Grid item>
+          <Grid item xs={12} sm={4}>
             <img src={footerLogo} height="75px" />
           </Grid>
           <div className="leftBorder" />
-          <Grid item>
+          <Grid item xs={12} sm={4}>
             <img src={footerLogo} height="75px" />
           </Grid>
         </Grid>

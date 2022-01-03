@@ -40,13 +40,11 @@ const componentsStyle = {
     padding: "50px 100px",
   },
   formContainer: {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
+    margin: 10,
   },
   formFields: {
     margin: 10,
-    width: "500px",
+    width: "100%",
   },
   darkButton: {
     backgroundColor: "black",

@@ -30,7 +30,7 @@ const teams = "./../../assets/img/team/";
 const members = [
   {
     name: "Dr. Hassaan Furqan Khan",
-    role: "Co-Principal Investigator",
+    role: "Principal Investigator",
     avatar: require("./../../assets/img/team/1.jpg").default,
     details:
       "project leader | research interests: water systems analysis, water pricing",
@@ -186,7 +186,7 @@ const Teams = (props) => {
         <div className={classes.container}>
           <GridContainer>
             <GridItem>
-              <div className={classes.brand}>
+              <div className={classes.brand + " brand"}>
                 <h1 className={classes.title}>Our Team</h1>
                 <h3 className={classes.subtitle}></h3>
               </div>
@@ -195,9 +195,9 @@ const Teams = (props) => {
         </div>
       </Parallax>
       <div className={classNames(classes.main, classes.mainRaised)}>
-        <GridContainer className={classes.mainContainer}>
+        <GridContainer className={classes.mainContainer + " main-container"}>
           {members.map(({ name, avatar, role, contact, details }) => (
-            <GridItem xs={4} key={name}>
+            <GridItem xs={12} sm={4} key={name}>
               <TeamCard
                 name={name}
                 avatar={avatar}
@@ -208,7 +208,7 @@ const Teams = (props) => {
             </GridItem>
           ))}
         </GridContainer>
-        <GridContainer className={classes.mainContainer}>
+        <GridContainer className={classes.mainContainer + " main-container"}>
           <Typography
             variant="h3"
             style={{ fontWeight: "bold", marginBottom: "30px" }}

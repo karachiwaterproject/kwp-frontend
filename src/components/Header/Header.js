@@ -17,6 +17,7 @@ import Menu from "@material-ui/icons/Menu";
 import styles from "assets/jss/material-kit-react/components/headerStyle.js";
 
 import icon from "./../../assets/img/kwp-logo.svg";
+import { NavLink } from "react-router-dom";
 
 const useStyles = makeStyles(styles);
 
@@ -63,9 +64,9 @@ export default function Header(props) {
     [classes.fixed]: fixed,
   });
   const brandComponent = (
-    <Button className={classes.title}>
+    <NavLink to="\home" className={classes.title}>
       <img src={icon} height="45px" />
-    </Button>
+    </NavLink>
   );
   return (
     <AppBar className={appBarClasses}>

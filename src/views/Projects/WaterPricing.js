@@ -32,7 +32,7 @@ const WaterPricing = (props) => {
         <div className={classes.container}>
           <GridContainer>
             <GridItem>
-              <div className={classes.brand}>
+              <div className={classes.brand + " brand"}>
                 <h1 className={classes.title}>Flowmeter Development</h1>
                 <h3 className={classes.subtitle}></h3>
               </div>
@@ -41,7 +41,7 @@ const WaterPricing = (props) => {
         </div>
       </Parallax>
       <div className={classNames(classes.main, classes.mainRaised)}>
-        <GridContainer className={classes.mainContainer}>
+        <GridContainer className={classes.mainContainer + " main-container"}>
           <Typography
             variant="h4"
             style={{ fontWeight: "bold", marginBottom: 30 }}

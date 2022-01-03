@@ -53,7 +53,7 @@ const HomePage = (props) => {
         <div className={classes.container}>
           <GridContainer>
             <GridItem>
-              <div className={classes.brand}>
+              <div className={classes.brand + " brand"}>
                 <h1 className={classes.title}>What we are ?</h1>
                 <h3 className={classes.subtitle}>
                   The Karachi Water Project (KWP) is an interdisciplinary
@@ -68,8 +68,8 @@ const HomePage = (props) => {
         </div>
       </Parallax>
       <div className={classNames(classes.main, classes.mainRaised)}>
-        <div className={classes.mainContainer}>
-          <Typography variant="h4">
+        <div className={classes.mainContainer + " main-container"}>
+          <Typography variant="h4" className="h4">
             OnGoing
             <br />
             <Typography
@@ -81,7 +81,7 @@ const HomePage = (props) => {
           </Typography>
           <GridContainer>
             {projects.map(({ name, image }) => (
-              <GridItem key={name} xs={4}>
+              <GridItem key={name} xs={12} sm={4}>
                 <OnGoingProjects name={name} image={image} />
               </GridItem>
             ))}
@@ -113,7 +113,7 @@ const HomePage = (props) => {
             </Link>
           </GridItem>
         </GridContainer>
-        <div className={classes.mainContainer}>
+        <div className={classes.mainContainer + " main-container"}>
           <Typography variant="h4">
             Supported through
             <br />
@@ -126,7 +126,11 @@ const HomePage = (props) => {
           </Typography>
           <br />
           <GridContainer>
-            <GridItem xs={4} className={classes.iconContainer}>
+            <GridItem
+              xs={12}
+              sm={4}
+              className={classes.iconContainer + " icon-container"}
+            >
               <a href="https://habib.edu.pk" target="_blank">
                 <img src={hu} />
                 <Typography variant="body2" className={classes.text}>
@@ -135,7 +139,11 @@ const HomePage = (props) => {
               </a>
             </GridItem>
 
-            <GridItem xs={4} className={classes.iconContainer}>
+            <GridItem
+              xs={12}
+              sm={3}
+              className={classes.iconContainer + " icon-container"}
+            >
               <a
                 href="https://hec.gov.pk/english/pages/home.aspx"
                 target="_blank"
@@ -146,7 +154,11 @@ const HomePage = (props) => {
                 </Typography>
               </a>
             </GridItem>
-            <GridItem xs={4} className={classes.iconContainer}>
+            <GridItem
+              xs={12}
+              sm={3}
+              className={classes.iconContainer + " icon-container"}
+            >
               <a href="https://hashoofoundation.org" target="_blank">
                 <img src={hashoo} />
                 <Typography variant="body2" className={classes.text}>
