@@ -1,4 +1,5 @@
 import axios from "axios";
+import { HOST } from "constrants";
 import setAuthToken from "../utils/setAuthToken";
 import { setAlert } from "./alert";
 import {
@@ -12,16 +13,14 @@ import {
   USER_LOADED,
 } from "./types";
 
-const host = "http://127.0.0.1:8000";
-
 // Load User
 export const loadUser = (username) => async (dispatch) => {
-  if (localStorage.token) {
-    setAuthToken(localStorage.token);
-  }
+  // if (localStorage.token) {
+  //   setAuthToken(localStorage.token);
+  // }
   console.log(localStorage.token);
   try {
-    const res = await axios.get(`${host}/api/nodeuser/${username}`);
+    const res = await axios.get(`${HOST}/api/nodeuser/${username}`);
     console.log(res);
     dispatch({
       type: USER_LOADED,

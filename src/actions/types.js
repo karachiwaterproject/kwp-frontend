@@ -14,3 +14,6 @@ export const PROFILE_ERROR = "PROFILE_ERROR";
 export const CREATE_PROFILE = "CREATE_PROFILE";
 export const UPDATE_PROFILE = "UPDATE_PROFILE";
 export const ACCOUNT_DELETED = "ACCOUNT_DELETED";
+export const GET_NODES = "GET_NODES";
+export const GET_NODE = "GET_NODE";
+export const NODE_ERROR = "NODE_ERROR";

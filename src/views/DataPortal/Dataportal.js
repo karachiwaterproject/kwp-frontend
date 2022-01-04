@@ -22,6 +22,7 @@ const useStyles = makeStyles(styles);
 import { login } from "../../actions/auth";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
+import { Redirect } from "react-router-dom";
 
 const Dataportal = ({ login, isAuthenticated }) => {
   const classes = useStyles();
@@ -36,6 +37,10 @@ const Dataportal = ({ login, isAuthenticated }) => {
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
   console.log(formData);
+
+  if (isAuthenticated) {
+    return <Redirect to="/dashboard" />;
+  }
 
   const onSubmit = async (e) => {
     e.preventDefault();

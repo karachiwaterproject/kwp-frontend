@@ -18,10 +18,16 @@ import WaterPricing from "views/Projects/WaterPricing";
 import HomePage from "views/HomePage/HomePage";
 import Teams from "views/Teams/Teams";
 
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV}`,
+});
+
 var hist = createBrowserHistory();
 
 import { Provider } from "react-redux";
 import store from "./store";
+import Dashboard from "views/Dashboard/Dashboard";
+import Node from "views/Node/Node";
 
 ReactDOM.render(
   <Provider store={store}>
@@ -33,6 +39,7 @@ ReactDOM.render(
         <Route path="/home" component={HomePage} exact />
         <Route path="/team" component={Teams} exact />
         <Route path="/extra" component={Teams} exact />
+        <Route path="/dashboard" component={Dashboard} exact />
         <Route
           exact
           path="/projects/develop-low-cost"
@@ -45,6 +52,7 @@ ReactDOM.render(
           exact
         />
         <Route path="/dashboard" component={Dataportal} exact />
+        <Route path="/node/:key" component={Node} exact />
         <Redirect to="/home" />
       </Switch>
     </Router>
