@@ -1,3 +1,4 @@
+import { NODE_ERROR } from "actions/types";
 import { GET_NODE } from "actions/types";
 import { GET_NODES } from "actions/types";
 
@@ -17,37 +18,16 @@ export default function node(state = initialState, action) {
         nodes: payload,
         loading: false,
       };
-
-    //   case ADD_POST:
-    //     return {
-    //       ...state,
-    //       posts: [payload, ...state.posts],
-    //       loading: false,
-    //     };
-    //   case POST_ERROR:
-    //     return {
-    //       ...state,
-    //       error: payload,
-    //       loading: false,
-    //     };
-    //   case UPDATE_LIKES:
-    //     return {
-    //       ...state,
-    //       posts: state.posts.map((post) =>
-    //         post._id === payload.id ? { ...post, likes: payload.likes } : post
-    //       ),
-    //       loading: false,
-    //     };
-    //   case DELETE_POST:
-    //     return {
-    //       ...state,
-    //       posts: state.posts.filter((post) => post._id !== payload),
-    //       loading: false,
-    //     };
     case GET_NODE:
       return {
         ...state,
         node: payload,
+        loading: false,
+      };
+    case NODE_ERROR:
+      return {
+        ...state,
+        error: payload,
         loading: false,
       };
 

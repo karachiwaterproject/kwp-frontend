@@ -50,7 +50,7 @@ const Node = ({ getNode, match, node: { node, loading } }) => {
           className={classes.mainContainer + " main-container"}
           direction="column"
         >
-          {!loading && node.name}
+          {!loading && node && node.name}
         </GridContainer>
       </div>
       <Footer />

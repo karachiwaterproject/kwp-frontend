@@ -2,7 +2,6 @@ import axios from "axios";
 import { GET_NODE, GET_NODES, NODE_ERROR } from "./types";
 import { setAlert } from "./alert";
 import { HOST } from "constrants";
-console.log(HOST);
 
 export const getNodes = () => async (dispatch) => {
   try {

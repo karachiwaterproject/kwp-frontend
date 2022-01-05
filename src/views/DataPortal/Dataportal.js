@@ -36,7 +36,6 @@ const Dataportal = ({ login, isAuthenticated }) => {
   const { username, password } = formData;
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
-  console.log(formData);
 
   if (isAuthenticated) {
     return <Redirect to="/dashboard" />;
@@ -45,7 +44,6 @@ const Dataportal = ({ login, isAuthenticated }) => {
   const onSubmit = async (e) => {
     e.preventDefault();
     login(username, password);
-    alert("dsad");
   };
 
   return (
@@ -153,7 +151,7 @@ const Dataportal = ({ login, isAuthenticated }) => {
                 <GridItem className={classes.formFields}>
                   <TextField
                     style={{ width: "100%" }}
-                    id="outlined-basic"
+                    id="username"
                     label="Username"
                     name="username"
                     variant="outlined"
@@ -164,7 +162,7 @@ const Dataportal = ({ login, isAuthenticated }) => {
                 <GridItem className={classes.formFields}>
                   <TextField
                     style={{ width: "100%" }}
-                    id="outlined-basic"
+                    id="password"
                     label="Password"
                     type="password"
                     name="password"

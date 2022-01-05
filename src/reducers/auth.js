@@ -11,6 +11,7 @@ import {
 
 const initialState = {
   token: localStorage.getItem("token"),
+  username: localStorage.getItem("username"),
   isAuthenticated: null,
   loading: true,
   user: null,
@@ -24,14 +25,16 @@ export default function auth(state = initialState, action) {
         ...state,
         isAuthenticated: true,
         loading: false,
-        user: payload,
+        user: payload.data,
       };
     case REGISTER_SUCCESS:
     case LOGIN_SUCCESS:
-      localStorage.setItem("token", payload.access);
+      localStorage.setItem("token", payload.data.access);
+      localStorage.setItem("username", payload.username);
       return {
         ...state,
-        token: payload.access,
+        username: payload.username,
+        token: payload.data.access,
         isAuthenticated: true,
         loading: false,
       };
@@ -41,11 +44,13 @@ export default function auth(state = initialState, action) {
     case LOGOUT:
     case ACCOUNT_DELETED:
       localStorage.removeItem("token");
+      localStorage.removeItem("username");
       return {
         ...state,
         isAuthenticated: false,
         loading: false,
         token: null,
+        username: null,
       };
     default:
       return state;

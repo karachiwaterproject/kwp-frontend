@@ -18,10 +18,9 @@ export const loadUser = (username) => async (dispatch) => {
   // if (localStorage.token) {
   //   setAuthToken(localStorage.token);
   // }
-  console.log(localStorage.token);
+  const user = username || localStorage.getItem("username");
   try {
-    const res = await axios.get(`${HOST}/api/nodeuser/${username}`);
-    console.log(res);
+    const res = await axios.get(`${HOST}/api/nodeuser/${user}`);
     dispatch({
       type: USER_LOADED,
       payload: res.data,
@@ -75,10 +74,10 @@ export const login = (username, password) => async (dispatch) => {
   const body = JSON.stringify({ username, password });
 
   try {
-    const res = await axios.post(`${host}/auth/token/`, body, config);
+    const res = await axios.post(`${HOST}/auth/token/`, body, config);
     dispatch({
       type: LOGIN_SUCCESS,
-      payload: res.data,
+      payload: { data: res.data, username },
     });
     dispatch(loadUser(username));
   } catch (error) {

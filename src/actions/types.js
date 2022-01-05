@@ -17,3 +17,5 @@ export const ACCOUNT_DELETED = "ACCOUNT_DELETED";
 export const GET_NODES = "GET_NODES";
 export const GET_NODE = "GET_NODE";
 export const NODE_ERROR = "NODE_ERROR";
+export const GET_READINGS = "GET_READINGS";
+export const READINGS_ERROR = "READINGS_ERROR";

@@ -11,6 +11,7 @@ import Tooltip from "@material-ui/core/Tooltip";
 
 // @material-ui/icons
 import { Apps } from "@material-ui/icons";
+import PropTypes from "prop-types";
 
 // core components
 import CustomDropdown from "components/CustomDropdown/CustomDropdown.js";
@@ -22,13 +23,55 @@ import { Typography } from "@material-ui/core";
 import headerLogo from "./../../assets/img/hu-header-logo.svg";
 import GridContainer from "components/Grid/GridContainer";
 import GridItem from "components/Grid/GridItem";
+import { logout } from "actions/auth";
+import { connect } from "react-redux";
 
 const useStyles = makeStyles(styles);
 
-export default function HeaderLinks(props) {
+function HeaderLinks({ auth: { isAuthenticated, loading }, logout }) {
   const classes = useStyles();
+
+  const authLinks = (
+    <>
+      <ListItem className={classes.listItem}>
+        <NavLink
+          to="/dashboard"
+          className={classes.navLink}
+          activeClassName={classes.activeLink + " active-link"}
+        >
+          <i className={classes.socialIcons + " fas fa-chart-bar"} />
+          <Typography variant="body2" style={{ marginLeft: 10 }}>
+            Dashboard
+          </Typography>
+        </NavLink>
+      </ListItem>
+      <ListItem className={classes.listItem}>
+        <a className={classes.navLink} onClick={logout} href="#!">
+          Logout
+        </a>
+      </ListItem>
+    </>
+  );
+
+  const guestLinks = (
+    <>
+      <ListItem className={classes.listItem}>
+        <NavLink
+          to="/login"
+          className={classes.navLink}
+          activeClassName={classes.activeLink + " active-link"}
+        >
+          <i className={classes.socialIcons + " fas fa-chart-bar"} />
+          <Typography variant="body2" style={{ marginLeft: 10 }}>
+            Data Portal
+          </Typography>
+        </NavLink>
+      </ListItem>
+    </>
+  );
+
   return (
-    <GridContainer>
+    <GridContainer style={{ alignItems: "center" }}>
       <ListItem className={classes.listItem}>
         <NavLink
           color="transparent"
@@ -89,18 +132,9 @@ export default function HeaderLinks(props) {
           ]}
         />
       </ListItem>
-      <ListItem className={classes.listItem}>
-        <NavLink
-          to="/dashboard"
-          className={classes.navLink}
-          activeClassName={classes.activeLink + " active-link"}
-        >
-          <i className={classes.socialIcons + " fas fa-chart-bar"} />
-          <Typography variant="body2" style={{ marginLeft: 10 }}>
-            Dashboard
-          </Typography>
-        </NavLink>
-      </ListItem>
+
+      {!loading && <>{isAuthenticated ? authLinks : guestLinks}</>}
+
       <ListItem className={classes.listItem} style={{ marginLeft: 20 }}>
         <Button
           href="https://www.creative-tim.com/product/material-kit-react?ref=mkr-navbar"
@@ -114,3 +148,13 @@ export default function HeaderLinks(props) {
     </GridContainer>
   );
 }
+HeaderLinks.propTypes = {
+  logout: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
+};
+
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+});
+
+export default connect(mapStateToProps, { logout })(HeaderLinks);

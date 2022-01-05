@@ -15,15 +15,15 @@ import PropTypes from "prop-types";
 import { getNodes } from "../../actions/node";
 import Card from "components/Card/Card";
 import { Link } from "react-router-dom";
+import DashboardHeader from "components/DashboardHeader/DashboardHeader";
+import { dashboardLinks } from "constrants";
 
 const useStyles = makeStyles(styles);
 
-const Dashboard = ({ getNodes, node: { nodes, loading } }) => {
+const Dashboard = () => {
   const classes = useStyles();
-  React.useEffect(() => {
-    getNodes();
-  }, [getNodes]);
 
+  const currentPage = "Dashboard";
   return (
     <div>
       <Header
@@ -53,69 +53,15 @@ const Dashboard = ({ getNodes, node: { nodes, loading } }) => {
           className={classes.mainContainer + " main-container"}
           direction="column"
         >
-          <Typography
-            variant="h4"
-            style={{ fontWeight: "bold", marginBottom: 30 }}
-          >
-            Nodes
-          </Typography>
-          <hr style={{ width: "100%" }} />
-          <GridContainer>
-            {nodes.map(({ name, total_flow, count, status, key }) => {
-              return (
-                <GridItem key={name} xs={12} sm={12} lg={4}>
-                  <Link to={`/node/${key}`}>
-                    <Card
-                      style={{
-                        borderLeft: "5px solid",
-                        borderColor:
-                          status === "active"
-                            ? "#1CC88A"
-                            : status === "inactive"
-                            ? "#F6C23E"
-                            : "#E33775",
-                      }}
-                    >
-                      <CardContent>
-                        <Typography
-                          color="primary"
-                          style={{
-                            textTransform: "uppercase",
-                            fontSize: "13px",
-                            fontWeight: "bold",
-                            color:
-                              status === "active"
-                                ? "#1CC88A"
-                                : status === "inactive"
-                                ? "#F6C23E"
-                                : "#E33775",
-                          }}
-                        >
-                          {name}
-                        </Typography>
-                        <Typography style={{ textTransform: "uppercase" }}>
-                          <span style={{ fontWeight: "bold" }}>
-                            Total flow (L):
-                          </span>{" "}
-                          {total_flow}
-                        </Typography>
-                        <Typography style={{ textTransform: "uppercase" }}>
-                          <span style={{ fontWeight: "bold" }}>
-                            Data points collected:
-                          </span>{" "}
-                          {count}
-                        </Typography>
-                        <Typography style={{ textTransform: "uppercase" }}>
-                          <span style={{ fontWeight: "bold" }}>Status:</span>{" "}
-                          {status}
-                        </Typography>
-                      </CardContent>
-                    </Card>
-                  </Link>
-                </GridItem>
-              );
-            })}
-          </GridContainer>
+          <DashboardHeader
+            currentPage={
+              dashboardLinks.filter(({ page }) => page === currentPage)[0]
+            }
+            dashboardLinks={dashboardLinks.filter(
+              ({ page }) => page !== currentPage
+            )}
+          />
+          <GridContainer>Dashboard</GridContainer>
         </GridContainer>
       </div>
       <Footer />
@@ -123,13 +69,4 @@ const Dashboard = ({ getNodes, node: { nodes, loading } }) => {
   );
 };
 
-Dashboard.propTypes = {
-  getNodes: PropTypes.func.isRequired,
-  node: PropTypes.object.isRequired,
-};
-
-const mapStateToProps = (state) => ({
-  node: state.node,
-});
-
-export default connect(mapStateToProps, { getNodes })(Dashboard);
+export default Dashboard;
