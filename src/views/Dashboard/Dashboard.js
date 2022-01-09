@@ -18,12 +18,23 @@ import { Link } from "react-router-dom";
 import DashboardHeader from "components/DashboardHeader/DashboardHeader";
 import { dashboardLinks } from "constrants";
 
+// import { Wrapper, Status } from "@googlemaps/react-wrapper";
+import { MAPS_KEY } from "constrants";
+// import Map from "./Map/Map";
+
+import { Map, GoogleApiWrapper, Marker } from "google-maps-react";
+
 const useStyles = makeStyles(styles);
 
-const Dashboard = () => {
+const Dashboard = ({ google }) => {
   const classes = useStyles();
 
   const currentPage = "Dashboard";
+
+  const render = (status) => {
+    return <h1>{status}</h1>;
+  };
+
   return (
     <div>
       <Header
@@ -61,7 +72,24 @@ const Dashboard = () => {
               ({ page }) => page !== currentPage
             )}
           />
-          <GridContainer>Dashboard</GridContainer>
+          <GridContainer>
+            <GridItem></GridItem>
+            Dashboard
+            <GridItem style={{ height: "500px" }}>
+              {/* <Wrapper apiKey={MAPS_KEY} render={render}>
+                <Map />
+              </Wrapper> */}
+              <Map
+                google={google}
+                zoom={8}
+                // style={mapStyles}
+                style={{ width: "100%", height: "100%" }}
+                initialCenter={{ lat: 47.444, lng: -122.176 }}
+              >
+                <Marker position={{ lat: 48.0, lng: -122.0 }} />
+              </Map>
+            </GridItem>
+          </GridContainer>
         </GridContainer>
       </div>
       <Footer />
@@ -69,4 +97,6 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default GoogleApiWrapper({
+  apiKey: MAPS_KEY,
+})(Dashboard);

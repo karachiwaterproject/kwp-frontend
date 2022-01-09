@@ -13,7 +13,7 @@ const initialState = {
   token: localStorage.getItem("token"),
   username: localStorage.getItem("username"),
   isAuthenticated: null,
-  loading: true,
+  loading: localStorage.getItem("username") === null || "" ? false : true,
   user: null,
 };
 

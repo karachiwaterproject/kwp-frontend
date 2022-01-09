@@ -3424,6 +3424,11 @@ char-regex@^1.0.2:
   resolved "https://registry.yarnpkg.com/char-regex/-/char-regex-1.0.2.tgz#d744358226217f981ed58f479b1d6bcc29545dcf"
   integrity sha512-kWWXztvZ5SBQV+eRgKFeh8q5sLuZY2+8WUIzlxWVTg+oGwY14qylx1KbKzHd8P6ZYkAg0xyIDU9JMHhyJMZ1jw==
 
+chart.js@^3.5.0:
+  version "3.7.0"
+  resolved "https://registry.yarnpkg.com/chart.js/-/chart.js-3.7.0.tgz#7a19c93035341df801d613993c2170a1fcf1d882"
+  integrity sha512-31gVuqqKp3lDIFmzpKIrBeum4OpZsQjSIAqlOpgjosHDJZlULtvwLEZKtEhIAZc7JMPaHlYMys40Qy9Mf+1AAg==
+
 check-types@^11.1.1:
   version "11.1.2"
   resolved "https://registry.yarnpkg.com/check-types/-/check-types-11.1.2.tgz#86a7c12bf5539f6324eb0e70ca8896c0e38f3e2f"
@@ -5733,6 +5738,11 @@ globule@^1.0.0:
     glob "~7.1.1"
     lodash "~4.17.10"
     minimatch "~3.0.2"
+
+google-maps-react@^2.0.6:
+  version "2.0.6"
+  resolved "https://registry.yarnpkg.com/google-maps-react/-/google-maps-react-2.0.6.tgz#0473356207ab6b47227b393b89e4b83f6eab06da"
+  integrity sha512-M8Eo9WndfQEfxcmm6yRq03qdJgw1x6rQmJ9DN+a+xPQ3K7yNDGkVDbinrf4/8vcox7nELbeopbm4bpefKewWfQ==
 
 graceful-fs@^4.1.11, graceful-fs@^4.1.15, graceful-fs@^4.1.2, graceful-fs@^4.1.6, graceful-fs@^4.2.0, graceful-fs@^4.2.3, graceful-fs@^4.2.4:
   version "4.2.8"
@@ -9749,6 +9759,11 @@ react-app-polyfill@^2.0.0:
     raf "^3.4.1"
     regenerator-runtime "^0.13.7"
     whatwg-fetch "^3.4.1"
+
+react-chartjs-2@^3.0.4:
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/react-chartjs-2/-/react-chartjs-2-3.3.0.tgz#3f62681645acccc1ab27a9186c70f79d6d417f73"
+  integrity sha512-4Mt0SR2aiUbWi/4762odRBYSnbNKSs4HWc0o3IW43py5bMfmfpeZU95w6mbvtuLZH/M3GsPJMU8DvDc+5U9blQ==
 
 react-datetime@3.0.4:
   version "3.0.4"

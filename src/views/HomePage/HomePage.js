@@ -71,13 +71,12 @@ const HomePage = (props) => {
         <div className={classes.mainContainer + " main-container"}>
           <Typography variant="h4" className="h4">
             OnGoing
-            <br />
-            <Typography
-              variant="h3"
-              style={{ color: "#461A55", fontWeight: "bold" }}
-            >
-              Projects
-            </Typography>
+          </Typography>
+          <Typography
+            variant="h3"
+            style={{ color: "#461A55", fontWeight: "bold" }}
+          >
+            Projects
           </Typography>
           <GridContainer>
             {projects.map(({ name, image }) => (
@@ -93,11 +92,12 @@ const HomePage = (props) => {
             style={{
               backgroundImage: `url(${team})`,
               height: "280px",
-              backgroundSize: "contain",
+              backgroundSize: "cover",
               justifyContent: "center",
               alignItems: "center",
               flexDirection: "column",
               display: "flex",
+              backgroundRepeat: "no-repeat",
             }}
           >
             <Typography
@@ -114,18 +114,15 @@ const HomePage = (props) => {
           </GridItem>
         </GridContainer>
         <div className={classes.mainContainer + " main-container"}>
-          <Typography variant="h4">
-            Supported through
-            <br />
-            <Typography
-              variant="h3"
-              style={{ color: "#461A55", fontWeight: "bold" }}
-            >
-              Grants
-            </Typography>
+          <Typography variant="h4">Supported through</Typography>
+          <Typography
+            variant="h3"
+            style={{ color: "#461A55", fontWeight: "bold" }}
+          >
+            Grants
           </Typography>
           <br />
-          <GridContainer>
+          <GridContainer style={{ justifyContent: "center" }}>
             <GridItem
               xs={12}
               sm={4}

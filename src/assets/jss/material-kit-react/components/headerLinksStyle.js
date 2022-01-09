@@ -116,8 +116,8 @@ const headerLinksStyle = (theme) => ({
     },
   },
   activeLink: {
-    backgroundColor: "white",
-    color: "black",
+    backgroundColor: "black",
+    color: "white",
   },
   activeDropdowLink: {
     backgroundColor: "black",

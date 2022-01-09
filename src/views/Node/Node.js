@@ -11,15 +11,66 @@ import Parallax from "components/Parallax/Parallax";
 import Header from "components/Header/Header";
 import HeaderLinks from "components/Header/HeaderLinks";
 import styles from "assets/jss/material-kit-react/views/node.js";
-import { makeStyles } from "@material-ui/core";
+import { makeStyles, Typography } from "@material-ui/core";
+import { getReadings } from "actions/readings";
+import { GET_READINGS_AFTER } from "constrants";
+import { LineChart } from "./Charts/LineChart";
 
 const useStyles = makeStyles(styles);
 
-const Node = ({ getNode, match, node: { node, loading } }) => {
+const Node = ({
+  getNode,
+  getReadings,
+  match,
+  node: { node, loading },
+  reading,
+}) => {
   const classes = useStyles();
   React.useEffect(() => {
     getNode(match.params.key);
-  }, [getNode, match.params.key]);
+  }, [getNode, getReadings, match.params.key]);
+
+  const [readingsData, setReadingsData] = React.useState({
+    battery_level: [],
+    temperature: [],
+    flow_rate: [],
+    flow_count: [],
+    total_flow: [],
+    time_sampled: [],
+  });
+
+  setTimeout(() => {
+    if (!loading && node) {
+      getReadings(node.name);
+      const {
+        readings: { data },
+      } = reading;
+      if (data) {
+        let content = Array.from(data).reverse();
+
+        let reading = {
+          battery_level: [],
+          temperature: [],
+          flow_rate: [],
+          flow_count: [],
+          total_flow: [],
+          time_sampled: [],
+        };
+        content.map((item) =>
+          Object.keys(reading).map((key) => reading[key].push(item[key]))
+        );
+        setReadingsData(reading);
+      }
+    }
+  }, GET_READINGS_AFTER);
+  const getTimeDifference = (timesArray) => {
+    // assuming array is latest to oldest
+    var collect = [];
+    for (var i = 1; i < timesArray.length; i++) {
+      collect.push(timesArray[i] - timesArray[i - 1]);
+    }
+    return collect;
+  };
 
   return (
     <div>
@@ -50,7 +101,53 @@ const Node = ({ getNode, match, node: { node, loading } }) => {
           className={classes.mainContainer + " main-container"}
           direction="column"
         >
-          {!loading && node && node.name}
+          {!loading && node && (
+            <>
+              <Typography variant="h4">
+                Visualizing data for node:{" "}
+                <span style={{ fontWeight: "bolder" }}>{node.name}</span>
+              </Typography>
+              <hr style={{ width: "100%" }} />
+              <LineChart
+                labels={readingsData.time_sampled}
+                data={readingsData.battery_level}
+                ymin={0}
+                ymax={5}
+                heading={`Battery Level (Volts)`}
+                min={3.3}
+                max={4.5}
+              />
+              <LineChart
+                labels={readingsData.time_sampled}
+                data={getTimeDifference(readingsData.time_sampled)}
+                heading={`T2 - T1`}
+              />
+              <LineChart
+                labels={readingsData.time_sampled}
+                data={readingsData.flow_count}
+                heading={`Flow Count`}
+              />
+              <LineChart
+                labels={readingsData.time_sampled}
+                data={readingsData.total_flow}
+                heading={`Total Flow (L)`}
+              />
+              <LineChart
+                labels={readingsData.time_sampled}
+                data={readingsData.flow_rate}
+                ymin={0}
+                ymax={60}
+                heading={`Flow Rate (L/min)`}
+                min={0}
+                max={60}
+              />
+              <LineChart
+                labels={readingsData.time_sampled}
+                data={readingsData.temperature}
+                heading={`Temperature (C°)`}
+              />
+            </>
+          )}
         </GridContainer>
       </div>
       <Footer />
@@ -60,10 +157,14 @@ const Node = ({ getNode, match, node: { node, loading } }) => {
 
 Node.propTypes = {
   getNode: PropTypes.func.isRequired,
+  getReadings: PropTypes.func.isRequired,
+  node: PropTypes.object.isRequired,
+  reading: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   node: state.node,
+  reading: state.reading,
 });
 
-export default connect(mapStateToProps, { getNode })(Node);
+export default connect(mapStateToProps, { getNode, getReadings })(Node);

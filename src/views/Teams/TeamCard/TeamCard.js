@@ -19,7 +19,7 @@ const TeamCard = ({ name, avatar, role, contact, details }) => {
     <Card
       variant="outlined"
       className={classes.card}
-      style={{ backgroundImage: `url(${avatar})` }}
+      style={{ backgroundImage: `url(${avatar})`, backgroundSize: "cover" }}
     >
       <CardContent className={classes.cardContent + " trigger-details"}>
         <div className={classes.cardMain + " card-main"} />

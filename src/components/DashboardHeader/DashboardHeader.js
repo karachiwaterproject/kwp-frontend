@@ -28,7 +28,10 @@ const DashboardHeader = ({ currentPage: { url, page }, dashboardLinks }) => {
                 <Link to={url}>
                   <Typography
                     variant="body1"
-                    style={{ float: "right", color: "gray" }}
+                    style={{
+                      float: "right",
+                      color: page === "Logout" ? "red" : "gray",
+                    }}
                   >
                     {page}
                   </Typography>
