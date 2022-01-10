@@ -1,8 +1,8 @@
-export const HOST = "http://192.168.1.108:8000";
+export const HOST = "https://www.karachiwaterproject.com";
 export const DEFAULT_NODE = "test-node";
 export const READINGS_PER_PAGE = 20;
 export const MAPS_KEY = "AIzaSyDL3JhynfdzGBx9WKTx-mnd-LtOlSCFRyE";
-export const GET_READINGS_AFTER = 5000;
+export const GET_READINGS_AFTER = 10000;
 export const dashboardLinks = [
   {
     page: "Dashboard",

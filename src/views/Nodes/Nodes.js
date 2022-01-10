@@ -68,10 +68,10 @@ const Nodes = ({ getNodes, node: { nodes, loading } }) => {
           <GridContainer>
             {!loading &&
               nodes &&
-              nodes.map(({ name, total_flow, count, status, key }) => {
+              nodes.map(({ name, total_flow, count, status, slug }) => {
                 return (
                   <GridItem key={name} xs={12} sm={12} lg={4}>
-                    <Link to={`/node/${key}`}>
+                    <Link to={`/node/${slug}`}>
                       <Card
                         style={{
                           borderLeft: "5px solid",

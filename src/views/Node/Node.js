@@ -27,8 +27,27 @@ const Node = ({
 }) => {
   const classes = useStyles();
   React.useEffect(() => {
-    getNode(match.params.key);
-  }, [getNode, getReadings, match.params.key]);
+    getReadings(match.params.key);
+    const {
+      readings: { data },
+    } = reading;
+    if (data) {
+      let content = Array.from(data).reverse();
+
+      let reading = {
+        battery_level: [],
+        temperature: [],
+        flow_rate: [],
+        flow_count: [],
+        total_flow: [],
+        time_sampled: [],
+      };
+      content.map((item) =>
+        Object.keys(reading).map((key) => reading[key].push(item[key]))
+      );
+      setReadingsData(reading);
+    }
+  }, [getReadings, match.params.key]);
 
   const [readingsData, setReadingsData] = React.useState({
     battery_level: [],
@@ -39,30 +58,13 @@ const Node = ({
     time_sampled: [],
   });
 
-  setTimeout(() => {
-    if (!loading && node) {
-      getReadings(node.name);
-      const {
-        readings: { data },
-      } = reading;
-      if (data) {
-        let content = Array.from(data).reverse();
+  // setTimeout(() => {
+  //   if (!loading && node) {
+  //     getReadings(match.params.key);
 
-        let reading = {
-          battery_level: [],
-          temperature: [],
-          flow_rate: [],
-          flow_count: [],
-          total_flow: [],
-          time_sampled: [],
-        };
-        content.map((item) =>
-          Object.keys(reading).map((key) => reading[key].push(item[key]))
-        );
-        setReadingsData(reading);
-      }
-    }
-  }, GET_READINGS_AFTER);
+  //     }
+  //   }
+  // }, GET_READINGS_AFTER);
   const getTimeDifference = (timesArray) => {
     // assuming array is latest to oldest
     var collect = [];
