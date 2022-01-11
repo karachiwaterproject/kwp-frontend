@@ -24,6 +24,7 @@ import Readings from "views/Readings/Readings";
 import Nodes from "views/Nodes/Nodes";
 import PrivateRoute from "routing/PrivateRoute";
 import { loadUser } from "actions/auth";
+import HomeNode from "views/Node/HomeNode";
 
 const App = () => {
   React.useEffect(() => {
@@ -59,7 +60,12 @@ const App = () => {
           <PrivateRoute path="/dashboard" component={Dashboard} exact />
           <PrivateRoute path="/nodes" component={Nodes} exact />
           <PrivateRoute path="/readings" component={Readings} exact />
-          <PrivateRoute path="/node/:key" component={Node} exact />
+          <PrivateRoute path="/node/:key/:slug" component={Node} exact />
+          <PrivateRoute
+            path="/homenode/:key/:slug"
+            component={HomeNode}
+            exact
+          />
 
           <Redirect to="/home" />
         </Switch>

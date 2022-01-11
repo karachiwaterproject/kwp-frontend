@@ -1,7 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import { getNode } from "./../../actions/node";
 import { PropTypes } from "prop-types";
 import Footer from "components/Footer/Footer";
 import classNames from "classnames";
@@ -11,42 +10,39 @@ import Parallax from "components/Parallax/Parallax";
 import Header from "components/Header/Header";
 import HeaderLinks from "components/Header/HeaderLinks";
 import styles from "assets/jss/material-kit-react/views/node.js";
-import { makeStyles, Typography } from "@material-ui/core";
+import { Button, makeStyles, Typography } from "@material-ui/core";
 import { getReadings } from "actions/readings";
 import { GET_READINGS_AFTER } from "constrants";
 import { LineChart } from "./Charts/LineChart";
+import { getNode } from "actions/node";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles(styles);
 
-const Node = ({
-  getNode,
-  getReadings,
-  match,
-  node: { node, loading },
-  reading,
-}) => {
+const Node = ({ getReadings, match, reading: { readings, loading } }) => {
   const classes = useStyles();
   React.useEffect(() => {
-    getReadings(match.params.key);
-    const {
-      readings: { data },
-    } = reading;
-    if (data) {
-      let content = Array.from(data).reverse();
+    setInterval(() => {
+      console.log("Data restored !!");
+      getReadings(match.params.key);
+      const { data } = readings;
+      if (data) {
+        let content = Array.from(data).reverse();
 
-      let reading = {
-        battery_level: [],
-        temperature: [],
-        flow_rate: [],
-        flow_count: [],
-        total_flow: [],
-        time_sampled: [],
-      };
-      content.map((item) =>
-        Object.keys(reading).map((key) => reading[key].push(item[key]))
-      );
-      setReadingsData(reading);
-    }
+        let reading = {
+          battery_level: [],
+          temperature: [],
+          flow_rate: [],
+          flow_count: [],
+          total_flow: [],
+          time_sampled: [],
+        };
+        content.map((item) =>
+          Object.keys(reading).map((key) => reading[key].push(item[key]))
+        );
+        setReadingsData(reading);
+      }
+    }, GET_READINGS_AFTER);
   }, [getReadings, match.params.key]);
 
   const [readingsData, setReadingsData] = React.useState({
@@ -63,7 +59,6 @@ const Node = ({
   //     getReadings(match.params.key);
 
   //     }
-  //   }
   // }, GET_READINGS_AFTER);
   const getTimeDifference = (timesArray) => {
     // assuming array is latest to oldest
@@ -103,12 +98,33 @@ const Node = ({
           className={classes.mainContainer + " main-container"}
           direction="column"
         >
-          {!loading && node && (
+          {!loading && readings.data ? (
             <>
-              <Typography variant="h4">
-                Visualizing data for node:{" "}
-                <span style={{ fontWeight: "bolder" }}>{node.name}</span>
-              </Typography>
+              <GridContainer>
+                <GridItem>
+                  <Typography variant="h4">
+                    Visualizing data for node:{" "}
+                    <span style={{ fontWeight: "bolder" }}>
+                      {match.params.slug}
+                    </span>
+                  </Typography>
+                </GridItem>
+                <GridItem>
+                  <Button
+                    color="secondary"
+                    style={{ float: "right" }}
+                    variant="contained"
+                  >
+                    <Link
+                      style={{ color: "white" }}
+                      to={`/homenode/${match.params.key}/${match.params.slug}`}
+                    >
+                      Switch to Owner View
+                    </Link>
+                  </Button>
+                </GridItem>
+              </GridContainer>
+
               <hr style={{ width: "100%" }} />
               <LineChart
                 labels={readingsData.time_sampled}
@@ -149,6 +165,8 @@ const Node = ({
                 heading={`Temperature (C°)`}
               />
             </>
+          ) : (
+            <>Loading</>
           )}
         </GridContainer>
       </div>
@@ -158,15 +176,12 @@ const Node = ({
 };
 
 Node.propTypes = {
-  getNode: PropTypes.func.isRequired,
   getReadings: PropTypes.func.isRequired,
-  node: PropTypes.object.isRequired,
   reading: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
-  node: state.node,
   reading: state.reading,
 });
 
-export default connect(mapStateToProps, { getNode, getReadings })(Node);
+export default connect(mapStateToProps, { getReadings })(Node);
