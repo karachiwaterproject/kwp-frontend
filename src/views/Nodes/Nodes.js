@@ -2,7 +2,12 @@ import Header from "components/Header/Header";
 import React from "react";
 
 import styles from "assets/jss/material-kit-react/views/nodes.js";
-import { CardContent, makeStyles, Typography } from "@material-ui/core";
+import {
+  CardContent,
+  Container,
+  makeStyles,
+  Typography,
+} from "@material-ui/core";
 import Footer from "components/Footer/Footer";
 import HeaderLinks from "components/Header/HeaderLinks";
 import Parallax from "components/Parallax/Parallax";
@@ -52,79 +57,84 @@ const Nodes = ({ getNodes, node: { nodes, loading } }) => {
           </GridContainer>
         </div>
       </Parallax>
-      <div className={classNames(classes.main, classes.mainRaised)}>
-        <GridContainer
-          className={classes.mainContainer + " main-container"}
-          direction="column"
-        >
-          <DashboardHeader
-            currentPage={
-              dashboardLinks.filter(({ page }) => page === currentPage)[0]
-            }
-            dashboardLinks={dashboardLinks.filter(
-              ({ page }) => page !== currentPage
-            )}
-          />
-          <GridContainer>
-            {!loading &&
-              nodes &&
-              nodes.map(({ name, total_flow, count, status, slug, key }) => {
-                return (
-                  <GridItem key={name} xs={12} sm={12} lg={4}>
-                    <Link to={`/node/${key}/${slug}`}>
-                      <Card
-                        style={{
-                          borderLeft: "5px solid",
-                          borderColor:
-                            status === "active"
-                              ? "#1CC88A"
-                              : status === "inactive"
-                              ? "#F6C23E"
-                              : "#E33775",
-                        }}
-                      >
-                        <CardContent>
-                          <Typography
-                            color="primary"
-                            style={{
-                              textTransform: "uppercase",
-                              fontSize: "13px",
-                              fontWeight: "bold",
-                              color:
-                                status === "active"
-                                  ? "#1CC88A"
-                                  : status === "inactive"
-                                  ? "#F6C23E"
-                                  : "#E33775",
-                            }}
-                          >
-                            {name}
-                          </Typography>
-                          <Typography style={{ textTransform: "uppercase" }}>
-                            <span style={{ fontWeight: "bold" }}>
-                              Total flow (L):
-                            </span>{" "}
-                            {total_flow}
-                          </Typography>
-                          <Typography style={{ textTransform: "uppercase" }}>
-                            <span style={{ fontWeight: "bold" }}>
-                              Data points collected:
-                            </span>{" "}
-                            {count}
-                          </Typography>
-                          <Typography style={{ textTransform: "uppercase" }}>
-                            <span style={{ fontWeight: "bold" }}>Status:</span>{" "}
-                            {status}
-                          </Typography>
-                        </CardContent>
-                      </Card>
-                    </Link>
-                  </GridItem>
-                );
-              })}
+      <Container>
+        <div className={classNames(classes.main, classes.mainRaised)}>
+          <GridContainer
+            className={classes.mainContainer + " main-container"}
+            direction="column"
+          >
+            <DashboardHeader
+              currentPage={
+                dashboardLinks.filter(({ page }) => page === currentPage)[0]
+              }
+              dashboardLinks={dashboardLinks.filter(
+                ({ page }) => page !== currentPage
+              )}
+            />
+            <GridContainer>
+              {!loading &&
+                nodes &&
+                nodes.map(({ name, total_flow, count, status, slug, key }) => {
+                  return (
+                    <GridItem key={name} xs={12} sm={12} lg={4}>
+                      <Link to={`/node/${key}/${slug}`}>
+                        <Card
+                          style={{
+                            borderLeft: "5px solid",
+                            borderColor:
+                              status === "active"
+                                ? "#1CC88A"
+                                : status === "inactive"
+                                ? "#F6C23E"
+                                : "#E33775",
+                          }}
+                        >
+                          <CardContent>
+                            <Typography
+                              color="primary"
+                              style={{
+                                textTransform: "uppercase",
+                                fontSize: "13px",
+                                fontWeight: "bold",
+                                color:
+                                  status === "active"
+                                    ? "#1CC88A"
+                                    : status === "inactive"
+                                    ? "#F6C23E"
+                                    : "#E33775",
+                              }}
+                            >
+                              {name}
+                            </Typography>
+                            <Typography style={{ textTransform: "uppercase" }}>
+                              <span style={{ fontWeight: "bold" }}>
+                                Total flow (L):
+                              </span>{" "}
+                              {total_flow}
+                            </Typography>
+                            <Typography style={{ textTransform: "uppercase" }}>
+                              <span style={{ fontWeight: "bold" }}>
+                                Data points collected:
+                              </span>{" "}
+                              {count}
+                            </Typography>
+                            <Typography style={{ textTransform: "uppercase" }}>
+                              <span style={{ fontWeight: "bold" }}>
+                                Status:
+                              </span>{" "}
+                              {status}
+                            </Typography>
+                          </CardContent>
+                        </Card>
+                      </Link>
+                    </GridItem>
+                  );
+                })}
+            </GridContainer>
           </GridContainer>
-        </GridContainer>
-      </div>
+        </div>
+      </Container>
+
       <Footer />
     </div>
   );

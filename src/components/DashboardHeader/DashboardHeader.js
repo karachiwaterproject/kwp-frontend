@@ -24,7 +24,7 @@ const DashboardHeader = ({ currentPage: { url, page }, dashboardLinks }) => {
             style={{ justifyContent: "flex-end" }}
           >
             {dashboardLinks.map(({ page, url }) => (
-              <Grid item xs={12} sm={1} key={page}>
+              <Grid item xs={12} sm={2} key={page}>
                 <Link to={url}>
                   <Typography
                     variant="body1"

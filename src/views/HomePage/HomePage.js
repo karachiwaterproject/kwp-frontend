@@ -1,4 +1,4 @@
-import { Button, makeStyles, Typography } from "@material-ui/core";
+import { Button, Container, makeStyles, Typography } from "@material-ui/core";
 import GridContainer from "components/Grid/GridContainer";
 import Header from "components/Header/Header";
 import HeaderLinks from "components/Header/HeaderLinks";
@@ -54,8 +54,8 @@ const HomePage = (props) => {
           <GridContainer>
             <GridItem>
               <div className={classes.brand + " brand"}>
-                <h1 className={classes.title}>What we are ?</h1>
-                <h3 className={classes.subtitle}>
+                <h1 className={classes.title + " title"}>What we are ?</h1>
+                <h3 className={classes.subtitle + " subtitle"}>
                   The Karachi Water Project (KWP) is an interdisciplinary
                   research group engaged in investigating approaches to improve
                   water management in Karachi. The group, headed by Dr. Hassaan
@@ -67,106 +67,108 @@ const HomePage = (props) => {
           </GridContainer>
         </div>
       </Parallax>
-      <div className={classNames(classes.main, classes.mainRaised)}>
-        <div className={classes.mainContainer + " main-container"}>
-          <Typography variant="h4" className="h4">
-            OnGoing
-          </Typography>
-          <Typography
-            variant="h3"
-            style={{ color: "#461A55", fontWeight: "bold" }}
-          >
-            Projects
-          </Typography>
-          <GridContainer>
-            {projects.map(({ name, image }) => (
-              <GridItem key={name} xs={12} sm={4}>
-                <OnGoingProjects name={name} image={image} />
-              </GridItem>
-            ))}
-          </GridContainer>
-        </div>
-
-        <GridContainer style={{ padding: 20 }}>
-          <GridItem
-            style={{
-              backgroundImage: `url(${team})`,
-              height: "280px",
-              backgroundSize: "cover",
-              justifyContent: "center",
-              alignItems: "center",
-              flexDirection: "column",
-              display: "flex",
-              backgroundRepeat: "no-repeat",
-            }}
-          >
-            <Typography
-              variant="h4"
-              style={{ fontWeight: "900", color: "white" }}
-            >
-              The Team
+      <Container>
+        <div className={classNames(classes.main, classes.mainRaised)}>
+          <div className={classes.mainContainer + " main-container"}>
+            <Typography variant="h4" className="h4">
+              OnGoing
             </Typography>
-            <Link to="/team">
-              <Button variant="outlined" className={classes.customButton}>
-                See all Members
-              </Button>
-            </Link>
-          </GridItem>
-        </GridContainer>
-        <div className={classes.mainContainer + " main-container"}>
-          <Typography variant="h4">Supported through</Typography>
-          <Typography
-            variant="h3"
-            style={{ color: "#461A55", fontWeight: "bold" }}
-          >
-            Grants
-          </Typography>
-          <br />
-          <GridContainer style={{ justifyContent: "center" }}>
-            <GridItem
-              xs={12}
-              sm={4}
-              className={classes.iconContainer + " icon-container"}
+            <Typography
+              variant="h3"
+              style={{ color: "#461A55", fontWeight: "bold" }}
             >
-              <a href="https://habib.edu.pk" target="_blank">
-                <img src={hu} />
-                <Typography variant="body2" className={classes.text}>
-                  HU Internal Research Grant
-                </Typography>
-              </a>
-            </GridItem>
-
+              Projects
+            </Typography>
+            <GridContainer>
+              {projects.map(({ name, image }) => (
+                <GridItem key={name} xs={12} sm={4}>
+                  <OnGoingProjects name={name} image={image} />
+                </GridItem>
+              ))}
+            </GridContainer>
+          </div>
+          <GridContainer style={{ padding: 20 }}>
             <GridItem
-              xs={12}
-              sm={3}
-              className={classes.iconContainer + " icon-container"}
+              style={{
+                backgroundImage: `url(${team})`,
+                height: "280px",
+                backgroundSize: "cover",
+                justifyContent: "center",
+                alignItems: "center",
+                flexDirection: "column",
+                display: "flex",
+                backgroundRepeat: "no-repeat",
+              }}
             >
-              <a
-                href="https://hec.gov.pk/english/pages/home.aspx"
-                target="_blank"
+              <Typography
+                variant="h4"
+                style={{ fontWeight: "900", color: "white" }}
               >
-                <img src={hec} />
-                <Typography variant="body2" className={classes.text}>
-                  National Research Program for Universities - HEC Pakistan
-                </Typography>
-              </a>
-            </GridItem>
-            <GridItem
-              xs={12}
-              sm={3}
-              className={classes.iconContainer + " icon-container"}
-            >
-              <a href="https://hashoofoundation.org" target="_blank">
-                <img src={hashoo} />
-                <Typography variant="body2" className={classes.text}>
-                  Hashoo Foundation
-                </Typography>
-              </a>
+                The Team
+              </Typography>
+              <Link to="/team">
+                <Button variant="outlined" className={classes.customButton}>
+                  See all Members
+                </Button>
+              </Link>
             </GridItem>
           </GridContainer>
-          <br />
+          <div className={classes.mainContainer + " main-container"}>
+            <Typography variant="h4">Supported through</Typography>
+            <Typography
+              variant="h3"
+              style={{ color: "#461A55", fontWeight: "bold" }}
+            >
+              Grants
+            </Typography>
+            <br />
+            <GridContainer style={{ justifyContent: "center" }}>
+              <GridItem
+                xs={12}
+                sm={4}
+                className={classes.iconContainer + " icon-container"}
+              >
+                <a href="https://habib.edu.pk" target="_blank">
+                  <img src={hu} />
+                  <Typography variant="body2" className={classes.text}>
+                    HU Internal Research Grant
+                  </Typography>
+                </a>
+              </GridItem>
+
+              <GridItem
+                xs={12}
+                sm={3}
+                className={classes.iconContainer + " icon-container"}
+              >
+                <a
+                  href="https://hec.gov.pk/english/pages/home.aspx"
+                  target="_blank"
+                >
+                  <img src={hec} />
+                  <Typography variant="body2" className={classes.text}>
+                    National Research Program for Universities - HEC Pakistan
+                  </Typography>
+                </a>
+              </GridItem>
+              <GridItem
+                xs={12}
+                sm={3}
+                className={classes.iconContainer + " icon-container"}
+              >
+                <a href="https://hashoofoundation.org" target="_blank">
+                  <img src={hashoo} />
+                  <Typography variant="body2" className={classes.text}>
+                    Hashoo Foundation
+                  </Typography>
+                </a>
+              </GridItem>
+            </GridContainer>
+            <br />
+          </div>
         </div>
-      </div>
+      </Container>
+
       <Footer />
     </div>
   );

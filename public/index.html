@@ -99,15 +99,34 @@
         padding: 30px;
         margin-left: 20px;
       }
-      @media screen and (max-width: 768px) {
+      .parallax {
+          height: 90vh;
+        }
+      @media screen and (max-width: 767px) {
         .active-link {
           color: white !important;
           background-color: black !important;
+        }
+        .parallax {
+          height: 75vh;
         }
       }
       @media screen and (max-width: 1024px) {
         .leftFormBorder {
           border-left: none;
+        }
+        .makeStyles-title-3 {
+          font-size: 3rem;
+        }
+        .makeStyles-subtitle-4 {
+          font-size: 1rem;
+
+        }
+      }
+
+      @media (min-width: 1440px) and (max-width: 2560px) {
+        .parallax {
+          height: 40vh;
         }
       }
     </style>

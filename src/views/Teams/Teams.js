@@ -13,6 +13,7 @@ import classNames from "classnames";
 import team1 from "./../../assets/img/team/1.jpg";
 import TeamCard from "./TeamCard/TeamCard";
 import {
+  Container,
   Paper,
   Table,
   TableBody,
@@ -194,57 +195,59 @@ const Teams = (props) => {
           </GridContainer>
         </div>
       </Parallax>
-      <div className={classNames(classes.main, classes.mainRaised)}>
-        <GridContainer className={classes.mainContainer + " main-container"}>
-          {members.map(({ name, avatar, role, contact, details }) => (
-            <GridItem xs={12} sm={4} key={name}>
-              <TeamCard
-                name={name}
-                avatar={avatar}
-                role={role}
-                contact={contact}
-                details={details}
-              />
-            </GridItem>
-          ))}
-        </GridContainer>
-        <GridContainer className={classes.mainContainer + " main-container"}>
-          <Typography
-            variant="h3"
-            style={{ fontWeight: "bold", marginBottom: "30px" }}
-          >
-            Undergraduate Researchers
-          </Typography>
-          <br />
-          <TableContainer component={Paper}>
-            <Table
-              className={classes.table}
-              aria-label="simple table"
-              style={{ textAlign: "center" }}
+      <Container>
+        <div className={classNames(classes.main, classes.mainRaised)}>
+          <GridContainer className={classes.mainContainer + " main-container"}>
+            {members.map(({ name, avatar, role, contact, details }) => (
+              <GridItem xs={12} sm={4} key={name}>
+                <TeamCard
+                  name={name}
+                  avatar={avatar}
+                  role={role}
+                  contact={contact}
+                  details={details}
+                />
+              </GridItem>
+            ))}
+          </GridContainer>
+          <GridContainer className={classes.mainContainer + " main-container"}>
+            <Typography
+              variant="h3"
+              style={{ fontWeight: "bold", marginBottom: "30px" }}
             >
-              <TableHead>
-                <TableRow>
-                  <TableCell align="center">Name</TableCell>
-                  <TableCell align="center">Major</TableCell>
-                  <TableCell align="center">Graduating year</TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {undergraduates.map(({ name, major, year }) => (
-                  <TableRow key={name}>
-                    <TableCell component="th" scope="row" align="center">
-                      {name}
-                    </TableCell>
-                    <TableCell align="center">{major}</TableCell>
-                    <TableCell align="center">{year}</TableCell>
+              Undergraduate Researchers
+            </Typography>
+            <br />
+            <TableContainer component={Paper}>
+              <Table
+                className={classes.table}
+                aria-label="simple table"
+                style={{ textAlign: "center" }}
+              >
+                <TableHead>
+                  <TableRow>
+                    <TableCell align="center">Name</TableCell>
+                    <TableCell align="center">Major</TableCell>
+                    <TableCell align="center">Graduating year</TableCell>
                   </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
-        </GridContainer>
-        <br />
-      </div>
+                </TableHead>
+                <TableBody>
+                  {undergraduates.map(({ name, major, year }) => (
+                    <TableRow key={name}>
+                      <TableCell component="th" scope="row" align="center">
+                        {name}
+                      </TableCell>
+                      <TableCell align="center">{major}</TableCell>
+                      <TableCell align="center">{year}</TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </TableContainer>
+          </GridContainer>
+          <br />
+        </div>
+      </Container>
       <Footer />
     </div>
   );

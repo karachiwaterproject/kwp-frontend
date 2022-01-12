@@ -105,6 +105,9 @@ function HeaderLinks({ auth: { isAuthenticated, loading }, logout }) {
           buttonProps={{
             className: classes.navLink,
             color: "transparent",
+            style: {
+              fontSize: "14px",
+            },
           }}
           buttonIcon={Apps}
           dropdownList={[

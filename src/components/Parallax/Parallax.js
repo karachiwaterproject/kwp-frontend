@@ -45,7 +45,7 @@ export default function Parallax(props) {
   });
   return (
     <div
-      className={parallaxClasses}
+      className={parallaxClasses + " parallax"}
       style={{
         ...style,
         backgroundImage: "url(" + image + ")",

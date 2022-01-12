@@ -1,4 +1,4 @@
-import { makeStyles } from "@material-ui/core";
+import { Container, makeStyles } from "@material-ui/core";
 import classNames from "classnames";
 import GridContainer from "components/Grid/GridContainer";
 import GridItem from "components/Grid/GridItem";
@@ -54,36 +54,39 @@ const Readings = ({ reading, node, getNodes, getReadings }) => {
           </GridContainer>
         </div>
       </Parallax>
-      <div className={classNames(classes.main, classes.mainRaised)}>
-        <GridContainer
-          className={classes.mainContainer + " main-container"}
-          direction="column"
-        >
-          <DashboardHeader
-            currentPage={
-              dashboardLinks.filter(({ page }) => page === currentPage)[0]
-            }
-            dashboardLinks={dashboardLinks.filter(
-              ({ page }) => page !== currentPage
-            )}
-          />
-          <GridContainer>
-            <GridItem xs={12} sm={2}>
-              {!node.loading &&
-                node.nodes &&
-                node.nodes.map((node) => <p key={node.name}>{node.name}</p>)}
-            </GridItem>
-            <GridItem xs={12} sm={10}>
-              {!reading.loading && reading.readings && (
-                <ReadingsPagination
-                  itemsPerPage={READINGS_PER_PAGE}
-                  readings={reading.readings}
-                />
+      <Container>
+        <div className={classNames(classes.main, classes.mainRaised)}>
+          <GridContainer
+            className={classes.mainContainer + " main-container"}
+            direction="column"
+          >
+            <DashboardHeader
+              currentPage={
+                dashboardLinks.filter(({ page }) => page === currentPage)[0]
+              }
+              dashboardLinks={dashboardLinks.filter(
+                ({ page }) => page !== currentPage
               )}
-            </GridItem>
+            />
+            <GridContainer>
+              <GridItem xs={12} sm={2}>
+                {!node.loading &&
+                  node.nodes &&
+                  node.nodes.map((node) => <p key={node.name}>{node.name}</p>)}
+              </GridItem>
+              <GridItem xs={12} sm={10}>
+                {!reading.loading && reading.readings && (
+                  <ReadingsPagination
+                    itemsPerPage={READINGS_PER_PAGE}
+                    readings={reading.readings}
+                  />
+                )}
+              </GridItem>
+            </GridContainer>
           </GridContainer>
-        </GridContainer>
-      </div>
+        </div>
+      </Container>
+
       <Footer />
     </div>
   );

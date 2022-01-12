@@ -10,7 +10,7 @@ import Parallax from "components/Parallax/Parallax";
 import Header from "components/Header/Header";
 import HeaderLinks from "components/Header/HeaderLinks";
 import styles from "assets/jss/material-kit-react/views/node.js";
-import { Button, makeStyles, Typography } from "@material-ui/core";
+import { Button, Container, makeStyles, Typography } from "@material-ui/core";
 import { getReadings } from "actions/readings";
 import { GET_READINGS_AFTER } from "constrants";
 import { LineChart } from "./Charts/LineChart";
@@ -93,83 +93,85 @@ const Node = ({ getReadings, match, reading: { readings, loading } }) => {
           </GridContainer>
         </div>
       </Parallax>
-      <div className={classNames(classes.main, classes.mainRaised)}>
-        <GridContainer
-          className={classes.mainContainer + " main-container"}
-          direction="column"
-        >
-          {!loading && readings.data ? (
-            <>
-              <GridContainer>
-                <GridItem>
-                  <Typography variant="h4">
-                    Visualizing data for node:{" "}
-                    <span style={{ fontWeight: "bolder" }}>
-                      {match.params.slug}
-                    </span>
-                  </Typography>
-                </GridItem>
-                <GridItem>
-                  <Button
-                    color="secondary"
-                    style={{ float: "right" }}
-                    variant="contained"
-                  >
-                    <Link
-                      style={{ color: "white" }}
-                      to={`/homenode/${match.params.key}/${match.params.slug}`}
+      <Container>
+        <div className={classNames(classes.main, classes.mainRaised)}>
+          <GridContainer
+            className={classes.mainContainer + " main-container"}
+            direction="column"
+          >
+            {!loading && readings.data ? (
+              <>
+                <GridContainer>
+                  <GridItem>
+                    <Typography variant="h4">
+                      Visualizing data for node:{" "}
+                      <span style={{ fontWeight: "bolder" }}>
+                        {match.params.slug}
+                      </span>
+                    </Typography>
+                  </GridItem>
+                  <GridItem>
+                    <Button
+                      color="secondary"
+                      style={{ float: "right" }}
+                      variant="contained"
                     >
-                      Switch to Owner View
-                    </Link>
-                  </Button>
-                </GridItem>
-              </GridContainer>
+                      <Link
+                        style={{ color: "white" }}
+                        to={`/homenode/${match.params.key}/${match.params.slug}`}
+                      >
+                        Switch to Owner View
+                      </Link>
+                    </Button>
+                  </GridItem>
+                </GridContainer>
 
-              <hr style={{ width: "100%" }} />
-              <LineChart
-                labels={readingsData.time_sampled}
-                data={readingsData.battery_level}
-                ymin={0}
-                ymax={5}
-                heading={`Battery Level (Volts)`}
-                min={3.3}
-                max={4.5}
-              />
-              <LineChart
-                labels={readingsData.time_sampled}
-                data={getTimeDifference(readingsData.time_sampled)}
-                heading={`T2 - T1`}
-              />
-              <LineChart
-                labels={readingsData.time_sampled}
-                data={readingsData.flow_count}
-                heading={`Flow Count`}
-              />
-              <LineChart
-                labels={readingsData.time_sampled}
-                data={readingsData.total_flow}
-                heading={`Total Flow (L)`}
-              />
-              <LineChart
-                labels={readingsData.time_sampled}
-                data={readingsData.flow_rate}
-                ymin={0}
-                ymax={60}
-                heading={`Flow Rate (L/min)`}
-                min={0}
-                max={60}
-              />
-              <LineChart
-                labels={readingsData.time_sampled}
-                data={readingsData.temperature}
-                heading={`Temperature (C°)`}
-              />
-            </>
-          ) : (
-            <>Loading</>
-          )}
-        </GridContainer>
-      </div>
+                <hr style={{ width: "100%" }} />
+                <LineChart
+                  labels={readingsData.time_sampled}
+                  data={readingsData.battery_level}
+                  ymin={0}
+                  ymax={5}
+                  heading={`Battery Level (Volts)`}
+                  min={3.3}
+                  max={4.5}
+                />
+                <LineChart
+                  labels={readingsData.time_sampled}
+                  data={getTimeDifference(readingsData.time_sampled)}
+                  heading={`T2 - T1`}
+                />
+                <LineChart
+                  labels={readingsData.time_sampled}
+                  data={readingsData.flow_count}
+                  heading={`Flow Count`}
+                />
+                <LineChart
+                  labels={readingsData.time_sampled}
+                  data={readingsData.total_flow}
+                  heading={`Total Flow (L)`}
+                />
+                <LineChart
+                  labels={readingsData.time_sampled}
+                  data={readingsData.flow_rate}
+                  ymin={0}
+                  ymax={60}
+                  heading={`Flow Rate (L/min)`}
+                  min={0}
+                  max={60}
+                />
+                <LineChart
+                  labels={readingsData.time_sampled}
+                  data={readingsData.temperature}
+                  heading={`Temperature (C°)`}
+                />
+              </>
+            ) : (
+              <>Loading</>
+            )}
+          </GridContainer>
+        </div>
+      </Container>
       <Footer />
     </div>
   );

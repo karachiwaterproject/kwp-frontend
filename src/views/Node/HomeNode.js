@@ -8,7 +8,12 @@ import Parallax from "components/Parallax/Parallax";
 import GridContainer from "components/Grid/GridContainer";
 import GridItem from "components/Grid/GridItem";
 import styles from "assets/jss/material-kit-react/views/node.js";
-import { CardContent, makeStyles, Typography } from "@material-ui/core";
+import {
+  CardContent,
+  Container,
+  makeStyles,
+  Typography,
+} from "@material-ui/core";
 import { Link } from "react-router-dom";
 import Card from "components/Card/Card";
 import classNames from "classnames";
@@ -49,71 +54,77 @@ const HomeNode = ({ match, getNode, node: { node, loading } }) => {
           </GridContainer>
         </div>
       </Parallax>
-      <div className={classNames(classes.main, classes.mainRaised)}>
-        <GridContainer
-          className={classes.mainContainer + " main-container"}
-          direction="column"
-        >
-          <DashboardHeader
-            currentPage={
-              dashboardLinks.filter(({ page }) => page === currentPage)[0]
-            }
-            dashboardLinks={dashboardLinks.filter(
-              ({ page }) => page !== currentPage
-            )}
-          />
-          <GridContainer>
-            {!loading && node && (
-              <GridItem key={node.key} xs={12} sm={12} lg={4}>
-                <Card
-                  style={{
-                    borderLeft: "5px solid",
-                    borderColor:
-                      node.status === "active"
-                        ? "#1CC88A"
-                        : node.status === "inactive"
-                        ? "#F6C23E"
-                        : "#E33775",
-                  }}
-                >
-                  <CardContent>
-                    <Typography
-                      color="primary"
-                      style={{
-                        textTransform: "uppercase",
-                        fontSize: "13px",
-                        fontWeight: "bold",
-                        color:
-                          node.status === "active"
-                            ? "#1CC88A"
-                            : node.status === "inactive"
-                            ? "#F6C23E"
-                            : "#E33775",
-                      }}
-                    >
-                      {match.params.slug}
-                    </Typography>
-                    <Typography style={{ textTransform: "uppercase" }}>
-                      <span style={{ fontWeight: "bold" }}>Sample Rate :</span>{" "}
-                      {node.sample_rate}
-                    </Typography>
-                    <Typography style={{ textTransform: "uppercase" }}>
-                      <span style={{ fontWeight: "bold" }}>
-                        Transmission size:
-                      </span>{" "}
-                      {node.transmission_size}
-                    </Typography>
-                    <Typography style={{ textTransform: "uppercase" }}>
-                      <span style={{ fontWeight: "bold" }}>Flow constant:</span>{" "}
-                      {node.flow_constant}
-                    </Typography>
-                  </CardContent>
-                </Card>
-              </GridItem>
-            )}
+      <Container>
+        <div className={classNames(classes.main, classes.mainRaised)}>
+          <GridContainer
+            className={classes.mainContainer + " main-container"}
+            direction="column"
+          >
+            <DashboardHeader
+              currentPage={
+                dashboardLinks.filter(({ page }) => page === currentPage)[0]
+              }
+              dashboardLinks={dashboardLinks.filter(
+                ({ page }) => page !== currentPage
+              )}
+            />
+            <GridContainer>
+              {!loading && node && (
+                <GridItem key={node.key} xs={12} sm={12} lg={4}>
+                  <Card
+                    style={{
+                      borderLeft: "5px solid",
+                      borderColor:
+                        node.status === "active"
+                          ? "#1CC88A"
+                          : node.status === "inactive"
+                          ? "#F6C23E"
+                          : "#E33775",
+                    }}
+                  >
+                    <CardContent>
+                      <Typography
+                        color="primary"
+                        style={{
+                          textTransform: "uppercase",
+                          fontSize: "13px",
+                          fontWeight: "bold",
+                          color:
+                            node.status === "active"
+                              ? "#1CC88A"
+                              : node.status === "inactive"
+                              ? "#F6C23E"
+                              : "#E33775",
+                        }}
+                      >
+                        {match.params.slug}
+                      </Typography>
+                      <Typography style={{ textTransform: "uppercase" }}>
+                        <span style={{ fontWeight: "bold" }}>
+                          Sample Rate :
+                        </span>{" "}
+                        {node.sample_rate}
+                      </Typography>
+                      <Typography style={{ textTransform: "uppercase" }}>
+                        <span style={{ fontWeight: "bold" }}>
+                          Transmission size:
+                        </span>{" "}
+                        {node.transmission_size}
+                      </Typography>
+                      <Typography style={{ textTransform: "uppercase" }}>
+                        <span style={{ fontWeight: "bold" }}>
+                          Flow constant:
+                        </span>{" "}
+                        {node.flow_constant}
+                      </Typography>
+                    </CardContent>
+                  </Card>
+                </GridItem>
+              )}
+            </GridContainer>
           </GridContainer>
-        </GridContainer>
-      </div>
+        </div>
+      </Container>
     </div>
   );
 };
