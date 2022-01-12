@@ -36,13 +36,13 @@ export default function Footer(props) {
           direction="row"
           alignItems="center"
         >
-          <Grid item xs={12} sm={4}>
+          {/* <Grid item xs={12} sm={4}>
             <img src={footerLogo} height="75px" />
           </Grid>
           <div className="leftBorder" />
           <Grid item xs={12} sm={4}>
             <img src={footerLogo} height="75px" />
-          </Grid>
+          </Grid> */}
         </Grid>
         <Grid
           style={{ justifyContent: "center", marginTop: 30, marginBottom: 30 }}
@@ -52,14 +52,14 @@ export default function Footer(props) {
         >
           <Typography variant="body2">
             Copyright KWP &copy; {1900 + new Date().getYear()}{" "}
-            <a
+            {/* <a
               href="https://habib.edu.pk"
               className={aClasses}
               target="_blank"
               style={{ fontWeight: "bolder" }}
             >
               Habib University
-            </a>{" "}
+            </a>{" "} */}
           </Typography>
         </Grid>
       </div>
