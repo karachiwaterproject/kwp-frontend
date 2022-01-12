@@ -24,6 +24,7 @@ import { login } from "../../actions/auth";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { Redirect } from "react-router-dom";
+import { CHANGE_NAV_ON_SCROLL } from "constrants";
 
 const Dataportal = ({ login, isAuthenticated }) => {
   const classes = useStyles();
@@ -54,7 +55,7 @@ const Dataportal = ({ login, isAuthenticated }) => {
         fixed
         color="transparent"
         changeColorOnScroll={{
-          height: 400,
+          height: CHANGE_NAV_ON_SCROLL,
           color: "white",
         }}
         // {...rest}

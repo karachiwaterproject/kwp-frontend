@@ -22,6 +22,7 @@ import Card from "components/Card/Card";
 import { Link } from "react-router-dom";
 import DashboardHeader from "components/DashboardHeader/DashboardHeader";
 import { dashboardLinks } from "constrants";
+import { CHANGE_NAV_ON_SCROLL } from "constrants";
 
 const useStyles = makeStyles(styles);
 
@@ -40,7 +41,7 @@ const Nodes = ({ getNodes, node: { nodes, loading } }) => {
         fixed
         color="transparent"
         changeColorOnScroll={{
-          height: 400,
+          height: CHANGE_NAV_ON_SCROLL,
           color: "white",
         }}
         // {...rest}

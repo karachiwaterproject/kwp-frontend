@@ -1,4 +1,4 @@
-import { Container, makeStyles, Typography } from "@material-ui/core";
+import { Container, Link, makeStyles, Typography } from "@material-ui/core";
 import GridContainer from "components/Grid/GridContainer";
 import Header from "components/Header/Header";
 import HeaderLinks from "components/Header/HeaderLinks";
@@ -9,6 +9,9 @@ import GridItem from "components/Grid/GridItem";
 import styles from "assets/jss/material-kit-react/views/waterPricing.js";
 import classNames from "classnames";
 import Footer from "components/Footer/Footer";
+import { projects } from "constrants";
+import { OnGoingProjects } from "views/HomePage/OnGoingProjects/OnGoingProjects";
+import { CHANGE_NAV_ON_SCROLL } from "constrants";
 
 const useStyles = makeStyles(styles);
 
@@ -23,7 +26,7 @@ const WaterPricing = (props) => {
         fixed
         color="transparent"
         changeColorOnScroll={{
-          height: 400,
+          height: CHANGE_NAV_ON_SCROLL,
           color: "white",
         }}
         {...rest}
@@ -77,6 +80,26 @@ const WaterPricing = (props) => {
               across Karachi.
             </Typography>
           </GridContainer>
+          <div className={classes.mainContainer + " main-container"}>
+            <Typography variant="h4" className="h4">
+              OnGoing
+            </Typography>
+            <Typography
+              variant="h3"
+              style={{ color: "#461A55", fontWeight: "bold" }}
+            >
+              Projects
+            </Typography>
+            <GridContainer>
+              {projects.map(({ name, image, url }) => (
+                <GridItem key={name} xs={12} sm={6} lg={3}>
+                  <Link to={url}>
+                    <OnGoingProjects name={name} image={image} />
+                  </Link>
+                </GridItem>
+              ))}
+            </GridContainer>
+          </div>
         </div>
       </Container>
       <Footer />

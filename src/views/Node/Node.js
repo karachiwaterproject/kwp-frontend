@@ -16,6 +16,7 @@ import { GET_READINGS_AFTER } from "constrants";
 import { LineChart } from "./Charts/LineChart";
 import { getNode } from "actions/node";
 import { Link } from "react-router-dom";
+import { CHANGE_NAV_ON_SCROLL } from "constrants";
 
 const useStyles = makeStyles(styles);
 
@@ -76,7 +77,7 @@ const Node = ({ getReadings, match, reading: { readings, loading } }) => {
         fixed
         color="transparent"
         changeColorOnScroll={{
-          height: 400,
+          height: CHANGE_NAV_ON_SCROLL,
           color: "white",
         }}
         // {...rest}

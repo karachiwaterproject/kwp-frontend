@@ -18,6 +18,7 @@ import { getReadings } from "../../actions/readings";
 import { DEFAULT_NODE } from "constrants";
 import ReadingsPagination from "./ReadingsPagination/ReadingsPagination";
 import { READINGS_PER_PAGE } from "constrants";
+import { CHANGE_NAV_ON_SCROLL } from "constrants";
 
 const useStyles = makeStyles(styles);
 
@@ -37,7 +38,7 @@ const Readings = ({ reading, node, getNodes, getReadings }) => {
         fixed
         color="transparent"
         changeColorOnScroll={{
-          height: 400,
+          height: CHANGE_NAV_ON_SCROLL,
           color: "white",
         }}
         // {...rest}

@@ -28,6 +28,7 @@ import { MAPS_KEY } from "constrants";
 // import Map from "./Map/Map";
 
 import { Map, InfoWindow, GoogleApiWrapper, Marker } from "google-maps-react";
+import { CHANGE_NAV_ON_SCROLL } from "constrants";
 
 const useStyles = makeStyles(styles);
 
@@ -74,7 +75,7 @@ const Dashboard = ({ google, getNodes, node: { nodes, loading } }) => {
         fixed
         color="transparent"
         changeColorOnScroll={{
-          height: 400,
+          height: CHANGE_NAV_ON_SCROLL,
           color: "white",
         }}
         // {...rest}

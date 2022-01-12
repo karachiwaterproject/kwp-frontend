@@ -19,6 +19,7 @@ import Card from "components/Card/Card";
 import classNames from "classnames";
 import DashboardHeader from "components/DashboardHeader/DashboardHeader";
 import { dashboardLinks } from "constrants";
+import { CHANGE_NAV_ON_SCROLL } from "constrants";
 
 const useStyles = makeStyles(styles);
 
@@ -37,7 +38,7 @@ const HomeNode = ({ match, getNode, node: { node, loading } }) => {
         fixed
         color="transparent"
         changeColorOnScroll={{
-          height: 400,
+          height: CHANGE_NAV_ON_SCROLL,
           color: "white",
         }}
         // {...rest}

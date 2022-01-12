@@ -15,23 +15,10 @@ import hu from "./../../assets/img/hu-logo.svg";
 import hec from "./../../assets/img/hec-logo.svg";
 import hashoo from "./../../assets/img/hashoo-logo.svg";
 import { Link } from "react-router-dom";
+import { projects } from "constrants";
+import { CHANGE_NAV_ON_SCROLL } from "constrants";
 
 const useStyles = makeStyles(styles);
-
-const projects = [
-  {
-    name: "Development of a low-cost smart flowmeter network for domestic consumers",
-    image: require("./../../assets/img/project1.jpg").default,
-  },
-  {
-    name: "Towards a sustainable and equitable water pricing strategy for Karachi",
-    image: require("./../../assets/img/project2.jpg").default,
-  },
-  {
-    name: "Water security through a political-ecological lens: A case study of Lyari Township",
-    image: require("./../../assets/img/project3.jpg").default,
-  },
-];
 
 const HomePage = (props) => {
   const classes = useStyles();
@@ -44,7 +31,7 @@ const HomePage = (props) => {
         fixed
         color="transparent"
         changeColorOnScroll={{
-          height: 400,
+          height: CHANGE_NAV_ON_SCROLL,
           color: "white",
         }}
         {...rest}
@@ -80,9 +67,11 @@ const HomePage = (props) => {
               Projects
             </Typography>
             <GridContainer>
-              {projects.map(({ name, image }) => (
-                <GridItem key={name} xs={12} sm={4}>
-                  <OnGoingProjects name={name} image={image} />
+              {projects.map(({ name, image, url }) => (
+                <GridItem key={name} xs={12} sm={6} lg={3}>
+                  <Link to={url}>
+                    <OnGoingProjects name={name} image={image} />
+                  </Link>
                 </GridItem>
               ))}
             </GridContainer>

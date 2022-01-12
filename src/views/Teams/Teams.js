@@ -24,6 +24,7 @@ import {
   Typography,
 } from "@material-ui/core";
 import Footer from "components/Footer/Footer";
+import { CHANGE_NAV_ON_SCROLL } from "constrants";
 
 const useStyles = makeStyles(styles);
 const teams = "./../../assets/img/team/";
@@ -178,7 +179,7 @@ const Teams = (props) => {
         fixed
         color="transparent"
         changeColorOnScroll={{
-          height: 400,
+          height: CHANGE_NAV_ON_SCROLL,
           color: "white",
         }}
         {...rest}
