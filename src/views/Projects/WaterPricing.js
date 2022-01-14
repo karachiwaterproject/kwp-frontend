@@ -92,7 +92,7 @@ const WaterPricing = (props) => {
             </Typography>
             <GridContainer>
               {projects.map(({ name, image, url }) => (
-                <GridItem key={name} xs={12} sm={6} lg={3}>
+                <GridItem key={name} xs={12} sm={6} lg={4}>
                   <Link to={url}>
                     <OnGoingProjects name={name} image={image} />
                   </Link>
