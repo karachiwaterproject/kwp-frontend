@@ -21,13 +21,21 @@ import { DateTimeComponent } from "./DateTimeComponent/DateTimeComponent";
 
 const useStyles = makeStyles(styles);
 
-const Node = ({ getReadings, match, reading: { readings, loading } }) => {
+const NodeWithTime = ({
+  getReadingsWithTime,
+  match,
+  reading: { readings, loading },
+}) => {
   const classes = useStyles();
 
   React.useEffect(() => {
     setInterval(() => {
       console.log("Data restored !!");
-      getReadings(match.params.key);
+      getReadingsWithTime(
+        match.params.key,
+        match.params.time1,
+        match.params.time2
+      );
       // getReadingsWithTime(match.params.key, time1, time2);
       const { data } = readings;
       if (data) {
@@ -82,7 +90,7 @@ const Node = ({ getReadings, match, reading: { readings, loading } }) => {
       alert("error date");
     } else {
       if (time1 !== NaN && time2 !== NaN) {
-        window.location.href = `/node/${match.params.key}/${match.params.slug}/${time1}/${time2}`;
+        console.log(`/node/readinds/${match.params.key}/${time1}/${time2}`);
       } else {
         alert("Please enter a valid date");
       }
@@ -211,8 +219,7 @@ const Node = ({ getReadings, match, reading: { readings, loading } }) => {
   );
 };
 
-Node.propTypes = {
-  getReadings: PropTypes.func.isRequired,
+NodeWithTime.propTypes = {
   reading: PropTypes.object.isRequired,
   getReadingsWithTime: PropTypes.func.isRequired,
 };
@@ -221,6 +228,4 @@ const mapStateToProps = (state) => ({
   reading: state.reading,
 });
 
-export default connect(mapStateToProps, { getReadings, getReadingsWithTime })(
-  Node
-);
+export default connect(mapStateToProps, { getReadingsWithTime })(NodeWithTime);

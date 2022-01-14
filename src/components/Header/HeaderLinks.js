@@ -138,7 +138,7 @@ function HeaderLinks({ auth: { isAuthenticated, loading }, logout }) {
 
       {!loading && <>{isAuthenticated ? authLinks : guestLinks}</>}
 
-      <ListItem className={classes.listItem} style={{ marginLeft: 20 }}>
+      {/* <ListItem className={classes.listItem} style={{ marginLeft: 20 }}>
         <Button
           href="https://www.creative-tim.com/product/material-kit-react?ref=mkr-navbar"
           color="white"
@@ -147,7 +147,7 @@ function HeaderLinks({ auth: { isAuthenticated, loading }, logout }) {
         >
           <img src={headerLogo} height="45px" />
         </Button>
-      </ListItem>
+      </ListItem> */}
     </GridContainer>
   );
 }

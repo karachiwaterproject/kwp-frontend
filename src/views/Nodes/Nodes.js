@@ -73,8 +73,7 @@ const Nodes = ({ getNodes, node: { nodes, loading } }) => {
               )}
             />
             <GridContainer>
-              {!loading &&
-                nodes &&
+              {!loading && nodes ? (
                 nodes.map(({ name, total_flow, count, status, slug, key }) => {
                   return (
                     <GridItem key={name} xs={12} sm={12} lg={4}>
@@ -130,7 +129,10 @@ const Nodes = ({ getNodes, node: { nodes, loading } }) => {
                       </Link>
                     </GridItem>
                   );
-                })}
+                })
+              ) : (
+                <>Loading...</>
+              )}
             </GridContainer>
           </GridContainer>
         </div>
