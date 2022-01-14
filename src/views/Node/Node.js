@@ -17,38 +17,14 @@ import { LineChart } from "./Charts/LineChart";
 import { getNode } from "actions/node";
 import { Link } from "react-router-dom";
 import { CHANGE_NAV_ON_SCROLL } from "constrants";
-import { DateTimeComponent } from "./DateTimeComponent/DateTimeComponent";
+import DateTimePicker from "react-datetime-picker";
 
 const useStyles = makeStyles(styles);
 
 const Node = ({ getReadings, match, reading: { readings, loading } }) => {
   const classes = useStyles();
 
-  React.useEffect(() => {
-    setInterval(() => {
-      console.log("Data restored !!");
-      getReadings(match.params.key);
-      // getReadingsWithTime(match.params.key, time1, time2);
-      const { data } = readings;
-      if (data) {
-        let content = Array.from(data).reverse();
-
-        let reading = {
-          battery_level: [],
-          temperature: [],
-          flow_rate: [],
-          flow_count: [],
-          total_flow: [],
-          time_sampled: [],
-        };
-        content.map((item) =>
-          Object.keys(reading).map((key) => reading[key].push(item[key]))
-        );
-        setReadingsData(reading);
-      }
-    }, GET_READINGS_AFTER);
-  }, [getReadings, match.params.key, getReadingsWithTime]);
-
+  const [time1, setTime1] = React.useState("");
   const [readingsData, setReadingsData] = React.useState({
     battery_level: [],
     temperature: [],
@@ -58,12 +34,34 @@ const Node = ({ getReadings, match, reading: { readings, loading } }) => {
     time_sampled: [],
   });
 
-  // setTimeout(() => {
-  //   if (!loading && node) {
-  //     getReadings(match.params.key);
+  const [time2, setTime2] = React.useState("");
 
-  //     }
-  // }, GET_READINGS_AFTER);
+  React.useEffect(() => {
+    getReadings(match.params.slug);
+    setInterval(() => {
+      console.log("Data restored !!");
+      getReadings(match.params.slug);
+    }, 50000);
+  }, [getReadings, match.params.key, getReadingsWithTime]);
+  setInterval(() => {
+    const { data } = readings;
+    if (data) {
+      let content = Array.from(data).reverse();
+
+      let reading = {
+        battery_level: [],
+        temperature: [],
+        flow_rate: [],
+        flow_count: [],
+        total_flow: [],
+        time_sampled: [],
+      };
+      content.map((item) =>
+        Object.keys(reading).map((key) => reading[key].push(item[key]))
+      );
+      setReadingsData(reading);
+    }
+  }, GET_READINGS_AFTER);
   const getTimeDifference = (timesArray) => {
     // assuming array is latest to oldest
     var collect = [];
@@ -74,15 +72,14 @@ const Node = ({ getReadings, match, reading: { readings, loading } }) => {
   };
 
   const updateData = () => {
-    var time1 =
-      new Date(document.getElementById("time1").value).valueOf() / 1000;
-    var time2 =
-      new Date(document.getElementById("time2").value).valueOf() / 1000;
-    if (time1 > time2 && time1 === time2) {
+    const _time1 = time1.valueOf() / 1000;
+    const _time2 = time2.valueOf() / 1000;
+
+    if (_time1 > _time2 && _time1 === _time2) {
       alert("error date");
     } else {
-      if (time1 !== NaN && time2 !== NaN) {
-        window.location.href = `/node/${match.params.key}/${match.params.slug}/${time1}/${time2}`;
+      if (_time1 !== NaN && _time2 !== NaN) {
+        window.location.href = `/node/${match.params.key}/${match.params.slug}/${_time1}/${_time2}`;
       } else {
         alert("Please enter a valid date");
       }
@@ -145,60 +142,75 @@ const Node = ({ getReadings, match, reading: { readings, loading } }) => {
                     </Button>
                   </GridItem>
                 </GridContainer>
-                <GridContainer>
-                  <GridItem>
-                    <DateTimeComponent idt="time1" />
+                <hr style={{ width: "100%" }} />
+                <br />
+                <GridContainer style={{ width: "80%", margin: "auto" }}>
+                  <GridItem xs={4}>
+                    From : <br />
+                    <DateTimePicker onChange={setTime1} value={time1} />
                   </GridItem>
 
-                  <GridItem>
-                    <DateTimeComponent idt="time2" />
+                  <GridItem xs={4}>
+                    To :<br />
+                    <DateTimePicker onChange={setTime2} value={time2} />
                   </GridItem>
-                  <GridItem>
-                    <Button type="submit" onClick={() => updateData()}>
+                  <GridItem xs={3}>
+                    <br />
+                    <Button
+                      variant="contained"
+                      color="secondary"
+                      type="submit"
+                      onClick={() => updateData()}
+                    >
                       Load Data
                     </Button>
                   </GridItem>
                 </GridContainer>
-
-                <hr style={{ width: "100%" }} />
-                <LineChart
-                  labels={readingsData.time_sampled}
-                  data={readingsData.battery_level}
-                  ymin={0}
-                  ymax={5}
-                  heading={`Battery Level (Volts)`}
-                  min={3.3}
-                  max={4.5}
-                />
-                <LineChart
-                  labels={readingsData.time_sampled}
-                  data={getTimeDifference(readingsData.time_sampled)}
-                  heading={`T2 - T1`}
-                />
-                <LineChart
-                  labels={readingsData.time_sampled}
-                  data={readingsData.flow_count}
-                  heading={`Flow Count`}
-                />
-                <LineChart
-                  labels={readingsData.time_sampled}
-                  data={readingsData.total_flow}
-                  heading={`Total Flow (L)`}
-                />
-                <LineChart
-                  labels={readingsData.time_sampled}
-                  data={readingsData.flow_rate}
-                  ymin={0}
-                  ymax={60}
-                  heading={`Flow Rate (L/min)`}
-                  min={0}
-                  max={60}
-                />
-                <LineChart
-                  labels={readingsData.time_sampled}
-                  data={readingsData.temperature}
-                  heading={`Temperature (C°)`}
-                />
+                <br />
+                {readingsData.time_sampled.length > 0 ? (
+                  <>
+                    <LineChart
+                      labels={readingsData.time_sampled}
+                      data={readingsData.battery_level}
+                      ymin={0}
+                      ymax={5}
+                      heading={`Battery Level (Volts)`}
+                      min={3.3}
+                      max={4.5}
+                    />
+                    <LineChart
+                      labels={readingsData.time_sampled}
+                      data={getTimeDifference(readingsData.time_sampled)}
+                      heading={`T2 - T1`}
+                    />
+                    <LineChart
+                      labels={readingsData.time_sampled}
+                      data={readingsData.flow_count}
+                      heading={`Flow Count`}
+                    />
+                    <LineChart
+                      labels={readingsData.time_sampled}
+                      data={readingsData.total_flow}
+                      heading={`Total Flow (L)`}
+                    />
+                    <LineChart
+                      labels={readingsData.time_sampled}
+                      data={readingsData.flow_rate}
+                      ymin={0}
+                      ymax={60}
+                      heading={`Flow Rate (L/min)`}
+                      min={0}
+                      max={60}
+                    />
+                    <LineChart
+                      labels={readingsData.time_sampled}
+                      data={readingsData.temperature}
+                      heading={`Temperature (C°)`}
+                    />
+                  </>
+                ) : (
+                  <>Loading</>
+                )}
               </>
             ) : (
               <>Loading</>
@@ -214,13 +226,10 @@ const Node = ({ getReadings, match, reading: { readings, loading } }) => {
 Node.propTypes = {
   getReadings: PropTypes.func.isRequired,
   reading: PropTypes.object.isRequired,
-  getReadingsWithTime: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   reading: state.reading,
 });
 
-export default connect(mapStateToProps, { getReadings, getReadingsWithTime })(
-  Node
-);
+export default connect(mapStateToProps, { getReadings })(Node);
