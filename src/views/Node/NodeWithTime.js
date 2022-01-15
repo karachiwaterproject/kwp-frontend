@@ -68,9 +68,13 @@ const NodeWithTime = ({
         total_flow: [],
         time_sampled: [],
       };
+
       content.map((item) =>
         Object.keys(reading).map((key) => reading[key].push(item[key]))
       );
+
+      console.log(reading.time_sampled);
+
       setReadingsData(reading);
     }
   }, GET_READINGS_AFTER);

@@ -18,6 +18,7 @@ import { getNode } from "actions/node";
 import { Link } from "react-router-dom";
 import { CHANGE_NAV_ON_SCROLL } from "constrants";
 import DateTimePicker from "react-datetime-picker";
+import { BarChart } from "./Charts/BarChart";
 
 const useStyles = makeStyles(styles);
 
@@ -33,6 +34,10 @@ const Node = ({ getReadings, match, reading: { readings, loading } }) => {
     total_flow: [],
     time_sampled: [],
   });
+  const [occurrences, setOccurences] = React.useState({
+    time: [],
+    count: [],
+  });
 
   const [time2, setTime2] = React.useState("");
 
@@ -46,7 +51,7 @@ const Node = ({ getReadings, match, reading: { readings, loading } }) => {
   setInterval(() => {
     const { data } = readings;
     if (data) {
-      let content = Array.from(data).reverse();
+      let content = Array.from(data[50]).reverse();
 
       let reading = {
         battery_level: [],
@@ -59,7 +64,44 @@ const Node = ({ getReadings, match, reading: { readings, loading } }) => {
       content.map((item) =>
         Object.keys(reading).map((key) => reading[key].push(item[key]))
       );
+
+      // console.log(reading.time_sampled);
+
+      const newTimeSampled = [];
+      reading.time_sampled.forEach((time_sampled) => {
+        newTimeSampled.push(time_sampled.toString().slice(0, -2));
+      });
+      const occurrences = newTimeSampled.reduce(function (acc, curr) {
+        return acc[curr] ? ++acc[curr] : (acc[curr] = 1), acc;
+      }, {});
+      // console.log(newTimeSampled);
+      // console.log(occurrences);
+      // setOccurences(occurrences);
+      // setOccurences()
+      let fixedTime = [];
+      Object.keys(occurrences).forEach((time) => {
+        let date = new Date(time * 1000);
+        let fixedDate =
+          date.getFullYear() +
+          "-" +
+          (date.getMonth() + 1) +
+          "-" +
+          date.getDate() +
+          " " +
+          date.getHours() +
+          ":" +
+          date.getMinutes() +
+          ":" +
+          date.getSeconds();
+        fixedTime.push(fixedDate);
+      });
+      let occurrencesData = {
+        count: Object.values(occurrences),
+        time: fixedTime,
+      };
+      // console.log(occurrencesData);
       setReadingsData(reading);
+      setOccurences(occurrencesData);
     }
   }, GET_READINGS_AFTER);
   const getTimeDifference = (timesArray) => {
@@ -206,6 +248,15 @@ const Node = ({ getReadings, match, reading: { readings, loading } }) => {
                       labels={readingsData.time_sampled}
                       data={readingsData.temperature}
                       heading={`Temperature (C°)`}
+                    />
+                    <LineChart
+                      labels={occurrences.time}
+                      data={occurrences.count}
+                      heading={`Data Readings Obtained`}
+                    />
+                    <BarChart
+                      labels={occurrences.time}
+                      count={occurrences.count}
                     />
                   </>
                 ) : (
