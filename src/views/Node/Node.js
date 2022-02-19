@@ -50,7 +50,9 @@ const Node = ({ getReadings, match, reading: { readings, loading } }) => {
   }, [getReadings, match.params.key, getReadingsWithTime]);
   setInterval(() => {
     const { data } = readings;
+    console.log(readings);
     if (data) {
+      console.log(data);
       let content = Array.from(data[50]).reverse();
 
       let reading = {
@@ -209,7 +211,7 @@ const Node = ({ getReadings, match, reading: { readings, loading } }) => {
                   </GridItem>
                 </GridContainer>
                 <br />
-                {readingsData.time_sampled.length > 0 ? (
+                {readingsData ? (
                   <>
                     <LineChart
                       labels={readingsData.time_sampled}

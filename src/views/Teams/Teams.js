@@ -37,6 +37,7 @@ const members = [
     details:
       "project leader | research interests: water systems analysis, water pricing",
     contact: "hassaan.khan@sse.habib.edu.pk",
+    status: true
   },
   {
     name: "Dr. Nausheen H. Anwar",
@@ -45,6 +46,7 @@ const members = [
     details:
       "advisor, socioeconomic studies | research interests: city and regional planning, climate change, infrastructures, inequality",
     contact: "nhanwar@iba.edu.pk",
+    status: true
   },
   {
     name: "Junaid Ahmed Memon",
@@ -53,6 +55,7 @@ const members = [
     details:
       "technical lead (smart flowmeter development) | research interests: systems design, fluid flow measurement, wireless sensor networks and internet of things",
     contact: "junaid.memon@sse.habib.edu.pk",
+    status: true
   },
   {
     name: "Sana Khalil",
@@ -61,6 +64,7 @@ const members = [
     details:
       "lead, water pricing | research interests: labor economics, applied econometrics, development economics",
     contact: "sana.khalil@ahss.habib.edu.pk",
+    status:false
   },
   {
     name: "Dr. Moiz Anis",
@@ -69,6 +73,7 @@ const members = [
     details:
       "advisor, iot | research interests: cellular networks, internet of things, computer networking, and wireless communications.",
     contact: "moiz.anis@sse.habib.edu.pk",
+    status: false
   },
   {
     name: "Abdul Rehman Soomro",
@@ -76,6 +81,7 @@ const members = [
     avatar: require("./../../assets/img/team/6.jpg").default,
     role: "flowmeter hardware development | research interests: hydroinformatics, embedded systems, water metering",
     contact: "abdul.soomro@sse.habib.edu.pk",
+    status: true
   },
   {
     name: "Syed Ali Arshad",
@@ -84,6 +90,7 @@ const members = [
     details:
       "lyari study | research interests: urban planning, climate change mitigation, ecological justice",
     contact: "ali.arshad@sse.habib.edu.pk",
+    status: true
   },
   {
     name: "Hiba Jamal",
@@ -92,6 +99,16 @@ const members = [
     details:
       "full stack developer | research interests: computer vision, machine learning modelling",
     contact: "hiba.jamal@habib.edu.pk",
+    status: false
+  },
+  {
+    name: "Abdul Samad",
+    role: "Research Assistant",
+    avatar: require("./../../assets/img/team/8.jpg").default,
+    details:
+      "inventory control | research interests: water metering, surveys, electronic designing.",
+    contact: "samad.shakir@sse.habib.edu.pk",
+    status: true
   },
 ];
 
@@ -158,15 +175,34 @@ const undergraduates = [
   },
   {
     name: "Asad Tariq",
-    major: "Social Development and Policy",
+    major: "Computer Science ",
     year: "2023",
   },
   {
     name: "Mohammad Hasan Tariq",
+    major: "Computer Engineeing",
+    year: "2023",
+  },
+  {
+    name: "Mohammad Jazzel Mehmood",
+    major: "Computer Engineeing",
+    year: "2024",
+  },
+  {
+    name: "Zayaan Delawalla",
+    major: "Social Development and Policy",
+    year: "2023",
+  },
+  {
+    name: "Fariha Batool",
     major: "Social Development and Policy",
     year: "2023",
   },
 ];
+const activeMembers = members.filter((member) => member.status);
+console.log(activeMembers)
+const aluminiMembers = members.filter((member) => member.status === false);
+console.log(aluminiMembers)
 
 const Teams = (props) => {
   const classes = useStyles();
@@ -197,10 +233,41 @@ const Teams = (props) => {
         </div>
       </Parallax>
       <Container>
-        <div className={classNames(classes.main, classes.mainRaised)}>
+        <div className={classNames(classes.main)}>
+        <GridContainer className={classes.mainContainer + " main-container"}>
+            <Typography
+              variant="h3"
+              style={{ fontWeight: "bold", marginBottom: "30px" }}
+            >
+              Active Members
+            </Typography>
+            <hr style={{ width: "100%" }} />
+          </GridContainer>
           <GridContainer className={classes.mainContainer + " main-container"}>
-            {members.map(({ name, avatar, role, contact, details }) => (
-              <GridItem xs={12} sm={4} key={name}>
+            {activeMembers.map(({ name, avatar, role, contact, details }) => (
+              <GridItem xs={12} sm={6} md={6} lg={4}  key={name}>
+                <TeamCard
+                  name={name}
+                  avatar={avatar}
+                  role={role}
+                  contact={contact}
+                  details={details}
+                />
+              </GridItem>
+            ))}
+          </GridContainer>
+          <GridContainer className={classes.mainContainer + " main-container"}>
+            <Typography
+              variant="h3"
+              style={{ fontWeight: "bold", marginBottom: "30px" }}
+            >
+              Alumini
+            </Typography>
+            <hr style={{ width: "100%" }} />
+          </GridContainer>
+          <GridContainer className={classes.mainContainer + " main-container"}>
+            {aluminiMembers.map(({ name, avatar, role, contact, details }) => (
+              <GridItem xs={12} sm={6} md={4} key={name}>
                 <TeamCard
                   name={name}
                   avatar={avatar}
@@ -218,6 +285,7 @@ const Teams = (props) => {
             >
               Undergraduate Researchers
             </Typography>
+            <hr style={{ width: "100%" }} />
             <br />
             <TableContainer component={Paper}>
               <Table

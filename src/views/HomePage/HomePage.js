@@ -42,13 +42,7 @@ const HomePage = (props) => {
             <GridItem>
               <div className={classes.brand + " brand"}>
                 <h1 className={classes.title + " title"}>What we are ?</h1>
-                <h3 className={classes.subtitle + " subtitle"}>
-                  The Karachi Water Project (KWP) is an interdisciplinary
-                  research group engaged in investigating approaches to improve
-                  water management in Karachi. The group, headed by Dr. Hassaan
-                  F. Khan, strives to develop technological and policy-based
-                  solutions to Karachi’s water challenges.
-                </h3>
+                
               </div>
             </GridItem>
           </GridContainer>
@@ -57,6 +51,16 @@ const HomePage = (props) => {
       <Container>
         <div className={classNames(classes.main, classes.mainRaised)}>
           <div className={classes.mainContainer + " main-container"}>
+            <h3 className={classes.subtitle + " subtitle"} style={{textAlign: "center"}}>
+                  The Karachi Water Project (KWP) is an interdisciplinary
+                  research group engaged in investigating approaches to improve
+                  water management in Karachi. The group, headed by Dr. Hassaan
+                  F. Khan, strives to develop technological and policy-based
+                  solutions to Karachi’s water challenges.
+                </h3>
+                <br />
+                <hr style={{width:"50%", margin:"auto"}} />
+                <br/>
             <Typography variant="h4" className="h4">
               OnGoing
             </Typography>
