@@ -104,7 +104,7 @@ const members = [
   {
     name: "Abdul Samad",
     role: "Research Assistant",
-    avatar: require("./../../assets/img/team/8.jpg").default,
+    avatar: require("./../../assets/img/team/9.jpg").default,
     details:
       "inventory control | research interests: water metering, surveys, electronic designing.",
     contact: "samad.shakir@sse.habib.edu.pk",
