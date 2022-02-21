@@ -225,6 +225,8 @@ const Teams = (props) => {
           <GridContainer>
             <GridItem>
               <div className={classes.brand + " brand"}>
+                <br/>
+                <br/>
                 <h1 className={classes.title}>Our Team</h1>
                 <h3 className={classes.subtitle}></h3>
               </div>

@@ -65,6 +65,8 @@ const Dataportal = ({ login, isAuthenticated }) => {
           <GridContainer>
             <GridItem>
               <div className={classes.brand + " brand"}>
+                <br />
+                <br />
                 <h1 className={classes.title}>Dashboard</h1>
                 <h3 className={classes.subtitle}></h3>
               </div>
@@ -73,8 +75,10 @@ const Dataportal = ({ login, isAuthenticated }) => {
         </div>
       </Parallax>
       <Container>
-        <div className={classNames(classes.main, classes.mainRaised)}>
-          <div style={{ padding: "50px 120px 0px" }}>
+        <div className={classNames(classes.main)}>
+          <br/> 
+          <br/> 
+          <Container >
             <Typography
               variant="h3"
               style={{ fontWeight: "bold" }}
@@ -83,10 +87,10 @@ const Dataportal = ({ login, isAuthenticated }) => {
               Overview
             </Typography>
             <hr style={{ width: "100%" }} />
-          </div>
+          </Container>
           <GridContainer
             className={"main-container"}
-            style={{ padding: "0 120px 0" }}
+            style={{ padding: "0 30px 0" }}xs
             direction="row"
           >
             <GridItem xs={12} sm={6}>
@@ -100,10 +104,10 @@ const Dataportal = ({ login, isAuthenticated }) => {
                       fontWeight: "bold",
                     }}
                   >
-                    Nodes registered
+                    Flowmeters registered
                   </Typography>
                   <Typography style={{ textTransform: "uppercase" }}>
-                    101
+                    18
                   </Typography>
                 </CardContent>
               </Card>
@@ -119,10 +123,10 @@ const Dataportal = ({ login, isAuthenticated }) => {
                       fontWeight: "bold",
                     }}
                   >
-                    Active Nodes
+                    Active flowmeters
                   </Typography>
                   <Typography style={{ textTransform: "uppercase" }}>
-                    101
+                    6
                   </Typography>
                 </CardContent>
               </Card>
@@ -131,18 +135,19 @@ const Dataportal = ({ login, isAuthenticated }) => {
           <GridContainer
             className={" main-container"}
             direction="row"
-            style={{ padding: "10px 100px 30px" }}
+            style={{ padding: "0 30px 0" }}
           >
-            <GridItem xs={12} sm={12} lg={6} style={{ padding: 30 }}>
+            <GridItem xs={12} sm={12} lg={7} style={{ padding: 30 }}>
               <div
                 style={{
-                  height: "500px",
+                  height: "40vh",
                   width: "100%",
-                  backgroundColor: "gray",
+                  background: `url(${require("assets/img/map.jpg").default})`,
+                  backgroundSize: "cover",
                 }}
               />
             </GridItem>
-            <GridItem xs={12} sm={12} lg={6}>
+            <GridItem xs={12} sm={12} lg={5}>
               <Typography variant="body2">
                 The data portal allows you to observe the summary of data
                 received from our flowmeters installed all across the city. If
@@ -158,12 +163,16 @@ const Dataportal = ({ login, isAuthenticated }) => {
                 style={{
                   height: "250px",
                   width: "100%",
-                  backgroundColor: "gray",
+                  background: `url(${require("assets/img/graph.jpg").default})`,
+                  backgroundSize: "contain",
+                  backgroundRepeat: "no-repeat"
                 }}
               />
             </GridItem>
           </GridContainer>
-          <GridContainer style={{ padding: "0 100px 50px" }}>
+          <br />
+          <br />
+          <GridContainer style={{ padding: "0 30px 0px" }}>
             <GridItem xs={12} sm={12} lg={12}>
               <Typography variant="h3" style={{ fontWeight: "bold" }}>
                 Login
@@ -176,7 +185,7 @@ const Dataportal = ({ login, isAuthenticated }) => {
                 <GridContainer
                   className={classes.formContainer}
                   direction="column"
-                  style={{ width: "50%", margin: "auto" }}
+                  style={{ width: "90%", margin: "auto" }}
                 >
                   <br />
 

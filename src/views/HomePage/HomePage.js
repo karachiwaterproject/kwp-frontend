@@ -41,6 +41,8 @@ const HomePage = (props) => {
           <GridContainer>
             <GridItem>
               <div className={classes.brand + " brand"}>
+                <br />
+                <br />
                 <h1 className={classes.title + " title"}>What we are ?</h1>
                 
               </div>
@@ -49,7 +51,7 @@ const HomePage = (props) => {
         </div>
       </Parallax>
       <Container>
-        <div className={classNames(classes.main, classes.mainRaised)}>
+        <div className={classNames(classes.main)}>
           <div className={classes.mainContainer + " main-container"}>
             <h3 className={classes.subtitle + " subtitle"} style={{textAlign: "center"}}>
                   The Karachi Water Project (KWP) is an interdisciplinary
