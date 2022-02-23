@@ -45,5 +45,14 @@ export const BarChart = ({ labels, count }) => {
     ],
   };
 
-  return <Bar options={options} data={data} labels={labels} />;
+  return (
+    <div className="bar-graph" style={{ width: "430px" }}>
+      <Bar
+        style={{ height: "400px" }}
+        options={options}
+        data={data}
+        labels={labels}
+      />
+    </div>
+  );
 };

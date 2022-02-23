@@ -215,20 +215,6 @@ const Node = ({ getReadings, match, reading: { readings, loading } }) => {
                   <>
                     <LineChart
                       labels={readingsData.time_sampled}
-                      data={readingsData.battery_level}
-                      ymin={0}
-                      ymax={5}
-                      heading={`Battery Level (Volts)`}
-                      min={3.3}
-                      max={4.5}
-                    />
-                    <LineChart
-                      labels={readingsData.time_sampled}
-                      data={getTimeDifference(readingsData.time_sampled)}
-                      heading={`T2 - T1`}
-                    />
-                    <LineChart
-                      labels={readingsData.time_sampled}
                       data={readingsData.flow_count}
                       heading={`Flow Count`}
                     />
@@ -252,11 +238,26 @@ const Node = ({ getReadings, match, reading: { readings, loading } }) => {
                       heading={`Temperature (C°)`}
                     />
                     <LineChart
+                      labels={readingsData.time_sampled}
+                      data={readingsData.battery_level}
+                      ymin={0}
+                      ymax={5}
+                      heading={`Battery Level (Volts)`}
+                      min={3.3}
+                      max={4.5}
+                    />
+                    <LineChart
+                      labels={readingsData.time_sampled}
+                      data={getTimeDifference(readingsData.time_sampled)}
+                      heading={`T2 - T1`}
+                    />
+                    <LineChart
                       labels={occurrences.time}
                       data={occurrences.count}
                       heading={`Data Readings Obtained`}
                     />
                     <BarChart
+                      style={{ height: "390px", width: "100%" }}
                       labels={occurrences.time}
                       count={occurrences.count}
                     />

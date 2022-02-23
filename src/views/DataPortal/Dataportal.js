@@ -76,9 +76,9 @@ const Dataportal = ({ login, isAuthenticated }) => {
       </Parallax>
       <Container>
         <div className={classNames(classes.main)}>
-          <br/> 
-          <br/> 
-          <Container >
+          <br />
+          <br />
+          <Container>
             <Typography
               variant="h3"
               style={{ fontWeight: "bold" }}
@@ -90,7 +90,8 @@ const Dataportal = ({ login, isAuthenticated }) => {
           </Container>
           <GridContainer
             className={"main-container"}
-            style={{ padding: "0 30px 0" }}xs
+            style={{ padding: "0 30px 0" }}
+            xs
             direction="row"
           >
             <GridItem xs={12} sm={6}>
@@ -165,7 +166,7 @@ const Dataportal = ({ login, isAuthenticated }) => {
                   width: "100%",
                   background: `url(${require("assets/img/graph.jpg").default})`,
                   backgroundSize: "contain",
-                  backgroundRepeat: "no-repeat"
+                  backgroundRepeat: "no-repeat",
                 }}
               />
             </GridItem>
@@ -185,7 +186,7 @@ const Dataportal = ({ login, isAuthenticated }) => {
                 <GridContainer
                   className={classes.formContainer}
                   direction="column"
-                  style={{ width: "90%", margin: "auto" }}
+                  style={{ width: "70%", margin: "auto" }}
                 >
                   <br />
 
