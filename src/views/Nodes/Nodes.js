@@ -33,7 +33,7 @@ const Nodes = ({ getNodes, node: { nodes, loading } }) => {
   React.useEffect(() => {
     getNodes();
   }, [getNodes]);
-
+  console.log(nodes);
   return (
     <div>
       <Header
@@ -59,7 +59,7 @@ const Nodes = ({ getNodes, node: { nodes, loading } }) => {
         </div>
       </Parallax>
       <Container>
-        <div className={classNames(classes.main, classes.mainRaised)}>
+        <div className={classNames(classes.main)}>
           <GridContainer
             className={classes.mainContainer + " main-container"}
             direction="column"
@@ -73,66 +73,156 @@ const Nodes = ({ getNodes, node: { nodes, loading } }) => {
               )}
             />
             <GridContainer>
-              {!loading && nodes ? (
-                nodes.map(({ name, total_flow, count, status, slug, key }) => {
-                  return (
-                    <GridItem key={name} xs={12} sm={12} lg={4}>
-                      <Link to={`/node/${key}/${slug}`}>
-                        <Card
-                          style={{
-                            borderLeft: "5px solid",
-                            borderColor:
-                              status === "active"
-                                ? "#1CC88A"
-                                : status === "inactive"
-                                ? "#F6C23E"
-                                : "#E33775",
-                          }}
-                        >
-                          <CardContent>
-                            <Typography
-                              color="primary"
-                              style={{
-                                textTransform: "uppercase",
-                                fontSize: "13px",
-                                fontWeight: "bold",
-                                color:
-                                  status === "active"
-                                    ? "#1CC88A"
-                                    : status === "inactive"
-                                    ? "#F6C23E"
-                                    : "#E33775",
-                              }}
-                            >
-                              {name}
-                            </Typography>
-                            <Typography style={{ textTransform: "uppercase" }}>
-                              <span style={{ fontWeight: "bold" }}>
-                                Total flow (L):
-                              </span>{" "}
-                              {total_flow}
-                            </Typography>
-                            <Typography style={{ textTransform: "uppercase" }}>
-                              <span style={{ fontWeight: "bold" }}>
-                                Data points collected:
-                              </span>{" "}
-                              {count}
-                            </Typography>
-                            <Typography style={{ textTransform: "uppercase" }}>
-                              <span style={{ fontWeight: "bold" }}>
-                                Status:
-                              </span>{" "}
-                              {status}
-                            </Typography>
-                          </CardContent>
-                        </Card>
-                      </Link>
-                    </GridItem>
-                  );
-                })
-              ) : (
-                <>Loading...</>
-              )}
+              <GridItem>
+                <h4 style={{ fontWeight: "bolder" }}>Active Nodes</h4>
+                <hr />
+                <GridContainer>
+                  {!loading && nodes ? (
+                    nodes
+                      .filter((node) => !node.name.includes("test"))
+                      .map(({ name, total_flow, count, status, slug, si }) => {
+                        return (
+                          <GridItem key={name} xs={12} sm={12} lg={4}>
+                            <Link to={`/node/${slug}`}>
+                              <Card
+                                style={{
+                                  borderLeft: "5px solid",
+                                  borderColor:
+                                    status === "active"
+                                      ? "#1CC88A"
+                                      : status === "inactive"
+                                      ? "#E33775"
+                                      : "#F6C23E",
+                                }}
+                              >
+                                <CardContent>
+                                  <Typography
+                                    color="primary"
+                                    style={{
+                                      textTransform: "uppercase",
+                                      fontSize: "13px",
+                                      fontWeight: "bold",
+                                      color:
+                                        status === "active"
+                                          ? "#1CC88A"
+                                          : status === "inactive"
+                                          ? "#E33775"
+                                          : "#F6C23E",
+                                    }}
+                                  >
+                                    {name}
+                                  </Typography>
+                                  <Typography
+                                    style={{ textTransform: "uppercase" }}
+                                  >
+                                    <span style={{ fontWeight: "bold" }}>
+                                      Total flow (L):
+                                    </span>{" "}
+                                    {total_flow}
+                                  </Typography>
+                                  <Typography
+                                    style={{ textTransform: "uppercase" }}
+                                  >
+                                    <span style={{ fontWeight: "bold" }}>
+                                      Data points collected:
+                                    </span>{" "}
+                                    {count}
+                                  </Typography>
+                                  <Typography
+                                    style={{ textTransform: "uppercase" }}
+                                  >
+                                    <span style={{ fontWeight: "bold" }}>
+                                      Status:
+                                    </span>{" "}
+                                    {status}
+                                  </Typography>
+                                </CardContent>
+                              </Card>
+                            </Link>
+                          </GridItem>
+                        );
+                      })
+                  ) : (
+                    <>Loading...</>
+                  )}
+                </GridContainer>
+              </GridItem>
+            </GridContainer>
+            <GridContainer>
+              <GridItem>
+                <h4 style={{ fontWeight: "bolder" }}>Test Nodes</h4>
+                <hr />
+                <GridContainer>
+                  {!loading && nodes ? (
+                    nodes
+                      .filter((node) => node.name.includes("test"))
+                      .map(({ name, total_flow, count, status, slug, key }) => {
+                        return (
+                          <GridItem key={name} xs={12} sm={12} lg={4}>
+                            <Link to={`/node/${slug}`}>
+                              <Card
+                                style={{
+                                  borderLeft: "5px solid",
+                                  borderColor:
+                                    status === "active"
+                                      ? "#1CC88A"
+                                      : status === "inactive"
+                                      ? "#F6C23E"
+                                      : "#E33775",
+                                }}
+                              >
+                                <CardContent>
+                                  <Typography
+                                    color="primary"
+                                    style={{
+                                      textTransform: "uppercase",
+                                      fontSize: "13px",
+                                      fontWeight: "bold",
+                                      color:
+                                        status === "active"
+                                          ? "#1CC88A"
+                                          : status === "inactive"
+                                          ? "#F6C23E"
+                                          : "#E33775",
+                                    }}
+                                  >
+                                    {name}
+                                  </Typography>
+                                  <Typography
+                                    style={{ textTransform: "uppercase" }}
+                                  >
+                                    <span style={{ fontWeight: "bold" }}>
+                                      Total flow (L):
+                                    </span>{" "}
+                                    {total_flow}
+                                  </Typography>
+                                  <Typography
+                                    style={{ textTransform: "uppercase" }}
+                                  >
+                                    <span style={{ fontWeight: "bold" }}>
+                                      Data points collected:
+                                    </span>{" "}
+                                    {count}
+                                  </Typography>
+                                  <Typography
+                                    style={{ textTransform: "uppercase" }}
+                                  >
+                                    <span style={{ fontWeight: "bold" }}>
+                                      Status:
+                                    </span>{" "}
+                                    {status}
+                                  </Typography>
+                                </CardContent>
+                              </Card>
+                            </Link>
+                          </GridItem>
+                        );
+                      })
+                  ) : (
+                    <>Loading...</>
+                  )}
+                </GridContainer>
+              </GridItem>
             </GridContainer>
           </GridContainer>
         </div>

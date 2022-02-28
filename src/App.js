@@ -26,6 +26,7 @@ import PrivateRoute from "routing/PrivateRoute";
 import { loadUser } from "actions/auth";
 import HomeNode from "views/Node/HomeNode";
 import NodeWithTime from "views/Node/NodeWithTime";
+import ScrollToTop from "./ScrollToTop";
 
 const App = () => {
   React.useEffect(() => {
@@ -34,6 +35,7 @@ const App = () => {
   return (
     <Provider store={store}>
       <Router history={hist}>
+        <ScrollToTop />
         <Switch>
           <Route path="/landing-page" component={LandingPage} exact />
           <Route path="/profile-page" component={ProfilePage} exact />
@@ -61,9 +63,10 @@ const App = () => {
           <PrivateRoute path="/dashboard" component={Dashboard} exact />
           <PrivateRoute path="/nodes" component={Nodes} exact />
           <PrivateRoute path="/readings" component={Readings} exact />
-          <PrivateRoute path="/node/:key/:slug" component={Node} exact />
+          <PrivateRoute path="/readings/:slug" component={Readings} exact />
+          <PrivateRoute path="/node/:slug" component={Node} exact />
           <PrivateRoute
-            path="/node/:key/:slug/:time1/:time2"
+            path="/node/:slug/:time1/:time2"
             component={NodeWithTime}
             exact
           />

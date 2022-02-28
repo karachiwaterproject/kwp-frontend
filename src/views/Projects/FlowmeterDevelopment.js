@@ -1,7 +1,9 @@
-import { Container, Link, makeStyles, Typography } from "@material-ui/core";
+import { Container, makeStyles, Typography } from "@material-ui/core";
 import GridContainer from "components/Grid/GridContainer";
 import Header from "components/Header/Header";
 import HeaderLinks from "components/Header/HeaderLinks";
+import { Link } from "react-router-dom";
+
 import React from "react";
 import Parallax from "components/Parallax/Parallax";
 import GridItem from "components/Grid/GridItem";

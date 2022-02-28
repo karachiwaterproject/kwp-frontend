@@ -19,15 +19,16 @@ import { DEFAULT_NODE } from "constrants";
 import ReadingsPagination from "./ReadingsPagination/ReadingsPagination";
 import { READINGS_PER_PAGE } from "constrants";
 import { CHANGE_NAV_ON_SCROLL } from "constrants";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles(styles);
 
-const Readings = ({ reading, node, getNodes, getReadings }) => {
+const Readings = ({ match, reading, node, getNodes, getReadings }) => {
   const classes = useStyles();
 
   React.useEffect(() => {
     getNodes();
-    getReadings(DEFAULT_NODE);
+    getReadings(match.params.slug || DEFAULT_NODE);
   }, [getNodes, getReadings]);
 
   const currentPage = "Readings";
@@ -73,7 +74,11 @@ const Readings = ({ reading, node, getNodes, getReadings }) => {
               <GridItem xs={12} sm={2}>
                 {!node.loading &&
                   node.nodes &&
-                  node.nodes.map((node) => <p key={node.name}>{node.name}</p>)}
+                  node.nodes.map((node) => (
+                    <a href={`/readings/${node.slug}`}>
+                      <p>{node.name}</p>
+                    </a>
+                  ))}
               </GridItem>
               <GridItem xs={12} sm={10}>
                 {!reading.loading && reading.readings && (

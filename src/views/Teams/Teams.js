@@ -248,7 +248,10 @@ const Teams = (props) => {
             </Typography>
             <hr style={{ width: "100%" }} />
           </GridContainer>
-          <GridContainer style={{ padding: "0 100px" }}>
+          <GridContainer
+            // style={{ padding: "0 100px" }}
+            className="padding"
+          >
             {activeMembers.map(({ name, avatar, role, contact, details }) => (
               <GridItem xs={12} sm={6} md={6} lg={4} key={name}>
                 <TeamCard
@@ -273,8 +276,7 @@ const Teams = (props) => {
             </Typography>
             <hr style={{ width: "100%" }} />
           </GridContainer>
-          <GridContainer style={{ padding: "0 100px" }}>
-            {" "}
+          <GridContainer className="padding">
             {aluminiMembers.map(({ name, avatar, role, contact, details }) => (
               <GridItem xs={12} sm={6} md={4} key={name}>
                 <TeamCard

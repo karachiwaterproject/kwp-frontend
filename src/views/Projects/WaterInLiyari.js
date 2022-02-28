@@ -1,5 +1,7 @@
-import { Container, Link, makeStyles, Typography } from "@material-ui/core";
+import { Container, makeStyles, Typography } from "@material-ui/core";
 import GridContainer from "components/Grid/GridContainer";
+import { Link } from "react-router-dom";
+
 import Header from "components/Header/Header";
 import HeaderLinks from "components/Header/HeaderLinks";
 import React from "react";

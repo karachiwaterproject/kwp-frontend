@@ -43,17 +43,13 @@ const Node = ({ getReadings, match, reading: { readings, loading } }) => {
 
   React.useEffect(() => {
     getReadings(match.params.slug);
-    setInterval(() => {
-      console.log("Data restored !!");
-      getReadings(match.params.slug);
-    }, 50000);
-  }, [getReadings, match.params.key, getReadingsWithTime]);
-  setInterval(() => {
+    // setInterval(() => {
+    console.log("Data restored !!");
+    getReadings(match.params.slug);
     const { data } = readings;
-    console.log(readings);
+    // console.log(readings);
     if (data) {
       console.log(data);
-      let content = Array.from(data[50]).reverse();
 
       let reading = {
         battery_level: [],
@@ -63,11 +59,9 @@ const Node = ({ getReadings, match, reading: { readings, loading } }) => {
         total_flow: [],
         time_sampled: [],
       };
-      content.map((item) =>
+      data.map((item) =>
         Object.keys(reading).map((key) => reading[key].push(item[key]))
       );
-
-      // console.log(reading.time_sampled);
 
       const newTimeSampled = [];
       reading.time_sampled.forEach((time_sampled) => {
@@ -103,9 +97,16 @@ const Node = ({ getReadings, match, reading: { readings, loading } }) => {
       };
       // console.log(occurrencesData);
       setReadingsData(reading);
+      // console.log(readingsData);
       setOccurences(occurrencesData);
     }
-  }, GET_READINGS_AFTER);
+    // }, []);
+  }, [getReadings, match.params.key, getReadingsWithTime]);
+
+  // setInterval(() => {
+
+  // }, GET_READINGS_AFTER);
+
   const getTimeDifference = (timesArray) => {
     // assuming array is latest to oldest
     var collect = [];
@@ -123,7 +124,7 @@ const Node = ({ getReadings, match, reading: { readings, loading } }) => {
       alert("error date");
     } else {
       if (_time1 !== NaN && _time2 !== NaN) {
-        window.location.href = `/node/${match.params.key}/${match.params.slug}/${_time1}/${_time2}`;
+        window.location.href = `/node/${match.params.slug}/${_time1}/${_time2}`;
       } else {
         alert("Please enter a valid date");
       }
@@ -252,12 +253,12 @@ const Node = ({ getReadings, match, reading: { readings, loading } }) => {
                       heading={`T2 - T1`}
                     />
                     <LineChart
-                      labels={occurrences.time}
+                      labels={readingsData.time_sampled}
                       data={occurrences.count}
                       heading={`Data Readings Obtained`}
                     />
                     <BarChart
-                      style={{ height: "390px", width: "100%" }}
+                      style={{ height: "400px", width: "100%" }}
                       labels={occurrences.time}
                       count={occurrences.count}
                     />

@@ -37,6 +37,7 @@ const StyledTableRow = withStyles((theme) => ({
 const items = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
 
 function Items({ currentItems }) {
+  console.log(currentItems);
   return (
     <>
       <TableContainer component={Paper}>
@@ -55,6 +56,7 @@ function Items({ currentItems }) {
               </StyledTableCell>
               <StyledTableCell align="right">Temperature (C°)</StyledTableCell>
               <StyledTableCell align="right">Total Flow (L)</StyledTableCell>
+              <StyledTableCell align="right">Signal Strength</StyledTableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -69,6 +71,7 @@ function Items({ currentItems }) {
                   battery_level,
                   temperature,
                   total_flow,
+                  signal_strength,
                 }) => {
                   return (
                     <StyledTableRow key={id}>
@@ -92,6 +95,9 @@ function Items({ currentItems }) {
                       </StyledTableCell>
                       <StyledTableCell align="right">
                         {total_flow}
+                      </StyledTableCell>
+                      <StyledTableCell align="right">
+                        {signal_strength}
                       </StyledTableCell>
                     </StyledTableRow>
                   );
