@@ -40,7 +40,7 @@ const WaterInLiyari = (props) => {
               <div className={classes.brand + " brand"}>
                 <br />
                 <br />
-                <h1 className={classes.title}>Flowmeter Development</h1>
+                <h1 className={classes.title}>Water In Liyari</h1>
                 <h3 className={classes.subtitle}></h3>
               </div>
             </GridItem>
