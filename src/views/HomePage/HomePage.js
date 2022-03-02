@@ -38,7 +38,7 @@ const HomePage = (props) => {
       />
       <Parallax
         image={require("assets/img/bg4.jpg").default}
-        style={{ height: 500 }}
+        style={{ height: 430 }}
       >
         <div className={classes.container}>
           <GridContainer>
@@ -48,11 +48,15 @@ const HomePage = (props) => {
                 style={{ textAlign: "center" }}
               >
                 <br />
-                <h1 className={classes.title + " title"}>About us</h1>
+                <h2 className={classes.title + " title"}>About us</h2>
                 <Typography
-                  variant="h5"
+                  variant="h6"
                   className={classes.subtitle + " subtitle"}
-                  style={{ textAlign: "center", width: "100%" }}
+                  style={{
+                    textAlign: "center",
+                    width: "100%",
+                    textTransform: "capitalize",
+                  }}
                 >
                   The Karachi Water Project (KWP) is an interdisciplinary
                   research group engaged in investigating approaches to improve
