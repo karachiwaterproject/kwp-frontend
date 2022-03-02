@@ -36,14 +36,30 @@ const HomePage = (props) => {
         }}
         {...rest}
       />
-      <Parallax image={require("assets/img/bg4.jpg").default}>
+      <Parallax
+        image={require("assets/img/bg4.jpg").default}
+        style={{ height: 500 }}
+      >
         <div className={classes.container}>
           <GridContainer>
             <GridItem>
-              <div className={classes.brand + " brand"}>
+              <div
+                className={classes.brand + " brand"}
+                style={{ textAlign: "center" }}
+              >
                 <br />
-                <br />
-                <h1 className={classes.title + " title"}>What we are ?</h1>
+                <h1 className={classes.title + " title"}>About us</h1>
+                <Typography
+                  variant="h5"
+                  className={classes.subtitle + " subtitle"}
+                  style={{ textAlign: "center", width: "100%" }}
+                >
+                  The Karachi Water Project (KWP) is an interdisciplinary
+                  research group engaged in investigating approaches to improve
+                  water management in Karachi. The group, headed by Dr. Hassaan
+                  F. Khan, strives to develop technological and policy-based
+                  solutions to Karachi’s water challenges.
+                </Typography>
               </div>
             </GridItem>
           </GridContainer>
@@ -52,22 +68,11 @@ const HomePage = (props) => {
       <Container>
         <div className={classNames(classes.main)}>
           <div className={classes.mainContainer + " main-container"}>
-            <Typography
-              variant="h5"
-              className={classes.subtitle + " subtitle"}
-              style={{ textAlign: "center" }}
-            >
-              The Karachi Water Project (KWP) is an interdisciplinary research
-              group engaged in investigating approaches to improve water
-              management in Karachi. The group, headed by Dr. Hassaan F. Khan,
-              strives to develop technological and policy-based solutions to
-              Karachi’s water challenges.
-            </Typography>
             <br />
             <hr style={{ width: "50%", margin: "auto" }} />
             <br />
             <Typography variant="h4" className="h4">
-              OnGoing
+              Ongoing
             </Typography>
             <Typography
               variant="h3"

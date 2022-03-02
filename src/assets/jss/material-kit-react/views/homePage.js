@@ -12,7 +12,6 @@ const componentsStyle = {
     position: "relative",
   },
   subtitle: {
-    maxWidth: "1000px",
     margin: "10px 0 0",
   },
   main: {

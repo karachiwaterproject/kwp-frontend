@@ -33,6 +33,7 @@ const Node = ({ getReadings, match, reading: { readings, loading } }) => {
     flow_count: [],
     total_flow: [],
     time_sampled: [],
+    time_received: [],
   });
   const [occurrences, setOccurences] = React.useState({
     time: [],
@@ -48,6 +49,7 @@ const Node = ({ getReadings, match, reading: { readings, loading } }) => {
     getReadings(match.params.slug);
     const { data } = readings;
     // console.log(readings);
+    console.log(data);
     if (data) {
       console.log(data);
 
@@ -58,6 +60,7 @@ const Node = ({ getReadings, match, reading: { readings, loading } }) => {
         flow_count: [],
         total_flow: [],
         time_sampled: [],
+        time_received: [],
       };
       data.map((item) =>
         Object.keys(reading).map((key) => reading[key].push(item[key]))
@@ -70,10 +73,7 @@ const Node = ({ getReadings, match, reading: { readings, loading } }) => {
       const occurrences = newTimeSampled.reduce(function (acc, curr) {
         return acc[curr] ? ++acc[curr] : (acc[curr] = 1), acc;
       }, {});
-      // console.log(newTimeSampled);
-      // console.log(occurrences);
-      // setOccurences(occurrences);
-      // setOccurences()
+
       let fixedTime = [];
       Object.keys(occurrences).forEach((time) => {
         let date = new Date(time * 1000);
@@ -99,6 +99,29 @@ const Node = ({ getReadings, match, reading: { readings, loading } }) => {
       setReadingsData(reading);
       // console.log(readingsData);
       setOccurences(occurrencesData);
+
+      console.log(reading.time_sampled.length, reading.time_received.length);
+      let count = new Array(reading.time_sampled.length).fill(0);
+      console.log(count);
+      const newTimeReceived = [];
+      reading.time_received.forEach((time_received) => {
+        newTimeReceived.push(time_received.toString().slice(0, -13));
+      });
+      const occurrencesTimeReceived = newTimeReceived.reduce(function (
+        acc,
+        curr
+      ) {
+        return acc[curr] ? ++acc[curr] : (acc[curr] = 1), acc;
+      },
+      {});
+
+      console.log(newTimeReceived, occurrencesTimeReceived);
+
+      for (const property in occurrencesTimeReceived) {
+        console.log(`${property}: ${occurrencesTimeReceived[property]}`);
+        let index = newTimeReceived.findIndex(property);
+        console.log(index);
+      }
     }
     // }, []);
   }, [getReadings, match.params.key, getReadingsWithTime]);

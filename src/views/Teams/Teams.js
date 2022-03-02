@@ -35,7 +35,7 @@ const members = [
     role: "Principal Investigator",
     avatar: require("./../../assets/img/team/1.jpg").default,
     details:
-      "project leader | research interests: water systems analysis, water pricing",
+      "Project leader | research interests: water systems analysis, water pricing",
     contact: "hassaan.khan@sse.habib.edu.pk",
     status: true,
   },
@@ -44,7 +44,7 @@ const members = [
     role: "Co-Principal Investigator",
     avatar: require("./../../assets/img/team/2.jpg").default,
     details:
-      "advisor, socioeconomic studies | research interests: city and regional planning, climate change, infrastructures, inequality",
+      "Advisor, socioeconomic studies | research interests: city and regional planning, climate change, infrastructures, inequality",
     contact: "nhanwar@iba.edu.pk",
     status: true,
   },
@@ -53,7 +53,7 @@ const members = [
     role: "Co-Principal Investigator",
     avatar: require("./../../assets/img/team/3.jpg").default,
     details:
-      "technical lead (smart flowmeter development) | research interests: systems design, fluid flow measurement, wireless sensor networks and internet of things",
+      "Technical lead (smart flowmeter development) | research interests: systems design, fluid flow measurement, wireless sensor networks and internet of things",
     contact: "junaid.memon@sse.habib.edu.pk",
     status: true,
   },
@@ -62,7 +62,7 @@ const members = [
     role: "Faculty Assistant",
     avatar: require("./../../assets/img/team/4.jpg").default,
     details:
-      "lead, water pricing | research interests: labor economics, applied econometrics, development economics",
+      "Lead, water pricing | research interests: labor economics, applied econometrics, development economics",
     contact: "sana.khalil@ahss.habib.edu.pk",
     status: false,
   },
@@ -71,7 +71,7 @@ const members = [
     role: "Faculty Researcher",
     avatar: require("./../../assets/img/team/5.jpg").default,
     details:
-      "advisor, iot | research interests: cellular networks, internet of things, computer networking, and wireless communications.",
+      "Advisor, iot | research interests: cellular networks, internet of things, computer networking, and wireless communications.",
     contact: "moiz.anis@sse.habib.edu.pk",
     status: false,
   },
@@ -79,16 +79,17 @@ const members = [
     name: "Abdul Rehman Soomro",
     role: "",
     avatar: require("./../../assets/img/team/6.jpg").default,
-    role: "flowmeter hardware development | research interests: hydroinformatics, embedded systems, water metering",
+    details:
+      "Flowmeter hardware development | research interests: hydroinformatics, embedded systems, water metering",
     contact: "abdul.soomro@sse.habib.edu.pk",
-    status: true,
+    status: false,
   },
   {
     name: "Syed Ali Arshad",
     role: "Research Assistant",
     avatar: require("./../../assets/img/team/7.jpg").default,
     details:
-      "lyari study | research interests: urban planning, climate change mitigation, ecological justice",
+      "Lyari study | research interests: urban planning, climate change mitigation, ecological justice",
     contact: "ali.arshad@sse.habib.edu.pk",
     status: true,
   },
@@ -97,7 +98,7 @@ const members = [
     role: "Research Assistant",
     avatar: require("./../../assets/img/team/8.jpg").default,
     details:
-      "full stack developer | research interests: computer vision, machine learning modelling",
+      "Full stack developer | research interests: computer vision, machine learning modelling",
     contact: "hiba.jamal@habib.edu.pk",
     status: false,
   },
@@ -106,7 +107,7 @@ const members = [
     role: "Research Assistant",
     avatar: require("./../../assets/img/team/9.jpg").default,
     details:
-      "inventory control | research interests: water metering, surveys, electronic designing.",
+      "Inventory control | research interests: water metering, surveys, electronic designing.",
     contact: "samad.shakir@sse.habib.edu.pk",
     status: true,
   },
@@ -276,18 +277,32 @@ const Teams = (props) => {
             </Typography>
             <hr style={{ width: "100%" }} />
           </GridContainer>
+
           <GridContainer className="padding">
-            {aluminiMembers.map(({ name, avatar, role, contact, details }) => (
-              <GridItem xs={12} sm={6} md={4} key={name}>
-                <TeamCard
-                  name={name}
-                  avatar={avatar}
-                  role={role}
-                  contact={contact}
-                  details={details}
-                />
-              </GridItem>
-            ))}
+            <TableContainer component={Paper}>
+              <Table
+                className={classes.table}
+                aria-label="simple table"
+                style={{ textAlign: "center" }}
+              >
+                <TableHead>
+                  <TableRow>
+                    <TableCell align="left">Name</TableCell>
+                    <TableCell align="left">Role</TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {aluminiMembers.map(({ name, role, details }) => (
+                    <TableRow key={name}>
+                      <TableCell component="th" scope="row" align="left">
+                        {name}
+                      </TableCell>
+                      <TableCell align="left">{details}</TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </TableContainer>
           </GridContainer>
           <GridContainer className={classes.mainContainer + " main-container"}>
             <Typography

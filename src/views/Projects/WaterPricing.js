@@ -85,7 +85,7 @@ const WaterPricing = (props) => {
           </GridContainer>
           <div className={classes.mainContainer + " main-container"}>
             <Typography variant="h4" className="h4">
-              OnGoing
+              Ongoing
             </Typography>
             <Typography
               variant="h3"

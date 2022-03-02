@@ -75,7 +75,7 @@ const Dataportal = ({ login, isAuthenticated }) => {
         </div>
       </Parallax>
       <Container>
-        <div className={classNames(classes.main)}>
+        <div className={classNames(classes.main)} style={{ padding: 20 }}>
           <br />
           <br />
           <Container>
@@ -94,7 +94,7 @@ const Dataportal = ({ login, isAuthenticated }) => {
             xs
             direction="row"
           >
-            <GridItem xs={12} sm={6}>
+            {/* <GridItem xs={12} sm={6}>
               <Card style={{ borderLeft: "3px solid #004AAD" }}>
                 <CardContent>
                   <Typography
@@ -112,8 +112,8 @@ const Dataportal = ({ login, isAuthenticated }) => {
                   </Typography>
                 </CardContent>
               </Card>
-            </GridItem>
-            <GridItem xs={12} sm={6}>
+            </GridItem> */}
+            <GridItem xs={12}>
               <Card style={{ borderLeft: "3px solid #1CC88A" }}>
                 <CardContent>
                   <Typography
@@ -147,6 +147,10 @@ const Dataportal = ({ login, isAuthenticated }) => {
                   backgroundSize: "cover",
                 }}
               />
+              <small>
+                Spatial distribution of installed smart flowmeters across
+                Karachi.
+              </small>
             </GridItem>
             <GridItem xs={12} sm={12} lg={5}>
               <Typography variant="body2">
@@ -157,7 +161,6 @@ const Dataportal = ({ login, isAuthenticated }) => {
                 you will be directed to your personalized dashboard, where you
                 will see data collected from the node(s) installed in your home.{" "}
                 <br />
-                These are some of the stats from last month:
               </Typography>
               <br />
               <div

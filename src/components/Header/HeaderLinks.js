@@ -123,7 +123,7 @@ function HeaderLinks({ auth: { isAuthenticated, loading }, logout }) {
               className={classes.dropdownLink}
               activeClassName={classes.activeDropdowLink}
             >
-              Water in Liyari
+              Water in Lyari
             </NavLink>,
             <NavLink
               to="/projects/toward-sustainable/"

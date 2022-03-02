@@ -33,14 +33,17 @@ const WaterInLiyari = (props) => {
         }}
         {...rest}
       />
-      <Parallax image={require("assets/img/project/project2.jpg").default}>
+      <Parallax
+        image={require("assets/img/project/project4.jpg").default}
+        style={{ height: 350 }}
+      >
         <div className={classes.container}>
           <GridContainer>
             <GridItem>
               <div className={classes.brand + " brand"}>
                 <br />
                 <br />
-                <h1 className={classes.title}>Water In Liyari</h1>
+                <h1 className={classes.title}>Water In Lyari</h1>
                 <h3 className={classes.subtitle}></h3>
               </div>
             </GridItem>
@@ -82,7 +85,7 @@ const WaterInLiyari = (props) => {
           </GridContainer>
           <div className={classes.mainContainer + " main-container"}>
             <Typography variant="h4" className="h4">
-              OnGoing
+              Ongoing
             </Typography>
             <Typography
               variant="h3"
