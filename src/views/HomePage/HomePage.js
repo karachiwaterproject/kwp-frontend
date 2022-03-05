@@ -51,6 +51,7 @@ const HomePage = (props) => {
                 <h2 className={classes.title + " title"}>About us</h2>
                 <Typography
                   variant="h6"
+                  component="h6"
                   className={classes.subtitle + " subtitle"}
                   style={{
                     textAlign: "center",
