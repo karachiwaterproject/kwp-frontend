@@ -21,10 +21,10 @@ export const dashboardLinks = [
     page: "Logout",
     url: "/logout",
   },
-  {
-    page: "HomeNode",
-    url: "/homenode",
-  },
+  // {
+  //   page: "HomeNode",
+  //   url: "/homenode",
+  // },
 ];
 
 export const projects = [

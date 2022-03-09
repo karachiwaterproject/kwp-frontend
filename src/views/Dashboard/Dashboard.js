@@ -73,7 +73,7 @@ const Dashboard = ({ google, getNodes, node: { nodes, loading } }) => {
       <Header
         rightLinks={<HeaderLinks />}
         fixed
-        color="transparent"
+        color="white"
         changeColorOnScroll={{
           height: CHANGE_NAV_ON_SCROLL,
           color: "white",
@@ -93,7 +93,7 @@ const Dashboard = ({ google, getNodes, node: { nodes, loading } }) => {
         </div>
       </Parallax>
       <Container>
-        <div className={classNames(classes.main, classes.mainRaised)}>
+        <div className={classNames(classes.main)}>
           <GridContainer
             className={classes.mainContainer + " main-container"}
             direction="column"

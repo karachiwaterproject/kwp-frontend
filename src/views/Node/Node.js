@@ -62,32 +62,6 @@ const Node = ({ getReadings, match, reading: { readings, loading } }) => {
         Object.keys(reading).map((key) => reading[key].push(item[key]))
       );
 
-      const newTimeSampled = [];
-      reading.time_sampled.forEach((time_sampled) => {
-        newTimeSampled.push(time_sampled.toString().slice(0, -2));
-      });
-      const occurrences = newTimeSampled.reduce(function (acc, curr) {
-        return acc[curr] ? ++acc[curr] : (acc[curr] = 1), acc;
-      }, {});
-
-      let fixedTime = [];
-      Object.keys(occurrences).forEach((time) => {
-        let date = new Date(time * 1000);
-        let fixedDate =
-          date.getFullYear() +
-          "-" +
-          (date.getMonth() + 1) +
-          "-" +
-          date.getDate() +
-          " " +
-          date.getHours() +
-          ":" +
-          date.getMinutes() +
-          ":" +
-          date.getSeconds();
-        fixedTime.push(fixedDate);
-      });
-
       // console.log(occurrencesData);
       setReadingsData(reading);
       // console.log(readingsData);
@@ -110,8 +84,6 @@ const Node = ({ getReadings, match, reading: { readings, loading } }) => {
       // console.log(newTimeReceived, occurrencesTimeReceived);
 
       for (let property in occurrencesTimeReceived) {
-        console.log(`${property}: ${occurrencesTimeReceived[property]}`);
-        console.log(property in newTimeReceived);
         let index =
           newTimeReceived.indexOf(`${property}`) +
           occurrencesTimeReceived[property] -
@@ -121,7 +93,6 @@ const Node = ({ getReadings, match, reading: { readings, loading } }) => {
 
       let occurrencesData = {
         count: count,
-        time: fixedTime,
       };
       setOccurences(occurrencesData);
     }
@@ -160,7 +131,7 @@ const Node = ({ getReadings, match, reading: { readings, loading } }) => {
       <Header
         rightLinks={<HeaderLinks />}
         fixed
-        color="transparent"
+        color="white"
         changeColorOnScroll={{
           height: CHANGE_NAV_ON_SCROLL,
           color: "white",
@@ -204,7 +175,7 @@ const Node = ({ getReadings, match, reading: { readings, loading } }) => {
                     >
                       <Link
                         style={{ color: "white" }}
-                        to={`/homenode/${match.params.key}/${match.params.slug}`}
+                        to={`/homenode/${match.params.slug}`}
                       >
                         Switch to Owner View
                       </Link>

@@ -39,7 +39,7 @@ const Nodes = ({ getNodes, node: { nodes, loading } }) => {
       <Header
         rightLinks={<HeaderLinks />}
         fixed
-        color="transparent"
+        color="white"
         changeColorOnScroll={{
           height: CHANGE_NAV_ON_SCROLL,
           color: "white",
@@ -82,7 +82,10 @@ const Nodes = ({ getNodes, node: { nodes, loading } }) => {
                       .filter(
                         (node) =>
                           !node.name.includes("test") &&
-                          node.name !== "LAB TESTBENCH 01"
+                          !node.name.includes("TEST") &&
+                          !node.name.includes("Test") &&
+                          node.name !== "LAB TESTBENCH 01" &&
+                          !node.name.includes("AR_TEST")
                       )
                       .map(({ name, total_flow, count, status, slug, si }) => {
                         return (
@@ -162,7 +165,10 @@ const Nodes = ({ getNodes, node: { nodes, loading } }) => {
                       .filter(
                         (node) =>
                           node.name.includes("test") ||
-                          node.name === "LAB TESTBENCH 01"
+                          node.name.includes("TEST") ||
+                          node.name.includes("Test") ||
+                          node.name === "LAB TESTBENCH 01" ||
+                          node.name.includes("AR_TEST")
                       )
                       .map(({ name, total_flow, count, status, slug, key }) => {
                         return (

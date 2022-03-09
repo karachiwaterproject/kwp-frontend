@@ -23,16 +23,17 @@ export const getNodes = () => async (dispatch) => {
 
 export const getNode = (key) => async (dispatch) => {
   try {
-    const res = await axios.get(`${HOST}/api/node/${key}`);
+    const res = await axios.get(`${HOST}/api/node/`);
+    // console.log(res.data.filter((node) => node.slug === key));
     dispatch({
       type: GET_NODE,
-      payload: res.data,
+      payload: res.data.filter((node) => node.slug === key)[0],
     });
   } catch (error) {
     dispatch({
       type: NODE_ERROR,
       payload: {
-        msg: error.response.statusText,
+        msg: error.response,
         status: error.response.status,
       },
     });

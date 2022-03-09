@@ -29,14 +29,15 @@ const HomeNode = ({ match, getNode, node: { node, loading } }) => {
   const currentPage = "HomeNode";
 
   React.useEffect(() => {
-    getNode(match.params.key);
+    getNode(match.params.slug);
+    console.log(node);
   }, [getNode]);
   return (
     <div>
       <Header
         rightLinks={<HeaderLinks />}
         fixed
-        color="transparent"
+        color="white"
         changeColorOnScroll={{
           height: CHANGE_NAV_ON_SCROLL,
           color: "white",
@@ -58,20 +59,19 @@ const HomeNode = ({ match, getNode, node: { node, loading } }) => {
       <Container>
         <div className={classNames(classes.main, classes.mainRaised)}>
           <GridContainer
+            style={{ padding: "30px 100px 0 100px" }}
+            direction="column"
+          >
+            <h1>{!loading && node && node.name}</h1>
+            <hr style={{ width: "100%" }} />
+          </GridContainer>
+          <GridContainer
             className={classes.mainContainer + " main-container"}
             direction="column"
           >
-            <DashboardHeader
-              currentPage={
-                dashboardLinks.filter(({ page }) => page === currentPage)[0]
-              }
-              dashboardLinks={dashboardLinks.filter(
-                ({ page }) => page !== currentPage
-              )}
-            />
             <GridContainer>
               {!loading && node && (
-                <GridItem key={node.key} xs={12} sm={12} lg={4}>
+                <GridItem key={node.key}>
                   <Card
                     style={{
                       borderLeft: "5px solid",
@@ -117,6 +117,14 @@ const HomeNode = ({ match, getNode, node: { node, loading } }) => {
                           Flow constant:
                         </span>{" "}
                         {node.flow_constant}
+                      </Typography>
+                      <Typography style={{ textTransform: "uppercase" }}>
+                        <span style={{ fontWeight: "bold" }}>Status:</span>{" "}
+                        {node.status}
+                      </Typography>
+                      <Typography style={{ textTransform: "uppercase" }}>
+                        <span style={{ fontWeight: "bold" }}>Total Flow:</span>{" "}
+                        {node.total_flow}
                       </Typography>
                     </CardContent>
                   </Card>

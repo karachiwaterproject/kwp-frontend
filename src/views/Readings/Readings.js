@@ -32,12 +32,13 @@ const Readings = ({ match, reading, node, getNodes, getReadings }) => {
   }, [getNodes, getReadings]);
 
   const currentPage = "Readings";
+
   return (
     <div>
       <Header
         rightLinks={<HeaderLinks />}
         fixed
-        color="transparent"
+        color="white"
         changeColorOnScroll={{
           height: CHANGE_NAV_ON_SCROLL,
           color: "white",
@@ -57,7 +58,7 @@ const Readings = ({ match, reading, node, getNodes, getReadings }) => {
         </div>
       </Parallax>
       <Container>
-        <div className={classNames(classes.main, classes.mainRaised)}>
+        <div className={classNames(classes.main)}>
           <GridContainer
             className={classes.mainContainer + " main-container"}
             direction="column"
@@ -81,11 +82,15 @@ const Readings = ({ match, reading, node, getNodes, getReadings }) => {
                   ))}
               </GridItem>
               <GridItem xs={12} sm={10}>
-                {!reading.loading && reading.readings && (
+                {!reading.loading && reading.readings ? (
                   <ReadingsPagination
                     itemsPerPage={READINGS_PER_PAGE}
                     readings={reading.readings}
                   />
+                ) : (
+                  <>
+                    <center>Loading</center>
+                  </>
                 )}
               </GridItem>
             </GridContainer>

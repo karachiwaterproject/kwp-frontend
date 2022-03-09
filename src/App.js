@@ -70,11 +70,7 @@ const App = () => {
             component={NodeWithTime}
             exact
           />
-          <PrivateRoute
-            path="/homenode/:key/:slug"
-            component={HomeNode}
-            exact
-          />
+          <PrivateRoute path="/homenode/:slug" component={HomeNode} exact />
 
           <Redirect to="/home" />
         </Switch>
