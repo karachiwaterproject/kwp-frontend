@@ -17,6 +17,7 @@ import styles from "assets/jss/material-kit-react/views/dataPortal.js";
 import classNames from "classnames";
 import Footer from "components/Footer/Footer";
 import Card from "components/Card/Card";
+import MuiAlert from "@material-ui/lab/Alert";
 
 const useStyles = makeStyles(styles);
 
@@ -26,7 +27,7 @@ import PropTypes from "prop-types";
 import { Redirect } from "react-router-dom";
 import { CHANGE_NAV_ON_SCROLL } from "constrants";
 
-const Dataportal = ({ login, isAuthenticated }) => {
+const Dataportal = ({ login, isAuthenticated, auth }) => {
   const classes = useStyles();
   // const { ...rest } = props;
 
@@ -47,6 +48,10 @@ const Dataportal = ({ login, isAuthenticated }) => {
     e.preventDefault();
     login(username, password);
   };
+
+  function Alert(props) {
+    return <MuiAlert elevation={6} variant="filled" {...props} />;
+  }
 
   return (
     <div>
@@ -176,7 +181,7 @@ const Dataportal = ({ login, isAuthenticated }) => {
           </GridContainer>
           <br />
           <br />
-          <GridContainer style={{ padding: "0 30px 0px" }}>
+          <GridContainer style={{ padding: "  0 30px 0px" }}>
             <GridItem xs={12} sm={12} lg={12}>
               <Typography variant="h3" style={{ fontWeight: "bold" }}>
                 Login
@@ -191,6 +196,11 @@ const Dataportal = ({ login, isAuthenticated }) => {
                   direction="column"
                   style={{ width: "70%", margin: "auto" }}
                 >
+                  {auth.loginFailed && (
+                    <Alert severity="error">
+                      Oops ! Invalid username or password.
+                    </Alert>
+                  )}
                   <br />
 
                   <GridItem className={classes.formFields}>
@@ -241,10 +251,12 @@ const Dataportal = ({ login, isAuthenticated }) => {
 Dataportal.propTypes = {
   login: PropTypes.func.isRequired,
   isAuthenticated: PropTypes.bool,
+  auth: PropTypes.object,
 };
 
 const mapStateToProps = (state) => ({
   isAuthenticated: state.auth.isAuthenticated,
+  auth: state.auth,
 });
 
 export default connect(mapStateToProps, { login })(Dataportal);

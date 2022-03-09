@@ -10,6 +10,7 @@ export const getReadings = (node) => async (dispatch) => {
       type: GET_READINGS,
       payload: res.data,
     });
+    return true;
   } catch (error) {
     dispatch({
       type: READINGS_ERROR,

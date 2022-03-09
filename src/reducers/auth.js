@@ -51,6 +51,7 @@ export default function auth(state = initialState, action) {
         loading: false,
         token: null,
         username: null,
+        loginFailed: true,
       };
     default:
       return state;

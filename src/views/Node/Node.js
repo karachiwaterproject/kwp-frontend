@@ -42,16 +42,12 @@ const Node = ({ getReadings, match, reading: { readings, loading } }) => {
 
   const [time2, setTime2] = React.useState("");
 
-  React.useEffect(() => {
-    getReadings(match.params.slug);
-    // setInterval(() => {
-    console.log("Data restored !!");
-    getReadings(match.params.slug);
-    const { data } = readings;
-    // console.log(readings);
-    console.log(data);
-    if (data) {
-      console.log(data);
+  React.useEffect(async () => {
+    await getReadings(match.params.slug);
+    if (!loading && readings) {
+      const { data } = readings;
+
+      // console.log(data);
 
       let reading = {
         battery_level: [],
@@ -91,18 +87,14 @@ const Node = ({ getReadings, match, reading: { readings, loading } }) => {
           date.getSeconds();
         fixedTime.push(fixedDate);
       });
-      let occurrencesData = {
-        count: Object.values(occurrences),
-        time: fixedTime,
-      };
+
       // console.log(occurrencesData);
       setReadingsData(reading);
       // console.log(readingsData);
-      setOccurences(occurrencesData);
 
-      console.log(reading.time_sampled.length, reading.time_received.length);
+      // console.log(reading.time_sampled.length, reading.time_received.length);
       let count = new Array(reading.time_sampled.length).fill(0);
-      console.log(count);
+      // console.log(count);
       const newTimeReceived = [];
       reading.time_received.forEach((time_received) => {
         newTimeReceived.push(time_received.toString().slice(0, -13));
@@ -115,16 +107,25 @@ const Node = ({ getReadings, match, reading: { readings, loading } }) => {
       },
       {});
 
-      console.log(newTimeReceived, occurrencesTimeReceived);
+      // console.log(newTimeReceived, occurrencesTimeReceived);
 
-      for (const property in occurrencesTimeReceived) {
+      for (let property in occurrencesTimeReceived) {
         console.log(`${property}: ${occurrencesTimeReceived[property]}`);
-        let index = newTimeReceived.findIndex(property);
-        console.log(index);
+        console.log(property in newTimeReceived);
+        let index =
+          newTimeReceived.indexOf(`${property}`) +
+          occurrencesTimeReceived[property] -
+          1;
+        count[index] = occurrencesTimeReceived[property];
       }
+
+      let occurrencesData = {
+        count: count,
+        time: fixedTime,
+      };
+      setOccurences(occurrencesData);
     }
-    // }, []);
-  }, [getReadings, match.params.key, getReadingsWithTime]);
+  }, [getReadings, match.params.key, getReadingsWithTime, readings, loading]);
 
   // setInterval(() => {
 
@@ -179,7 +180,7 @@ const Node = ({ getReadings, match, reading: { readings, loading } }) => {
         </div>
       </Parallax>
       <Container>
-        <div className={classNames(classes.main, classes.mainRaised)}>
+        <div className={classNames(classes.main)}>
           <GridContainer
             className={classes.mainContainer + " main-container"}
             direction="column"
@@ -235,7 +236,10 @@ const Node = ({ getReadings, match, reading: { readings, loading } }) => {
                   </GridItem>
                 </GridContainer>
                 <br />
-                {readingsData ? (
+                {/* {readingsData.time_sampled.length > 0
+                  ? fillData(readings)
+                  : null} */}
+                {!loading && readingsData.time_sampled.length > 0 ? (
                   <>
                     <LineChart
                       labels={readingsData.time_sampled}
@@ -280,11 +284,11 @@ const Node = ({ getReadings, match, reading: { readings, loading } }) => {
                       data={occurrences.count}
                       heading={`Data Readings Obtained`}
                     />
-                    <BarChart
+                    {/* <BarChart
                       style={{ height: "400px", width: "100%" }}
                       labels={occurrences.time}
                       count={occurrences.count}
-                    />
+                    /> */}
                   </>
                 ) : (
                   <>Loading</>
