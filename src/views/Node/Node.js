@@ -101,7 +101,7 @@ const Node = ({ getReadings, match, reading: { readings, loading } }) => {
         setToggle(false);
       }
     }
-  }, [getReadings, match.params.key, readings]);
+  }, [getReadings, match.params.key , readings]);
 
   // setInterval(() => {
 
