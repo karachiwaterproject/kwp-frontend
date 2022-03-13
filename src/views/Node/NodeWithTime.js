@@ -18,6 +18,7 @@ import { getNode } from "actions/node";
 import { Link } from "react-router-dom";
 import { CHANGE_NAV_ON_SCROLL } from "constrants";
 import DateTimePicker from "react-datetime-picker";
+import reading from "reducers/readings";
 
 const useStyles = makeStyles(styles);
 
@@ -34,49 +35,81 @@ const NodeWithTime = ({
     flow_count: [],
     total_flow: [],
     time_sampled: [],
+    time_received: [],
   });
 
   const [time1, setTime1] = React.useState("");
   const [time2, setTime2] = React.useState("");
+  const [occurrences, setOccurences] = React.useState({
+    time: [],
+    count: [],
+  });
+  const [toggle, setToggle] = React.useState(true);
 
-  React.useEffect(() => {
-    getReadingsWithTime(
-      match.params.slug,
-      match.params.time1,
-      match.params.time2
-    );
-    setInterval(() => {
-      console.log("Data restored !!");
-      getReadingsWithTime(
+  React.useEffect(async () => {
+    if (toggle) {
+      await getReadingsWithTime(
         match.params.slug,
         match.params.time1,
         match.params.time2
       );
-    }, 50000);
-  }, [match.params.key, getReadingsWithTime]);
 
-  setInterval(() => {
-    const { data } = readings;
-    if (data) {
-      let content = Array.from(data).reverse();
+      if (readings) {
+        const { data } = readings;
 
-      let reading = {
-        battery_level: [],
-        temperature: [],
-        flow_rate: [],
-        flow_count: [],
-        total_flow: [],
-        time_sampled: [],
-      };
+        // console.log(data);
 
-      content.map((item) =>
-        Object.keys(reading).map((key) => reading[key].push(item[key]))
-      );
+        let reading = {
+          battery_level: [],
+          temperature: [],
+          flow_rate: [],
+          flow_count: [],
+          total_flow: [],
+          time_sampled: [],
+          time_received: [],
+        };
+        data.map((item) =>
+          Object.keys(reading).map((key) => reading[key].push(item[key]))
+        );
 
+        // console.log(occurrencesData);
+        setReadingsData(reading);
+        // console.log(readingsData);
 
-      setReadingsData(reading);
+        // console.log(reading.time_sampled.length, reading.time_received.length);
+        let count = new Array(reading.time_sampled.length).fill(0);
+        // console.log(count);
+        const newTimeReceived = [];
+        reading.time_received.forEach((time_received) => {
+          newTimeReceived.push(time_received.toString().slice(0, -13));
+        });
+        const occurrencesTimeReceived = newTimeReceived.reduce(function (
+          acc,
+          curr
+        ) {
+          return acc[curr] ? ++acc[curr] : (acc[curr] = 1), acc;
+        },
+        {});
+
+        // console.log(newTimeReceived, occurrencesTimeReceived);
+
+        for (let property in occurrencesTimeReceived) {
+          let index =
+            newTimeReceived.indexOf(`${property}`) +
+            occurrencesTimeReceived[property] -
+            1;
+          count[index] = occurrencesTimeReceived[property];
+        }
+
+        let occurrencesData = {
+          count: count,
+        };
+        setOccurences(occurrencesData);
+        console.log("da");
+        setToggle(false);
+      }
     }
-  }, GET_READINGS_AFTER);
+  }, [match.params.key, getReadingsWithTime, readings]);
 
   // setTimeout(() => {
   //   if (!loading && node) {
@@ -229,7 +262,14 @@ const NodeWithTime = ({
                       data={readingsData.temperature}
                       heading={`Temperature (C°)`}
                     />
+                    <LineChart
+                      labels={readingsData.time_sampled}
+                      data={occurrences.count}
+                      heading={`Data Readings Obtained`}
+                    />
                   </>
+                ) : !loading && readings.count === 0 ? (
+                  <>No entries found !</>
                 ) : (
                   <>Loading</>
                 )}

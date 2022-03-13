@@ -41,62 +41,67 @@ const Node = ({ getReadings, match, reading: { readings, loading } }) => {
   });
 
   const [time2, setTime2] = React.useState("");
+  const [toggle, setToggle] = React.useState(true);
 
   React.useEffect(async () => {
-    await getReadings(match.params.slug);
-    if (!loading && readings) {
-      const { data } = readings;
+    if (toggle) {
+      await getReadings(match.params.slug);
+      if (readings) {
+        const { data } = readings;
 
-      // console.log(data);
+        // console.log(data);
 
-      let reading = {
-        battery_level: [],
-        temperature: [],
-        flow_rate: [],
-        flow_count: [],
-        total_flow: [],
-        time_sampled: [],
-        time_received: [],
-      };
-      data.map((item) =>
-        Object.keys(reading).map((key) => reading[key].push(item[key]))
-      );
+        let reading = {
+          battery_level: [],
+          temperature: [],
+          flow_rate: [],
+          flow_count: [],
+          total_flow: [],
+          time_sampled: [],
+          time_received: [],
+        };
+        data.map((item) =>
+          Object.keys(reading).map((key) => reading[key].push(item[key]))
+        );
 
-      // console.log(occurrencesData);
-      setReadingsData(reading);
-      // console.log(readingsData);
+        // console.log(occurrencesData);
+        setReadingsData(reading);
+        // console.log(readingsData);
 
-      // console.log(reading.time_sampled.length, reading.time_received.length);
-      let count = new Array(reading.time_sampled.length).fill(0);
-      // console.log(count);
-      const newTimeReceived = [];
-      reading.time_received.forEach((time_received) => {
-        newTimeReceived.push(time_received.toString().slice(0, -13));
-      });
-      const occurrencesTimeReceived = newTimeReceived.reduce(function (
-        acc,
-        curr
-      ) {
-        return acc[curr] ? ++acc[curr] : (acc[curr] = 1), acc;
-      },
-      {});
+        // console.log(reading.time_sampled.length, reading.time_received.length);
+        let count = new Array(reading.time_sampled.length).fill(0);
+        // console.log(count);
+        const newTimeReceived = [];
+        reading.time_received.forEach((time_received) => {
+          newTimeReceived.push(time_received.toString().slice(0, -13));
+        });
+        const occurrencesTimeReceived = newTimeReceived.reduce(function (
+          acc,
+          curr
+        ) {
+          return acc[curr] ? ++acc[curr] : (acc[curr] = 1), acc;
+        },
+        {});
 
-      // console.log(newTimeReceived, occurrencesTimeReceived);
+        // console.log(newTimeReceived, occurrencesTimeReceived);
 
-      for (let property in occurrencesTimeReceived) {
-        let index =
-          newTimeReceived.indexOf(`${property}`) +
-          occurrencesTimeReceived[property] -
-          1;
-        count[index] = occurrencesTimeReceived[property];
+        for (let property in occurrencesTimeReceived) {
+          let index =
+            newTimeReceived.indexOf(`${property}`) +
+            occurrencesTimeReceived[property] -
+            1;
+          count[index] = occurrencesTimeReceived[property];
+        }
+
+        let occurrencesData = {
+          count: count,
+        };
+        setOccurences(occurrencesData);
+        console.log("da");
+        setToggle(false);
       }
-
-      let occurrencesData = {
-        count: count,
-      };
-      setOccurences(occurrencesData);
     }
-  }, [getReadings, match.params.key, getReadingsWithTime, readings, loading]);
+  }, [getReadings, match.params.key, readings]);
 
   // setInterval(() => {
 
