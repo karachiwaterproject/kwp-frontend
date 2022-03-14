@@ -6,6 +6,7 @@ import { HOST } from "constrants";
 export const getReadings = (node) => async (dispatch) => {
   try {
     const res = await axios.get(`${HOST}/api/reading/${node}`);
+
     dispatch({
       type: GET_READINGS,
       payload: res.data,

@@ -28,8 +28,8 @@ import { LineChart } from "./Charts/LineChart";
 
 const useStyles = makeStyles(styles);
 
-const HomeNode = ({
-  getReadings,
+const HomeNodeWeekly = ({
+  getReadingsWithTime,
   match,
   getNode,
   node: { node, loading },
@@ -46,7 +46,13 @@ const HomeNode = ({
 
   React.useEffect(async () => {
     getNode(match.params.slug);
-    getReadings(match.params.slug);
+
+    var time1 = new Date();
+    var time2 = new Date();
+    const _time1 = time1.valueOf() / 1000;
+    time2.setDate(time2.getDate() - 7);
+    const _time2 = time2.valueOf() / 1000;
+    // getReadingsWithTime(match.params.slug, _time2, _time1);
     if (readings) {
       const { data } = readings;
 
@@ -214,7 +220,7 @@ const HomeNode = ({
   );
 };
 
-HomeNode.propTypes = {
+HomeNodeWeekly.propTypes = {
   node: PropTypes.object.isRequired,
   getNode: PropTypes.func.isRequired,
   getReadings: PropTypes.func.isRequired,
@@ -226,4 +232,6 @@ const mapStateToProps = (state) => ({
   reading: state.reading,
 });
 
-export default connect(mapStateToProps, { getNode, getReadings })(HomeNode);
+export default connect(mapStateToProps, { getNode, getReadingsWithTime })(
+  HomeNodeWeekly
+);

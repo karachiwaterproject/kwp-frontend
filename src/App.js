@@ -27,6 +27,7 @@ import { loadUser } from "actions/auth";
 import HomeNode from "views/Node/HomeNode";
 import NodeWithTime from "views/Node/NodeWithTime";
 import ScrollToTop from "./ScrollToTop";
+import HomeNodeWeekly from "views/Node/HomeNodeWeekly";
 
 const App = () => {
   React.useEffect(() => {
@@ -71,6 +72,11 @@ const App = () => {
             exact
           />
           <PrivateRoute path="/homenode/:slug" component={HomeNode} exact />
+          <PrivateRoute
+            path="/homenode/weekly/:slug"
+            component={HomeNodeWeekly}
+            exact
+          />
 
           <Redirect to="/home" />
         </Switch>
