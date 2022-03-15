@@ -19,6 +19,7 @@ import { Link } from "react-router-dom";
 import { CHANGE_NAV_ON_SCROLL } from "constrants";
 import DateTimePicker from "react-datetime-picker";
 import reading from "reducers/readings";
+import { LineChart2 } from "./Charts/LineChart2";
 
 const useStyles = makeStyles(styles);
 
@@ -36,6 +37,7 @@ const NodeWithTime = ({
     total_flow: [],
     time_sampled: [],
     time_received: [],
+    signal_strength: [],
   });
 
   const [time1, setTime1] = React.useState("");
@@ -67,6 +69,7 @@ const NodeWithTime = ({
           total_flow: [],
           time_sampled: [],
           time_received: [],
+          signal_strength: [],
         };
         data.map((item) =>
           Object.keys(reading).map((key) => reading[key].push(item[key]))
@@ -103,6 +106,7 @@ const NodeWithTime = ({
 
         let occurrencesData = {
           count: count,
+          time: newTimeReceived,
         };
         setOccurences(occurrencesData);
         console.log("da");
@@ -262,10 +266,15 @@ const NodeWithTime = ({
                       data={readingsData.temperature}
                       heading={`Temperature (C°)`}
                     />
-                    <LineChart
-                      labels={readingsData.time_sampled}
+                    <LineChart2
+                      labels={occurrences.time}
                       data={occurrences.count}
                       heading={`Data Readings Obtained`}
+                    />
+                    <LineChart
+                      labels={readingsData.time_sampled}
+                      data={readingsData.signal_strength}
+                      heading={`Signal Strength`}
                     />
                   </>
                 ) : !loading && readings.count === 0 ? (
