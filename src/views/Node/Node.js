@@ -14,6 +14,7 @@ import { Button, Container, makeStyles, Typography } from "@material-ui/core";
 import { getReadings, getReadingsWithTime } from "actions/readings";
 import { GET_READINGS_AFTER } from "constrants";
 import { LineChart } from "./Charts/LineChart";
+import { LineChart2 } from "./Charts/LineChart2";
 import { getNode } from "actions/node";
 import { Link } from "react-router-dom";
 import { CHANGE_NAV_ON_SCROLL } from "constrants";
@@ -34,6 +35,7 @@ const Node = ({ getReadings, match, reading: { readings, loading } }) => {
     total_flow: [],
     time_sampled: [],
     time_received: [],
+    signal_strength: [],
   });
   const [occurrences, setOccurences] = React.useState({
     time: [],
@@ -59,6 +61,7 @@ const Node = ({ getReadings, match, reading: { readings, loading } }) => {
           total_flow: [],
           time_sampled: [],
           time_received: [],
+          signal_strength: [],
         };
         data.map((item) =>
           Object.keys(reading).map((key) => reading[key].push(item[key]))
@@ -95,6 +98,7 @@ const Node = ({ getReadings, match, reading: { readings, loading } }) => {
 
         let occurrencesData = {
           count: count,
+          time: newTimeReceived,
         };
         setOccurences(occurrencesData);
         console.log("da");
@@ -255,10 +259,15 @@ const Node = ({ getReadings, match, reading: { readings, loading } }) => {
                       data={getTimeDifference(readingsData.time_sampled)}
                       heading={`T2 - T1`}
                     />
-                    <LineChart
-                      labels={readingsData.time_sampled}
+                    <LineChart2
+                      labels={occurrences.time}
                       data={occurrences.count}
                       heading={`Data Readings Obtained`}
+                    />
+                    <LineChart
+                      labels={readingsData.time_sampled}
+                      data={readingsData.signal_strength}
+                      heading={`Signal Strength`}
                     />
                     {/* <BarChart
                       style={{ height: "400px", width: "100%" }}
