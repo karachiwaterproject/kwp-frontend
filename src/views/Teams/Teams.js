@@ -111,6 +111,15 @@ const members = [
     contact: "samad.shakir@sse.habib.edu.pk",
     status: true,
   },
+  {
+    name: "Azmat Ali",
+    role: "IT technician",
+    avatar: "",
+    details:
+      "Site Survey, PCB fabrication, Device Installation including Electrical and Plumbing work, etc.",
+    contact: "",
+    status: true,
+  },
 ];
 
 const undergraduates = [
