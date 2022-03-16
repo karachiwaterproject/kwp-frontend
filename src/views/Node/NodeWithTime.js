@@ -156,7 +156,7 @@ const NodeWithTime = ({
         }}
         // {...rest}
       />
-      <Parallax image={require("assets/img/project/project1.jpg").default}>
+      <Parallax image={require("assets/img/data.png").default}>
         <div className={classes.container}>
           <GridContainer>
             <GridItem>

@@ -10,7 +10,13 @@ import Parallax from "components/Parallax/Parallax";
 import Header from "components/Header/Header";
 import HeaderLinks from "components/Header/HeaderLinks";
 import styles from "assets/jss/material-kit-react/views/node.js";
-import { Button, Container, makeStyles, Typography } from "@material-ui/core";
+import {
+  Button,
+  Container,
+  makeStyles,
+  TextField,
+  Typography,
+} from "@material-ui/core";
 import { getReadings, getReadingsWithTime } from "actions/readings";
 import { GET_READINGS_AFTER } from "constrants";
 import { LineChart } from "./Charts/LineChart";
@@ -20,6 +26,7 @@ import { Link } from "react-router-dom";
 import { CHANGE_NAV_ON_SCROLL } from "constrants";
 import DateTimePicker from "react-datetime-picker";
 import { BarChart } from "./Charts/BarChart";
+import { DateTimeComponent } from "./DateTimeComponent";
 
 const useStyles = makeStyles(styles);
 
@@ -148,7 +155,7 @@ const Node = ({ getReadings, match, reading: { readings, loading } }) => {
         }}
         // {...rest}
       />
-      <Parallax image={require("assets/img/project/project1.jpg").default}>
+      <Parallax image={require("assets/img/data.png").default}>
         <div className={classes.container}>
           <GridContainer>
             <GridItem>
@@ -196,13 +203,34 @@ const Node = ({ getReadings, match, reading: { readings, loading } }) => {
                 <br />
                 <GridContainer style={{ width: "80%", margin: "auto" }}>
                   <GridItem xs={4}>
-                    From : <br />
-                    <DateTimePicker onChange={setTime1} value={time1} />
+                    {/* <DateTimePicker onChange={setTime1} value={time1} /> */}
+                    <TextField
+                      id="datetime-local"
+                      label="From"
+                      type="datetime-local"
+                      onChange={setTime1}
+                      value={time1}
+                      className={classes.textField}
+                      InputLabelProps={{
+                        shrink: true,
+                      }}
+                    />
                   </GridItem>
 
                   <GridItem xs={4}>
-                    To :<br />
-                    <DateTimePicker onChange={setTime2} value={time2} />
+                    {/* To :<br /> */}
+                    {/* <DateTimePicker onChange={setTime2} value={time2} /> */}
+                    <TextField
+                      id="datetime-local"
+                      label="From"
+                      type="datetime-local"
+                      onChange={setTime2}
+                      value={time2}
+                      className={classes.textField}
+                      InputLabelProps={{
+                        shrink: true,
+                      }}
+                    />
                   </GridItem>
                   <GridItem xs={3}>
                     <br />

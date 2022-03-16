@@ -221,7 +221,10 @@ const Teams = (props) => {
         }}
         {...rest}
       />
-      <Parallax image={require("assets/img/team-banner.jpg").default}>
+      <Parallax
+        image={require("assets/img/team-banner.jpg").default}
+        style={{ height: 430 }}
+      >
         <div className={classes.container}>
           <GridContainer>
             <GridItem>

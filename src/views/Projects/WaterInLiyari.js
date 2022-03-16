@@ -35,7 +35,7 @@ const WaterInLiyari = (props) => {
       />
       <Parallax
         image={require("assets/img/project/project4.jpg").default}
-        style={{ height: 350 }}
+        style={{ height: 400 }}
       >
         <div className={classes.container}>
           <GridContainer>

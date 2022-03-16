@@ -32,7 +32,10 @@ const WaterPricing = (props) => {
         }}
         {...rest}
       />
-      <Parallax image={require("assets/img/project/project3.png").default}>
+      <Parallax
+        image={require("assets/img/project/project3.png").default}
+        style={{ height: 400 }}
+      >
         <div className={classes.container}>
           <GridContainer>
             <GridItem>

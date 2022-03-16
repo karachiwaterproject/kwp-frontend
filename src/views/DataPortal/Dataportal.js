@@ -26,6 +26,7 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { Redirect } from "react-router-dom";
 import { CHANGE_NAV_ON_SCROLL } from "constrants";
+import { DateTimeComponent } from "views/Node/DateTimeComponent";
 
 const Dataportal = ({ login, isAuthenticated, auth }) => {
   const classes = useStyles();
@@ -91,6 +92,7 @@ const Dataportal = ({ login, isAuthenticated, auth }) => {
             >
               Overview
             </Typography>
+
             <hr style={{ width: "100%" }} />
           </Container>
           <GridContainer
