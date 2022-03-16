@@ -26,7 +26,7 @@ const WaterInLiyari = (props) => {
       <Header
         rightLinks={<HeaderLinks />}
         fixed
-        color="transparent"
+        color="dimWhite"
         changeColorOnScroll={{
           height: CHANGE_NAV_ON_SCROLL,
           color: "white",

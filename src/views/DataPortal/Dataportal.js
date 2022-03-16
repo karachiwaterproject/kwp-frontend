@@ -58,7 +58,7 @@ const Dataportal = ({ login, isAuthenticated, auth }) => {
       <Header
         rightLinks={<HeaderLinks />}
         fixed
-        color="transparent"
+        color="dimWhite"
         changeColorOnScroll={{
           height: CHANGE_NAV_ON_SCROLL,
           color: "white",
@@ -186,7 +186,14 @@ const Dataportal = ({ login, isAuthenticated, auth }) => {
               <Typography variant="h3" style={{ fontWeight: "bold" }}>
                 Login
               </Typography>
+
               <hr style={{ width: "100%" }} />
+              <Typography>
+                Survey form:{" "}
+                <a href="https://forms.gle/JLPGHAGcKhKKxzjH7" target={"_blank"}>
+                  https://forms.gle/JLPGHAGcKhKKxzjH7
+                </a>
+              </Typography>
               <form
                 style={{ width: "100%", marginTop: "50px" }}
                 onSubmit={(e) => onSubmit(e)}

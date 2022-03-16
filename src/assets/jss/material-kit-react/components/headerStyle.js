@@ -147,6 +147,15 @@ const headerStyle = {
     paddingLeft: "0",
     ...transition,
   },
+  dimWhite: {
+    border: "0",
+    padding: "0.625rem 0",
+    marginBottom: "20px",
+    color: "#000",
+    backgroundColor: "rgba(255, 255, 255, 0.8) !important",
+    boxShadow:
+      "0 4px 18px 0px rgba(0, 0, 0, 0.12), 0 7px 10px -5px rgba(0, 0, 0, 0.15)",
+  },
 };
 
 export default headerStyle;

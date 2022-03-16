@@ -41,7 +41,6 @@ export default function auth(state = initialState, action) {
     case REGISTER_FAIL:
     case AUTH_ERROR:
     case LOGIN_FAIL:
-    case LOGOUT:
     case ACCOUNT_DELETED:
       localStorage.removeItem("token");
       localStorage.removeItem("username");
@@ -52,6 +51,16 @@ export default function auth(state = initialState, action) {
         token: null,
         username: null,
         loginFailed: true,
+      };
+    case LOGOUT:
+      localStorage.removeItem("token");
+      localStorage.removeItem("username");
+      return {
+        ...state,
+        isAuthenticated: false,
+        loading: false,
+        token: null,
+        username: null,
       };
     default:
       return state;

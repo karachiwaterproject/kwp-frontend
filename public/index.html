@@ -57,6 +57,10 @@
       transition: all 0.4s linear;
     }
 
+    .details {
+      font-size: 12px;
+    }
+
     .trigger-details {
       transition: all 0.4s linear;
     }
@@ -71,7 +75,7 @@
     }
 
     .padding {
-      padding: 0 100px;
+      padding: 10px 130px;
     }
 
 
@@ -198,7 +202,7 @@
 
     @media screen and (max-width: 2560px) {
       .parallax {
-        height: 40vh;
+        height: 45vh;
       }
     }
 
@@ -207,6 +211,26 @@
           height: 25vh;
         }
       } */
+
+    .specialNav {
+      opacity: 0.5 !important;
+    }
+
+
+    .flip-icon {
+      transform: rotate(45deg);
+      transition: all 0.5s;
+    }
+
+    .trigger-details:hover .hvr-flip {
+      transform: rotateY(180deg);
+      transition: all 0.5s;
+    }
+
+    img.hvr-flip {
+      transform: rotateY(0deg);
+      transition: all 0.5s;
+    }
   </style>
   <script id="react-dotenv" src="./env.js"></script>
 </head>

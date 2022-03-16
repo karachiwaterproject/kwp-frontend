@@ -27,21 +27,32 @@ const TeamCard = ({ name, avatar, role, contact, details }) => {
       <CardContent className={classes.cardContent + " trigger-details"}>
         <div className={classes.cardMain + " card-main"} />
 
-        <Settings className={classes.icon} />
+        {/* <Settings className={classes.icon} /> */}
+        <div className={classes.icon + " flip-icon"}>
+          <img
+            src={require("assets/img/hvr-flip.svg").default}
+            alt=""
+            className="hvr-flip"
+          />
+        </div>
         <div className="extra-content">
           <Typography gutterBottom style={{ fontWeight: "100" }}>
-            <span style={{ fontWeight: "900" }}>{name}</span>
+            <span style={{ fontWeight: "800", fontSize: "16px" }}>{name}</span>
             <br />
-            {role}
+            <span style={{ fontSize: "12px" }}>{role}</span>
           </Typography>
 
-          <Typography gutterBottom variant="body2">
-            <span style={{ fontWeight: "bold" }}>Role:</span> <br />
-            {details}
+          <Typography gutterBottom variant="p">
+            <span style={{ fontWeight: "bold", fontSize: "12px" }}>Role:</span>{" "}
+            <br />
+            <span className="details">{details}</span>
           </Typography>
-          <Typography gutterBottom variant="body2">
-            <span style={{ fontWeight: "bold" }}>Contact:</span> <br />
-            {contact}
+          <br />
+          <Typography gutterBottom variant="p">
+            {/* <span style={{ fontWeight: "bold", fontSize: "12px" }}>
+              Contact:
+            </span>{" "} */}
+            <span className="details">{contact}</span>
           </Typography>
         </div>
       </CardContent>

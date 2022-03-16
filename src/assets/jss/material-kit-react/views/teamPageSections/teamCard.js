@@ -29,8 +29,8 @@ const componentsStyle = {
   },
   icon: {
     position: "absolute",
-    bottom: 13,
-    right: 13,
+    bottom: 12,
+    right: 12,
     fontSize: "2rem",
   },
 };

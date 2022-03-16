@@ -50,6 +50,7 @@ const Node = ({ getReadings, match, reading: { readings, loading } }) => {
       await getReadings(match.params.slug);
       if (readings) {
         const { data } = readings;
+        let content = Array.from(data).reverse();
 
         // console.log(data);
 
@@ -63,7 +64,7 @@ const Node = ({ getReadings, match, reading: { readings, loading } }) => {
           time_received: [],
           signal_strength: [],
         };
-        data.map((item) =>
+        content.map((item) =>
           Object.keys(reading).map((key) => reading[key].push(item[key]))
         );
 

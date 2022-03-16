@@ -214,7 +214,7 @@ const Teams = (props) => {
       <Header
         rightLinks={<HeaderLinks />}
         fixed
-        color="transparent"
+        color="dimWhite"
         changeColorOnScroll={{
           height: CHANGE_NAV_ON_SCROLL,
           color: "white",
@@ -273,7 +273,7 @@ const Teams = (props) => {
               variant="h3"
               style={{ fontWeight: "bold", marginBottom: "30px" }}
             >
-              Alumini
+              Alumni
             </Typography>
             <hr style={{ width: "100%" }} />
           </GridContainer>
@@ -304,7 +304,10 @@ const Teams = (props) => {
               </Table>
             </TableContainer>
           </GridContainer>
-          <GridContainer className={classes.mainContainer + " main-container"}>
+          <GridContainer
+            className={classes.mainContainer + " main-container"}
+            style={{ padding: "50px 100px 0" }}
+          >
             <Typography
               variant="h3"
               style={{ fontWeight: "bold", marginBottom: "30px" }}
@@ -312,7 +315,9 @@ const Teams = (props) => {
               Undergraduate Researchers
             </Typography>
             <hr style={{ width: "100%" }} />
-            <br />
+          </GridContainer>
+
+          <GridContainer className="padding">
             <TableContainer component={Paper}>
               <Table
                 className={classes.table}
