@@ -208,8 +208,8 @@ const Node = ({ getReadings, match, reading: { readings, loading } }) => {
                       id="datetime-local"
                       label="From"
                       type="datetime-local"
-                      onChange={setTime1}
                       value={time1}
+                      onChange={(e) => setTime1(e.target.value)}
                       className={classes.textField}
                       InputLabelProps={{
                         shrink: true,
@@ -224,7 +224,7 @@ const Node = ({ getReadings, match, reading: { readings, loading } }) => {
                       id="datetime-local"
                       label="From"
                       type="datetime-local"
-                      onChange={setTime2}
+                      onChange={(e) => setTime2(e.target.value)}
                       value={time2}
                       className={classes.textField}
                       InputLabelProps={{
