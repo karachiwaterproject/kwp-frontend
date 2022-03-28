@@ -17,10 +17,10 @@ export const dashboardLinks = [
     page: "Readings",
     url: "/readings",
   },
-  {
-    page: "Logout",
-    url: "/logout",
-  },
+  // {
+  //   page: "Logout",
+  //   url: "/logout",
+  // },
   // {
   //   page: "HomeNode",
   //   url: "/homenode",
