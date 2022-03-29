@@ -150,14 +150,17 @@ const NodeWithTime = ({
   };
 
   const updateData = () => {
-    const _time1 = time1.valueOf() / 1000;
-    const _time2 = time2.valueOf() / 1000;
+    const __time1 = new Date(time1);
+    const __time2 = new Date(time2);
+
+    const _time1 = ~~(__time1.valueOf() / 1000);
+    const _time2 = ~~(__time2.valueOf() / 1000);
 
     if (_time1 > _time2 && _time1 === _time2) {
       alert("error date");
     } else {
       if (_time1 !== NaN && _time2 !== NaN) {
-        window.location.href = `/node/${match.params.key}/${match.params.slug}/${_time1}/${_time2}`;
+        window.location.href = `/node/${match.params.slug}/${_time1}/${_time2}`;
       } else {
         alert("Please enter a valid date");
       }
