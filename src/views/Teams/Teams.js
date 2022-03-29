@@ -113,8 +113,8 @@ const members = [
   },
   {
     name: "Azmat Ali",
-    role: "IT technician",
-    avatar: "",
+    role: "Technician",
+    avatar: require("./../../assets/img/team/10.png").default,
     details:
       "Site Survey, PCB fabrication, Device Installation including Electrical and Plumbing work, etc.",
     contact: "",

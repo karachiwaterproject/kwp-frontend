@@ -10,7 +10,13 @@ import Parallax from "components/Parallax/Parallax";
 import Header from "components/Header/Header";
 import HeaderLinks from "components/Header/HeaderLinks";
 import styles from "assets/jss/material-kit-react/views/node.js";
-import { Button, Container, makeStyles, Typography } from "@material-ui/core";
+import {
+  Button,
+  Container,
+  makeStyles,
+  TextField,
+  Typography,
+} from "@material-ui/core";
 import { getReadings, getReadingsWithTime } from "actions/readings";
 import { GET_READINGS_AFTER } from "constrants";
 import { LineChart } from "./Charts/LineChart";
@@ -56,7 +62,19 @@ const NodeWithTime = ({
         match.params.time2
       );
 
+      let _time1 = new Date(match.params.time1 * 1000);
+      let offset = _time1.getTimezoneOffset();
+
+      _time1 = new Date(_time1 - offset * 60 * 1000).toISOString();
+      let _time2 = new Date(match.params.time2 * 1000);
+      offset = _time2.getTimezoneOffset();
+
+      _time2 = new Date(_time2 - offset * 60 * 1000).toISOString();
+
+      setTime1(_time1.slice(0, -1));
+      setTime2(_time2.slice(0, -1));
       if (readings) {
+        console.log(time1, time2);
         const { data } = readings;
 
         // console.log(data);
@@ -144,6 +162,24 @@ const NodeWithTime = ({
       }
     }
   };
+
+  const fetchToday = () => {
+    const __time1 = new Date();
+    const __time2 = new Date();
+    __time1.setHours(0, 0, 0, 0);
+    const _time1 = ~~(__time1.valueOf() / 1000);
+    const _time2 = ~~(__time2.valueOf() / 1000);
+
+    if (_time1 > _time2 && _time1 === _time2) {
+      alert("error date");
+    } else {
+      if (_time1 !== NaN && _time2 !== NaN) {
+        window.location.href = `/node/${match.params.slug}/${_time1}/${_time2}`;
+      } else {
+        alert("Please enter a valid date");
+      }
+    }
+  };
   return (
     <div>
       <Header
@@ -178,12 +214,19 @@ const NodeWithTime = ({
               <>
                 <GridContainer>
                   <GridItem>
-                    <Typography variant="h4">
-                      Visualizing data for node:{" "}
-                      <span style={{ fontWeight: "bolder" }}>
-                        {match.params.slug}
-                      </span>
-                    </Typography>
+                    <div>
+                      <Link to="/nodes" style={{ float: "left" }}>
+                        <Button>
+                          <ChevronLeft style={{ fontSize: "2.1rem" }} />
+                        </Button>
+                      </Link>
+                      <Typography variant="h4" style={{ float: "left" }}>
+                        Visualizing data for node:{" "}
+                        <span style={{ fontWeight: "bolder" }}>
+                          {match.params.slug}
+                        </span>
+                      </Typography>
+                    </div>
                   </GridItem>
                   <GridItem>
                     <Button
@@ -203,17 +246,38 @@ const NodeWithTime = ({
 
                 <hr style={{ width: "100%" }} />
                 <br />
-                <GridContainer style={{ width: "80%", margin: "auto" }}>
+                <GridContainer style={{ width: "90%", margin: "auto" }}>
                   <GridItem xs={4}>
-                    From : <br />
-                    <DateTimePicker onChange={setTime1} value={time1} />
+                    <TextField
+                      id="datetime-local"
+                      label="From"
+                      type="datetime-local"
+                      value={time1}
+                      onChange={(e) => setTime1(e.target.value)}
+                      className={classes.textField}
+                      InputLabelProps={{
+                        shrink: true,
+                      }}
+                    />
                   </GridItem>
 
                   <GridItem xs={4}>
-                    To :<br />
-                    <DateTimePicker onChange={setTime2} value={time2} />
+                    <TextField
+                      id="datetime-local"
+                      label="From"
+                      type="datetime-local"
+                      onChange={(e) => setTime2(e.target.value)}
+                      value={time2}
+                      className={classes.textField}
+                      InputLabelProps={{
+                        shrink: true,
+                      }}
+                    />
                   </GridItem>
-                  <GridItem xs={3}>
+                  <GridItem
+                    xs={4}
+                    style={{ display: "flex", flexDirection: "row" }}
+                  >
                     <br />
                     <Button
                       variant="contained"
@@ -222,6 +286,15 @@ const NodeWithTime = ({
                       onClick={() => updateData()}
                     >
                       Load Data
+                    </Button>
+                    <Button
+                      style={{ marginLeft: 5 }}
+                      variant="contained"
+                      color="secondary"
+                      type="submit"
+                      onClick={() => fetchToday()}
+                    >
+                      Todays Record
                     </Button>
                   </GridItem>
                 </GridContainer>

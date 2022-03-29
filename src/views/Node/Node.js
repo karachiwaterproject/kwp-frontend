@@ -27,6 +27,7 @@ import { CHANGE_NAV_ON_SCROLL } from "constrants";
 import DateTimePicker from "react-datetime-picker";
 import { BarChart } from "./Charts/BarChart";
 import { DateTimeComponent } from "./DateTimeComponent";
+import { ChevronLeft } from "@material-ui/icons";
 
 const useStyles = makeStyles(styles);
 
@@ -131,8 +132,26 @@ const Node = ({ getReadings, match, reading: { readings, loading } }) => {
     const __time1 = new Date(time1);
     const __time2 = new Date(time2);
 
-    const _time1 = __time1.valueOf() / 1000;
-    const _time2 = __time2.valueOf() / 1000;
+    const _time1 = ~~(__time1.valueOf() / 1000);
+    const _time2 = ~~(__time2.valueOf() / 1000);
+
+    if (_time1 > _time2 && _time1 === _time2) {
+      alert("error date");
+    } else {
+      if (_time1 !== NaN && _time2 !== NaN) {
+        window.location.href = `/node/${match.params.slug}/${_time1}/${_time2}`;
+      } else {
+        alert("Please enter a valid date");
+      }
+    }
+  };
+
+  const fetchToday = () => {
+    const __time1 = new Date();
+    const __time2 = new Date();
+    __time1.setHours(0, 0, 0, 0);
+    const _time1 = ~~(__time1.valueOf() / 1000);
+    const _time2 = ~~(__time2.valueOf() / 1000);
 
     if (_time1 > _time2 && _time1 === _time2) {
       alert("error date");
@@ -179,12 +198,20 @@ const Node = ({ getReadings, match, reading: { readings, loading } }) => {
               <>
                 <GridContainer>
                   <GridItem>
-                    <Typography variant="h4">
-                      Visualizing data for node:{" "}
-                      <span style={{ fontWeight: "bolder" }}>
-                        {match.params.slug}
-                      </span>
-                    </Typography>
+                    <div>
+                      <Link to="/nodes" style={{ float: "left" }}>
+                        <Button>
+                          <ChevronLeft style={{ fontSize: "2.1rem" }} />
+                        </Button>
+                      </Link>
+
+                      <Typography variant="h4" style={{ float: "left" }}>
+                        Visualizing data for node:{" "}
+                        <span style={{ fontWeight: "bolder" }}>
+                          {match.params.slug}
+                        </span>
+                      </Typography>
+                    </div>
                   </GridItem>
                   <GridItem>
                     <Button
@@ -205,7 +232,6 @@ const Node = ({ getReadings, match, reading: { readings, loading } }) => {
                 <br />
                 <GridContainer style={{ width: "80%", margin: "auto" }}>
                   <GridItem xs={4}>
-                    {/* <DateTimePicker onChange={setTime1} value={time1} /> */}
                     <TextField
                       id="datetime-local"
                       label="From"
@@ -220,8 +246,6 @@ const Node = ({ getReadings, match, reading: { readings, loading } }) => {
                   </GridItem>
 
                   <GridItem xs={4}>
-                    {/* To :<br /> */}
-                    {/* <DateTimePicker onChange={setTime2} value={time2} /> */}
                     <TextField
                       id="datetime-local"
                       label="From"
@@ -234,7 +258,10 @@ const Node = ({ getReadings, match, reading: { readings, loading } }) => {
                       }}
                     />
                   </GridItem>
-                  <GridItem xs={3}>
+                  <GridItem
+                    xs={4}
+                    style={{ display: "flex", flexDirection: "row" }}
+                  >
                     <br />
                     <Button
                       variant="contained"
@@ -243,6 +270,15 @@ const Node = ({ getReadings, match, reading: { readings, loading } }) => {
                       onClick={() => updateData()}
                     >
                       Load Data
+                    </Button>
+                    <Button
+                      style={{ marginLeft: 5 }}
+                      variant="contained"
+                      color="secondary"
+                      type="submit"
+                      onClick={() => fetchToday()}
+                    >
+                      Todays Record
                     </Button>
                   </GridItem>
                 </GridContainer>
