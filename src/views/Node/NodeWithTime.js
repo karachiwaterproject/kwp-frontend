@@ -26,6 +26,7 @@ import { CHANGE_NAV_ON_SCROLL } from "constrants";
 import DateTimePicker from "react-datetime-picker";
 import reading from "reducers/readings";
 import { LineChart2 } from "./Charts/LineChart2";
+import { ChevronLeft } from "@material-ui/icons";
 
 const useStyles = makeStyles(styles);
 
