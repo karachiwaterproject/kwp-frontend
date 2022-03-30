@@ -25,6 +25,7 @@ import GridContainer from "components/Grid/GridContainer";
 import GridItem from "components/Grid/GridItem";
 import { logout } from "actions/auth";
 import { connect } from "react-redux";
+import MeetingRoomIcon from "@material-ui/icons/MeetingRoom";
 
 const useStyles = makeStyles(styles);
 
@@ -47,7 +48,9 @@ function HeaderLinks({ auth: { isAuthenticated, loading }, logout }) {
       </ListItem>
       <ListItem className={classes.listItem}>
         <a className={classes.navLink} onClick={logout} href="#!">
-          Logout
+          <Typography variant="body2" style={{ marginLeft: 10 }}>
+            Logout
+          </Typography>
         </a>
       </ListItem>
     </>

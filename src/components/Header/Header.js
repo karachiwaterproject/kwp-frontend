@@ -64,7 +64,7 @@ export default function Header(props) {
     [classes.fixed]: fixed,
   });
   const brandComponent = (
-    <NavLink to="\home" className={classes.title}>
+    <NavLink to="/home" className={classes.title}>
       <img src={icon} height="45px" />
     </NavLink>
   );

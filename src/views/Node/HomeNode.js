@@ -191,7 +191,7 @@ const HomeNode = ({
               >
                 Get today's data
               </Button>
-              <Button variant="outlined">Get this week's data</Button>
+              {/* <Button variant="outlined">Get this week's data</Button> */}
             </ButtonGroup>
 
             <>

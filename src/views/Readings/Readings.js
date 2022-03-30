@@ -1,4 +1,12 @@
-import { Container, makeStyles } from "@material-ui/core";
+import {
+  Button,
+  Container,
+  FormControl,
+  InputLabel,
+  makeStyles,
+  MenuItem,
+  Select,
+} from "@material-ui/core";
 import classNames from "classnames";
 import GridContainer from "components/Grid/GridContainer";
 import GridItem from "components/Grid/GridItem";
@@ -26,6 +34,8 @@ const useStyles = makeStyles(styles);
 const Readings = ({ match, reading, node, getNodes, getReadings }) => {
   const classes = useStyles();
 
+  const [nodeToFetch, setNodeToFetch] = React.useState(match.params.slug || "");
+
   React.useEffect(() => {
     getNodes();
     getReadings(match.params.slug || DEFAULT_NODE);
@@ -50,7 +60,7 @@ const Readings = ({ match, reading, node, getNodes, getReadings }) => {
           <GridContainer>
             <GridItem>
               <div className={classes.brand + " brand"}>
-                <h1 className={classes.title}>Dashboard</h1>
+                <h2 className={classes.title}>Readings</h2>
                 <h3 className={classes.subtitle}></h3>
               </div>
             </GridItem>
@@ -71,17 +81,57 @@ const Readings = ({ match, reading, node, getNodes, getReadings }) => {
                 ({ page }) => page !== currentPage
               )}
             />
-            <GridContainer>
-              <GridItem xs={12} sm={2}>
-                {!node.loading &&
-                  node.nodes &&
-                  node.nodes.map((node) => (
-                    <a href={`/readings/${node.slug}`}>
-                      <p>{node.name}</p>
-                    </a>
-                  ))}
-              </GridItem>
-              <GridItem xs={12} sm={10}>
+            <GridContainer style={{ width: "100%", margin: 0, padding: 0 }}>
+              {!node.loading && node.nodes && (
+                <GridItem xs={12} sm={12}>
+                  <form
+                    onSubmit={(e) => {
+                      e.preventDefault();
+
+                      if (nodeToFetch) {
+                        window.location.href = `readings/${nodeToFetch}`;
+                      } else {
+                        alert("Select node to fetch readings !");
+                      }
+                    }}
+                  >
+                    <FormControl
+                      style={{
+                        width: "100%",
+                        display: "flex",
+                        flexDirection: "row",
+                        marginBottom: "20px",
+                        marginTop: "20px",
+                      }}
+                    >
+                      <InputLabel id="demo-simple-select-label">
+                        Node
+                      </InputLabel>
+                      <Select
+                        style={{ width: "90%" }}
+                        labelId="demo-simple-select-label"
+                        id="demo-simple-select"
+                        value={nodeToFetch}
+                        onChange={(e) => setNodeToFetch(e.target.value)}
+                      >
+                        {node.nodes &&
+                          node.nodes.map((node) => (
+                            <MenuItem value={node.name}>{node.name}</MenuItem>
+                          ))}
+                      </Select>
+                      <Button
+                        style={{ width: "10%", marginLeft: "10px" }}
+                        type="submit"
+                        variant="contained"
+                        color="primary"
+                      >
+                        Get
+                      </Button>
+                    </FormControl>
+                  </form>
+                </GridItem>
+              )}
+              <GridItem xs={12} sm={12} style={{ width: "100%" }}>
                 {!reading.loading && reading.readings ? (
                   <ReadingsPagination
                     itemsPerPage={READINGS_PER_PAGE}

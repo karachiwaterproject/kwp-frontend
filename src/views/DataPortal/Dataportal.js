@@ -73,7 +73,7 @@ const Dataportal = ({ login, isAuthenticated, auth }) => {
               <div className={classes.brand + " brand"}>
                 <br />
                 <br />
-                <h1 className={classes.title}>Dashboard</h1>
+                <h2 className={classes.title}>Dashboard</h2>
                 <h3 className={classes.subtitle}></h3>
               </div>
             </GridItem>
@@ -190,12 +190,7 @@ const Dataportal = ({ login, isAuthenticated, auth }) => {
               </Typography>
 
               <hr style={{ width: "100%" }} />
-              <Typography>
-                Survey form:{" "}
-                <a href="https://forms.gle/JLPGHAGcKhKKxzjH7" target={"_blank"}>
-                  https://forms.gle/JLPGHAGcKhKKxzjH7
-                </a>
-              </Typography>
+
               <form
                 style={{ width: "100%", marginTop: "50px" }}
                 onSubmit={(e) => onSubmit(e)}
@@ -237,6 +232,7 @@ const Dataportal = ({ login, isAuthenticated, auth }) => {
                   </GridItem>
                   <GridItem className={classes.formFields}>
                     <input
+                      style={{ float: "right" }}
                       type="submit"
                       className={
                         classes.darkButton +
@@ -244,6 +240,20 @@ const Dataportal = ({ login, isAuthenticated, auth }) => {
                       }
                       value="Login"
                     />
+                    <Button
+                      style={{ float: "right", marginRight: 10 }}
+                      color="primary"
+                      variant="contained"
+                    >
+                      <Typography
+                        onClick={() => {
+                          const url = "https://forms.gle/JLPGHAGcKhKKxzjH7";
+                          window.open(url);
+                        }}
+                      >
+                        JOIN US
+                      </Typography>
+                    </Button>
                   </GridItem>
                 </GridContainer>
               </form>

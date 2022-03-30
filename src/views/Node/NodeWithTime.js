@@ -77,6 +77,7 @@ const NodeWithTime = ({
       if (readings) {
         console.log(time1, time2);
         const { data } = readings;
+        let content = Array.from(data).reverse();
 
         // console.log(data);
 
@@ -201,7 +202,7 @@ const NodeWithTime = ({
           <GridContainer>
             <GridItem>
               <div className={classes.brand + " brand"}>
-                <h1 className={classes.title}>Node Details</h1>
+                <h2 className={classes.title}>Node Details</h2>
                 <h3 className={classes.subtitle}></h3>
               </div>
             </GridItem>

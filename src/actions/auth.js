@@ -23,7 +23,7 @@ export const loadUser = (username) => async (dispatch) => {
     const res = await axios.get(`${HOST}/api/nodeuser/${user}`);
     dispatch({
       type: USER_LOADED,
-      payload: res.data,
+      payload: res,
     });
   } catch (error) {
     dispatch({

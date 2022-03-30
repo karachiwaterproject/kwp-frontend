@@ -51,7 +51,7 @@ const Nodes = ({ getNodes, node: { nodes, loading } }) => {
           <GridContainer>
             <GridItem>
               <div className={classes.brand + " brand"}>
-                <h1 className={classes.title}>Dashboard</h1>
+                <h2 className={classes.title}>Dashboard</h2>
                 <h3 className={classes.subtitle}></h3>
               </div>
             </GridItem>
@@ -250,10 +250,12 @@ const Nodes = ({ getNodes, node: { nodes, loading } }) => {
 Nodes.propTypes = {
   getNodes: PropTypes.func.isRequired,
   node: PropTypes.object.isRequired,
+  auth: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   node: state.node,
+  auth: state.auth,
 });
 
 export default connect(mapStateToProps, { getNodes })(Nodes);

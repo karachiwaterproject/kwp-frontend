@@ -181,7 +181,7 @@ const Node = ({ getReadings, match, reading: { readings, loading } }) => {
           <GridContainer>
             <GridItem>
               <div className={classes.brand + " brand"}>
-                <h1 className={classes.title}>Node Details</h1>
+                <h2 className={classes.title}>Node Details</h2>
                 <h3 className={classes.subtitle}></h3>
               </div>
             </GridItem>

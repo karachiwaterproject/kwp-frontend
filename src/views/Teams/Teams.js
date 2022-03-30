@@ -240,7 +240,7 @@ const Teams = (props) => {
               <div className={classes.brand + " brand"}>
                 <br />
                 <br />
-                <h1 className={classes.title}>Our Team</h1>
+                <h2 className={classes.title}>Our Team</h2>
                 <h3 className={classes.subtitle}></h3>
               </div>
             </GridItem>

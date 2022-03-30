@@ -40,7 +40,7 @@ function Items({ currentItems }) {
   console.log(currentItems);
   return (
     <>
-      <TableContainer component={Paper}>
+      <TableContainer component={Paper} style={{ width: "100%" }}>
         <Table
           //   className={classes.table}
           aria-label="customized table"
@@ -76,7 +76,7 @@ function Items({ currentItems }) {
                   return (
                     <StyledTableRow key={id}>
                       <StyledTableCell component="th" scope="row">
-                        {time_received}
+                        {new Date(time_received).toLocaleString()}
                       </StyledTableCell>
                       <StyledTableCell align="right">
                         {time_sampled}

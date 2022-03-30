@@ -30,18 +30,32 @@ import { MAPS_KEY } from "constrants";
 import { Map, InfoWindow, GoogleApiWrapper, Marker } from "google-maps-react";
 import { CHANGE_NAV_ON_SCROLL } from "constrants";
 
+import { useHistory } from "react-router-dom";
+
 const useStyles = makeStyles(styles);
 
-const Dashboard = ({ google, getNodes, node: { nodes, loading } }) => {
+const Dashboard = ({
+  google,
+  getNodes,
+  node: { nodes, loading },
+  auth: {
+    user: { nodes_access },
+  },
+}) => {
+  const history = useHistory();
   const classes = useStyles();
 
   const [activeMarker, setActiveMarker] = React.useState({});
   const [selectedPlace, setSelectedPlace] = React.useState({});
   const [showingInfoWindow, setShowingInfoWindow] = React.useState(false);
 
-  React.useEffect(() => {
-    getNodes();
-  }, [getNodes]);
+  React.useEffect(async () => {
+    await getNodes();
+
+    if (nodes_access[0] !== "all") {
+      window.location.href = "/nodes";
+    }
+  }, [getNodes, nodes_access]);
 
   const currentPage = "Dashboard";
 
@@ -85,7 +99,7 @@ const Dashboard = ({ google, getNodes, node: { nodes, loading } }) => {
           <GridContainer>
             <GridItem>
               <div className={classes.brand + " brand"}>
-                <h1 className={classes.title}>Dashboard</h1>
+                <h2 className={classes.title}>Dashboard</h2>
                 <h3 className={classes.subtitle}></h3>
               </div>
             </GridItem>
@@ -107,7 +121,7 @@ const Dashboard = ({ google, getNodes, node: { nodes, loading } }) => {
               )}
             />
             <GridContainer>
-              <GridItem style={{ height: "500px" }}>
+              <GridItem style={{ height: "500px", padding: 0 }}>
                 {/* <Wrapper apiKey={MAPS_KEY} render={render}>
                 <Map />
               </Wrapper> */}
@@ -203,10 +217,12 @@ const Dashboard = ({ google, getNodes, node: { nodes, loading } }) => {
 Dashboard.propTypes = {
   getNodes: PropTypes.func.isRequired,
   node: PropTypes.object.isRequired,
+  auth: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   node: state.node,
+  auth: state.auth,
 });
 
 export default connect(mapStateToProps, { getNodes })(
