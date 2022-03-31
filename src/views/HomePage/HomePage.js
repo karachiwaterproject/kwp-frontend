@@ -49,7 +49,7 @@ const HomePage = (props) => {
               >
                 <br />
                 <h2 className={classes.title + " title"}>About us</h2>
-                <Typographyfh
+                <Typography
                   variant="h6"
                   component="h6"
                   className={classes.subtitle + " subtitle"}
@@ -64,7 +64,7 @@ const HomePage = (props) => {
                   water management in Karachi. The group, headed by Dr. Hassaan
                   F. Khan, strives to develop technological and policy-based
                   solutions to Karachi’s water challenges.
-                </Typographyfh>
+                </Typography>
               </div>
             </GridItem>
           </GridContainer>
