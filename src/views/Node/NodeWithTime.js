@@ -91,7 +91,7 @@ const NodeWithTime = ({
           time_received: [],
           signal_strength: [],
         };
-        data.map((item) =>
+        content.map((item) =>
           Object.keys(reading).map((key) => reading[key].push(item[key]))
         );
 
