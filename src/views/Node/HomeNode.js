@@ -62,6 +62,9 @@ const HomeNode = ({
       setReadingsData(reading);
     }
   }, [getNode, getReadings, match.params.slug, readings]);
+
+  const [showGraph, setShowGraph] = React.useState(false);
+
   return (
     <div>
       <Header
@@ -88,40 +91,27 @@ const HomeNode = ({
       </Parallax>
       <Container>
         <div className={classNames(classes.main, classes.mainRaised)}>
-          <GridContainer
-            style={{ padding: "30px 100px 0 100px" }}
-            direction="column"
-          >
-            <h1>{!loading && node && node.name}</h1>
-            <hr style={{ width: "100%" }} />
-          </GridContainer>
-          <GridContainer
-            // className={classes.mainContainer + " main-container"}
-            style={{ padding: "30px 100px 10px 100px" }}
-            direction="column"
-          >
-            <GridContainer>
-              {!loading && node && (
-                <GridItem key={node.key}>
-                  <Card
-                    style={{
-                      borderLeft: "5px solid",
-                      borderColor:
-                        node.status === "active"
-                          ? "#1CC88A"
-                          : node.status === "inactive"
-                          ? "#F6C23E"
-                          : "#E33775",
-                    }}
-                  >
-                    <CardContent>
-                      <Typography
-                        color="primary"
+          {!loading ? (
+            <>
+              <GridContainer
+                style={{ padding: "30px 100px 0 100px" }}
+                direction="column"
+              >
+                <h1>{!loading && node && node.name}</h1>
+                <hr style={{ width: "100%" }} />
+              </GridContainer>
+              <GridContainer
+                // className={classes.mainContainer + " main-container"}
+                style={{ padding: "30px 100px 10px 100px" }}
+                direction="column"
+              >
+                <GridContainer>
+                  {!loading && node && (
+                    <GridItem key={node.key}>
+                      <Card
                         style={{
-                          textTransform: "uppercase",
-                          fontSize: "13px",
-                          fontWeight: "bold",
-                          color:
+                          borderLeft: "5px solid",
+                          borderColor:
                             node.status === "active"
                               ? "#1CC88A"
                               : node.status === "inactive"
@@ -129,84 +119,114 @@ const HomeNode = ({
                               : "#E33775",
                         }}
                       >
-                        {match.params.slug}
-                      </Typography>
-                      <Typography style={{ textTransform: "uppercase" }}>
-                        <span style={{ fontWeight: "bold" }}>
-                          Sample Rate :
-                        </span>{" "}
-                        {node.sample_rate}
-                      </Typography>
-                      <Typography style={{ textTransform: "uppercase" }}>
-                        <span style={{ fontWeight: "bold" }}>
-                          Transmission size:
-                        </span>{" "}
-                        {node.transmission_size}
-                      </Typography>
-                      <Typography style={{ textTransform: "uppercase" }}>
-                        <span style={{ fontWeight: "bold" }}>
-                          Flow constant:
-                        </span>{" "}
-                        {node.flow_constant}
-                      </Typography>
-                      <Typography style={{ textTransform: "uppercase" }}>
-                        <span style={{ fontWeight: "bold" }}>Status:</span>{" "}
-                        {node.status}
-                      </Typography>
-                      <Typography style={{ textTransform: "uppercase" }}>
-                        <span style={{ fontWeight: "bold" }}>Total Flow:</span>{" "}
-                        {node.total_flow}
-                      </Typography>
-                    </CardContent>
-                  </Card>
-                </GridItem>
-              )}
-            </GridContainer>
-          </GridContainer>
-          <GridContainer
-            style={{ padding: "0px 100px 100px 100px" }}
-            direction="column"
-          >
-            <h1>{!loading && `Flow rate`}</h1>
-            <hr style={{ width: "100%" }} />
-            <br />
-            <ButtonGroup
-              variant="contained"
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                border: "none",
-                boxShadow: "none",
-              }}
-              color="primary"
-              aria-label="primary button group"
-            >
-              <Button
-                variant="contained"
-                onClick={() => {
-                  console.log("dasd");
-                  getReadingsData();
-                }}
+                        <CardContent>
+                          <Typography
+                            color="primary"
+                            style={{
+                              textTransform: "uppercase",
+                              fontSize: "13px",
+                              fontWeight: "bold",
+                              color:
+                                node.status === "active"
+                                  ? "#1CC88A"
+                                  : node.status === "inactive"
+                                  ? "#F6C23E"
+                                  : "#E33775",
+                            }}
+                          >
+                            {match.params.slug}
+                          </Typography>
+                          <Typography style={{ textTransform: "uppercase" }}>
+                            <span style={{ fontWeight: "bold" }}>
+                              Sample Rate :
+                            </span>{" "}
+                            {node.sample_rate}
+                          </Typography>
+                          <Typography style={{ textTransform: "uppercase" }}>
+                            <span style={{ fontWeight: "bold" }}>
+                              Transmission size:
+                            </span>{" "}
+                            {node.transmission_size}
+                          </Typography>
+                          <Typography style={{ textTransform: "uppercase" }}>
+                            <span style={{ fontWeight: "bold" }}>
+                              Flow constant:
+                            </span>{" "}
+                            {node.flow_constant}
+                          </Typography>
+                          <Typography style={{ textTransform: "uppercase" }}>
+                            <span style={{ fontWeight: "bold" }}>Status:</span>{" "}
+                            {node.status}
+                          </Typography>
+                          <Typography style={{ textTransform: "uppercase" }}>
+                            <span style={{ fontWeight: "bold" }}>
+                              Total Flow:
+                            </span>{" "}
+                            {node.total_flow}
+                          </Typography>
+                        </CardContent>
+                      </Card>
+                    </GridItem>
+                  )}
+                </GridContainer>
+              </GridContainer>
+              <GridContainer
+                style={{ padding: "0px 100px 100px 100px" }}
+                direction="column"
               >
-                Get today's data
-              </Button>
-              {/* <Button variant="outlined">Get this week's data</Button> */}
-            </ButtonGroup>
-
-            <>
-              {" "}
-              <LineChart
-                labels={readingsData.time_sampled}
-                data={readingsData.flow_rate}
-                ymin={0}
-                ymax={60}
-                heading={`Flow Rate (L/min)`}
-                min={0}
-                max={60}
-              />
+                <h1>{!loading && `Flow rate`}</h1>
+                <hr style={{ width: "100%" }} />
+                <br />
+                <ButtonGroup
+                  variant="contained"
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    border: "none",
+                    boxShadow: "none",
+                  }}
+                  color="primary"
+                  aria-label="primary button group"
+                >
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    onClick={() => {
+                      console.log("dasd");
+                      setShowGraph(true);
+                      getReadingsData();
+                    }}
+                  >
+                    Get today's data
+                  </Button>
+                  {/* <Button variant="outlined">Get this week's data</Button> */}
+                </ButtonGroup>
+                {showGraph && (
+                  <>
+                    <LineChart
+                      labels={readingsData.time_sampled}
+                      data={readingsData.flow_rate}
+                      ymin={0}
+                      ymax={60}
+                      heading={`Flow Rate (L/min)`}
+                      min={0}
+                      max={60}
+                    />
+                  </>
+                )}
+              </GridContainer>
             </>
-          </GridContainer>
+          ) : (
+            <>
+              <GridContainer
+                style={{ padding: "30px 100px 30px 100px" }}
+                direction="column"
+              >
+                Loading...
+              </GridContainer>
+            </>
+          )}
         </div>
       </Container>
       <Footer />

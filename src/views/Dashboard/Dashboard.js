@@ -52,9 +52,9 @@ const Dashboard = ({
   React.useEffect(async () => {
     await getNodes();
 
-    if (nodes_access[0] !== "all") {
-      window.location.href = "/nodes";
-    }
+    // if (nodes_access[0] !== "all") {
+    //   window.location.href = "/nodes";
+    // }
   }, [getNodes, nodes_access]);
 
   const currentPage = "Dashboard";

@@ -28,10 +28,15 @@ import HomeNode from "views/Node/HomeNode";
 import NodeWithTime from "views/Node/NodeWithTime";
 import ScrollToTop from "./ScrollToTop";
 import HomeNodeWeekly from "views/Node/HomeNodeWeekly";
+import AdminRoute from "routing/AdminRoute";
 
 const App = () => {
   React.useEffect(() => {
-    if (localStorage.getItem("username")) store.dispatch(loadUser());
+    if (localStorage.getItem("username")) {
+      store.dispatch(loadUser());
+    } else {
+      console.log("username error ! ");
+    }
   }, [localStorage.getItem("username")]);
   return (
     <Provider store={store}>
@@ -61,7 +66,7 @@ const App = () => {
           />
           <Route path="/login" component={Dataportal} exact />
 
-          <PrivateRoute path="/dashboard" component={Dashboard} exact />
+          <AdminRoute path="/dashboard" component={Dashboard} exact />
           <PrivateRoute path="/nodes" component={Nodes} exact />
           <PrivateRoute path="/readings" component={Readings} exact />
           <PrivateRoute path="/readings/:slug" component={Readings} exact />

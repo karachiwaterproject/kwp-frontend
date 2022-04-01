@@ -26,6 +26,8 @@ export default function auth(state = initialState, action) {
         isAuthenticated: true,
         loading: false,
         user: payload.data,
+        admin: payload.data.nodes_access[0] === "all",
+        allowedNodes: payload.data.nodes_access,
       };
     case REGISTER_SUCCESS:
     case LOGIN_SUCCESS:
