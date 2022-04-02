@@ -1,4 +1,4 @@
-export const HOST = "https://www.karachiwaterproject.com";
+export const HOST = "https://cloud.karachiwaterproject.com";
 export const DEFAULT_NODE = "drivers-area";
 export const READINGS_PER_PAGE = 20;
 export const MAPS_KEY = "AIzaSyDL3JhynfdzGBx9WKTx-mnd-LtOlSCFRyE";
