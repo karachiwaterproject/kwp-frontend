@@ -30,7 +30,7 @@ const useStyles = makeStyles(styles);
 const Nodes = ({
   getNodes,
   node: { nodes, loading },
-  auth: { allowedNodes },
+  auth: { allowedNodes, admin },
 }) => {
   const classes = useStyles();
 
@@ -74,9 +74,15 @@ const Nodes = ({
               currentPage={
                 dashboardLinks.filter(({ page }) => page === currentPage)[0]
               }
-              dashboardLinks={dashboardLinks.filter(
-                ({ page }) => page !== currentPage
-              )}
+              dashboardLinks={
+                !admin
+                  ? dashboardLinks.filter(
+                      ({ page }) => page !== currentPage && page !== "Readings"
+                    )
+                  : dashboardLinks.filter(
+                      ({ page }) => page !== currentPage && page
+                    )
+              }
             />
             <GridContainer>
               {!loading && nodes && allowedNodes[0] !== "all" && (

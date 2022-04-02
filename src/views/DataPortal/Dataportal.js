@@ -198,7 +198,7 @@ const Dataportal = ({ login, isAuthenticated, auth }) => {
                 <GridContainer
                   className={classes.formContainer}
                   direction="column"
-                  style={{ width: "70%", margin: "auto" }}
+                  style={{ width: "100%", margin: "auto" }}
                 >
                   {auth.loginFailed && (
                     <Alert severity="error">
@@ -231,29 +231,42 @@ const Dataportal = ({ login, isAuthenticated, auth }) => {
                     />
                   </GridItem>
                   <GridItem className={classes.formFields}>
-                    <input
-                      style={{ float: "right" }}
-                      type="submit"
-                      className={
-                        classes.darkButton +
-                        " MuiButtonBase-root MuiButton-root MuiButton-text"
-                      }
-                      value="Login"
-                    />
-                    <Button
-                      style={{ float: "right", marginRight: 10 }}
-                      color="primary"
-                      variant="contained"
-                    >
-                      <Typography
-                        onClick={() => {
-                          const url = "https://forms.gle/JLPGHAGcKhKKxzjH7";
-                          window.open(url);
-                        }}
-                      >
-                        JOIN US
-                      </Typography>
-                    </Button>
+                    <GridContainer>
+                      <GridItem xs={12} md={6}>
+                        <input
+                          style={{
+                            float: "right",
+                            width: "100%",
+                            marginBottom: 10,
+                          }}
+                          type="submit"
+                          className={
+                            classes.darkButton +
+                            " MuiButtonBase-root MuiButton-root MuiButton-text"
+                          }
+                          value="Login"
+                        />
+                      </GridItem>
+                      <GridItem xs={12} md={6}>
+                        <Button
+                          style={{
+                            float: "left",
+                            width: "100%",
+                          }}
+                          color="primary"
+                          variant="contained"
+                        >
+                          <Typography
+                            onClick={() => {
+                              const url = "https://forms.gle/JLPGHAGcKhKKxzjH7";
+                              window.open(url);
+                            }}
+                          >
+                            JOIN US
+                          </Typography>
+                        </Button>
+                      </GridItem>
+                    </GridContainer>
                   </GridItem>
                 </GridContainer>
               </form>

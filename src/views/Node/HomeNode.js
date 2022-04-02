@@ -61,7 +61,7 @@ const HomeNode = ({
 
       setReadingsData(reading);
     }
-  }, [getNode, getReadings, match.params.slug, readings]);
+  }, [getNode, getReadings, match.params.slug]);
 
   const [showGraph, setShowGraph] = React.useState(false);
 
@@ -115,8 +115,8 @@ const HomeNode = ({
                             node.status === "active"
                               ? "#1CC88A"
                               : node.status === "inactive"
-                              ? "#F6C23E"
-                              : "#E33775",
+                              ? "#E33775"
+                              : "#F6C23E",
                         }}
                       >
                         <CardContent>
@@ -130,30 +130,30 @@ const HomeNode = ({
                                 node.status === "active"
                                   ? "#1CC88A"
                                   : node.status === "inactive"
-                                  ? "#F6C23E"
-                                  : "#E33775",
+                                  ? "#E33775"
+                                  : "#F6C23E",
                             }}
                           >
                             {match.params.slug}
                           </Typography>
-                          <Typography style={{ textTransform: "uppercase" }}>
+                          {/* <Typography style={{ textTransform: "uppercase" }}>
                             <span style={{ fontWeight: "bold" }}>
                               Sample Rate :
                             </span>{" "}
                             {node.sample_rate}
-                          </Typography>
-                          <Typography style={{ textTransform: "uppercase" }}>
+                          </Typography> */}
+                          {/* <Typography style={{ textTransform: "uppercase" }}>
                             <span style={{ fontWeight: "bold" }}>
                               Transmission size:
                             </span>{" "}
                             {node.transmission_size}
-                          </Typography>
-                          <Typography style={{ textTransform: "uppercase" }}>
+                          </Typography> */}
+                          {/* <Typography style={{ textTransform: "uppercase" }}>
                             <span style={{ fontWeight: "bold" }}>
                               Flow constant:
                             </span>{" "}
                             {node.flow_constant}
-                          </Typography>
+                          </Typography> */}
                           <Typography style={{ textTransform: "uppercase" }}>
                             <span style={{ fontWeight: "bold" }}>Status:</span>{" "}
                             {node.status}
@@ -164,6 +164,14 @@ const HomeNode = ({
                             </span>{" "}
                             {node.total_flow}
                           </Typography>
+                          {readings.data && (
+                            <Typography style={{ textTransform: "uppercase" }}>
+                              <span style={{ fontWeight: "bold" }}>
+                                Signal Strength:
+                              </span>{" "}
+                              {readings.data[0].signal_strength}
+                            </Typography>
+                          )}
                         </CardContent>
                       </Card>
                     </GridItem>

@@ -68,8 +68,8 @@ const App = () => {
 
           <AdminRoute path="/dashboard" component={Dashboard} exact />
           <PrivateRoute path="/nodes" component={Nodes} exact />
-          <PrivateRoute path="/readings" component={Readings} exact />
-          <PrivateRoute path="/readings/:slug" component={Readings} exact />
+          <AdminRoute path="/readings" component={Readings} exact />
+          <AdminRoute path="/readings/:slug" component={Readings} exact />
           <PrivateRoute path="/node/:slug" component={Node} exact />
           <PrivateRoute
             path="/node/:slug/:time1/:time2"
