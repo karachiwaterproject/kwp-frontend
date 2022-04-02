@@ -82,7 +82,7 @@ const HomeNode = ({
           <GridContainer>
             <GridItem>
               <div className={classes.brand + " brand"}>
-                <h1 className={classes.title}>Node Details</h1>
+                <h2 className={classes.title}>Node Details</h2>
                 <h3 className={classes.subtitle}></h3>
               </div>
             </GridItem>
@@ -90,19 +90,19 @@ const HomeNode = ({
         </div>
       </Parallax>
       <Container>
-        <div className={classNames(classes.main, classes.mainRaised)}>
+        <div className={classNames(classes.main)}>
           {!loading ? (
             <>
               <GridContainer
-                style={{ padding: "30px 100px 0 100px" }}
+                style={{ padding: "30px 50px 0 50px" }}
                 direction="column"
               >
-                <h1>{!loading && node && node.name}</h1>
+                <h2>{!loading && node && node.name}</h2>
                 <hr style={{ width: "100%" }} />
               </GridContainer>
               <GridContainer
                 // className={classes.mainContainer + " main-container"}
-                style={{ padding: "30px 100px 10px 100px" }}
+                style={{ padding: "30px 50px 10px 50px" }}
                 direction="column"
               >
                 <GridContainer>
@@ -179,7 +179,7 @@ const HomeNode = ({
                 </GridContainer>
               </GridContainer>
               <GridContainer
-                style={{ padding: "0px 100px 100px 100px" }}
+                style={{ padding: "0px 50px 100px 50px" }}
                 direction="column"
               >
                 <h1>{!loading && `Flow rate`}</h1>
@@ -228,7 +228,7 @@ const HomeNode = ({
           ) : (
             <>
               <GridContainer
-                style={{ padding: "30px 100px 30px 100px" }}
+                style={{ padding: "30px 50px 30px 50px" }}
                 direction="column"
               >
                 Loading...
