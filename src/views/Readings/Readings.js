@@ -94,7 +94,7 @@ const Readings = ({ match, reading, node, getNodes, getReadings }) => {
                       e.preventDefault();
 
                       if (nodeToFetch) {
-                        window.location.href = `readings/${nodeToFetch}`;
+                        window.location.href = `/readings/${nodeToFetch}`;
                       } else {
                         alert("Select node to fetch readings !");
                       }
@@ -121,7 +121,7 @@ const Readings = ({ match, reading, node, getNodes, getReadings }) => {
                       >
                         {node.nodes &&
                           node.nodes.map((node) => (
-                            <MenuItem value={node.name}>{node.name}</MenuItem>
+                            <MenuItem value={node.slug}>{node.name}</MenuItem>
                           ))}
                       </Select>
                       <Button
