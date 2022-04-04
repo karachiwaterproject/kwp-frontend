@@ -54,11 +54,11 @@ const Node = ({
   const [time2, setTime2] = React.useState("");
   const [toggle, setToggle] = React.useState(true);
 
-  const getData = async () => {
-    if (time1 === "" && time2 === "") {
+  const getData = async (_time1, _time2) => {
+    if (_time1 === "" && _time2 === "") {
       await getReadings(match.params.slug);
     } else {
-      await getReadingsWithTime(match.params.slug, time1, time2);
+      await getReadingsWithTime(match.params.slug, _time2, _time2);
     }
     if (readings) {
       const { data } = readings;
@@ -120,7 +120,7 @@ const Node = ({
 
   React.useEffect(async () => {
     if (toggle) {
-      await getData();
+      await getData("", "");
     }
   }, [getReadings, match.params.key, readings]);
 
@@ -137,7 +137,7 @@ const Node = ({
     return collect;
   };
 
-  const updateData = () => {
+  const updateData = async () => {
     const __time1 = new Date(time1);
     const __time2 = new Date(time2);
 
@@ -148,10 +148,9 @@ const Node = ({
       alert("error date");
     } else {
       if (_time1 !== NaN && _time2 !== NaN) {
-        // getData;
-        setTime1(_time1);
-        setTime2(_time2);
         setToggle(true);
+        await getData(_time1, _time2);
+
         // window.location.href = `/node/${match.params.slug}/${_time1}/${_time2}`;
       } else {
         alert("Please enter a valid date");
@@ -159,7 +158,7 @@ const Node = ({
     }
   };
 
-  const fetchToday = () => {
+  const fetchToday = async () => {
     const __time1 = new Date();
     const __time2 = new Date();
     __time1.setHours(0, 0, 0, 0);
@@ -170,7 +169,8 @@ const Node = ({
       alert("error date");
     } else {
       if (_time1 !== NaN && _time2 !== NaN) {
-        window.location.href = `/node/${match.params.slug}/${_time1}/${_time2}`;
+        await getData(_time1, _time2);
+        // window.location.href = `/node/${match.params.slug}/${_time1}/${_time2}`;
       } else {
         alert("Please enter a valid date");
       }

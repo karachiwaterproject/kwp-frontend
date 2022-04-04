@@ -28,17 +28,22 @@ import ReadingsPagination from "./ReadingsPagination/ReadingsPagination";
 import { READINGS_PER_PAGE } from "constrants";
 import { CHANGE_NAV_ON_SCROLL } from "constrants";
 import { Link } from "react-router-dom";
+import { HOST } from "constrants";
 
 const useStyles = makeStyles(styles);
 
 const Readings = ({ match, reading, node, getNodes, getReadings }) => {
   const classes = useStyles();
 
-  const [nodeToFetch, setNodeToFetch] = React.useState(match.params.slug || "");
+  const [nodeToFetch, setNodeToFetch] = React.useState(
+    match.params.slug || DEFAULT_NODE
+  );
+  const [buttonText, setButtonText] = React.useState("Download CSV");
+  const [buttonState, setButtonState] = React.useState(false);
 
   React.useEffect(() => {
     getNodes();
-    getReadings(match.params.slug || DEFAULT_NODE);
+    getReadings(nodeToFetch);
   }, [getNodes, getReadings]);
 
   const currentPage = "Readings";
@@ -122,15 +127,49 @@ const Readings = ({ match, reading, node, getNodes, getReadings }) => {
                       <Button
                         style={{ width: "10%", marginLeft: "10px" }}
                         type="submit"
+                        disabled={buttonState}
                         variant="contained"
                         color="primary"
                       >
                         Get
                       </Button>
+                      <Button
+                        style={{ width: "20%", marginLeft: "10px" }}
+                        variant="contained"
+                        disabled={buttonState}
+                        color="primary"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          setButtonState(true);
+                          setButtonText("Downloading");
+                          fetch(`${HOST}/api/csv/${nodeToFetch}`)
+                            .then((resp) => resp.blob())
+                            .then((blob) => {
+                              const url = window.URL.createObjectURL(blob);
+                              const a = document.createElement("a");
+                              a.style.display = "none";
+                              a.href = url;
+                              a.download = `node${nodeToFetch}info.csv`;
+                              document.body.appendChild(a);
+                              a.click();
+                              window.URL.revokeObjectURL(url);
+                              setButtonText("Download CSV");
+                              setButtonState(false);
+                            })
+                            .catch(() => {
+                              alert("Please try again");
+                              setButtonText("Download CSV");
+                              setButtonState(false);
+                            });
+                        }}
+                      >
+                        {buttonText}
+                      </Button>
                     </FormControl>
                   </form>
                 </GridItem>
               )}
+
               <GridItem xs={12} sm={12} style={{ width: "100%" }}>
                 {!reading.loading && reading.readings ? (
                   <ReadingsPagination
