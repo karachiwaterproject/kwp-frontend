@@ -14,6 +14,7 @@ const useStyles = makeStyles(styles);
 
 const TeamCard = ({ name, avatar, role, contact, details }) => {
   const classes = useStyles();
+  const [showExtra, setShowExtra] = React.useState("none");
 
   return (
     <Card
@@ -27,7 +28,6 @@ const TeamCard = ({ name, avatar, role, contact, details }) => {
       <CardContent className={classes.cardContent + " trigger-details"}>
         <div className={classes.cardMain + " card-main"} />
 
-        {/* <Settings className={classes.icon} /> */}
         <div className={classes.icon + " flip-icon"}>
           <img
             src={require("assets/img/hvr-flip.svg").default}
@@ -36,24 +36,33 @@ const TeamCard = ({ name, avatar, role, contact, details }) => {
           />
         </div>
         <div className="extra-content">
-          <Typography gutterBottom style={{ fontWeight: "100" }}>
-            <span style={{ fontWeight: "800", fontSize: "16px" }}>{name}</span>
-            <br />
-            <span style={{ fontSize: "12px" }}>{role}</span>
-          </Typography>
+          <div>
+            <Typography
+              gutterBottom
+              style={{ fontWeight: "100", width: "100%" }}
+            >
+              <span style={{ fontWeight: "800", fontSize: "16px" }}>
+                {name}
+              </span>
+              <br />
+              <span style={{ fontSize: "12px" }}>{role}</span>
+            </Typography>
 
-          <Typography gutterBottom variant="p">
-            <span style={{ fontWeight: "bold", fontSize: "12px" }}>Role:</span>{" "}
+            <Typography gutterBottom variant="p" style={{ width: "100%" }}>
+              <span style={{ fontWeight: "bold", fontSize: "12px" }}>
+                Role:
+              </span>{" "}
+              <br />
+              <span className="details">{details}</span>
+            </Typography>
             <br />
-            <span className="details">{details}</span>
-          </Typography>
-          <br />
-          <Typography gutterBottom variant="p">
-            {/* <span style={{ fontWeight: "bold", fontSize: "12px" }}>
+            <Typography gutterBottom variant="p">
+              {/* <span style={{ fontWeight: "bold", fontSize: "12px" }}>
               Contact:
             </span>{" "} */}
-            <span className="details">{contact}</span>
-          </Typography>
+              <span className="details">{contact}</span>
+            </Typography>
+          </div>
         </div>
       </CardContent>
     </Card>
