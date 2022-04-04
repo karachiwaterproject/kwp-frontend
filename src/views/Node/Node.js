@@ -27,7 +27,12 @@ import { ChevronLeft } from "@material-ui/icons";
 
 const useStyles = makeStyles(styles);
 
-const Node = ({ getReadings, match, reading: { readings, loading } }) => {
+const Node = ({
+  getReadings,
+  getReadingsWithTime,
+  match,
+  reading: { readings, loading },
+}) => {
   const classes = useStyles();
 
   const [time1, setTime1] = React.useState("");
@@ -50,14 +55,10 @@ const Node = ({ getReadings, match, reading: { readings, loading } }) => {
   const [toggle, setToggle] = React.useState(true);
 
   const getData = async () => {
-    if ((time1 === time2) === "") {
+    if (time1 === "" && time2 === "") {
       await getReadings(match.params.slug);
     } else {
-      await getReadingsWithTime(
-        match.params.slug,
-        match.params.time1,
-        match.params.time2
-      );
+      await getReadingsWithTime(match.params.slug, time1, time2);
     }
     if (readings) {
       const { data } = readings;
