@@ -25,6 +25,16 @@ const StyledTableCell = withStyles((theme) => ({
   },
 }))(TableCell);
 
+const StyledTableCell2 = withStyles((theme) => ({
+  head: {
+    backgroundColor: theme.palette.common.black,
+    color: theme.palette.common.white,
+  },
+  body: {
+    fontSize: 14,
+  },
+}))(TableCell);
+
 const StyledTableRow = withStyles((theme) => ({
   root: {
     "&:nth-of-type(odd)": {
@@ -47,7 +57,9 @@ function Items({ currentItems }) {
         >
           <TableHead>
             <TableRow>
-              <StyledTableCell>Time Received</StyledTableCell>
+              <StyledTableCell style={{ width: 200 }}>
+                Time Received
+              </StyledTableCell>
               <StyledTableCell align="right">Time Sampled</StyledTableCell>
               <StyledTableCell align="right">Flow Count</StyledTableCell>
               <StyledTableCell align="right">Flow Rate (L/min)</StyledTableCell>
@@ -75,9 +87,9 @@ function Items({ currentItems }) {
                 }) => {
                   return (
                     <StyledTableRow key={id}>
-                      <StyledTableCell component="th" scope="row">
+                      <StyledTableCell2 component="th" scope="row">
                         {new Date(time_received).toLocaleString()}
-                      </StyledTableCell>
+                      </StyledTableCell2>
                       <StyledTableCell align="right">
                         {time_sampled}
                       </StyledTableCell>

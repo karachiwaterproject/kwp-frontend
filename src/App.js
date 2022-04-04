@@ -46,7 +46,7 @@ const App = () => {
           <Route path="/landing-page" component={LandingPage} exact />
           <Route path="/profile-page" component={ProfilePage} exact />
           <Route path="/login-page" component={LoginPage} exact />
-          <Route path="/home" component={HomePage} exact />
+          <Route path="/" component={HomePage} exact />
           <Route path="/team" component={Teams} exact />
           <Route path="/extra" component={Teams} exact />
           <Route
@@ -69,7 +69,7 @@ const App = () => {
           <AdminRoute path="/dashboard" component={Dashboard} exact />
           <PrivateRoute path="/nodes" component={Nodes} exact />
           <AdminRoute path="/readings" component={Readings} exact />
-          <AdminRoute path="/readings/:slug" component={Readings} exact />
+          <PrivateRoute path="/readings/:slug" component={Readings} exact />
           <PrivateRoute path="/node/:slug" component={Node} exact />
           <PrivateRoute
             path="/node/:slug/:time1/:time2"
@@ -83,7 +83,7 @@ const App = () => {
             exact
           />
 
-          <Redirect to="/home" />
+          <Redirect to="/" />
         </Switch>
       </Router>
     </Provider>

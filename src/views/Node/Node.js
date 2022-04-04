@@ -21,12 +21,8 @@ import { getReadings, getReadingsWithTime } from "actions/readings";
 import { GET_READINGS_AFTER } from "constrants";
 import { LineChart } from "./Charts/LineChart";
 import { LineChart2 } from "./Charts/LineChart2";
-import { getNode } from "actions/node";
 import { Link } from "react-router-dom";
 import { CHANGE_NAV_ON_SCROLL } from "constrants";
-import DateTimePicker from "react-datetime-picker";
-import { BarChart } from "./Charts/BarChart";
-import { DateTimeComponent } from "./DateTimeComponent";
 import { ChevronLeft } from "@material-ui/icons";
 
 const useStyles = makeStyles(styles);
@@ -53,65 +49,77 @@ const Node = ({ getReadings, match, reading: { readings, loading } }) => {
   const [time2, setTime2] = React.useState("");
   const [toggle, setToggle] = React.useState(true);
 
+  const getData = async () => {
+    if ((time1 === time2) === "") {
+      await getReadings(match.params.slug);
+    } else {
+      await getReadingsWithTime(
+        match.params.slug,
+        match.params.time1,
+        match.params.time2
+      );
+    }
+    if (readings) {
+      const { data } = readings;
+      let content = Array.from(data).reverse();
+
+      // console.log(data);
+
+      let reading = {
+        battery_level: [],
+        temperature: [],
+        flow_rate: [],
+        flow_count: [],
+        total_flow: [],
+        time_sampled: [],
+        time_received: [],
+        signal_strength: [],
+      };
+      content.map((item) =>
+        Object.keys(reading).map((key) => reading[key].push(item[key]))
+      );
+
+      // console.log(occurrencesData);
+      setReadingsData(reading);
+      // console.log(readingsData);
+
+      // console.log(reading.time_sampled.length, reading.time_received.length);
+      let count = new Array(reading.time_sampled.length).fill(0);
+      // console.log(count);
+      const newTimeReceived = [];
+      reading.time_received.forEach((time_received) => {
+        newTimeReceived.push(time_received.toString().slice(0, -13));
+      });
+      const occurrencesTimeReceived = newTimeReceived.reduce(function (
+        acc,
+        curr
+      ) {
+        return acc[curr] ? ++acc[curr] : (acc[curr] = 1), acc;
+      },
+      {});
+
+      // console.log(newTimeReceived, occurrencesTimeReceived);
+
+      for (let property in occurrencesTimeReceived) {
+        let index =
+          newTimeReceived.indexOf(`${property}`) +
+          occurrencesTimeReceived[property] -
+          1;
+        count[index] = occurrencesTimeReceived[property];
+      }
+
+      let occurrencesData = {
+        count: count,
+        time: newTimeReceived,
+      };
+      setOccurences(occurrencesData);
+      setToggle(false);
+    }
+  };
+
   React.useEffect(async () => {
     if (toggle) {
-      await getReadings(match.params.slug);
-      if (readings) {
-        const { data } = readings;
-        let content = Array.from(data).reverse();
-
-        // console.log(data);
-
-        let reading = {
-          battery_level: [],
-          temperature: [],
-          flow_rate: [],
-          flow_count: [],
-          total_flow: [],
-          time_sampled: [],
-          time_received: [],
-          signal_strength: [],
-        };
-        content.map((item) =>
-          Object.keys(reading).map((key) => reading[key].push(item[key]))
-        );
-
-        // console.log(occurrencesData);
-        setReadingsData(reading);
-        // console.log(readingsData);
-
-        // console.log(reading.time_sampled.length, reading.time_received.length);
-        let count = new Array(reading.time_sampled.length).fill(0);
-        // console.log(count);
-        const newTimeReceived = [];
-        reading.time_received.forEach((time_received) => {
-          newTimeReceived.push(time_received.toString().slice(0, -13));
-        });
-        const occurrencesTimeReceived = newTimeReceived.reduce(function (
-          acc,
-          curr
-        ) {
-          return acc[curr] ? ++acc[curr] : (acc[curr] = 1), acc;
-        },
-        {});
-
-        // console.log(newTimeReceived, occurrencesTimeReceived);
-
-        for (let property in occurrencesTimeReceived) {
-          let index =
-            newTimeReceived.indexOf(`${property}`) +
-            occurrencesTimeReceived[property] -
-            1;
-          count[index] = occurrencesTimeReceived[property];
-        }
-
-        let occurrencesData = {
-          count: count,
-          time: newTimeReceived,
-        };
-        setOccurences(occurrencesData);
-        setToggle(false);
-      }
+      await getData();
     }
   }, [getReadings, match.params.key, readings]);
 
@@ -139,7 +147,11 @@ const Node = ({ getReadings, match, reading: { readings, loading } }) => {
       alert("error date");
     } else {
       if (_time1 !== NaN && _time2 !== NaN) {
-        window.location.href = `/node/${match.params.slug}/${_time1}/${_time2}`;
+        // getData;
+        setTime1(_time1);
+        setTime2(_time2);
+        setToggle(true);
+        // window.location.href = `/node/${match.params.slug}/${_time1}/${_time2}`;
       } else {
         alert("Please enter a valid date");
       }
@@ -359,6 +371,7 @@ const Node = ({ getReadings, match, reading: { readings, loading } }) => {
 
 Node.propTypes = {
   getReadings: PropTypes.func.isRequired,
+  getReadingsWithTime: PropTypes.func.isRequired,
   reading: PropTypes.object.isRequired,
 };
 
@@ -366,4 +379,6 @@ const mapStateToProps = (state) => ({
   reading: state.reading,
 });
 
-export default connect(mapStateToProps, { getReadings })(Node);
+export default connect(mapStateToProps, { getReadings, getReadingsWithTime })(
+  Node
+);
