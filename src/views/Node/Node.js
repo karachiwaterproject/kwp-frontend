@@ -62,63 +62,67 @@ const Node = ({
     }
   };
 
+  const updateGraphs = () => {
+    if (readings) {
+      const { data } = readings;
+      let content = Array.from(data).reverse();
+
+      let reading = {
+        battery_level: [],
+        temperature: [],
+        flow_rate: [],
+        flow_count: [],
+        total_flow: [],
+        time_sampled: [],
+        time_received: [],
+        signal_strength: [],
+      };
+      content.map((item) =>
+        Object.keys(reading).map((key) => reading[key].push(item[key]))
+      );
+
+      // console.log(occurrencesData);
+      setReadingsData(reading);
+      // console.log(readingsData);
+
+      // console.log(reading.time_sampled.length, reading.time_received.length);
+      let count = new Array(reading.time_sampled.length).fill(0);
+      // console.log(count);
+      const newTimeReceived = [];
+      reading.time_received.forEach((time_received) => {
+        newTimeReceived.push(time_received.toString().slice(0, -13));
+      });
+      const occurrencesTimeReceived = newTimeReceived.reduce(function (
+        acc,
+        curr
+      ) {
+        return acc[curr] ? ++acc[curr] : (acc[curr] = 1), acc;
+      },
+      {});
+
+      // console.log(newTimeReceived, occurrencesTimeReceived);
+
+      for (let property in occurrencesTimeReceived) {
+        let index =
+          newTimeReceived.indexOf(`${property}`) +
+          occurrencesTimeReceived[property] -
+          1;
+        count[index] = occurrencesTimeReceived[property];
+      }
+
+      let occurrencesData = {
+        count: count,
+        time: newTimeReceived,
+      };
+      setOccurences(occurrencesData);
+      setToggle(false);
+    }
+  };
+
   React.useEffect(async () => {
     if (toggle) {
       await getData("", "");
-      if (readings) {
-        const { data } = readings;
-        let content = Array.from(data).reverse();
-
-        let reading = {
-          battery_level: [],
-          temperature: [],
-          flow_rate: [],
-          flow_count: [],
-          total_flow: [],
-          time_sampled: [],
-          time_received: [],
-          signal_strength: [],
-        };
-        content.map((item) =>
-          Object.keys(reading).map((key) => reading[key].push(item[key]))
-        );
-
-        // console.log(occurrencesData);
-        setReadingsData(reading);
-        // console.log(readingsData);
-
-        // console.log(reading.time_sampled.length, reading.time_received.length);
-        let count = new Array(reading.time_sampled.length).fill(0);
-        // console.log(count);
-        const newTimeReceived = [];
-        reading.time_received.forEach((time_received) => {
-          newTimeReceived.push(time_received.toString().slice(0, -13));
-        });
-        const occurrencesTimeReceived = newTimeReceived.reduce(function (
-          acc,
-          curr
-        ) {
-          return acc[curr] ? ++acc[curr] : (acc[curr] = 1), acc;
-        },
-        {});
-
-        // console.log(newTimeReceived, occurrencesTimeReceived);
-
-        for (let property in occurrencesTimeReceived) {
-          let index =
-            newTimeReceived.indexOf(`${property}`) +
-            occurrencesTimeReceived[property] -
-            1;
-          count[index] = occurrencesTimeReceived[property];
-        }
-
-        let occurrencesData = {
-          count: count,
-          time: newTimeReceived,
-        };
-        setOccurences(occurrencesData);
-        setToggle(false);
-      }
+      await updateGraphs();
     }
   }, [getReadings, match.params.key, readings]);
 
