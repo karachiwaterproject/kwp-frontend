@@ -56,16 +56,19 @@ const Node = ({
   const [endTime, setEndTime] = React.useState("");
   const [toggle, setToggle] = React.useState(true);
 
+  const [isLoading, setIsLoading] = React.useState(false);
+
   const getData = async () => {
-    console.log("triggered");
+    // console.log("triggered");
+    setIsLoading(true);
     let readings = await getReadingsWithTime(
       match.params.slug,
       startTime,
       endTime
     );
-    console.log(readings);
+    // console.log(readings);
     if (readings) {
-      console.log("graphs updated");
+      // console.log("graphs updated");
       const { data } = readings;
       let content = Array.from(data).reverse();
 
@@ -84,7 +87,6 @@ const Node = ({
       );
 
       // console.log(occurrencesData);
-      setReadingsData(reading);
       // console.log(readingsData);
 
       // console.log(reading.time_sampled.length, reading.time_received.length);
@@ -114,9 +116,13 @@ const Node = ({
         count: count,
         time: newTimeReceived,
       };
+      setReadingsData(reading);
       setOccurences(occurrencesData);
       setToggle(false);
     }
+    setTimeout(() => {
+      setIsLoading(false);
+    }, [5000]);
   };
 
   React.useEffect(() => {
@@ -297,7 +303,22 @@ const Node = ({
                 {/* {readingsData.time_sampled.length > 0
                   ? fillData(readings)
                   : null} */}
-                {!loading && readingsData.time_sampled.length > 0 ? (
+                {(isLoading || loading) && (
+                  <div
+                    style={{
+                      width: "100%",
+                      textAlign: "center",
+                      fontWeight: "500",
+                    }}
+                  >
+                    Loading graphs &nbsp;...
+                    <br />
+                    <br />
+                  </div>
+                )}
+                {!loading &&
+                !isLoading &&
+                readingsData.time_sampled.length > 0 ? (
                   <>
                     <LineChart
                       labels={readingsData.time_sampled}
@@ -354,7 +375,7 @@ const Node = ({
                     /> */}
                   </>
                 ) : (
-                  <>Loading</>
+                  <></>
                 )}
               </>
             ) : (

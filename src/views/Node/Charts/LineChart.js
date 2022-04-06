@@ -34,6 +34,7 @@ export const LineChart = (props) => {
             },
           ],
         }}
+        xlabel={"dsad"}
         height={300}
         width={500}
         options={{

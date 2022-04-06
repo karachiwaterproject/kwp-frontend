@@ -29,7 +29,7 @@ import { LineChart } from "./Charts/LineChart";
 const useStyles = makeStyles(styles);
 
 const HomeNode = ({
-  getReadings,
+  getReadingsWithTime,
   match,
   getNode,
   node: { node, loading },
@@ -43,27 +43,35 @@ const HomeNode = ({
     flow_rate: [],
     time_sampled: [],
   });
+  const startDate = new Date();
+  const endDate = new Date();
+  startDate.setHours(0, 0, 0, 0);
 
   React.useEffect(async () => {
-    getNode(match.params.slug);
-    getReadings(match.params.slug);
+    await getNode(match.params.slug);
+    const readings = await getReadingsWithTime(
+      match.params.slug,
+      ~~(startDate.valueOf() / 1000),
+      ~~(endDate.valueOf() / 1000)
+    );
     if (readings) {
       const { data } = readings;
+      const content = Array.from(data).reverse();
 
       let reading = {
         flow_rate: [],
         time_sampled: [],
       };
 
-      data.map((item) =>
+      content.map((item) =>
         Object.keys(reading).map((key) => reading[key].push(item[key]))
       );
 
       setReadingsData(reading);
     }
-  }, [getNode, getReadings, match.params.slug]);
+  }, [getNode, getReadingsWithTime, match.params.slug]);
 
-  const [showGraph, setShowGraph] = React.useState(false);
+  const [showGraph, setShowGraph] = React.useState(true);
 
   return (
     <div>
@@ -206,7 +214,7 @@ const HomeNode = ({
                       getReadingsData();
                     }}
                   >
-                    Get today's data
+                    Today's Flow Rate
                   </Button>
                   {/* <Button variant="outlined">Get this week's data</Button> */}
                 </ButtonGroup>
@@ -215,10 +223,9 @@ const HomeNode = ({
                     <LineChart
                       labels={readingsData.time_sampled}
                       data={readingsData.flow_rate}
-                      ymin={0}
-                      ymax={60}
-                      heading={`Flow Rate (L/min)`}
+                      heading={`L/min`}
                       min={0}
+                      xlabel={"dsad"}
                       max={60}
                     />
                   </>
@@ -245,7 +252,7 @@ const HomeNode = ({
 HomeNode.propTypes = {
   node: PropTypes.object.isRequired,
   getNode: PropTypes.func.isRequired,
-  getReadings: PropTypes.func.isRequired,
+  getReadingsWithTime: PropTypes.func.isRequired,
   reading: PropTypes.object.isRequired,
 };
 
@@ -254,4 +261,6 @@ const mapStateToProps = (state) => ({
   reading: state.reading,
 });
 
-export default connect(mapStateToProps, { getNode, getReadings })(HomeNode);
+export default connect(mapStateToProps, { getNode, getReadingsWithTime })(
+  HomeNode
+);

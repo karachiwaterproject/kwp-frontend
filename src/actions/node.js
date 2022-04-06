@@ -29,6 +29,7 @@ export const getNode = (key) => async (dispatch) => {
       type: GET_NODE,
       payload: res.data.filter((node) => node.slug === key)[0],
     });
+    return res.data;
   } catch (error) {
     dispatch({
       type: NODE_ERROR,
