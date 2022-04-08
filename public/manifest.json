@@ -4,7 +4,7 @@
   "icons": [
     {
       "src": "./kwp-logo.svg",
-      "type": "image/svg"
+      "sizes": "any"
     }
   ],
   "start_url": "./index.html",

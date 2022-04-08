@@ -1,13 +1,11 @@
 /*eslint-disable*/
 import React from "react";
 // react components for routing our app without refresh
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
-import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
-import Tooltip from "@material-ui/core/Tooltip";
 
 // @material-ui/icons
 import { Apps } from "@material-ui/icons";
@@ -15,17 +13,13 @@ import PropTypes from "prop-types";
 
 // core components
 import CustomDropdown from "components/CustomDropdown/CustomDropdown.js";
-import Button from "components/CustomButtons/Button.js";
 
 import styles from "assets/jss/material-kit-react/components/headerLinksStyle.js";
 import { Typography } from "@material-ui/core";
 
-import headerLogo from "./../../assets/img/hu-header-logo.svg";
 import GridContainer from "components/Grid/GridContainer";
-import GridItem from "components/Grid/GridItem";
 import { logout } from "actions/auth";
 import { connect } from "react-redux";
-import MeetingRoomIcon from "@material-ui/icons/MeetingRoom";
 
 const useStyles = makeStyles(styles);
 

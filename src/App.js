@@ -2,12 +2,6 @@ import React from "react";
 
 import { createBrowserHistory } from "history";
 import { Router, Route, Switch, Redirect } from "react-router-dom";
-// pages for this product
-import Components from "views/Components/Components.js";
-import LandingPage from "views/LandingPage/LandingPage.js";
-import ProfilePage from "views/ProfilePage/ProfilePage.js";
-import LoginPage from "views/LoginPage/LoginPage.js";
-// import "index.css";
 import Dataportal from "views/DataPortal/Dataportal";
 import FlowmeterDevelopment from "views/Projects/FlowmeterDevelopment";
 import WaterInLiyar from "views/Projects/WaterInLiyari";
@@ -43,9 +37,6 @@ const App = () => {
       <Router history={hist}>
         <ScrollToTop />
         <Switch>
-          <Route path="/landing-page" component={LandingPage} exact />
-          <Route path="/profile-page" component={ProfilePage} exact />
-          <Route path="/login-page" component={LoginPage} exact />
           <Route path="/" component={HomePage} exact />
           <Route path="/team" component={Teams} exact />
           <Route path="/extra" component={Teams} exact />
