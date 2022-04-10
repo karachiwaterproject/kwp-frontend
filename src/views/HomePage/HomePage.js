@@ -10,7 +10,7 @@ import styles from "assets/jss/material-kit-react/views/homePage.js";
 import classNames from "classnames";
 import Footer from "components/Footer/Footer";
 import { OnGoingProjects } from "./OnGoingProjects/OnGoingProjects";
-import team from "./../../assets/img/team-banner.jpg";
+import team from "./../../assets/img/team-banner.webp";
 import hu from "./../../assets/img/hu-logo.svg";
 import hec from "./../../assets/img/hec-logo.svg";
 import hashoo from "./../../assets/img/hashoo-logo.svg";
@@ -37,8 +37,8 @@ const HomePage = (props) => {
         {...rest}
       />
       <Parallax
-        image={require("assets/img/bg4.jpg").default}
-        style={{ height: 430 }}
+        image={require("assets/img/bg4.webp").default}
+        style={{ height: "430px" }}
       >
         <div className={classes.container}>
           <GridContainer>
@@ -49,9 +49,10 @@ const HomePage = (props) => {
               >
                 <br />
                 <h2 className={classes.title + " title"}>About us</h2>
+                <h3></h3>
                 <Typography
                   variant="h6"
-                  component="h6"
+                  component="p"
                   className={classes.subtitle + " subtitle"}
                   style={{
                     textAlign: "center",
@@ -80,7 +81,7 @@ const HomePage = (props) => {
               Ongoing
             </Typography>
             <Typography
-              variant="h3"
+              variant="h4"
               style={{ color: "#461A55", fontWeight: "bold" }}
             >
               Projects
@@ -137,7 +138,7 @@ const HomePage = (props) => {
                 className={classes.iconContainer + " icon-container"}
               >
                 <a href="https://habib.edu.pk" target="_blank">
-                  <img src={hu} />
+                  <img src={hu} alt="hu" width="150px" height="200px" />
                   <Typography variant="body2" className={classes.text}>
                     HU Internal Research Grant
                   </Typography>
@@ -153,7 +154,7 @@ const HomePage = (props) => {
                   href="https://hec.gov.pk/english/pages/home.aspx"
                   target="_blank"
                 >
-                  <img src={hec} />
+                  <img src={hec} alt="hec" width="150px" height="200px" />
                   <Typography variant="body2" className={classes.text}>
                     National Research Program for Universities - HEC Pakistan
                   </Typography>
@@ -165,7 +166,7 @@ const HomePage = (props) => {
                 className={classes.iconContainer + " icon-container"}
               >
                 <a href="https://hashoofoundation.org" target="_blank">
-                  <img src={hashoo} />
+                  <img src={hashoo} alt="hashoo" width="150px" height="180px" />
                   <Typography variant="body2" className={classes.text}>
                     Hashoo Foundation
                   </Typography>

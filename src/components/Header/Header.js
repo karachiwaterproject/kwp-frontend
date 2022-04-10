@@ -65,7 +65,7 @@ export default function Header(props) {
   });
   const brandComponent = (
     <NavLink to="/home" className={classes.title}>
-      <img src={icon} height="45px" />
+      <img src={icon} alt="header" height="45px" width="100px" />
     </NavLink>
   );
   return (

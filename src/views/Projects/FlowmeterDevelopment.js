@@ -34,7 +34,7 @@ const FlowmeterDevelopment = (props) => {
         {...rest}
       />
       <Parallax
-        image={require("assets/img/project/project1.jpg").default}
+        image={require("assets/img/project/project1.webp").default}
         style={{ height: 400 }}
       >
         <div className={classes.container}>

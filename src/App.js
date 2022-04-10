@@ -23,19 +23,26 @@ import NodeWithTime from "views/Node/NodeWithTime";
 import ScrollToTop from "./ScrollToTop";
 import HomeNodeWeekly from "views/Node/HomeNodeWeekly";
 import AdminRoute from "routing/AdminRoute";
+// import Spinner from "./Spinner";
 
 const App = () => {
+  // const [loading, setLoading] = React.useState(true);
+
   React.useEffect(() => {
     if (localStorage.getItem("username")) {
       store.dispatch(loadUser());
     } else {
       console.log("username error ! ");
     }
+    // setTimeout(() => {
+    //   setLoading(false);
+    // }, 2000);
   }, [localStorage.getItem("username")]);
   return (
     <Provider store={store}>
       <Router history={hist}>
         <ScrollToTop />
+        {/* {loading && <Spinner />} */}
         <Switch>
           <Route path="/" component={HomePage} exact />
           <Route path="/team" component={Teams} exact />

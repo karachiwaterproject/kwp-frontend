@@ -17,14 +17,9 @@ import {
   TextField,
   Typography,
 } from "@material-ui/core";
-import { getReadings, getReadingsWithTime } from "actions/readings";
-import { GET_READINGS_AFTER } from "constrants";
+import { getReadingsWithTime } from "actions/readings";
 import { LineChart } from "./Charts/LineChart";
-import { getNode } from "actions/node";
-import { Link } from "react-router-dom";
 import { CHANGE_NAV_ON_SCROLL } from "constrants";
-import DateTimePicker from "react-datetime-picker";
-import reading from "reducers/readings";
 import { LineChart2 } from "./Charts/LineChart2";
 import { ChevronLeft } from "@material-ui/icons";
 
@@ -197,7 +192,7 @@ const NodeWithTime = ({
         }}
         // {...rest}
       />
-      <Parallax image={require("assets/img/data.png").default}>
+      <Parallax image={require("assets/img/data.webp").default}>
         <div className={classes.container}>
           <GridContainer>
             <GridItem>

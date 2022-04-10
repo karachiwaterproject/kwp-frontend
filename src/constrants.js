@@ -30,17 +30,17 @@ export const dashboardLinks = [
 export const projects = [
   {
     name: "Development of a low-cost smart flowmeter network for domestic consumers",
-    image: require("assets/img/project1.jpg").default,
+    image: require("assets/img/project1.webp").default,
     url: "/projects/develop-low-cost/",
   },
   {
     name: "Towards a sustainable and equitable water pricing strategy for Karachi",
-    image: require("assets/img/project2.jpg").default,
+    image: require("assets/img/project2.webp").default,
     url: "/projects/toward-sustainable/",
   },
   {
     name: "Water security through a political-ecological lens: A case study of Lyari Township",
-    image: require("assets/img/project3.jpg").default,
+    image: require("assets/img/project3.webp").default,
     url: "/projects/water-security/",
   },
 ];

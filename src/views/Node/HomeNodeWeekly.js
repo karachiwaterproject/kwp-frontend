@@ -80,7 +80,7 @@ const HomeNodeWeekly = ({
         }}
         // {...rest}
       />
-      <Parallax image={require("assets/img/data.png").default}>
+      <Parallax image={require("assets/img/data.webp").default}>
         <div className={classes.container}>
           <GridContainer>
             <GridItem>

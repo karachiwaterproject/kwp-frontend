@@ -16,14 +16,11 @@ import {
   Button,
   ButtonGroup,
 } from "@material-ui/core";
-import { Link } from "react-router-dom";
 import Card from "components/Card/Card";
 import classNames from "classnames";
-import DashboardHeader from "components/DashboardHeader/DashboardHeader";
-import { dashboardLinks } from "constrants";
 import { CHANGE_NAV_ON_SCROLL } from "constrants";
 import Footer from "components/Footer/Footer";
-import { getReadings, getReadingsWithTime } from "actions/readings";
+import { getReadingsWithTime } from "actions/readings";
 import { LineChart } from "./Charts/LineChart";
 
 const useStyles = makeStyles(styles);
@@ -85,7 +82,7 @@ const HomeNode = ({
         }}
         // {...rest}
       />
-      <Parallax image={require("assets/img/data.png").default}>
+      <Parallax image={require("assets/img/data.webp").default}>
         <div className={classes.container}>
           <GridContainer>
             <GridItem>

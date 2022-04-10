@@ -34,7 +34,7 @@ const WaterInLiyari = (props) => {
         {...rest}
       />
       <Parallax
-        image={require("assets/img/project/project4.jpg").default}
+        image={require("assets/img/project/project4.webp").default}
         style={{ height: 400 }}
       >
         <div className={classes.container}>

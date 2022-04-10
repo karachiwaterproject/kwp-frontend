@@ -26,7 +26,6 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { Redirect } from "react-router-dom";
 import { CHANGE_NAV_ON_SCROLL } from "constrants";
-import { DateTimeComponent } from "views/Node/DateTimeComponent";
 
 const Dataportal = ({ login, isAuthenticated, auth }) => {
   const classes = useStyles();
@@ -66,7 +65,7 @@ const Dataportal = ({ login, isAuthenticated, auth }) => {
         }}
         // {...rest}
       />
-      <Parallax image={require("assets/img/data.png").default}>
+      <Parallax image={require("assets/img/data.webp").default}>
         <div className={classes.container}>
           <GridContainer>
             <GridItem>
@@ -150,7 +149,7 @@ const Dataportal = ({ login, isAuthenticated, auth }) => {
                 style={{
                   height: "40vh",
                   width: "100%",
-                  background: `url(${require("assets/img/map.jpg").default})`,
+                  background: `url(${require("assets/img/map.webp").default})`,
                   backgroundSize: "cover",
                 }}
               />
@@ -174,7 +173,9 @@ const Dataportal = ({ login, isAuthenticated, auth }) => {
                 style={{
                   height: "250px",
                   width: "100%",
-                  background: `url(${require("assets/img/graph.jpg").default})`,
+                  background: `url(${
+                    require("assets/img/graph.webp").default
+                  })`,
                   backgroundSize: "contain",
                   backgroundRepeat: "no-repeat",
                 }}

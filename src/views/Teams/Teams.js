@@ -10,7 +10,7 @@ import styles from "assets/jss/material-kit-react/views/team.js";
 import HeaderLinks from "components/Header/HeaderLinks";
 import classNames from "classnames";
 
-import team1 from "./../../assets/img/team/1.jpg";
+import team1 from "./../../assets/img/team/1.webp";
 import TeamCard from "./TeamCard/TeamCard";
 import {
   Container,
@@ -33,7 +33,7 @@ const members = [
   {
     name: "Dr. Hassaan Furqan Khan",
     role: "Principal Investigator",
-    avatar: require("./../../assets/img/team/1.jpg").default,
+    avatar: require("./../../assets/img/team/1.webp").default,
     details:
       "Project leader | research interests: water systems analysis, water pricing",
     contact: "hassaan.khan@sse.habib.edu.pk",
@@ -42,7 +42,7 @@ const members = [
   {
     name: "Dr. Nausheen H. Anwar",
     role: "Co-Principal Investigator",
-    avatar: require("./../../assets/img/team/2.jpg").default,
+    avatar: require("./../../assets/img/team/2.webp").default,
     details:
       "Advisor, socioeconomic studies | research interests: city and regional planning, climate change, infrastructures, inequality",
     contact: "nhanwar@iba.edu.pk",
@@ -51,7 +51,7 @@ const members = [
   {
     name: "Junaid Ahmed Memon",
     role: "Co-Principal Investigator",
-    avatar: require("./../../assets/img/team/3.jpg").default,
+    avatar: require("./../../assets/img/team/3.webp").default,
     details:
       "Technical lead (smart flowmeter development) | research interests: systems design, fluid flow measurement, wireless sensor networks and internet of things",
     contact: "junaid.memon@sse.habib.edu.pk",
@@ -60,7 +60,7 @@ const members = [
   {
     name: "Sana Khalil",
     role: "Faculty Assistant",
-    avatar: require("./../../assets/img/team/4.jpg").default,
+    avatar: require("./../../assets/img/team/4.webp").default,
     details:
       "Lead, water pricing | research interests: labor economics, applied econometrics, development economics",
     contact: "sana.khalil@ahss.habib.edu.pk",
@@ -69,7 +69,7 @@ const members = [
   {
     name: "Dr. Moiz Anis",
     role: "Faculty Researcher",
-    avatar: require("./../../assets/img/team/5.jpg").default,
+    avatar: require("./../../assets/img/team/5.webp").default,
     details:
       "Advisor, iot | research interests: cellular networks, internet of things, computer networking, and wireless communications.",
     contact: "moiz.anis@sse.habib.edu.pk",
@@ -78,7 +78,7 @@ const members = [
   {
     name: "Abdul Rehman Soomro",
     role: "",
-    avatar: require("./../../assets/img/team/6.jpg").default,
+    avatar: require("./../../assets/img/team/6.webp").default,
     details:
       "Flowmeter hardware development | research interests: hydroinformatics, embedded systems, water metering",
     contact: "abdul.soomro@sse.habib.edu.pk",
@@ -87,7 +87,7 @@ const members = [
   {
     name: "Syed Ali Arshad",
     role: "Research Assistant",
-    avatar: require("./../../assets/img/team/7.jpg").default,
+    avatar: require("./../../assets/img/team/7.webp").default,
     details:
       "Lyari study | research interests: urban planning, climate change mitigation, ecological justice",
     contact: "ali.arshad@sse.habib.edu.pk",
@@ -96,7 +96,7 @@ const members = [
   {
     name: "Hiba Jamal",
     role: "Research Assistant",
-    avatar: require("./../../assets/img/team/8.jpg").default,
+    avatar: require("./../../assets/img/team/8.webp").default,
     details:
       "Full stack developer | research interests: computer vision, machine learning modelling",
     contact: "hiba.jamal@habib.edu.pk",
@@ -105,7 +105,7 @@ const members = [
   {
     name: "Abdul Samad",
     role: "Research Assistant",
-    avatar: require("./../../assets/img/team/9.jpg").default,
+    avatar: require("./../../assets/img/team/9.webp").default,
     details:
       "Inventory control | research interests: water metering, surveys, electronic designing.",
     contact: "samad.shakir@sse.habib.edu.pk",
@@ -114,7 +114,7 @@ const members = [
   {
     name: "Azmat Ali",
     role: "Technician",
-    avatar: require("./../../assets/img/team/10.png").default,
+    avatar: require("./../../assets/img/team/10.webp").default,
     details:
       "Site Survey, PCB fabrication, Device Installation including Electrical and Plumbing work, etc.",
     contact: "",
@@ -210,9 +210,7 @@ const undergraduates = [
   },
 ];
 const activeMembers = members.filter((member) => member.status);
-console.log(activeMembers);
 const aluminiMembers = members.filter((member) => member.status === false);
-console.log(aluminiMembers);
 
 const Teams = (props) => {
   const classes = useStyles();
@@ -231,7 +229,7 @@ const Teams = (props) => {
         {...rest}
       />
       <Parallax
-        image={require("assets/img/team-banner.jpg").default}
+        image={require("assets/img/team-banner.webp").default}
         style={{ height: 430 }}
       >
         <div className={classes.container}>

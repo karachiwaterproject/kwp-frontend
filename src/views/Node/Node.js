@@ -18,7 +18,6 @@ import {
   Typography,
 } from "@material-ui/core";
 import { getReadings, getReadingsWithTime } from "actions/readings";
-import { GET_READINGS_AFTER } from "constrants";
 import { LineChart } from "./Charts/LineChart";
 import { LineChart2 } from "./Charts/LineChart2";
 import { Link } from "react-router-dom";
@@ -193,7 +192,7 @@ const Node = ({
         }}
         // {...rest}
       />
-      <Parallax image={require("assets/img/data.png").default}>
+      <Parallax image={require("assets/img/data.webp").default}>
         <div className={classes.container}>
           <GridContainer>
             <GridItem>

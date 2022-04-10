@@ -33,7 +33,7 @@ const WaterPricing = (props) => {
         {...rest}
       />
       <Parallax
-        image={require("assets/img/project/project3.png").default}
+        image={require("assets/img/project/project3.webp").default}
         style={{ height: 400 }}
       >
         <div className={classes.container}>
