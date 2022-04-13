@@ -117,7 +117,7 @@ const members = [
     avatar: require("./../../assets/img/team/10.webp").default,
     details:
       "Site Survey, PCB fabrication, Device Installation including Electrical and Plumbing work, etc.",
-    contact: "",
+    contact: "azmat.ali@sse.habib.edu.pk",
     status: true,
   },
 ];
