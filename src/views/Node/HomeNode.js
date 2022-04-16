@@ -22,11 +22,14 @@ import { CHANGE_NAV_ON_SCROLL } from "constrants";
 import Footer from "components/Footer/Footer";
 import { getReadingsWithTime } from "actions/readings";
 import { LineChart } from "./Charts/LineChart";
+import { getHourlyStats } from "actions/readings";
+import { BarChart } from "./Charts/BarChart";
 
 const useStyles = makeStyles(styles);
 
 const HomeNode = ({
   getReadingsWithTime,
+  // getHourlyStats,
   match,
   getNode,
   node: { node, loading },
@@ -44,6 +47,19 @@ const HomeNode = ({
   const endDate = new Date();
   startDate.setHours(0, 0, 0, 0);
 
+  const [weeklyData, setWeeklyData] = React.useState({
+    xAxis: [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+      "Sunday",
+    ],
+    yAxis: [10, 20, 30, 20, 10, 20, 30],
+  });
+
   React.useEffect(async () => {
     await getNode(match.params.slug);
     const readings = await getReadingsWithTime(
@@ -51,6 +67,7 @@ const HomeNode = ({
       ~~(startDate.valueOf() / 1000),
       ~~(endDate.valueOf() / 1000)
     );
+    // const result = await getHourlyStats(match.params.slug);
     if (readings) {
       const { data } = readings;
       const content = Array.from(data).reverse();
@@ -67,6 +84,8 @@ const HomeNode = ({
       setReadingsData(reading);
     }
   }, [getNode, getReadingsWithTime, match.params.slug]);
+
+  // console.log(readingsData);
 
   const [showGraph, setShowGraph] = React.useState(true);
 
@@ -112,79 +131,156 @@ const HomeNode = ({
               >
                 <GridContainer>
                   {!loading && node && (
-                    <GridItem key={node.key}>
-                      <Card
-                        style={{
-                          borderLeft: "5px solid",
-                          borderColor:
-                            node.status === "active"
-                              ? "#1CC88A"
-                              : node.status === "inactive"
-                              ? "#E33775"
-                              : "#F6C23E",
-                        }}
-                      >
-                        <CardContent>
-                          <Typography
-                            color="primary"
-                            style={{
-                              textTransform: "uppercase",
-                              fontSize: "13px",
-                              fontWeight: "bold",
-                              color:
-                                node.status === "active"
-                                  ? "#1CC88A"
-                                  : node.status === "inactive"
-                                  ? "#E33775"
-                                  : "#F6C23E",
-                            }}
-                          >
-                            {match.params.slug}
-                          </Typography>
-                          {/* <Typography style={{ textTransform: "uppercase" }}>
+                    <>
+                      <GridItem key={node.key} xs={12} md={6}>
+                        <Card
+                          style={{
+                            borderLeft: "5px solid",
+                            borderColor:
+                              node.status === "active"
+                                ? "#1CC88A"
+                                : node.status === "inactive"
+                                ? "#E33775"
+                                : "#F6C23E",
+                          }}
+                        >
+                          <CardContent>
+                            <Typography
+                              color="primary"
+                              style={{
+                                textTransform: "uppercase",
+                                fontSize: "17px",
+                                fontWeight: "bold",
+                                color:
+                                  node.status === "active"
+                                    ? "#1CC88A"
+                                    : node.status === "inactive"
+                                    ? "#E33775"
+                                    : "#F6C23E",
+                              }}
+                            >
+                              Information
+                            </Typography>
+                            {/* <Typography style={{ textTransform: "uppercase" }}>
                             <span style={{ fontWeight: "bold" }}>
                               Sample Rate :
                             </span>{" "}
                             {node.sample_rate}
                           </Typography> */}
-                          {/* <Typography style={{ textTransform: "uppercase" }}>
+                            {/* <Typography style={{ textTransform: "uppercase" }}>
                             <span style={{ fontWeight: "bold" }}>
                               Transmission size:
                             </span>{" "}
                             {node.transmission_size}
                           </Typography> */}
-                          {/* <Typography style={{ textTransform: "uppercase" }}>
+                            {/* <Typography style={{ textTransform: "uppercase" }}>
                             <span style={{ fontWeight: "bold" }}>
                               Flow constant:
                             </span>{" "}
                             {node.flow_constant}
                           </Typography> */}
-                          <Typography style={{ textTransform: "uppercase" }}>
-                            <span style={{ fontWeight: "bold" }}>Status:</span>{" "}
-                            {node.status}
-                          </Typography>
-                          <Typography style={{ textTransform: "uppercase" }}>
-                            <span style={{ fontWeight: "bold" }}>
-                              Total Flow:
-                            </span>{" "}
-                            {node.total_flow}
-                          </Typography>
-                          {readings.data && (
                             <Typography style={{ textTransform: "uppercase" }}>
                               <span style={{ fontWeight: "bold" }}>
-                                Signal Strength:
+                                Status:
                               </span>{" "}
-                              {readings.data[0].signal_strength}
+                              {node.status}
                             </Typography>
-                          )}
-                        </CardContent>
-                      </Card>
-                    </GridItem>
+
+                            {readings.data && (
+                              <Typography
+                                style={{ textTransform: "uppercase" }}
+                              >
+                                <span style={{ fontWeight: "bold" }}>
+                                  Signal Strength:
+                                </span>{" "}
+                                {readings.data[0] ? (
+                                  readings.data[0].signal_strength + " %"
+                                ) : (
+                                  <>Null</>
+                                )}
+                              </Typography>
+                            )}
+                            <Typography style={{ textTransform: "uppercase" }}>
+                              <span style={{ fontWeight: "bold" }}>
+                                <br />
+                              </span>{" "}
+                            </Typography>
+                          </CardContent>
+                        </Card>
+                      </GridItem>
+                      <GridItem key={node.key} xs={12} md={6}>
+                        <Card
+                          style={{
+                            borderLeft: "5px solid",
+                            borderColor:
+                              node.status === "active"
+                                ? "#1CC88A"
+                                : node.status === "inactive"
+                                ? "#E33775"
+                                : "#F6C23E",
+                          }}
+                        >
+                          <CardContent>
+                            <Typography
+                              color="primary"
+                              style={{
+                                textTransform: "uppercase",
+                                fontSize: "17px",
+                                fontWeight: "bold",
+                                color:
+                                  node.status === "active"
+                                    ? "#1CC88A"
+                                    : node.status === "inactive"
+                                    ? "#E33775"
+                                    : "#F6C23E",
+                              }}
+                            >
+                              Total Flow
+                            </Typography>
+                            {/* <Typography style={{ textTransform: "uppercase" }}>
+                           <span style={{ fontWeight: "bold" }}>
+                             Sample Rate :
+                           </span>{" "}
+                           {node.sample_rate}
+                         </Typography> */}
+                            {/* <Typography style={{ textTransform: "uppercase" }}>
+                           <span style={{ fontWeight: "bold" }}>
+                             Transmission size:
+                           </span>{" "}
+                           {node.transmission_size}
+                         </Typography> */}
+                            {/* <Typography style={{ textTransform: "uppercase" }}>
+                           <span style={{ fontWeight: "bold" }}>
+                             Flow constant:
+                           </span>{" "}
+                           {node.flow_constant}
+                         </Typography> */}
+                            <Typography style={{ textTransform: "uppercase" }}>
+                              <span style={{ fontWeight: "bold" }}>
+                                Yesterday:
+                              </span>{" "}
+                              Null
+                            </Typography>
+                            <Typography style={{ textTransform: "uppercase" }}>
+                              <span style={{ fontWeight: "bold" }}>Today:</span>{" "}
+                              {node.total_flow} Liters
+                            </Typography>
+
+                            <Typography style={{ textTransform: "uppercase" }}>
+                              <span style={{ fontWeight: "bold" }}>
+                                Weekly Average:
+                              </span>{" "}
+                              Null
+                            </Typography>
+                          </CardContent>
+                        </Card>
+                      </GridItem>
+                    </>
                   )}
                 </GridContainer>
               </GridContainer>
               <GridContainer
-                style={{ padding: "0px 50px 100px 50px" }}
+                style={{ padding: "0px 50px 100px 50px", width: "100%" }}
                 direction="column"
               >
                 <h1>{!loading && `Flow rate`}</h1>
@@ -206,7 +302,6 @@ const HomeNode = ({
                     variant="contained"
                     color="primary"
                     onClick={() => {
-                      console.log("dasd");
                       setShowGraph(true);
                       getReadingsData();
                     }}
@@ -220,10 +315,36 @@ const HomeNode = ({
                     <LineChart
                       labels={readingsData.time_sampled}
                       data={readingsData.flow_rate}
-                      heading={`L/min`}
+                      heading={`Liters/minute`}
                       min={0}
                       xlabel={"dsad"}
                       max={60}
+                    />
+                    <br />
+                    <ButtonGroup
+                      variant="contained"
+                      style={{
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        border: "none",
+                        boxShadow: "none",
+                      }}
+                      color="primary"
+                      aria-label="primary button group"
+                    >
+                      <Button variant="contained" color="primary">
+                        Daily Total Flow
+                      </Button>
+                    </ButtonGroup>
+                    <br />
+
+                    <BarChart
+                      style={{ width: "100%" }}
+                      labels={weeklyData.xAxis}
+                      count={weeklyData.yAxis}
+                      heading={`Liters`}
+                      max={Math.max(...weeklyData.yAxis) * 1.2}
                     />
                   </>
                 )}
@@ -251,6 +372,7 @@ HomeNode.propTypes = {
   getNode: PropTypes.func.isRequired,
   getReadingsWithTime: PropTypes.func.isRequired,
   reading: PropTypes.object.isRequired,
+  // getHourlyStats: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -258,6 +380,8 @@ const mapStateToProps = (state) => ({
   reading: state.reading,
 });
 
-export default connect(mapStateToProps, { getNode, getReadingsWithTime })(
-  HomeNode
-);
+export default connect(mapStateToProps, {
+  getNode,
+  getReadingsWithTime,
+  // getHourlyStats,
+})(HomeNode);

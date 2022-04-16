@@ -16,7 +16,7 @@ function utcToDateTime(utcDt) {
 
 export const LineChart = (props) => {
   return (
-    <div className="chart-bar-all">
+    <div className="chart-bar-all" style={{ width: "100%" }}>
       {/*<DateTimeComponent />*/}
       {/*console.log('labels: '+props.labels.length.toString() + " data: " + props.data.length.toString())*/}
       <Line

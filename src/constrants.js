@@ -10,7 +10,7 @@ export const dashboardLinks = [
     url: "/dashboard",
   },
   {
-    page: "Nodes",
+    page: "Node Cards",
     url: "/nodes",
   },
   {

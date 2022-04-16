@@ -34,7 +34,7 @@ const Nodes = ({
 }) => {
   const classes = useStyles();
 
-  const currentPage = "Nodes";
+  const currentPage = "Node Cards";
   React.useEffect(() => {
     getNodes();
     loadUser();

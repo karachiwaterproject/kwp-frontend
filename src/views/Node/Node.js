@@ -12,6 +12,7 @@ import HeaderLinks from "components/Header/HeaderLinks";
 import styles from "assets/jss/material-kit-react/views/node.js";
 import {
   Button,
+  ButtonGroup,
   Container,
   makeStyles,
   TextField,
@@ -264,7 +265,7 @@ const Node = ({
                   <GridItem xs={4}>
                     <TextField
                       id="datetime-local"
-                      label="From"
+                      label="To"
                       type="datetime-local"
                       onChange={(e) => setTime2(e.target.value)}
                       value={time2}
@@ -319,53 +320,212 @@ const Node = ({
                 !isLoading &&
                 readingsData.time_sampled.length > 0 ? (
                   <>
+                    <br />
+                    <ButtonGroup
+                      variant="contained"
+                      style={{
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        border: "none",
+                        boxShadow: "none",
+                      }}
+                      color="primary"
+                      aria-label="primary button group"
+                    >
+                      <Button variant="contained" color="primary">
+                        Flow Count
+                      </Button>
+                    </ButtonGroup>
+                    <br />
                     <LineChart
                       labels={readingsData.time_sampled}
                       data={readingsData.flow_count}
-                      heading={`Flow Count`}
+                      heading={``}
+                      ymin={0}
+                      ymax={~~(Math.max(...readingsData.flow_count) * 1.2)}
                     />
+
+                    <br />
+                    <ButtonGroup
+                      variant="contained"
+                      style={{
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        border: "none",
+                        boxShadow: "none",
+                      }}
+                      color="primary"
+                      aria-label="primary button group"
+                    >
+                      <Button variant="contained" color="primary">
+                        Total Flow
+                      </Button>
+                    </ButtonGroup>
+                    <br />
                     <LineChart
                       labels={readingsData.time_sampled}
                       data={readingsData.total_flow}
-                      heading={`Total Flow (L)`}
+                      heading={`Liters`}
+                      ymin={0}
+                      ymax={~~(Math.max(...readingsData.total_flow) * 1.2)}
                     />
+                    <br />
+                    <ButtonGroup
+                      variant="contained"
+                      style={{
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        border: "none",
+                        boxShadow: "none",
+                      }}
+                      color="primary"
+                      aria-label="primary button group"
+                    >
+                      <Button variant="contained" color="primary">
+                        Flow Rate
+                      </Button>
+                    </ButtonGroup>
+                    <br />
                     <LineChart
                       labels={readingsData.time_sampled}
                       data={readingsData.flow_rate}
+                      heading={`Liters/minute`}
                       ymin={0}
-                      ymax={60}
-                      heading={`Flow Rate (L/min)`}
-                      min={0}
-                      max={60}
+                      ymax={~~(Math.max(...readingsData.flow_rate) * 1.2)}
                     />
+                    <br />
+                    <ButtonGroup
+                      variant="contained"
+                      style={{
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        border: "none",
+                        boxShadow: "none",
+                      }}
+                      color="primary"
+                      aria-label="primary button group"
+                    >
+                      <Button variant="contained" color="primary">
+                        Temperature
+                      </Button>
+                    </ButtonGroup>
+                    <br />
                     <LineChart
                       labels={readingsData.time_sampled}
                       data={readingsData.temperature}
-                      heading={`Temperature (C°)`}
+                      heading={`Centigrade °`}
+                      ymin={0}
+                      ymax={~~(Math.max(...readingsData.temperature) * 1.2)}
                     />
+                    <br />
+                    <ButtonGroup
+                      variant="contained"
+                      style={{
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        border: "none",
+                        boxShadow: "none",
+                      }}
+                      color="primary"
+                      aria-label="primary button group"
+                    >
+                      <Button variant="contained" color="primary">
+                        Battery Level
+                      </Button>
+                    </ButtonGroup>
+                    <br />
                     <LineChart
                       labels={readingsData.time_sampled}
                       data={readingsData.battery_level}
+                      heading={`Volts`}
                       ymin={0}
-                      ymax={5}
-                      heading={`Battery Level (Volts)`}
-                      min={3.3}
-                      max={4.5}
+                      ymax={~~(Math.max(...readingsData.battery_level) * 1.2)}
                     />
+                    <br />
+                    <ButtonGroup
+                      variant="contained"
+                      style={{
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        border: "none",
+                        boxShadow: "none",
+                      }}
+                      color="primary"
+                      aria-label="primary button group"
+                    >
+                      <Button variant="contained" color="primary">
+                        Change in Time
+                      </Button>
+                    </ButtonGroup>
+                    <br />
                     <LineChart
                       labels={readingsData.time_sampled}
                       data={getTimeDifference(readingsData.time_sampled)}
                       heading={`T2 - T1`}
+                      ymin={0}
+                      ymax={
+                        ~~(
+                          Math.max(
+                            ...getTimeDifference(readingsData.time_sampled)
+                          ) * 1.2
+                        )
+                      }
                     />
+                    <br />
+                    <ButtonGroup
+                      variant="contained"
+                      style={{
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        border: "none",
+                        boxShadow: "none",
+                      }}
+                      color="primary"
+                      aria-label="primary button group"
+                    >
+                      <Button variant="contained" color="primary">
+                        Data Readings Obtained
+                      </Button>
+                    </ButtonGroup>
+                    <br />
                     <LineChart2
                       labels={occurrences.time}
                       data={occurrences.count}
-                      heading={`Data Readings Obtained`}
+                      heading={`Number of Samples`}
+                      ymin={0}
+                      ymax={~~(Math.max(...occurrences.count) * 1.2)}
                     />
+                    <br />
+                    <ButtonGroup
+                      variant="contained"
+                      style={{
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        border: "none",
+                        boxShadow: "none",
+                      }}
+                      color="primary"
+                      aria-label="primary button group"
+                    >
+                      <Button variant="contained" color="primary">
+                        Signal Strength
+                      </Button>
+                    </ButtonGroup>
+                    <br />
                     <LineChart
                       labels={readingsData.time_sampled}
                       data={readingsData.signal_strength}
-                      heading={`Signal Strength`}
+                      heading={`Percentage`}
+                      ymin={0}
+                      ymax={~~(Math.max(...readingsData.signal_strength) * 1.2)}
                     />
                     {/* <BarChart
                       style={{ height: "400px", width: "100%" }}
