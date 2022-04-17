@@ -24,6 +24,8 @@ import { getReadingsWithTime } from "actions/readings";
 import { LineChart } from "./Charts/LineChart";
 import { getHourlyStats } from "actions/readings";
 import { BarChart } from "./Charts/BarChart";
+import { ChevronLeft } from "@material-ui/icons";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles(styles);
 
@@ -154,7 +156,17 @@ const HomeNode = ({
                 style={{ padding: "30px 50px 0 50px" }}
                 direction="column"
               >
-                <h2>{!loading && node && node.name}</h2>
+                <div>
+                  <Link to="/nodes" style={{ float: "left" }}>
+                    <Button>
+                      <ChevronLeft style={{ fontSize: "2.1rem" }} />
+                    </Button>
+                  </Link>
+
+                  <Typography variant="h4" style={{ float: "left" }}>
+                    {!loading && node && node.name}
+                  </Typography>
+                </div>
                 <hr style={{ width: "100%" }} />
               </GridContainer>
               <GridContainer
