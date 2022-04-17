@@ -29,11 +29,11 @@ const useStyles = makeStyles(styles);
 
 const HomeNode = ({
   getReadingsWithTime,
-  // getHourlyStats,
+  getHourlyStats,
   match,
   getNode,
   node: { node, loading },
-  reading: { readings },
+  reading: { readings, weekly },
 }) => {
   const classes = useStyles();
 
@@ -47,18 +47,24 @@ const HomeNode = ({
   const endDate = new Date();
   startDate.setHours(0, 0, 0, 0);
 
+  const [values, setValues] = React.useState(["", "", ""]);
+
   const [weeklyData, setWeeklyData] = React.useState({
-    xAxis: [
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday",
-      "Sunday",
-    ],
-    yAxis: [10, 20, 30, 20, 10, 20, 30],
+    date: [],
+    daily: [],
+    // xAxis: [
+    //   "Monday",
+    //   "Tuesday",
+    //   "Wednesday",
+    //   "Thursday",
+    //   "Friday",
+    //   "Saturday",
+    //   "Sunday",
+    // ],
+    // yAxis: [10, 20, 30, 20, 10, 20, 30],
   });
+
+  const average = (arr) => arr.reduce((a, b) => a + b, 0) / arr.length;
 
   React.useEffect(async () => {
     await getNode(match.params.slug);
@@ -67,7 +73,34 @@ const HomeNode = ({
       ~~(startDate.valueOf() / 1000),
       ~~(endDate.valueOf() / 1000)
     );
-    // const result = await getHourlyStats(match.params.slug);
+    const result = await getHourlyStats(match.params.slug);
+
+    if (result) {
+      let weekly = {
+        date: [],
+        daily: [],
+      };
+      result.map((item) =>
+        Object.keys(weekly).map((key) => weekly[key].push(item[key]))
+      );
+
+      let fixedDate = [];
+      weekly.date.forEach((element) => {
+        fixedDate.push(new Date(element).toDateString());
+      });
+
+      weekly.date = fixedDate;
+
+      weekly.daily = Array.from(weekly.daily).reverse();
+      weekly.date = Array.from(weekly.date).reverse();
+      setWeeklyData(weekly);
+      setValues([
+        ~~weekly.daily[0] || 0,
+        ~~weekly.daily[1] || 0,
+        average(weekly.daily).toFixed(0),
+      ]);
+    }
+
     if (readings) {
       const { data } = readings;
       const content = Array.from(data).reverse();
@@ -259,18 +292,18 @@ const HomeNode = ({
                               <span style={{ fontWeight: "bold" }}>
                                 Yesterday:
                               </span>{" "}
-                              Null
+                              {values[1]} Liters
                             </Typography>
                             <Typography style={{ textTransform: "uppercase" }}>
                               <span style={{ fontWeight: "bold" }}>Today:</span>{" "}
-                              {node.total_flow} Liters
+                              {values[0]} Liters
                             </Typography>
 
                             <Typography style={{ textTransform: "uppercase" }}>
                               <span style={{ fontWeight: "bold" }}>
                                 Weekly Average:
                               </span>{" "}
-                              Null
+                              {values[2]} Liters
                             </Typography>
                           </CardContent>
                         </Card>
@@ -339,13 +372,15 @@ const HomeNode = ({
                     </ButtonGroup>
                     <br />
 
-                    <BarChart
-                      style={{ width: "100%" }}
-                      labels={weeklyData.xAxis}
-                      count={weeklyData.yAxis}
-                      heading={`Liters`}
-                      max={Math.max(...weeklyData.yAxis) * 1.2}
-                    />
+                    {weeklyData && weeklyData.date.length > 0 && (
+                      <BarChart
+                        style={{ width: "100%" }}
+                        labels={weeklyData.date}
+                        count={weeklyData.daily}
+                        heading={`Liters`}
+                        max={Math.max(...weeklyData.daily) * 1.2}
+                      />
+                    )}
                   </>
                 )}
               </GridContainer>
@@ -372,7 +407,7 @@ HomeNode.propTypes = {
   getNode: PropTypes.func.isRequired,
   getReadingsWithTime: PropTypes.func.isRequired,
   reading: PropTypes.object.isRequired,
-  // getHourlyStats: PropTypes.func.isRequired,
+  getHourlyStats: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -383,5 +418,5 @@ const mapStateToProps = (state) => ({
 export default connect(mapStateToProps, {
   getNode,
   getReadingsWithTime,
-  // getHourlyStats,
+  getHourlyStats,
 })(HomeNode);

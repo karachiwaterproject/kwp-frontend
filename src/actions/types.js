@@ -19,3 +19,4 @@ export const GET_NODE = "GET_NODE";
 export const NODE_ERROR = "NODE_ERROR";
 export const GET_READINGS = "GET_READINGS";
 export const READINGS_ERROR = "READINGS_ERROR";
+export const GET_READINGS_WEEKLY = "GET_READINGS_WEEKLY";
