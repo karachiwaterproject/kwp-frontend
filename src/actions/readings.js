@@ -88,10 +88,8 @@ export const getHourlyStats = (node) => async (dispatch) => {
 
     const res = await axios.get(
       `${HOST}/api/p-reading/${node}/${todayC6.valueOf() / 1000},${
-        todayC5.valueOf() / 1000
-      },${todayC4.valueOf() / 1000},${todayC3.valueOf() / 1000},${
-        todayC2.valueOf() / 1000
-      },${todayC1.valueOf() / 1000},${todayC.valueOf() / 1000}`
+        todayC.valueOf() / 1000
+      }`
     );
 
     dispatch({
