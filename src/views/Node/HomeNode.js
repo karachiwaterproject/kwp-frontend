@@ -97,8 +97,8 @@ const HomeNode = ({
       weekly.date = Array.from(weekly.date).reverse();
       setWeeklyData(weekly);
       setValues([
-        ~~weekly.daily[0] || 0,
-        ~~weekly.daily[1] || 0,
+        ~~weekly.daily.at(-1) || 0,
+        ~~weekly.daily.at(-2) || 0,
         average(weekly.daily).toFixed(0),
       ]);
     }
@@ -280,7 +280,7 @@ const HomeNode = ({
                                     : "#F6C23E",
                               }}
                             >
-                              Total Flow
+                              Flow Data
                             </Typography>
                             {/* <Typography style={{ textTransform: "uppercase" }}>
                            <span style={{ fontWeight: "bold" }}>
@@ -328,7 +328,7 @@ const HomeNode = ({
                 style={{ padding: "0px 50px 100px 50px", width: "100%" }}
                 direction="column"
               >
-                <h1>{!loading && `Flow rate`}</h1>
+                <h1>{!loading && `Flow Data`}</h1>
                 <hr style={{ width: "100%" }} />
                 <br />
                 <ButtonGroup
@@ -358,6 +358,7 @@ const HomeNode = ({
                 {showGraph && (
                   <>
                     <LineChart
+                      showTime={true}
                       labels={readingsData.time_sampled}
                       data={readingsData.flow_rate}
                       heading={`Liters/minute`}
@@ -386,7 +387,11 @@ const HomeNode = ({
 
                     {weeklyData && weeklyData.date.length > 0 && (
                       <BarChart
-                        style={{ width: "100%" }}
+                        style={{
+                          width: "99%",
+                          marginLeft: "20px",
+                          marginRight: "20px",
+                        }}
                         labels={weeklyData.date}
                         count={weeklyData.daily}
                         heading={`Liters`}

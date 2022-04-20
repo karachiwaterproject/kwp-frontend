@@ -23,9 +23,9 @@ const DashboardHeader = ({ currentPage: { url, page }, dashboardLinks }) => {
             alignItems="flex-end"
             style={{ justifyContent: "flex-end" }}
           >
-            {dashboardLinks.map(({ page, url }) => (
-              <Grid item xs={12} sm={2} key={page}>
-                <Link to={url}>
+            {dashboardLinks.map((pages) => (
+              <Grid item xs={12} sm={2} key={pages.page}>
+                <Link to={pages.page !== page && pages.url}>
                   <Typography
                     variant="body1"
                     style={{
@@ -33,7 +33,7 @@ const DashboardHeader = ({ currentPage: { url, page }, dashboardLinks }) => {
                       color: page === "Logout" ? "red" : "gray",
                     }}
                   >
-                    {page}
+                    {pages.page}
                   </Typography>
                 </Link>
               </Grid>

@@ -116,9 +116,7 @@ const Dashboard = ({
               currentPage={
                 dashboardLinks.filter(({ page }) => page === currentPage)[0]
               }
-              dashboardLinks={dashboardLinks.filter(
-                ({ page }) => page !== currentPage
-              )}
+              dashboardLinks={dashboardLinks.filter(({ page }) => page)}
             />
             <GridContainer>
               <GridItem style={{ height: "500px", padding: 0 }}>

@@ -76,12 +76,8 @@ const Nodes = ({
               }
               dashboardLinks={
                 !admin
-                  ? dashboardLinks.filter(
-                      ({ page }) => page !== currentPage && page !== "Readings"
-                    )
-                  : dashboardLinks.filter(
-                      ({ page }) => page !== currentPage && page
-                    )
+                  ? dashboardLinks.filter(({ page }) => page !== "Readings")
+                  : dashboardLinks.filter(({ page }) => page)
               }
             />
             <GridContainer>
@@ -161,7 +157,7 @@ const Nodes = ({
             <GridContainer>
               {!loading && nodes && allowedNodes[0] === "all" && (
                 <GridItem>
-                  <h4 style={{ fontWeight: "bolder" }}>Active Nodes</h4>
+                  <h4 style={{ fontWeight: "bolder" }}>Installed Nodes</h4>
                   <hr />
                   <GridContainer>
                     {!loading && nodes ? (

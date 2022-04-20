@@ -56,31 +56,9 @@ export const getHourlyStats = (node) => async (dispatch) => {
 
     // ~~(startDate.valueOf() / 1000),
 
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
     let todayC = new Date();
     todayC.setDate(todayC.getDate() - 1);
     todayC.setHours(0, 0, 0, 0);
-
-    let todayC1 = new Date();
-    todayC1.setDate(todayC1.getDate() - 2);
-    todayC1.setHours(0, 0, 0, 0);
-
-    let todayC2 = new Date();
-    todayC2.setDate(todayC2.getDate() - 3);
-    todayC2.setHours(0, 0, 0, 0);
-
-    let todayC3 = new Date();
-    todayC3.setDate(todayC3.getDate() - 4);
-    todayC3.setHours(0, 0, 0, 0);
-
-    let todayC4 = new Date();
-    todayC4.setDate(todayC4.getDate() - 5);
-    todayC4.setHours(0, 0, 0, 0);
-
-    let todayC5 = new Date();
-    todayC5.setDate(todayC5.getDate() - 6);
-    todayC5.setHours(0, 0, 0, 0);
 
     let todayC6 = new Date();
     todayC6.setDate(todayC6.getDate() - 7);

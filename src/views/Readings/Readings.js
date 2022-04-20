@@ -82,9 +82,7 @@ const Readings = ({ match, reading, node, getNodes, getReadings }) => {
               currentPage={
                 dashboardLinks.filter(({ page }) => page === currentPage)[0]
               }
-              dashboardLinks={dashboardLinks.filter(
-                ({ page }) => page !== currentPage
-              )}
+              dashboardLinks={dashboardLinks.filter(({ page }) => page)}
             />
             <GridContainer style={{ width: "100%", margin: 0, padding: 0 }}>
               {!node.loading && node.nodes && (

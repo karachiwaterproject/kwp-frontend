@@ -1,7 +1,7 @@
 import React from "react";
 import { Line } from "react-chartjs-2";
 
-function utcToDateTime(utcDt) {
+function utcToDateTime(utcDt, showTime) {
   const utcDt_conv = new Date(utcDt * 1000);
 
   // check if time is nan
@@ -10,6 +10,9 @@ function utcToDateTime(utcDt) {
   } else if (utcDt_conv.getMonth() < 3 && utcDt_conv.getFullYear() < 2021) {
     return utcDt;
   } else {
+    if (showTime) {
+      return utcDt_conv.toLocaleTimeString();
+    }
     return utcDt_conv.toLocaleString();
   }
 }
@@ -21,7 +24,7 @@ export const LineChart = (props) => {
       {/*console.log('labels: '+props.labels.length.toString() + " data: " + props.data.length.toString())*/}
       <Line
         data={{
-          labels: props.labels.map((x) => utcToDateTime(x)),
+          labels: props.labels.map((x) => utcToDateTime(x, props.showTime)),
           datasets: [
             {
               // received

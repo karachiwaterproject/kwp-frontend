@@ -119,6 +119,7 @@ const Node = ({
       setReadingsData(reading);
       setOccurences(occurrencesData);
       setToggle(false);
+      console.log(readingsData.signal_strength);
     }
     setTimeout(() => {
       setIsLoading(false);
@@ -130,6 +131,8 @@ const Node = ({
       getData();
     }
   }, [getReadings, getReadingsWithTime, match.params.key, readings]);
+
+  console.log(readingsData.signal_strength);
 
   const getTimeDifference = (timesArray) => {
     // assuming array is latest to oldest
@@ -333,15 +336,22 @@ const Node = ({
                       color="primary"
                       aria-label="primary button group"
                     >
-                      <Button variant="contained" color="primary">
-                        Flow Count
+                      <Button
+                        variant="contained"
+                        disableFocusRipple
+                        disableTouchRipple
+                        disableElevation
+                        style={{ cursor: "default" }}
+                        color="primary"
+                      >
+                        Raw Data
                       </Button>
                     </ButtonGroup>
                     <br />
                     <LineChart
                       labels={readingsData.time_sampled}
                       data={readingsData.flow_count}
-                      heading={``}
+                      heading={`Number of pulse counts per sample time`}
                       ymin={0}
                       ymax={~~(Math.max(...readingsData.flow_count) * 1.2)}
                     />
@@ -359,7 +369,14 @@ const Node = ({
                       color="primary"
                       aria-label="primary button group"
                     >
-                      <Button variant="contained" color="primary">
+                      <Button
+                        variant="contained"
+                        disableFocusRipple
+                        disableTouchRipple
+                        disableElevation
+                        style={{ cursor: "default" }}
+                        color="primary"
+                      >
                         Total Flow
                       </Button>
                     </ButtonGroup>
@@ -368,8 +385,8 @@ const Node = ({
                       labels={readingsData.time_sampled}
                       data={readingsData.total_flow}
                       heading={`Liters`}
-                      ymin={0}
-                      ymax={~~(Math.max(...readingsData.total_flow) * 1.2)}
+                      // ymin={0}
+                      // ymax={~~(Math.max(...readingsData.total_flow) * 1.2)}
                     />
                     <br />
                     <ButtonGroup
@@ -384,18 +401,32 @@ const Node = ({
                       color="primary"
                       aria-label="primary button group"
                     >
-                      <Button variant="contained" color="primary">
+                      <Button
+                        variant="contained"
+                        color="primary"
+                        onClick={() => {}}
+                        disableFocusRipple
+                        disableTouchRipple
+                        disableElevation
+                        style={{ cursor: "default" }}
+                      >
                         Flow Rate
                       </Button>
                     </ButtonGroup>
                     <br />
-                    <LineChart
-                      labels={readingsData.time_sampled}
-                      data={readingsData.flow_rate}
-                      heading={`Liters/minute`}
-                      ymin={0}
-                      ymax={~~(Math.max(...readingsData.flow_rate) * 1.2)}
-                    />
+                    {readingsData.temperature.filter(
+                      (data) => data !== null && data
+                    ).length > 0 ? (
+                      <LineChart
+                        labels={readingsData.time_sampled}
+                        data={readingsData.flow_rate}
+                        heading={`Liters/minute`}
+                        ymin={0}
+                        ymax={~~(Math.max(...readingsData.flow_rate) * 1.2)}
+                      />
+                    ) : (
+                      <center>No data available </center>
+                    )}
                     <br />
                     <ButtonGroup
                       variant="contained"
@@ -409,18 +440,31 @@ const Node = ({
                       color="primary"
                       aria-label="primary button group"
                     >
-                      <Button variant="contained" color="primary">
+                      <Button
+                        variant="contained"
+                        disableFocusRipple
+                        disableTouchRipple
+                        disableElevation
+                        style={{ cursor: "default" }}
+                        color="primary"
+                      >
                         Temperature
                       </Button>
                     </ButtonGroup>
                     <br />
-                    <LineChart
-                      labels={readingsData.time_sampled}
-                      data={readingsData.temperature}
-                      heading={`Centigrade °`}
-                      ymin={0}
-                      ymax={~~(Math.max(...readingsData.temperature) * 1.2)}
-                    />
+                    {readingsData.temperature.filter(
+                      (data) => data !== null && data
+                    ).length > 0 ? (
+                      <LineChart
+                        labels={readingsData.time_sampled}
+                        data={readingsData.temperature}
+                        heading={`Centigrade °`}
+                        ymin={0}
+                        ymax={~~(Math.max(...readingsData.temperature) * 1.2)}
+                      />
+                    ) : (
+                      <center>No data available </center>
+                    )}
                     <br />
                     <ButtonGroup
                       variant="contained"
@@ -434,18 +478,30 @@ const Node = ({
                       color="primary"
                       aria-label="primary button group"
                     >
-                      <Button variant="contained" color="primary">
+                      <Button
+                        variant="contained"
+                        disableFocusRipple
+                        disableTouchRipple
+                        disableElevation
+                        style={{ cursor: "default" }}
+                        color="primary"
+                      >
                         Battery Level
                       </Button>
                     </ButtonGroup>
                     <br />
-                    <LineChart
-                      labels={readingsData.time_sampled}
-                      data={readingsData.battery_level}
-                      heading={`Volts`}
-                      ymin={0}
-                      ymax={~~(Math.max(...readingsData.battery_level) * 1.2)}
-                    />
+                    {readingsData.battery_level.filter((data) => data !== null)
+                      .length > 0 ? (
+                      <LineChart
+                        labels={readingsData.time_sampled}
+                        data={readingsData.battery_level}
+                        heading={`Volts`}
+                        ymin={0}
+                        ymax={~~(Math.max(...readingsData.battery_level) * 1.2)}
+                      />
+                    ) : (
+                      <center>No data available </center>
+                    )}
                     <br />
                     <ButtonGroup
                       variant="contained"
@@ -459,15 +515,23 @@ const Node = ({
                       color="primary"
                       aria-label="primary button group"
                     >
-                      <Button variant="contained" color="primary">
-                        Change in Time
+                      <Button
+                        variant="contained"
+                        disableFocusRipple
+                        disableTouchRipple
+                        disableElevation
+                        style={{ cursor: "default" }}
+                        color="primary"
+                      >
+                        Sample Time
                       </Button>
                     </ButtonGroup>
                     <br />
+
                     <LineChart
                       labels={readingsData.time_sampled}
                       data={getTimeDifference(readingsData.time_sampled)}
-                      heading={`T2 - T1`}
+                      heading={`Seconds`}
                       ymin={0}
                       ymax={
                         ~~(
@@ -477,6 +541,7 @@ const Node = ({
                         )
                       }
                     />
+
                     <br />
                     <ButtonGroup
                       variant="contained"
@@ -490,18 +555,30 @@ const Node = ({
                       color="primary"
                       aria-label="primary button group"
                     >
-                      <Button variant="contained" color="primary">
+                      <Button
+                        variant="contained"
+                        disableFocusRipple
+                        disableTouchRipple
+                        disableElevation
+                        style={{ cursor: "default" }}
+                        color="primary"
+                      >
                         Data Readings Obtained
                       </Button>
                     </ButtonGroup>
                     <br />
-                    <LineChart2
-                      labels={occurrences.time}
-                      data={occurrences.count}
-                      heading={`Number of Samples`}
-                      ymin={0}
-                      ymax={~~(Math.max(...occurrences.count) * 1.2)}
-                    />
+                    {occurrences.count.filter((data) => data !== null).length >
+                    0 ? (
+                      <LineChart2
+                        labels={occurrences.time}
+                        data={occurrences.count}
+                        heading={`Number of Samples`}
+                        ymin={0}
+                        ymax={~~(Math.max(...occurrences.count) * 1.2)}
+                      />
+                    ) : (
+                      <center>No data available </center>
+                    )}
                     <br />
                     <ButtonGroup
                       variant="contained"
@@ -515,18 +592,33 @@ const Node = ({
                       color="primary"
                       aria-label="primary button group"
                     >
-                      <Button variant="contained" color="primary">
+                      <Button
+                        variant="contained"
+                        disableFocusRipple
+                        disableTouchRipple
+                        disableElevation
+                        style={{ cursor: "default" }}
+                        color="primary"
+                      >
                         Signal Strength
                       </Button>
                     </ButtonGroup>
                     <br />
-                    <LineChart
-                      labels={readingsData.time_sampled}
-                      data={readingsData.signal_strength}
-                      heading={`Percentage`}
-                      ymin={0}
-                      ymax={~~(Math.max(...readingsData.signal_strength) * 1.2)}
-                    />
+                    {readingsData.signal_strength.filter(
+                      (data) => data !== null
+                    ).length > 0 ? (
+                      <LineChart
+                        labels={readingsData.time_sampled}
+                        data={readingsData.signal_strength}
+                        heading={`Percentage`}
+                        ymin={0}
+                        ymax={
+                          ~~(Math.max(...readingsData.signal_strength) * 1.2)
+                        }
+                      />
+                    ) : (
+                      <center>No data available </center>
+                    )}
                     {/* <BarChart
                       style={{ height: "400px", width: "100%" }}
                       labels={occurrences.time}
