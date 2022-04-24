@@ -57,7 +57,7 @@ export const getHourlyStats = (node) => async (dispatch) => {
     // ~~(startDate.valueOf() / 1000),
 
     let todayC = new Date();
-    todayC.setDate(todayC.getDate() - 1);
+    todayC.setDate(todayC.getDate());
     todayC.setHours(0, 0, 0, 0);
 
     let todayC6 = new Date();

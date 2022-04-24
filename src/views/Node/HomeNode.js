@@ -308,7 +308,7 @@ const HomeNode = ({
                             </Typography>
                             <Typography style={{ textTransform: "uppercase" }}>
                               <span style={{ fontWeight: "bold" }}>Today:</span>{" "}
-                              {values[0]} Liters
+                              {values[0]} Liters (and recording)
                             </Typography>
 
                             <Typography style={{ textTransform: "uppercase" }}>
