@@ -352,7 +352,9 @@ const Node = ({
                       data={readingsData.flow_count}
                       heading={`Number of pulse counts per sample time`}
                       ymin={0}
-                      ymax={~~(Math.max(...readingsData.flow_count) * 1.2)}
+                      ymax={
+                        ~~(Math.max(...readingsData.flow_count) * 1.2) || 0.1
+                      }
                     />
 
                     <br />
@@ -421,7 +423,9 @@ const Node = ({
                         data={readingsData.flow_rate}
                         heading={`Liters/minute`}
                         ymin={0}
-                        ymax={~~(Math.max(...readingsData.flow_rate) * 1.2)}
+                        ymax={
+                          ~~(Math.max(...readingsData.flow_rate) * 1.2) || 0.1
+                        }
                       />
                     ) : (
                       <center>No data available </center>
@@ -459,7 +463,9 @@ const Node = ({
                         data={readingsData.temperature}
                         heading={`Centigrade °`}
                         ymin={0}
-                        ymax={~~(Math.max(...readingsData.temperature) * 1.2)}
+                        ymax={
+                          ~~(Math.max(...readingsData.temperature) * 1.2) || 0.1
+                        }
                       />
                     ) : (
                       <center>No data available </center>
@@ -573,7 +579,7 @@ const Node = ({
                         data={occurrences.count}
                         heading={`Number of Samples`}
                         ymin={0}
-                        ymax={~~(Math.max(...occurrences.count) * 1.2)}
+                        ymax={~~(Math.max(...occurrences.count) * 1.2) || 0.1}
                       />
                     ) : (
                       <center>No data available </center>
@@ -612,7 +618,10 @@ const Node = ({
                         heading={`Percentage`}
                         ymin={0}
                         ymax={
-                          ~~(Math.max(...readingsData.signal_strength) * 1.2)
+                          ~~(
+                            Math.max(...readingsData.signal_strength) * 1.2 ||
+                            0.1
+                          )
                         }
                       />
                     ) : (
