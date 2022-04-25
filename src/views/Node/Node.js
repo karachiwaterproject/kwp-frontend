@@ -131,7 +131,7 @@ const Node = ({
     }
   }, [getReadings, getReadingsWithTime, match.params.key, readings]);
 
-  console.log(readingsData.signal_strength);
+  console.log(readingsData.battery_level);
 
   const getTimeDifference = (timesArray) => {
     // assuming array is latest to oldest
@@ -496,7 +496,7 @@ const Node = ({
                         data={readingsData.battery_level}
                         heading={`Volts`}
                         ymin={0}
-                        ymax={~~(Math.max(...readingsData.battery_level) * 1.2)}
+                        // ymax={~~(Math.max(...readingsData.battery_level) * 1.2)}
                       />
                     ) : (
                       <center>No data available </center>
