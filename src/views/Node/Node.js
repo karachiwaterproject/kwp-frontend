@@ -415,21 +415,21 @@ const Node = ({
                       </Button>
                     </ButtonGroup>
                     <br />
-                    {readingsData.temperature.filter(
+                    {/* {readingsData.temperature.filter(
                       (data) => data !== null && data
-                    ).length > 0 ? (
-                      <LineChart
-                        labels={readingsData.time_sampled}
-                        data={readingsData.flow_rate}
-                        heading={`Liters/minute`}
-                        ymin={0}
-                        ymax={
-                          ~~(Math.max(...readingsData.flow_rate) * 1.2) || 0.1
-                        }
-                      />
-                    ) : (
+                    ).length > 0 ? ( */}
+                    <LineChart
+                      labels={readingsData.time_sampled}
+                      data={readingsData.flow_rate}
+                      heading={`Liters/minute`}
+                      ymin={0}
+                      ymax={
+                        ~~(Math.max(...readingsData.flow_rate) * 1.2) || 0.1
+                      }
+                    />
+                    {/* ) : (
                       <center>No data available </center>
-                    )}
+                    )} */}
                     <br />
                     <ButtonGroup
                       variant="contained"
@@ -455,21 +455,21 @@ const Node = ({
                       </Button>
                     </ButtonGroup>
                     <br />
-                    {readingsData.temperature.filter(
+                    {/* {readingsData.temperature.filter(
                       (data) => data !== null && data
-                    ).length > 0 ? (
-                      <LineChart
-                        labels={readingsData.time_sampled}
-                        data={readingsData.temperature}
-                        heading={`Centigrade °`}
-                        ymin={0}
-                        ymax={
-                          ~~(Math.max(...readingsData.temperature) * 1.2) || 0.1
-                        }
-                      />
-                    ) : (
+                    ).length > 0 ? ( */}
+                    <LineChart
+                      labels={readingsData.time_sampled}
+                      data={readingsData.temperature}
+                      heading={`Centigrade °`}
+                      ymin={0}
+                      ymax={
+                        ~~(Math.max(...readingsData.temperature) * 1.2) || 0.1
+                      }
+                    />
+                    {/* ) : (
                       <center>No data available </center>
-                    )}
+                    )} */}
                     <br />
                     <ButtonGroup
                       variant="contained"
@@ -495,18 +495,18 @@ const Node = ({
                       </Button>
                     </ButtonGroup>
                     <br />
-                    {readingsData.battery_level.filter((data) => data !== null)
-                      .length > 0 ? (
-                      <LineChart
-                        labels={readingsData.time_sampled}
-                        data={readingsData.battery_level}
-                        heading={`Volts`}
-                        ymin={0}
-                        // ymax={~~(Math.max(...readingsData.battery_level) * 1.2)}
-                      />
-                    ) : (
+                    {/* {readingsData.battery_level.filter((data) => data !== null)
+                      .length > 0 ? ( */}
+                    <LineChart
+                      labels={readingsData.time_sampled}
+                      data={readingsData.battery_level}
+                      heading={`Volts`}
+                      ymin={0}
+                      // ymax={~~(Math.max(...readingsData.battery_level) * 1.2)}
+                    />
+                    {/* ) : (
                       <center>No data available </center>
-                    )}
+                    )} */}
                     <br />
                     <ButtonGroup
                       variant="contained"
@@ -572,18 +572,18 @@ const Node = ({
                       </Button>
                     </ButtonGroup>
                     <br />
-                    {occurrences.count.filter((data) => data !== null).length >
-                    0 ? (
-                      <LineChart2
-                        labels={occurrences.time}
-                        data={occurrences.count}
-                        heading={`Number of Samples`}
-                        ymin={0}
-                        ymax={~~(Math.max(...occurrences.count) * 1.2) || 0.1}
-                      />
-                    ) : (
+                    {/* {occurrences.count.filter((data) => data !== null).length >
+                    0 ? ( */}
+                    <LineChart2
+                      labels={occurrences.time}
+                      data={occurrences.count}
+                      heading={`Number of Samples`}
+                      ymin={0}
+                      ymax={~~(Math.max(...occurrences.count) * 1.2) || 0.1}
+                    />
+                    {/* ) : (
                       <center>No data available </center>
-                    )}
+                    )} */}
                     <br />
                     <ButtonGroup
                       variant="contained"
@@ -609,24 +609,23 @@ const Node = ({
                       </Button>
                     </ButtonGroup>
                     <br />
-                    {readingsData.signal_strength.filter(
+                    {/* {readingsData.signal_strength.filter(
                       (data) => data !== null
-                    ).length > 0 ? (
-                      <LineChart
-                        labels={readingsData.time_sampled}
-                        data={readingsData.signal_strength}
-                        heading={`Percentage`}
-                        ymin={0}
-                        ymax={
-                          ~~(
-                            Math.max(...readingsData.signal_strength) * 1.2 ||
-                            0.1
-                          )
-                        }
-                      />
-                    ) : (
+                    ).length > 0 ? ( */}
+                    <LineChart
+                      labels={readingsData.time_sampled}
+                      data={readingsData.signal_strength}
+                      heading={`Percentage`}
+                      ymin={0}
+                      ymax={
+                        ~~(
+                          Math.max(...readingsData.signal_strength) * 1.2 || 0.1
+                        )
+                      }
+                    />
+                    {/* ) : (
                       <center>No data available </center>
-                    )}
+                    )} */}
                     {/* <BarChart
                       style={{ height: "400px", width: "100%" }}
                       labels={occurrences.time}
