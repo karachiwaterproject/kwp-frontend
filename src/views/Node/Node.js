@@ -340,7 +340,7 @@ const Node = ({
                         disableFocusRipple
                         disableTouchRipple
                         disableElevation
-                        style={{ cursor: "default" }}
+                        style={{ cursor: "default", width: "200px" }}
                         color="primary"
                       >
                         Raw Data
@@ -375,7 +375,7 @@ const Node = ({
                         disableFocusRipple
                         disableTouchRipple
                         disableElevation
-                        style={{ cursor: "default" }}
+                        style={{ cursor: "default", width: "200px" }}
                         color="primary"
                       >
                         Total Flow
@@ -409,7 +409,7 @@ const Node = ({
                         disableFocusRipple
                         disableTouchRipple
                         disableElevation
-                        style={{ cursor: "default" }}
+                        style={{ cursor: "default", width: "200px" }}
                       >
                         Flow Rate
                       </Button>
@@ -448,7 +448,7 @@ const Node = ({
                         disableFocusRipple
                         disableTouchRipple
                         disableElevation
-                        style={{ cursor: "default" }}
+                        style={{ cursor: "default", width: "200px" }}
                         color="primary"
                       >
                         Temperature
@@ -488,7 +488,7 @@ const Node = ({
                         disableFocusRipple
                         disableTouchRipple
                         disableElevation
-                        style={{ cursor: "default" }}
+                        style={{ cursor: "default", width: "200px" }}
                         color="primary"
                       >
                         Battery Level
@@ -525,7 +525,7 @@ const Node = ({
                         disableFocusRipple
                         disableTouchRipple
                         disableElevation
-                        style={{ cursor: "default" }}
+                        style={{ cursor: "default", width: "200px" }}
                         color="primary"
                       >
                         Sample Time
@@ -565,10 +565,10 @@ const Node = ({
                         disableFocusRipple
                         disableTouchRipple
                         disableElevation
-                        style={{ cursor: "default" }}
+                        style={{ cursor: "default", width: "200px" }}
                         color="primary"
                       >
-                        Data Readings Obtained
+                        Transmission history
                       </Button>
                     </ButtonGroup>
                     <br />
@@ -602,7 +602,7 @@ const Node = ({
                         disableFocusRipple
                         disableTouchRipple
                         disableElevation
-                        style={{ cursor: "default" }}
+                        style={{ cursor: "default", width: "200px" }}
                         color="primary"
                       >
                         Signal Strength
