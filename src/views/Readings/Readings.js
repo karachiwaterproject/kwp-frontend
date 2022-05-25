@@ -119,7 +119,9 @@ const Readings = ({ match, reading, node, getNodes, getReadings }) => {
                       >
                         {node.nodes &&
                           node.nodes.map((node) => (
-                            <MenuItem value={node.slug}>{node.name}</MenuItem>
+                            <MenuItem value={node.slug} key={node.slug}>
+                              {node.name}
+                            </MenuItem>
                           ))}
                       </Select>
                       <Button

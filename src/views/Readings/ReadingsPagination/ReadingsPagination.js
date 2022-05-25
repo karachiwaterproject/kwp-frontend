@@ -47,7 +47,7 @@ const StyledTableRow = withStyles((theme) => ({
 const items = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
 
 function Items({ currentItems }) {
-  console.log(currentItems);
+  // console.log(currentItems);
   return (
     <>
       <TableContainer component={Paper} style={{ width: "100%" }}>
