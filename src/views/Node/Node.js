@@ -24,6 +24,7 @@ import { LineChart2 } from "./Charts/LineChart2";
 import { Link } from "react-router-dom";
 import { CHANGE_NAV_ON_SCROLL } from "constrants";
 import { ChevronLeft } from "@material-ui/icons";
+import DateComponent from "./DateComponent";
 
 const useStyles = makeStyles(styles);
 
@@ -131,7 +132,7 @@ const Node = ({
     }
   }, [getReadings, getReadingsWithTime, match.params.key, readings]);
 
-  console.log(readingsData.battery_level);
+  // console.log(readingsData.battery_level);
 
   const getTimeDifference = (timesArray) => {
     // assuming array is latest to oldest
@@ -142,9 +143,13 @@ const Node = ({
     return collect;
   };
 
+  const startDate = React.useRef(null);
+  const endDate = React.useRef(null);
+
   const updateData = async () => {
-    const __time1 = new Date(time1);
-    const __time2 = new Date(time2);
+    // console.log();
+    const __time1 = new Date(startDate.current.value);
+    const __time2 = new Date(endDate.current.value);
 
     const _time1 = ~~(__time1.valueOf() / 1000);
     const _time2 = ~~(__time2.valueOf() / 1000);
@@ -163,7 +168,7 @@ const Node = ({
     }
   };
 
-  const fetchToday = async () => {
+  const fetchToday = () => {
     const __time1 = ~~(new Date().valueOf() / 1000);
     let __time2 = new Date();
     __time2.setHours(0, 0, 0, 0);
@@ -179,8 +184,10 @@ const Node = ({
 
     _time2 = new Date(_time2 - offset * 60 * 1000).toISOString();
 
-    setTime1(_time2.slice(0, -1));
-    setTime2(_time1.slice(0, -1));
+    startDate.current.value = _time2.slice(0, -1);
+    endDate.current.value = _time1.slice(0, -1);
+    // setTime1(_time2.slice(0, -1));
+    // setTime2(_time1.slice(0, -1));
   };
 
   return (
@@ -253,29 +260,36 @@ const Node = ({
                   <GridItem xs={4}>
                     <TextField
                       id="datetime-local"
-                      label="From"
+                      label="To"
                       type="datetime-local"
-                      value={time1}
-                      onChange={(e) => setTime1(e.target.value)}
-                      className={classes.textField}
+                      //   onMouseLeave={setTime}
+                      //   onMouseLeave
+                      //   className={classes.textField}
+                      inputRef={startDate}
                       InputLabelProps={{
                         shrink: true,
                       }}
                     />
+                    {/* <DateComponent
+                      // time={time1}
+                      // setTime={setTime1}
+                    /> */}
                   </GridItem>
 
                   <GridItem xs={4}>
                     <TextField
                       id="datetime-local"
-                      label="To"
+                      label="From"
                       type="datetime-local"
-                      onChange={(e) => setTime2(e.target.value)}
-                      value={time2}
-                      className={classes.textField}
+                      //   onMouseLeave={setTime}
+                      //   onMouseLeave
+                      //   className={classes.textField}
+                      inputRef={endDate}
                       InputLabelProps={{
                         shrink: true,
                       }}
                     />
+                    {/* <DateComponent time={time2} setTime={setTime2} /> */}
                   </GridItem>
                   <GridItem
                     xs={4}
