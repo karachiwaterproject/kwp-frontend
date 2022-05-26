@@ -256,15 +256,12 @@ const Dataportal = ({ login, isAuthenticated, auth }) => {
                           }}
                           color="primary"
                           variant="contained"
+                          onClick={() => {
+                            const url = "https://forms.gle/JLPGHAGcKhKKxzjH7";
+                            window.open(url);
+                          }}
                         >
-                          <Typography
-                            onClick={() => {
-                              const url = "https://forms.gle/JLPGHAGcKhKKxzjH7";
-                              window.open(url);
-                            }}
-                          >
-                            JOIN US
-                          </Typography>
+                          <Typography>JOIN US</Typography>
                         </Button>
                       </GridItem>
                     </GridContainer>
