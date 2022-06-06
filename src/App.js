@@ -23,6 +23,7 @@ import NodeWithTime from "views/Node/NodeWithTime";
 import ScrollToTop from "./ScrollToTop";
 import HomeNodeWeekly from "views/Node/HomeNodeWeekly";
 import AdminRoute from "routing/AdminRoute";
+import Blogs from "views/Blogs/Blogs";
 // import Spinner from "./Spinner";
 
 const App = () => {
@@ -63,6 +64,7 @@ const App = () => {
             exact
           />
           <Route path="/login" component={Dataportal} exact />
+          <Route path="/blogs" component={Blogs} exact />
 
           <AdminRoute path="/dashboard" component={Dashboard} exact />
           <PrivateRoute path="/nodes" component={Nodes} exact />

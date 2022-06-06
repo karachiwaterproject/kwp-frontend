@@ -1,12 +1,4 @@
-import {
-  Avatar,
-  Button,
-  Container,
-  Grid,
-  IconButton,
-  makeStyles,
-  Typography,
-} from "@material-ui/core";
+import { Button, Container, makeStyles, Typography } from "@material-ui/core";
 import GridContainer from "components/Grid/GridContainer";
 import Header from "components/Header/Header";
 import HeaderLinks from "components/Header/HeaderLinks";
@@ -137,10 +129,10 @@ const HomePage = (props) => {
           <GridContainer
             style={{
               position: "relative",
-              padding: "50px 100px",
               width: "100%",
               margin: "auto",
             }}
+            className="containVideo"
           >
             <img
               src={require("assets/img/wave-up.svg").default}
@@ -152,29 +144,61 @@ const HomePage = (props) => {
                 zIndex: -1,
               }}
             ></img>
-            <div style={{ zIndex: 2, paddingTop: 150, paddingBottom: 100 }}>
-              <GridContainer>
+            <div
+              className="subvideoContainer"
+              style={{
+                zIndex: 2,
+
+                paddingLeft: 0,
+                marginLeft: 0,
+                width: "100%",
+              }}
+            >
+              <GridContainer style={{ width: "90%", margin: "auto" }}>
                 <GridItem xs={12} sm={12} lg={5}>
-                  <Typography variant="h3">Hello World</Typography>
-                  <Typography variant="body2">
-                    Lorem Ipsum is simply dummy text of the printing and
-                    typesetting industry. Lorem Ipsum has been the industry's
-                    standard dummy text ever since the 1500s, when an unknown
-                    printer took a galley of type and scrambled it to make a
-                    type specimen book. It has survived not only five centuries,
-                    but also the leap into electronic typesetting, remaining
-                    essentially unchanged. It was popularised in the 1960s with
-                    the release of Letraset sheets containing Lorem Ipsum
-                    passages, and more recently with desktop publishing software
-                    like Aldus PageMaker including versions of Lorem Ipsum.
+                  <Typography
+                    variant="h3"
+                    style={{
+                      fontWeight: "700",
+                      letterSpacing: "4px",
+                      color: "#212121",
+                    }}
+                    className="head"
+                  >
+                    Message
+                  </Typography>
+                  <hr style={{ width: "70%", float: "left" }} />
+                  <br />
+                  <Typography
+                    variant="body1"
+                    className="subhead"
+                    style={{ width: "100%" }}
+                  >
+                    Hear out Dr. Hassaan Furqan Khan, the principal investigator
+                    for the Karachi water project talk about the water situation
+                    in Karachi and how KWP plays a role. Follow our Instagram,
+                    Facebook, and Twitter pages and for more information or
+                    email us at{" "}
+                    <a href="mailto:waterprojectkarachi@gmail.com">
+                      waterprojectkarachi@gmail.com
+                    </a>
+                    .
                   </Typography>
                 </GridItem>
                 <GridItem xs={12} sm={12} lg={1} />
-
-                <GridItem xs={12} sm={12} lg={6}>
+                <GridItem
+                  xs={12}
+                  sm={12}
+                  lg={6}
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    paddingTop: "20px",
+                  }}
+                >
                   <iframe
-                    width="500"
-                    height="315"
+                    className="video"
                     src="https://www.youtube.com/embed/30dV3VBoLes"
                     title="YouTube video player"
                     frameBorder="0"
@@ -195,7 +219,7 @@ const HomePage = (props) => {
               }}
             ></img>
           </GridContainer>
-          <GridContainer style={{ paddingTop: 50 }}>
+          {/* <GridContainer style={{ paddingTop: 50 }}>
             <div
               style={{
                 width: "100%",
@@ -282,33 +306,12 @@ const HomePage = (props) => {
                       </Card>
                     ))}
                   </ReactCardCarousel>
-                  {/* <Carousel
-                  style={{ backgroundColor: "red", height: 400 }}
-                  responsive={responsive}
-                  swipeable={false}
-                  draggable={false}
-                  showDots={true}
-                  infinite={true}
-                  autoPlaySpeed={1000}
-                  keyBoardControl={true}
-                  customTransition="all .5"
-                  transitionDuration={500}
-                  containerClass="carousel-container"
-                  removeArrowOnDeviceType={["tablet", "mobile"]}
-                  dotListClass="custom-dot-list-style"
-                  itemClass="carousel-item-padding-40-px"
-                > */}
-
-                  {/* <div>Item 1</div>
-                  <div>Item 2</div>
-                  <div>Item 3</div>
-                  <div>Item 4</div>
-                </Carousel> */}
+                  
                 </GridItem>
               </GridContainer>
             </div>
-          </GridContainer>
-          <GridContainer style={{ padding: 20 }}>
+          </GridContainer> */}
+          <GridContainer style={{ padding: "0 15px" }}>
             <GridItem
               style={{
                 backgroundImage: `url(${team})`,

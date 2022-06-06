@@ -20,6 +20,12 @@ import { Typography } from "@material-ui/core";
 import GridContainer from "components/Grid/GridContainer";
 import { logout } from "actions/auth";
 import { connect } from "react-redux";
+import HomeIcon from "@material-ui/icons/Home";
+import GroupIcon from "@material-ui/icons/Group";
+import DataUsageIcon from "@material-ui/icons/DataUsage";
+import BookIcon from "@material-ui/icons/Book";
+import DashboardIcon from "@material-ui/icons/Dashboard";
+import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 
 const useStyles = makeStyles(styles);
 
@@ -34,7 +40,8 @@ function HeaderLinks({ auth: { isAuthenticated, loading }, logout }) {
           className={classes.navLink}
           activeClassName={classes.activeLink + " active-link"}
         >
-          <i className={classes.socialIcons + " fas fa-chart-bar"} />
+          <DashboardIcon className={classes.socialIcons} />
+
           <Typography variant="body2" style={{ marginLeft: 10 }}>
             Dashboard
           </Typography>
@@ -42,6 +49,8 @@ function HeaderLinks({ auth: { isAuthenticated, loading }, logout }) {
       </ListItem>
       <ListItem className={classes.listItem}>
         <a className={classes.navLink} onClick={logout} href="#!">
+          <ExitToAppIcon className={classes.socialIcons} />
+
           <Typography variant="body2" style={{ marginLeft: 10 }}>
             Logout
           </Typography>
@@ -58,7 +67,7 @@ function HeaderLinks({ auth: { isAuthenticated, loading }, logout }) {
           className={classes.navLink}
           activeClassName={classes.activeLink + " active-link"}
         >
-          <i className={classes.socialIcons + " fas fa-chart-bar"} />
+          <DataUsageIcon className={classes.socialIcons} />
           <Typography variant="body2" style={{ marginLeft: 10 }}>
             Data Portal
           </Typography>
@@ -76,7 +85,7 @@ function HeaderLinks({ auth: { isAuthenticated, loading }, logout }) {
           className={classes.navLink}
           activeClassName={classes.activeLink + " active-link"}
         >
-          <i className={classes.socialIcons + " fas fa-home"} />
+          <HomeIcon className={classes.socialIcons} />
           <Typography variant="body2" style={{ marginLeft: 10 }}>
             Home
           </Typography>
@@ -89,7 +98,8 @@ function HeaderLinks({ auth: { isAuthenticated, loading }, logout }) {
           className={classes.navLink}
           activeClassName={classes.activeLink + " active-link"}
         >
-          <i className={classes.socialIcons + " fa fa-users"} />
+          <GroupIcon className={classes.socialIcons} />
+
           <Typography variant="body2" style={{ marginLeft: 10 }}>
             Team
           </Typography>
@@ -131,6 +141,18 @@ function HeaderLinks({ auth: { isAuthenticated, loading }, logout }) {
             </NavLink>,
           ]}
         />
+      </ListItem>
+      <ListItem className={classes.listItem}>
+        <NavLink
+          to="/blogs"
+          className={classes.navLink}
+          activeClassName={classes.activeLink + " active-link"}
+        >
+          <BookIcon className={classes.socialIcons} />
+          <Typography variant="body2" style={{ marginLeft: 10 }}>
+            Blogs
+          </Typography>
+        </NavLink>
       </ListItem>
 
       {!loading && <>{isAuthenticated ? authLinks : guestLinks}</>}

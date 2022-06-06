@@ -1,6 +1,7 @@
 export const HOST = "https://cloud.karachiwaterproject.com";
 export const DEFAULT_NODE = "drivers-area";
 export const READINGS_PER_PAGE = 20;
+// export const MAPS_KEY = "AIzaSyDL3JhynfdzGBx9WKTx-mnd-LtOlSCFRyE";
 export const MAPS_KEY = "AIzaSyDL3JhynfdzGBx9WKTx-mnd-LtOlSCFRyE";
 export const GET_READINGS_AFTER = 10000;
 export const CHANGE_NAV_ON_SCROLL = 200;
