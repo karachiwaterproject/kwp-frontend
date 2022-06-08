@@ -14,7 +14,11 @@ import {
   Button,
   ButtonGroup,
   Container,
+  FormControl,
+  FormControlLabel,
   makeStyles,
+  Radio,
+  RadioGroup,
   TextField,
   Typography,
 } from "@material-ui/core";
@@ -154,8 +158,13 @@ const Node = ({
     const _time1 = ~~(__time1.valueOf() / 1000);
     const _time2 = ~~(__time2.valueOf() / 1000);
 
+    const diffTime = Math.abs(__time2 - __time1);
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
     if (_time1 > _time2 && _time1 === _time2) {
       alert("error date");
+    } else if (diffDays >= 3) {
+      alert("Interval should be less than or equal to 3.");
     } else {
       if (_time1 !== NaN && _time2 !== NaN) {
         setToggle(true);
@@ -188,6 +197,51 @@ const Node = ({
     endDate.current.value = _time1.slice(0, -1);
     // setTime1(_time2.slice(0, -1));
     // setTime2(_time1.slice(0, -1));
+  };
+
+  const fetchYesterday = () => {
+    let __time2 = new Date();
+    __time2.setDate(__time2.getDate() - 1);
+    __time2.setHours(0, 0, 0, 0);
+    __time2 = ~~(__time2.valueOf() / 1000);
+
+    let __time1 = new Date();
+    __time1.setHours(12, 0, 0, 0);
+    __time1 = ~~(__time1.valueOf() / 1000);
+
+    let _time1 = new Date(__time1 * 1000);
+    // __time1.setDate(__time1.getDate() - 1);
+    let offset = _time1.getTimezoneOffset();
+
+    _time1 = new Date(_time1 - offset * 60 * 1000).toISOString();
+
+    let _time2 = new Date(__time2 * 1000);
+    offset = _time2.getTimezoneOffset();
+
+    _time2 = new Date(_time2 - offset * 60 * 1000).toISOString();
+
+    startDate.current.value = _time2.slice(0, -1);
+    endDate.current.value = _time1.slice(0, -1);
+    // setTime1(_time2.slice(0, -1));
+    // setTime2(_time1.slice(0, -1));
+  };
+  const [selectedValue, setSelectedValue] = React.useState("Custom");
+
+  const [disableFields, setDistableFields] = React.useState(false);
+
+  const handleChange = (event) => {
+    console.log();
+    setSelectedValue(event.target.value);
+    if (event.target.value === "Custom") {
+      setDistableFields(false);
+    } else {
+      if (event.target.value === "Today's Record") {
+        fetchToday();
+      } else if (event.target.value === "Yesterday's Record") {
+        fetchYesterday();
+      }
+      setDistableFields(true);
+    }
   };
 
   return (
@@ -257,7 +311,7 @@ const Node = ({
                 <hr style={{ width: "100%" }} />
                 <br />
                 <GridContainer style={{ width: "80%", margin: "auto" }}>
-                  <GridItem xs={4}>
+                  <GridItem xs={5}>
                     <TextField
                       id="datetime-local"
                       label="To"
@@ -265,6 +319,8 @@ const Node = ({
                       //   onMouseLeave={setTime}
                       //   onMouseLeave
                       //   className={classes.textField}
+                      style={{ width: "100%" }}
+                      disabled={disableFields}
                       inputRef={startDate}
                       InputLabelProps={{
                         shrink: true,
@@ -276,15 +332,17 @@ const Node = ({
                     /> */}
                   </GridItem>
 
-                  <GridItem xs={4}>
+                  <GridItem xs={5}>
                     <TextField
                       id="datetime-local"
                       label="From"
                       type="datetime-local"
+                      style={{ width: "100%" }}
                       //   onMouseLeave={setTime}
                       //   onMouseLeave
                       //   className={classes.textField}
                       inputRef={endDate}
+                      disabled={disableFields}
                       InputLabelProps={{
                         shrink: true,
                       }}
@@ -292,7 +350,7 @@ const Node = ({
                     {/* <DateComponent time={time2} setTime={setTime2} /> */}
                   </GridItem>
                   <GridItem
-                    xs={4}
+                    xs={2}
                     style={{ display: "flex", flexDirection: "row" }}
                   >
                     <br />
@@ -304,7 +362,7 @@ const Node = ({
                     >
                       Load Data
                     </Button>
-                    <Button
+                    {/* <Button
                       style={{ marginLeft: 5 }}
                       variant="contained"
                       color="secondary"
@@ -312,7 +370,70 @@ const Node = ({
                       onClick={() => fetchToday()}
                     >
                       Todays Record
-                    </Button>
+                    </Button> */}
+                  </GridItem>
+                </GridContainer>
+                <GridContainer style={{ marginTop: 20 }}>
+                  <GridItem
+                    style={{
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                    }}
+                  >
+                    <FormControl component="fieldset">
+                      <RadioGroup
+                        row
+                        aria-label="position"
+                        name="position"
+                        defaultValue="top"
+                      >
+                        <FormControlLabel
+                          value="Today's Record"
+                          control={
+                            <Radio
+                              checked={selectedValue === "Today's Record"}
+                              onChange={handleChange}
+                              value="Today's Record"
+                              name="radio-button-demo"
+                              inputProps={{ "aria-label": "Today's Record" }}
+                            />
+                          }
+                          label="Today's Record"
+                          labelPlacement="end"
+                        />
+                        <FormControlLabel
+                          value="Yesterday's Record"
+                          control={
+                            <Radio
+                              checked={selectedValue === "Yesterday's Record"}
+                              onChange={handleChange}
+                              value="Yesterday's Record"
+                              name="radio-button-demo"
+                              inputProps={{
+                                "aria-label": "Yesterday's Record",
+                              }}
+                            />
+                          }
+                          label="Yesterday's Record"
+                          labelPlacement="end"
+                        />
+                        <FormControlLabel
+                          value="Custom"
+                          control={
+                            <Radio
+                              checked={selectedValue === "Custom"}
+                              onChange={handleChange}
+                              value="Custom"
+                              name="radio-button-demo"
+                              inputProps={{ "aria-label": "Custom" }}
+                            />
+                          }
+                          label="Custom"
+                          labelPlacement="end"
+                        />
+                      </RadioGroup>
+                    </FormControl>
                   </GridItem>
                 </GridContainer>
                 <br />

@@ -5,12 +5,18 @@ import "assets/scss/material-kit-react.scss?v=1.10.0";
 import App from "App";
 
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
+import reportWebVitals from "./reportWebVitals";
 
 require("dotenv").config({
   path: `.env.${process.env.NODE_ENV}`,
 });
 
-ReactDOM.render(<App />, document.getElementById("root"));
+ReactDOM.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+  document.getElementById("root")
+);
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
