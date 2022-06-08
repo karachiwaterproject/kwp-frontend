@@ -8,8 +8,14 @@
       "type": "image/x-icon"
     },
     {
-      "src": "./kwp.svg",
-      "sizes": "any"
+      "src": "kwp192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "kwp512.png",
+      "type": "image/png",
+      "sizes": "512x512"
     }
   ],
   "start_url": "/",
