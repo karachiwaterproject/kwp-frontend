@@ -3,8 +3,17 @@
   "name": "Karachi Water Project",
   "icons": [
     {
+      "src": "kwp-logo.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    },
+    {
       "src": "./kwp-logo.svg",
-      "sizes": "any"
+      "sizes": "192x130"
+    },
+    {
+      "src": "./kwp.svg",
+      "sizes": "512x475"
     }
   ],
   "start_url": "/",

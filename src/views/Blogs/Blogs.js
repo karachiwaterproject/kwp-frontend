@@ -6,6 +6,7 @@ import React from "react";
 import styles from "assets/jss/material-kit-react/views/homePage.js";
 import { Container, makeStyles, Typography } from "@material-ui/core";
 import classNames from "classnames";
+import GridContainer from "components/Grid/GridContainer";
 
 const useStyles = makeStyles(styles);
 
@@ -32,14 +33,26 @@ const Blogs = (props) => {
       ></Parallax>
       <Container>
         <div className={classNames(classes.main)}>
-          <div className={classes.mainContainer + " main-container"}>
-            <br />
-            <Typography variant="h4" className="h4">
+          <GridContainer
+            className={classes.mainContainer + " main-container"}
+            style={{ padding: "50px 100px 0" }}
+          >
+            <Typography
+              variant="h3"
+              style={{ fontWeight: "bold", marginBottom: "20px" }}
+            >
               Blogs
             </Typography>
-            <hr />
-            Coming soon ...
-          </div>
+            <hr style={{ width: "100%" }} />
+          </GridContainer>
+          <GridContainer className={classes.mainContainer + " main-container2"}>
+            <a
+              class="twitter-timeline"
+              href="https://twitter.com/karachi_water?ref_src=twsrc%5Etfw"
+            >
+              Tweets by karachi_water
+            </a>{" "}
+          </GridContainer>
         </div>
       </Container>
     </div>
