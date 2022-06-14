@@ -24,6 +24,7 @@ import ScrollToTop from "./ScrollToTop";
 import HomeNodeWeekly from "views/Node/HomeNodeWeekly";
 import AdminRoute from "routing/AdminRoute";
 import Blogs from "views/Blogs/Blogs";
+import AdminStaffRoute from "routing/AdminStaffRoute";
 // import Spinner from "./Spinner";
 
 const App = () => {
@@ -68,9 +69,9 @@ const App = () => {
 
           <AdminRoute path="/dashboard" component={Dashboard} exact />
           <PrivateRoute path="/nodes" component={Nodes} exact />
-          <AdminRoute path="/readings" component={Readings} exact />
+          <AdminStaffRoute path="/readings" component={Readings} exact />
           <PrivateRoute path="/readings/:slug" component={Readings} exact />
-          <PrivateRoute path="/node/:slug" component={Node} exact />
+          <AdminStaffRoute path="/node/:slug" component={Node} exact />
           <PrivateRoute
             path="/node/:slug/:time1/:time2"
             component={NodeWithTime}

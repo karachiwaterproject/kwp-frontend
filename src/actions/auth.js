@@ -21,6 +21,7 @@ export const loadUser = (username) => async (dispatch) => {
   const user = username || localStorage.getItem("username");
   try {
     const res = await axios.get(`${HOST}/api/nodeuser/${user}`);
+    console.log(res);
     dispatch({
       type: USER_LOADED,
       payload: res,

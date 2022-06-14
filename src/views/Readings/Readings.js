@@ -29,10 +29,18 @@ import { READINGS_PER_PAGE } from "constrants";
 import { CHANGE_NAV_ON_SCROLL } from "constrants";
 import { Link } from "react-router-dom";
 import { HOST } from "constrants";
+import { loadUser } from "actions/auth";
 
 const useStyles = makeStyles(styles);
 
-const Readings = ({ match, reading, node, getNodes, getReadings }) => {
+const Readings = ({
+  match,
+  reading,
+  node,
+  getNodes,
+  getReadings,
+  auth: { allowedNodes },
+}) => {
   const classes = useStyles();
 
   const [nodeToFetch, setNodeToFetch] = React.useState(
@@ -43,7 +51,9 @@ const Readings = ({ match, reading, node, getNodes, getReadings }) => {
 
   React.useEffect(() => {
     getNodes();
-    getReadings(nodeToFetch);
+    loadUser();
+
+    if (match.params.slug) getReadings(nodeToFetch);
   }, [getNodes, getReadings]);
 
   const currentPage = "Readings";
@@ -118,11 +128,17 @@ const Readings = ({ match, reading, node, getNodes, getReadings }) => {
                         onChange={(e) => setNodeToFetch(e.target.value)}
                       >
                         {node.nodes &&
-                          node.nodes.map((node) => (
-                            <MenuItem value={node.slug} key={node.slug}>
-                              {node.name}
-                            </MenuItem>
-                          ))}
+                          node.nodes
+                            .filter((node) =>
+                              allowedNodes[0] !== "all"
+                                ? allowedNodes.includes(node.slug)
+                                : true
+                            )
+                            .map((node) => (
+                              <MenuItem value={node.slug} key={node.slug}>
+                                {node.name}
+                              </MenuItem>
+                            ))}
                       </Select>
                       <Button
                         style={{ width: "10%", marginLeft: "10px" }}
@@ -140,27 +156,32 @@ const Readings = ({ match, reading, node, getNodes, getReadings }) => {
                         color="primary"
                         onClick={(e) => {
                           e.preventDefault();
-                          setButtonState(true);
-                          setButtonText("Downloading");
-                          fetch(`${HOST}/api/csv/${nodeToFetch}`)
-                            .then((resp) => resp.blob())
-                            .then((blob) => {
-                              const url = window.URL.createObjectURL(blob);
-                              const a = document.createElement("a");
-                              a.style.display = "none";
-                              a.href = url;
-                              a.download = `node${nodeToFetch}info.csv`;
-                              document.body.appendChild(a);
-                              a.click();
-                              window.URL.revokeObjectURL(url);
-                              setButtonText("Download CSV");
-                              setButtonState(false);
-                            })
-                            .catch(() => {
-                              alert("Please try again");
-                              setButtonText("Download CSV");
-                              setButtonState(false);
-                            });
+                          let ans = confirm(
+                            "It takes around 5 to 10 minutes to generate a CSV. Press OK to start the process."
+                          );
+                          if (ans) {
+                            setButtonState(true);
+                            setButtonText("Downloading");
+                            fetch(`${HOST}/api/csv/${nodeToFetch}`)
+                              .then((resp) => resp.blob())
+                              .then((blob) => {
+                                const url = window.URL.createObjectURL(blob);
+                                const a = document.createElement("a");
+                                a.style.display = "none";
+                                a.href = url;
+                                a.download = `node${nodeToFetch}info.csv`;
+                                document.body.appendChild(a);
+                                a.click();
+                                window.URL.revokeObjectURL(url);
+                                setButtonText("Download CSV");
+                                setButtonState(false);
+                              })
+                              .catch(() => {
+                                alert("Please try again");
+                                setButtonText("Download CSV");
+                                setButtonState(false);
+                              });
+                          }
                         }}
                       >
                         {buttonText}
@@ -178,7 +199,11 @@ const Readings = ({ match, reading, node, getNodes, getReadings }) => {
                   />
                 ) : (
                   <>
-                    <center>Loading</center>
+                    {match.params.slug ? (
+                      <center>Loading</center>
+                    ) : (
+                      <center>Please select a node to fetch readings</center>
+                    )}
                   </>
                 )}
               </GridItem>
@@ -197,10 +222,14 @@ Readings.propTypes = {
   getReadings: PropTypes.func.isRequired,
   node: PropTypes.object.isRequired,
   reading: PropTypes.object.isRequired,
+  auth: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   reading: state.reading,
   node: state.node,
+  auth: state.auth,
 });
-export default connect(mapStateToProps, { getNodes, getReadings })(Readings);
+export default connect(mapStateToProps, { getNodes, getReadings, loadUser })(
+  Readings
+);
