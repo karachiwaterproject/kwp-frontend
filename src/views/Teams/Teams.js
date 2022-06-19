@@ -260,17 +260,17 @@ const undergraduates = [
   },
   {
     name: "Rida Rehan Chughtai",
-    major: "SDP",
+    major: "Social Development and Policy",
     year: "2024",
   },
   {
     name: "Aimen Imtiaz",
-    major: "SDP",
+    major: "Social Development and Policy",
     year: "2024",
   },
   {
     name: "Syeda Khudaija Reza",
-    major: "SDP",
+    major: "Social Development and Policy",
     year: "2024",
   },
 ];

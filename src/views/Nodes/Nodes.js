@@ -76,7 +76,11 @@ const Nodes = ({
               }
               dashboardLinks={
                 !admin && !isStaff
-                  ? dashboardLinks.filter(({ page }) => page !== "Readings")
+                  ? dashboardLinks.filter(
+                      ({ page }) => page !== "Readings" && page !== "Dashboard"
+                    )
+                  : isStaff && !admin
+                  ? dashboardLinks.filter(({ page }) => page !== "Dashboard")
                   : dashboardLinks.filter(({ page }) => page)
               }
             />

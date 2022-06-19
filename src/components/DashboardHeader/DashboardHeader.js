@@ -25,7 +25,7 @@ const DashboardHeader = ({ currentPage: { url, page }, dashboardLinks }) => {
           >
             {dashboardLinks.map((pages) => (
               <Grid item xs={12} sm={2} key={pages.page}>
-                <Link to={pages.page !== page ? pages.url : ``}>
+                <Link to={pages.url}>
                   <Typography
                     variant="body1"
                     style={{

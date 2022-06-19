@@ -206,7 +206,7 @@ const Node = ({
     __time2 = ~~(__time2.valueOf() / 1000);
 
     let __time1 = new Date();
-    __time1.setHours(12, 0, 0, 0);
+    __time1.setHours(0, 0, 0, 0);
     __time1 = ~~(__time1.valueOf() / 1000);
 
     let _time1 = new Date(__time1 * 1000);
@@ -314,7 +314,7 @@ const Node = ({
                   <GridItem xs={5}>
                     <TextField
                       id="datetime-local"
-                      label="To"
+                      label="From"
                       type="datetime-local"
                       //   onMouseLeave={setTime}
                       //   onMouseLeave
@@ -335,8 +335,8 @@ const Node = ({
                   <GridItem xs={5}>
                     <TextField
                       id="datetime-local"
-                      label="From"
                       type="datetime-local"
+                      label="To"
                       style={{ width: "100%" }}
                       //   onMouseLeave={setTime}
                       //   onMouseLeave
