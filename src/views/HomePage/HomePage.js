@@ -89,7 +89,6 @@ const HomePage = (props) => {
                   style={{
                     textAlign: "center",
                     width: "100%",
-                    textTransform: "capitalize",
                   }}
                 >
                   The Karachi Water Project (KWP) is an interdisciplinary

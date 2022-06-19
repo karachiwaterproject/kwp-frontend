@@ -30,7 +30,7 @@ export const dashboardLinks = [
 
 export const projects = [
   {
-    name: "Development of a low-cost smart flowmeter network for domestic consumers",
+    name: "Development of a low-cost smart device network for domestic consumers",
     image: require("assets/img/project1.webp").default,
     url: "/projects/develop-low-cost/",
   },

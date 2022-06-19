@@ -64,7 +64,7 @@ const members = [
     details:
       "Lead, water pricing | research interests: labor economics, applied econometrics, development economics",
     contact: "sana.khalil@ahss.habib.edu.pk",
-    status: false,
+    status: true,
   },
   {
     name: "Dr. Moiz Anis",
@@ -91,7 +91,7 @@ const members = [
     details:
       "Lyari study | research interests: urban planning, climate change mitigation, ecological justice",
     contact: "ali.arshad@sse.habib.edu.pk",
-    status: true,
+    status: false,
   },
   {
     name: "Hiba Jamal",
@@ -109,7 +109,7 @@ const members = [
     details:
       "Inventory control | research interests: water metering, surveys, electronic designing.",
     contact: "samad.shakir@sse.habib.edu.pk",
-    status: true,
+    status: false,
   },
   {
     name: "Azmat Ali",
@@ -118,6 +118,51 @@ const members = [
     details:
       "Site Survey, PCB fabrication, Device Installation including Electrical and Plumbing work, etc.",
     contact: "azmat.ali@sse.habib.edu.pk",
+    status: true,
+  },
+  {
+    name: "Dr. Sahaab B. Sheikh",
+    role: "Faculty researcher",
+    avatar: require("./../../assets/img/team/11.webp").default,
+    details: "Research interests: Environmental, health, and labor economics",
+    contact: "sahaab.bader@ahss.habib.edu.pk",
+    status: true,
+  },
+  {
+    name: "Dr. Syed Ali Hussain",
+    role: "Media outreach advisor",
+    avatar: require("./../../assets/img/team/15.webp").default,
+    details:
+      "Health and risk communication, Social influence and persuasion, Social media marketing",
+    contact: "ali.hussain@ahss.habib.edu.pk",
+    status: true,
+  },
+  {
+    name: "Muhammad Aqib Yousuf",
+    role: "Research Assistant",
+    avatar: require("./../../assets/img/team/13.webp").default,
+    details:
+      "Researcher, socioeconomic studies | research interest: urban and citizen-led planning, social capital, climate change",
+    contact: "aqib.yousuf@sse.habib.edu.pk",
+    status: true,
+  },
+  {
+    name: "Syed Muhammad Ali Rizvi",
+    role: "Researcher",
+    avatar: require("./../../assets/img/team/12.webp").default,
+    details:
+      "Internet of things, robotics, systems design, low power sensor nodes, and computer vision",
+    contact: "syed.alirizvi@sse.habib.edu.pk",
+    status: true,
+  },
+
+  {
+    name: "Ubaidullah Jamal",
+    role: "Research Assistant",
+    avatar: require("./../../assets/img/team/14.webp").default,
+    details:
+      "Researcher | Research Interests: Urban Planning, Climate Change & SRHR, and Social Epidemiology",
+    contact: "ubaidullah.jamal@sse.habib.edu.pk",
     status: true,
   },
 ];
@@ -207,6 +252,26 @@ const undergraduates = [
     name: "Fariha Batool",
     major: "Social Development and Policy",
     year: "2023",
+  },
+  {
+    name: "Ajab Shabbir Hussain",
+    major: "Communication and Design",
+    year: "2023",
+  },
+  {
+    name: "Rida Rehan Chughtai",
+    major: "SDP",
+    year: "2024",
+  },
+  {
+    name: "Aimen Imtiaz",
+    major: "SDP",
+    year: "2024",
+  },
+  {
+    name: "Syeda Khudaija Reza",
+    major: "SDP",
+    year: "2024",
   },
 ];
 const activeMembers = members.filter((member) => member.status);
