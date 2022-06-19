@@ -150,7 +150,7 @@ function HeaderLinks({ auth: { isAuthenticated, loading }, logout }) {
         >
           <BookIcon className={classes.socialIcons} />
           <Typography variant="body2" style={{ marginLeft: 10 }}>
-            Blogs
+            Blogs {`&`} News
           </Typography>
         </NavLink>
       </ListItem>

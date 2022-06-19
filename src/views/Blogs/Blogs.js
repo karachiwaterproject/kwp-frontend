@@ -7,6 +7,8 @@ import styles from "assets/jss/material-kit-react/views/homePage.js";
 import { Container, makeStyles, Typography } from "@material-ui/core";
 import classNames from "classnames";
 import GridContainer from "components/Grid/GridContainer";
+import SocialTabs from "./Tabs";
+import Footer from "components/Footer/Footer";
 
 const useStyles = makeStyles(styles);
 
@@ -46,15 +48,11 @@ const Blogs = (props) => {
             <hr style={{ width: "100%" }} />
           </GridContainer>
           <GridContainer className={classes.mainContainer + " main-container2"}>
-            <a
-              class="twitter-timeline"
-              href="https://twitter.com/karachi_water?ref_src=twsrc%5Etfw"
-            >
-              Tweets by karachi_water
-            </a>{" "}
+            <SocialTabs />
           </GridContainer>
         </div>
       </Container>
+      <Footer />
     </div>
   );
 };
