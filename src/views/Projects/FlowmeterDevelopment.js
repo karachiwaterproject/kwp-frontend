@@ -43,7 +43,9 @@ const FlowmeterDevelopment = (props) => {
               <div className={classes.brand + " brand"}>
                 <br />
                 <br />
-                <h2 className={classes.title}>Flowmeter Development</h2>
+                <h2 className={classes.title}>
+                  Cost Effective Smart Device Development
+                </h2>
                 <h3 className={classes.subtitle}></h3>
               </div>
             </GridItem>
@@ -57,7 +59,7 @@ const FlowmeterDevelopment = (props) => {
               variant="h4"
               style={{ fontWeight: "bold", marginBottom: 30 }}
             >
-              Development of a low-cost smart flowmeter network for domestic
+              Development of a low-cost smart device network for domestic
               consumers
             </Typography>
             <Typography variant="body2">
@@ -75,7 +77,7 @@ const FlowmeterDevelopment = (props) => {
               challenges focus on a perceived ‘shortage’, it is not informed by
               credible empirical analysis and is based on unverified
               assumptions. In this study, we are designing cost-effective smart
-              flowmeters, and then installing these flowmeters in a variety of
+              flowmeters, and then installing these devices in a variety of
               households exhibiting a wide range of socioeconomic
               characteristics. Combined with the outputs from Study 3, this
               study will provide two key solutions to Karachi’s water

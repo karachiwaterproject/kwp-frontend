@@ -58,8 +58,8 @@ const members = [
     status: true,
   },
   {
-    name: "Sana Khalil",
-    role: "Faculty Assistant",
+    name: "Dr. Sana Khalil",
+    role: "Lead WTP study",
     avatar: require("./../../assets/img/team/4.webp").default,
     details:
       "Lead, water pricing | research interests: labor economics, applied econometrics, development economics",
@@ -111,15 +111,15 @@ const members = [
     contact: "samad.shakir@sse.habib.edu.pk",
     status: false,
   },
-  {
-    name: "Azmat Ali",
-    role: "Technician",
-    avatar: require("./../../assets/img/team/10.webp").default,
-    details:
-      "Site Survey, PCB fabrication, Device Installation including Electrical and Plumbing work, etc.",
-    contact: "azmat.ali@sse.habib.edu.pk",
-    status: true,
-  },
+  // {
+  //   name: "Azmat Ali",
+  //   role: "Technician",
+  //   avatar: require("./../../assets/img/team/10.webp").default,
+  //   details:
+  //     "Site Survey, PCB fabrication, Device Installation including Electrical and Plumbing work, etc.",
+  //   contact: "azmat.ali@sse.habib.edu.pk",
+  //   status: false,
+  // },
   {
     name: "Dr. Sahaab B. Sheikh",
     role: "Faculty researcher",
@@ -140,7 +140,7 @@ const members = [
   {
     name: "Muhammad Aqib Yousuf",
     role: "Research Assistant",
-    avatar: require("./../../assets/img/team/13.webp").default,
+    avatar: require("./../../assets/img/team/14.webp").default,
     details:
       "Researcher, socioeconomic studies | research interest: urban and citizen-led planning, social capital, climate change",
     contact: "aqib.yousuf@sse.habib.edu.pk",
@@ -148,7 +148,7 @@ const members = [
   },
   {
     name: "Syed Muhammad Ali Rizvi",
-    role: "Researcher",
+    role: "Research Assistant",
     avatar: require("./../../assets/img/team/12.webp").default,
     details:
       "Internet of things, robotics, systems design, low power sensor nodes, and computer vision",
@@ -159,7 +159,7 @@ const members = [
   {
     name: "Ubaidullah Jamal",
     role: "Research Assistant",
-    avatar: require("./../../assets/img/team/14.webp").default,
+    avatar: require("./../../assets/img/team/13.webp").default,
     details:
       "Researcher | Research Interests: Urban Planning, Climate Change & SRHR, and Social Epidemiology",
     contact: "ubaidullah.jamal@sse.habib.edu.pk",
