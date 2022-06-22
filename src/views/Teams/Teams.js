@@ -151,7 +151,7 @@ const members = [
     role: "Research Assistant",
     avatar: require("./../../assets/img/team/12.webp").default,
     details:
-      "Internet of things, robotics, systems design, low power sensor nodes, and computer vision",
+      "Researcher | research interests: internet of things, robotics, systems design, low power sensor nodes, and computer vision",
     contact: "syed.alirizvi@sse.habib.edu.pk",
     status: true,
   },
