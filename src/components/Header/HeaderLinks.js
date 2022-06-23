@@ -123,7 +123,7 @@ function HeaderLinks({ auth: { isAuthenticated, loading }, logout }) {
               className={classes.dropdownLink}
               activeClassName={classes.activeDropdowLink}
             >
-              Flowmeter Development
+              Smart Device Development
             </NavLink>,
             <NavLink
               to="/projects/water-security"

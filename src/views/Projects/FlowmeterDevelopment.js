@@ -77,7 +77,7 @@ const FlowmeterDevelopment = (props) => {
               challenges focus on a perceived ‘shortage’, it is not informed by
               credible empirical analysis and is based on unverified
               assumptions. In this study, we are designing cost-effective smart
-              flowmeters, and then installing these devices in a variety of
+              devices, and then installing these devices in a variety of
               households exhibiting a wide range of socioeconomic
               characteristics. Combined with the outputs from Study 3, this
               study will provide two key solutions to Karachi’s water

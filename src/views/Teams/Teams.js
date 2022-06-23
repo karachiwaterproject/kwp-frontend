@@ -273,6 +273,21 @@ const undergraduates = [
     major: "Social Development and Policy",
     year: "2024",
   },
+  {
+    name: "Mustafa Sohail",
+    major: "Computer Engineeing",
+    year: "2024",
+  },
+  {
+    name: "Nimra Sohail",
+    major: "Computer Engineeing",
+    year: "2024",
+  },
+  {
+    name: "Maham Tabassum",
+    major: "Electrical Engineeing",
+    year: "2023",
+  },
 ];
 const activeMembers = members.filter((member) => member.status);
 const aluminiMembers = members.filter((member) => member.status === false);
