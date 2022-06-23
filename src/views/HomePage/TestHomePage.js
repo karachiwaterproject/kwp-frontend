@@ -1,15 +1,54 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-  <path
-    fill="#0099ff"
-    fill-opacity="1"
-    d="M0,320L40,288C80,256,160,192,240,176C320,160,400,192,480,208C560,224,640,224,720,197.3C800,171,880,117,960,112C1040,107,1120,149,1200,144C1280,139,1360,85,1400,58.7L1440,32L1440,320L1400,320C1360,320,1280,320,1200,320C1120,320,1040,320,960,320C880,320,800,320,720,320C640,320,560,320,480,320C400,320,320,320,240,320C160,320,80,320,40,320L0,320Z"
-  ></path>
-</svg>;
+import { Button, Container, makeStyles, Typography } from "@material-ui/core";
+import GridContainer from "components/Grid/GridContainer";
+import Header from "components/Header/Header";
+import HeaderLinks from "components/Header/HeaderLinks";
+import React from "react";
+import Parallax from "components/Parallax/Parallax";
+import GridItem from "components/Grid/GridItem";
 
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-  <path
-    fill="#0099ff"
-    fill-opacity="1"
-    d="M0,320L40,288C80,256,160,192,240,176C320,160,400,192,480,208C560,224,640,224,720,197.3C800,171,880,117,960,112C1040,107,1120,149,1200,144C1280,139,1360,85,1400,58.7L1440,32L1440,0L1400,0C1360,0,1280,0,1200,0C1120,0,1040,0,960,0C880,0,800,0,720,0C640,0,560,0,480,0C400,0,320,0,240,0C160,0,80,0,40,0L0,0Z"
-  ></path>
-</svg>;
+import styles from "assets/jss/material-kit-react/views/homePage.js";
+import classNames from "classnames";
+import Footer from "components/Footer/Footer";
+import { OnGoingProjects } from "./OnGoingProjects/OnGoingProjects";
+import team from "./../../assets/img/team-banner.webp";
+import hu from "./../../assets/img/hu-logo.svg";
+import hec from "./../../assets/img/hec-logo.svg";
+import hashoo from "./../../assets/img/hashoo-logo.svg";
+import { Link } from "react-router-dom";
+import { projects } from "constrants";
+import { CHANGE_NAV_ON_SCROLL } from "constrants";
+import MoreVertIcon from "@material-ui/icons/MoreVert";
+import Card from "components/Card/Card";
+import CardHeader from "@material-ui/core/CardHeader";
+import CardContent from "@material-ui/core/CardContent";
+import ReactCardCarousel from "react-card-carousel";
+import HeroHeader from "components/HeroHeader/HeroHeader";
+import HeroFooter from "components/HeroFooter/HeroFooter";
+
+const useStyles = makeStyles(styles);
+
+const TestHomePage = (props) => {
+  const classes = useStyles();
+  const { ...rest } = props;
+
+  return (
+    <div>
+      <Header
+        rightLinks={<HeaderLinks />}
+        fixed
+        color="transparent"
+        changeColorOnScroll={{
+          height: CHANGE_NAV_ON_SCROLL,
+          color: "white",
+        }}
+        {...rest}
+      />
+      <HeroHeader />
+      {/* <Footer /> */}
+      <div style={{ height: "1000px" }}></div>
+      <HeroFooter />
+    </div>
+  );
+};
+
+export default TestHomePage;

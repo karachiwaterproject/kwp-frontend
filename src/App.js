@@ -25,6 +25,7 @@ import HomeNodeWeekly from "views/Node/HomeNodeWeekly";
 import AdminRoute from "routing/AdminRoute";
 import Blogs from "views/Blogs/Blogs";
 import AdminStaffRoute from "routing/AdminStaffRoute";
+import TestHomePage from "views/HomePage/TestHomePage";
 // import Spinner from "./Spinner";
 
 const App = () => {
@@ -47,6 +48,7 @@ const App = () => {
         {/* {loading && <Spinner />} */}
         <Switch>
           <Route path="/" component={HomePage} exact />
+          <Route path="/test" component={TestHomePage} exact />
           <Route path="/team" component={Teams} exact />
           <Route path="/extra" component={Teams} exact />
           <Route
