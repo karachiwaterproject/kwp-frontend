@@ -1,6 +1,9 @@
+import { container } from "assets/jss/material-kit-react.js";
+
 const headerStyle = {
+  container,
+
   main: {
-    backgroundColor: "red",
     minHeight: "100vh",
     position: "relative",
     left: 0,
@@ -14,6 +17,20 @@ const headerStyle = {
     width: "100%",
     zIndex: "2",
     fill: "#E5E5E5",
+  },
+  brand: {
+    color: "#FFFFFF",
+    textAlign: "left",
+  },
+  title: {
+    fontSize: "4.2rem",
+    fontWeight: "600",
+    display: "inline-block",
+    position: "relative",
+  },
+  subtitle: {
+    fontSize: "1.313rem",
+    margin: "10px 0 0",
   },
 };
 

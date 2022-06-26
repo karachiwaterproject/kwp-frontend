@@ -9,6 +9,7 @@ import classNames from "classnames";
 import GridContainer from "components/Grid/GridContainer";
 import SocialTabs from "./Tabs";
 import Footer from "components/Footer/Footer";
+import FrontParallax from "components/Parallax/FrontParallax";
 
 const useStyles = makeStyles(styles);
 
@@ -22,17 +23,17 @@ const Blogs = (props) => {
       <Header
         rightLinks={<HeaderLinks />}
         fixed
-        color="dimWhite"
+        color="transparent"
         changeColorOnScroll={{
           height: CHANGE_NAV_ON_SCROLL,
           color: "white",
         }}
         {...rest}
       />
-      <Parallax
+      <FrontParallax
         image={require("assets/img/blogging.webp").default}
-        style={{ height: "430px" }}
-      ></Parallax>
+        head="Blogs"
+      ></FrontParallax>
       <Container>
         <div className={classNames(classes.main)}>
           <GridContainer

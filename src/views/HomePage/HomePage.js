@@ -22,6 +22,7 @@ import Card from "components/Card/Card";
 import CardHeader from "@material-ui/core/CardHeader";
 import CardContent from "@material-ui/core/CardContent";
 import ReactCardCarousel from "react-card-carousel";
+import HomeParallax from "components/Parallax/HomeParallax";
 
 const useStyles = makeStyles(styles);
 
@@ -61,18 +62,18 @@ const HomePage = (props) => {
       <Header
         rightLinks={<HeaderLinks />}
         fixed
-        color="dimWhite"
+        color="transparent"
         changeColorOnScroll={{
           height: CHANGE_NAV_ON_SCROLL,
           color: "white",
         }}
         {...rest}
       />
-      <Parallax
+      <HomeParallax
         image={require("assets/img/bg4.webp").default}
         style={{ height: "430px" }}
       >
-        <div className={classes.container}>
+        {/* <div className={classes.container}>
           <GridContainer>
             <GridItem>
               <div
@@ -100,8 +101,8 @@ const HomePage = (props) => {
               </div>
             </GridItem>
           </GridContainer>
-        </div>
-      </Parallax>
+        </div> */}
+      </HomeParallax>
       <Container>
         <div className={classNames(classes.main)}>
           <div className={classes.mainContainer + " main-container"}>

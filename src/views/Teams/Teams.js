@@ -25,6 +25,7 @@ import {
 } from "@material-ui/core";
 import Footer from "components/Footer/Footer";
 import { CHANGE_NAV_ON_SCROLL } from "constrants";
+import FrontParallax from "components/Parallax/FrontParallax";
 
 const useStyles = makeStyles(styles);
 const teams = "./../../assets/img/team/";
@@ -301,18 +302,19 @@ const Teams = (props) => {
       <Header
         rightLinks={<HeaderLinks />}
         fixed
-        color="dimWhite"
+        color="transparent"
         changeColorOnScroll={{
           height: CHANGE_NAV_ON_SCROLL,
           color: "white",
         }}
         {...rest}
       />
-      <Parallax
+      <FrontParallax
         image={require("assets/img/team-banner.webp").default}
-        style={{ height: 430 }}
+        head="Our Team"
+        // style={{ height: 430 }}
       >
-        <div className={classes.container}>
+        {/* <div className={classes.container}>
           <GridContainer>
             <GridItem>
               <div className={classes.brand + " brand"}>
@@ -323,8 +325,8 @@ const Teams = (props) => {
               </div>
             </GridItem>
           </GridContainer>
-        </div>
-      </Parallax>
+        </div> */}
+      </FrontParallax>
       <Container>
         <div className={classNames(classes.main)}>
           <GridContainer

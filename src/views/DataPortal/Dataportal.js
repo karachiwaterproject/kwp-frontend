@@ -26,6 +26,7 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { Redirect } from "react-router-dom";
 import { CHANGE_NAV_ON_SCROLL } from "constrants";
+import FrontParallax from "components/Parallax/FrontParallax";
 
 const Dataportal = ({ login, isAuthenticated, auth }) => {
   const classes = useStyles();
@@ -58,15 +59,18 @@ const Dataportal = ({ login, isAuthenticated, auth }) => {
       <Header
         rightLinks={<HeaderLinks />}
         fixed
-        color="dimWhite"
+        color="transparent"
         changeColorOnScroll={{
           height: CHANGE_NAV_ON_SCROLL,
           color: "white",
         }}
         // {...rest}
       />
-      <Parallax image={require("assets/img/data.webp").default}>
-        <div className={classes.container}>
+      <FrontParallax
+        image={require("assets/img/data.webp").default}
+        head="Dashboard"
+      >
+        {/* <div className={classes.container}>
           <GridContainer>
             <GridItem>
               <div className={classes.brand + " brand"}>
@@ -77,8 +81,8 @@ const Dataportal = ({ login, isAuthenticated, auth }) => {
               </div>
             </GridItem>
           </GridContainer>
-        </div>
-      </Parallax>
+        </div> */}
+      </FrontParallax>
       <Container>
         <div className={classNames(classes.main)} style={{ padding: 20 }}>
           <br />

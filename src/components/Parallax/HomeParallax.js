@@ -1,8 +1,10 @@
 import React from "react";
 import styles from "assets/jss/material-kit-react/components/heroHeaderStyle.js";
-import { makeStyles } from "@material-ui/core";
+import { makeStyles, Typography } from "@material-ui/core";
 
 import backVideo from "../../assets/videos/back.mp4";
+import GridContainer from "components/Grid/GridContainer";
+import GridItem from "components/Grid/GridItem";
 
 const useStyles = makeStyles(styles);
 
@@ -10,14 +12,25 @@ const HomeParallax = ({ image, head }) => {
   const classes = useStyles();
 
   return (
-    <div
-      className={classes.main}
-      style={{
-        backgroundImage: "url(" + image + ")",
-        backgroundPosition: "center center",
-        backgroundSize: "cover",
-      }}
-    >
+    <div className={classes.main}>
+      <video
+        autoPlay
+        muted
+        loop
+        style={{
+          width: "100%",
+          height: "100%",
+          position: "absolute",
+          objectFit: "cover",
+          zIndex: "0",
+        }}
+      >
+        <source src={backVideo} type="video/mp4" />
+        {/* <source
+          src={require("./../../assets/videos/back.mp4")}
+          type="video/mp4"
+        /> */}
+      </video>
       <svg className={classes.vector} x="0px" y="0px" viewBox="0 0 1440 320">
         {/* <path d="M0,64L34.3,80C68.6,96,137,128,206,122.7C274.3,117,343,75,411,85.3C480,96,549,160,617,154.7C685.7,149,754,75,823,58.7C891.4,43,960,85,1029,112C1097.1,139,1166,149,1234,160C1302.9,171,1371,181,1406,186.7L1440,192L1440,320L1405.7,320C1371.4,320,1303,320,1234,320C1165.7,320,1097,320,1029,320C960,320,891,320,823,320C754.3,320,686,320,617,320C548.6,320,480,320,411,320C342.9,320,274,320,206,320C137.1,320,69,320,34,320L0,320Z"></path> */}
 
@@ -32,18 +45,39 @@ const HomeParallax = ({ image, head }) => {
           zIndex: "1",
           position: "relative",
           color: "white",
-          padding: "200px 80px",
+          padding: "100px 80px",
           backgroundColor: "rgba(0,0,0,.4)",
           height: "100vh",
         }}
       >
-        <div
-          style={{
-            width: "80%",
-            margin: "auto",
-          }}
-        >
-          <h1>{head}</h1>
+        <div className={classes.container}>
+          <GridContainer>
+            <GridItem>
+              <div
+                className={classes.brand + " brand"}
+                style={{ textAlign: "center" }}
+              >
+                <br />
+                <h2 className={classes.title + " title"}>About us</h2>
+                <h3></h3>
+                <Typography
+                  variant="h6"
+                  component="p"
+                  className={classes.subtitle + " subtitle"}
+                  style={{
+                    textAlign: "center",
+                    width: "100%",
+                  }}
+                >
+                  The Karachi Water Project (KWP) is an interdisciplinary
+                  research group engaged in investigating approaches to improve
+                  water management in Karachi. The group, headed by Dr. Hassaan
+                  F. Khan, strives to develop technological and policy-based
+                  solutions to Karachi’s water challenges.
+                </Typography>
+              </div>
+            </GridItem>
+          </GridContainer>
         </div>
       </div>
       {/* <svg

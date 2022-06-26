@@ -3,6 +3,8 @@ import styles from "assets/jss/material-kit-react/components/heroHeaderStyle.js"
 import { makeStyles } from "@material-ui/core";
 
 import backVideo from "../../assets/videos/back.mp4";
+import GridContainer from "components/Grid/GridContainer";
+import GridItem from "components/Grid/GridItem";
 
 const useStyles = makeStyles(styles);
 
@@ -32,18 +34,22 @@ const FrontParallax = ({ image, head }) => {
           zIndex: "1",
           position: "relative",
           color: "white",
-          padding: "200px 80px",
+          padding: "100px 80px",
           backgroundColor: "rgba(0,0,0,.4)",
           height: "100vh",
         }}
       >
-        <div
-          style={{
-            width: "80%",
-            margin: "auto",
-          }}
-        >
-          <h1>{head}</h1>
+        <div className={classes.container}>
+          <GridContainer>
+            <GridItem>
+              <div className={classes.brand + " brand"}>
+                <br />
+                <br />
+                <h2 className={classes.title}>{head}</h2>
+                <h3 className={classes.subtitle}></h3>
+              </div>
+            </GridItem>
+          </GridContainer>
         </div>
       </div>
       {/* <svg
