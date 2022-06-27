@@ -14,6 +14,7 @@ import Footer from "components/Footer/Footer";
 import { projects } from "constrants";
 import { OnGoingProjects } from "views/HomePage/OnGoingProjects/OnGoingProjects";
 import { CHANGE_NAV_ON_SCROLL } from "constrants";
+import FrontParallax from "components/Parallax/FrontParallax";
 
 const useStyles = makeStyles(styles);
 
@@ -26,18 +27,19 @@ const FlowmeterDevelopment = (props) => {
       <Header
         rightLinks={<HeaderLinks />}
         fixed
-        color="dimWhite"
+        color="transparent"
         changeColorOnScroll={{
           height: CHANGE_NAV_ON_SCROLL,
           color: "white",
         }}
         {...rest}
       />
-      <Parallax
+      <FrontParallax
         image={require("assets/img/project/project1.webp").default}
         style={{ height: 400 }}
+        head="Cost Effective Smart Device Development"
       >
-        <div className={classes.container}>
+        {/* <div className={classes.container}>
           <GridContainer>
             <GridItem>
               <div className={classes.brand + " brand"}>
@@ -50,8 +52,8 @@ const FlowmeterDevelopment = (props) => {
               </div>
             </GridItem>
           </GridContainer>
-        </div>
-      </Parallax>
+        </div> */}
+      </FrontParallax>
       <Container>
         <div className={classNames(classes.main)}>
           <GridContainer className={classes.mainContainer + " main-container"}>

@@ -13,6 +13,7 @@ import Footer from "components/Footer/Footer";
 import { projects } from "constrants";
 import { OnGoingProjects } from "views/HomePage/OnGoingProjects/OnGoingProjects";
 import { CHANGE_NAV_ON_SCROLL } from "constrants";
+import FrontParallax from "components/Parallax/FrontParallax";
 
 const useStyles = makeStyles(styles);
 
@@ -25,16 +26,17 @@ const WaterPricing = (props) => {
       <Header
         rightLinks={<HeaderLinks />}
         fixed
-        color="dimWhite"
+        color="transparent"
         changeColorOnScroll={{
           height: CHANGE_NAV_ON_SCROLL,
           color: "white",
         }}
         {...rest}
       />
-      <Parallax
+      <FrontParallax
         image={require("assets/img/project/project3.webp").default}
         style={{ height: 400 }}
+        head="Water Pricing"
       >
         <div className={classes.container}>
           <GridContainer>
@@ -48,7 +50,7 @@ const WaterPricing = (props) => {
             </GridItem>
           </GridContainer>
         </div>
-      </Parallax>
+      </FrontParallax>
       <Container>
         <div className={classNames(classes.main)}>
           <GridContainer className={classes.mainContainer + " main-container"}>
