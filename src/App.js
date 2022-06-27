@@ -77,7 +77,7 @@ const App = () => {
   const [loading, setLoading] = React.useState(true);
 
   setTimeout(() => {
-    // setLoading(false);
+    setLoading(false);
     enableScroll();
   }, 5000);
 
