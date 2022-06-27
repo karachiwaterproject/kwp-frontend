@@ -331,7 +331,7 @@ const Teams = (props) => {
         <div className={classNames(classes.main)}>
           <GridContainer
             className={classes.mainContainer + " main-container"}
-            style={{ padding: "50px 100px 0" }}
+            style={{ padding: "0px 100px 0" }}
           >
             <Typography
               variant="h3"

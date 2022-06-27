@@ -84,9 +84,7 @@ const Dataportal = ({ login, isAuthenticated, auth }) => {
         </div> */}
       </FrontParallax>
       <Container>
-        <div className={classNames(classes.main)} style={{ padding: 20 }}>
-          <br />
-          <br />
+        <div style={{ paddingLeft: 20, paddingRight: 20 }}>
           <Container>
             <Typography
               variant="h3"
@@ -104,43 +102,16 @@ const Dataportal = ({ login, isAuthenticated, auth }) => {
             xs
             direction="row"
           >
-            {/* <GridItem xs={12} sm={6}>
-              <Card style={{ borderLeft: "3px solid #004AAD" }}>
-                <CardContent>
-                  <Typography
-                    color="primary"
-                    style={{
-                      textTransform: "uppercase",
-                      fontSize: "13px",
-                      fontWeight: "bold",
-                    }}
-                  >
-                    Flowmeters registered
-                  </Typography>
-                  <Typography style={{ textTransform: "uppercase" }}>
-                    18
-                  </Typography>
-                </CardContent>
-              </Card>
-            </GridItem> */}
             <GridItem xs={12}>
-              <Card style={{ borderLeft: "3px solid #1CC88A" }}>
-                <CardContent>
-                  <Typography
-                    style={{
-                      color: "#1CC88A",
-                      textTransform: "uppercase",
-                      fontSize: "13px",
-                      fontWeight: "bold",
-                    }}
-                  >
-                    Active flowmeters
-                  </Typography>
-                  <Typography style={{ textTransform: "uppercase" }}>
-                    6
-                  </Typography>
-                </CardContent>
-              </Card>
+              <Typography variant="body2">
+                The data portal allows you to observe the summary of data
+                received from our flowmeters installed all across the city. If
+                you are a home-owner, you may log in to this portal with the
+                credentials provided to you by the team. Following this login,
+                you will be directed to your personalized dashboard, where you
+                will see data collected from the node(s) installed in your home.{" "}
+                <br />
+              </Typography>
             </GridItem>
           </GridContainer>
           <GridContainer
@@ -163,15 +134,23 @@ const Dataportal = ({ login, isAuthenticated, auth }) => {
               </small>
             </GridItem>
             <GridItem xs={12} sm={12} lg={5}>
-              <Typography variant="body2">
-                The data portal allows you to observe the summary of data
-                received from our flowmeters installed all across the city. If
-                you are a home-owner, you may log in to this portal with the
-                credentials provided to you by the team. Following this login,
-                you will be directed to your personalized dashboard, where you
-                will see data collected from the node(s) installed in your home.{" "}
-                <br />
-              </Typography>
+              <Card style={{ borderLeft: "3px solid #004AAD" }}>
+                <CardContent>
+                  <Typography
+                    style={{
+                      color: "#004AAD",
+                      textTransform: "uppercase",
+                      fontSize: "13px",
+                      fontWeight: "bold",
+                    }}
+                  >
+                    Active flowmeters
+                  </Typography>
+                  <Typography style={{ textTransform: "uppercase" }}>
+                    6
+                  </Typography>
+                </CardContent>
+              </Card>
               <br />
               <div
                 style={{

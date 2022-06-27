@@ -31,6 +31,7 @@ import { Map, InfoWindow, GoogleApiWrapper, Marker } from "google-maps-react";
 import { CHANGE_NAV_ON_SCROLL } from "constrants";
 
 import { useHistory } from "react-router-dom";
+import Spinner from "Spinner";
 
 const useStyles = makeStyles(styles);
 
@@ -199,7 +200,7 @@ const Dashboard = ({
                     </InfoWindow>
                   </Map>
                 ) : (
-                  <>Loading</>
+                  <Spinner />
                 )}
               </GridItem>
             </GridContainer>

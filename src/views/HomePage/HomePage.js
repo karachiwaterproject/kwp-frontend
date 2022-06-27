@@ -69,10 +69,7 @@ const HomePage = (props) => {
         }}
         {...rest}
       />
-      <HomeParallax
-        image={require("assets/img/bg4.webp").default}
-        style={{ height: "430px" }}
-      >
+      <HomeParallax image={require("assets/img/bg4.webp").default}>
         {/* <div className={classes.container}>
           <GridContainer>
             <GridItem>
@@ -104,252 +101,191 @@ const HomePage = (props) => {
         </div> */}
       </HomeParallax>
       <Container>
-        <div className={classNames(classes.main)}>
-          <div className={classes.mainContainer + " main-container"}>
-            <br />
-            <Typography variant="h4" className="h4">
-              Ongoing
-            </Typography>
-            <Typography
-              variant="h4"
-              style={{ color: "#461A55", fontWeight: "bold" }}
-            >
-              Projects
-            </Typography>
-            <GridContainer>
-              {projects.map(({ name, image, url }) => (
-                <GridItem key={name} xs={12} sm={6} lg={4}>
-                  <Link to={url}>
-                    <OnGoingProjects name={name} image={image} />
-                  </Link>
-                </GridItem>
-              ))}
-            </GridContainer>
-          </div>
-          <GridContainer
-            style={{
-              position: "relative",
-              width: "100%",
-              margin: "auto",
-            }}
-            className="containVideo"
+        <div className={classes.mainContainer + " main-container"}>
+          <br />
+          <Typography
+            variant="h4"
+            className="h4"
+            style={{ borderLeft: "4px #3977C9 solid", paddingLeft: "10px" }}
           >
-            <img
-              src={require("assets/img/wave-up.svg").default}
-              width="100%"
-              style={{
-                position: "absolute",
-                top: 0,
-                left: 0,
-                zIndex: -1,
-              }}
-            ></img>
-            <div
-              className="subvideoContainer"
-              style={{
-                zIndex: 2,
-
-                paddingLeft: 0,
-                marginLeft: 0,
-                width: "100%",
-              }}
-            >
-              <GridContainer style={{ width: "90%", margin: "auto" }}>
-                <GridItem xs={12} sm={12} lg={5}>
-                  <Typography
-                    variant="h3"
-                    style={{
-                      fontWeight: "700",
-                      letterSpacing: "4px",
-                      color: "#212121",
-                    }}
-                    className="head"
-                  >
-                    Message
-                  </Typography>
-                  <hr style={{ width: "70%", float: "left" }} />
-                  <br />
-                  <Typography
-                    variant="body1"
-                    className="subhead"
-                    style={{ width: "100%" }}
-                  >
-                    Hear out Dr. Hassaan Furqan Khan, the principal investigator
-                    for the Karachi water project talk about the water situation
-                    in Karachi and how KWP plays a role. Follow our Instagram,
-                    Facebook, and Twitter pages and for more information or
-                    email us at{" "}
-                    <a href="mailto:waterprojectkarachi@gmail.com">
-                      waterprojectkarachi@gmail.com
-                    </a>
-                    .
-                  </Typography>
-                </GridItem>
-                <GridItem xs={12} sm={12} lg={1} />
-                <GridItem
-                  xs={12}
-                  sm={12}
-                  lg={6}
-                  style={{
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    paddingTop: "20px",
-                  }}
-                >
-                  <iframe
-                    className="video"
-                    src="https://www.youtube.com/embed/30dV3VBoLes"
-                    title="YouTube video player"
-                    frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                  ></iframe>
-                </GridItem>
-              </GridContainer>
-            </div>
-            <img
-              src={require("assets/img/wave.svg").default}
-              width="100%"
-              style={{
-                position: "absolute",
-                bottom: 0,
-                left: 0,
-                boxShadow: "0 .5rem 1rem rgba(0,0,0,.15)",
-              }}
-            ></img>
+            Ongoing
+          </Typography>
+          <Typography
+            variant="h4"
+            style={{
+              color: "#3977C9",
+              fontWeight: "bold",
+              borderLeft: "4px #000 solid",
+              paddingLeft: "10px",
+            }}
+          >
+            Projects
+          </Typography>
+          <GridContainer>
+            {projects.map(({ name, image, url }) => (
+              <GridItem key={name} xs={12} sm={6} lg={4}>
+                <Link to={url}>
+                  <OnGoingProjects name={name} image={image} />
+                </Link>
+              </GridItem>
+            ))}
           </GridContainer>
-          {/* <GridContainer style={{ paddingTop: 50 }}>
-            <div
-              style={{
-                width: "100%",
-                padding: "30px 80px",
-              }}
-            >
-              <GridContainer>
-                <GridItem xs={12} sm={12} lg={5}>
-                  <Typography
-                    style={{
-                      textAlign: "center",
-                      letterSpacing: "10px",
-                      textTransform: "uppercase",
-                      lineHeight: "1",
-                      fontWeight: "500",
-                    }}
-                    variant="h3"
-                  >
-                    Testimonials
-                  </Typography>
-                  <br />
-                  <Typography variant="body2">
-                    Lorem Ipsum is simply dummy text of the printing and
-                    typesetting industry. Lorem Ipsum has been the industry's
-                    standard dummy text ever since the 1500s, when an unknown
-                    printer took a galley of type and scrambled it to make a
-                    type specimen book. It has survived not only five centuries,
-                    but also the leap into electronic typesetting, remaining
-                    essentially unchanged. It was popularised in the 1960s with
-                    the release of Letraset sheets containing Lorem Ipsum
-                    passages, and more recently with desktop publishing software
-                    like Aldus PageMaker including versions of Lorem Ipsum.
-                  </Typography>
-                </GridItem>
-                <GridItem
-                  xs={12}
-                  sm={12}
-                  lg={7}
-                  style={{
-                    padding: "0 100px",
-                    height: 290,
-                    position: "relative",
-                  }}
-                >
-                  <ReactCardCarousel
-                    style={{
-                      position: "absolute",
-                      top: 0,
-                      left: 0,
-                    }}
-                    autoplay={true}
-                    autoplay_speed={2500}
-                    disable_box_shadow={true}
-                    spread="wide"
-                  >
-                    {testimonials.map(({ name, date, comment }) => (
-                      <Card
-                        className={classes.root}
-                        style={{
-                          width: 250,
-                          minHeight: 200,
-                          boxShadow: ".5rem .5rem 1rem 1rem rgba(0,0,0,.15)",
-                        }}
-                      >
-                        <CardHeader
-                          avatar={
-                            <Avatar
-                              aria-label="recipe"
-                              className={classes.avatar}
-                            ></Avatar>
-                          }
-                          title={`${name}`}
-                          subheader={`${date}`}
-                        />
-                        <CardContent>
-                          <Typography
-                            variant="body2"
-                            color="textSecondary"
-                            component="p"
-                          >
-                            {comment}
-                          </Typography>
-                        </CardContent>
-                      </Card>
-                    ))}
-                  </ReactCardCarousel>
-                  
-                </GridItem>
-              </GridContainer>
-            </div>
-          </GridContainer> */}
-          <GridContainer style={{ padding: "0 15px" }}>
+          <br />
+          <br />
+        </div>
+      </Container>
+
+      <GridContainer
+        style={{
+          position: "relative",
+          width: "100%",
+          margin: "auto",
+        }}
+        className="containVideo"
+      >
+        <img
+          src={require("assets/img/wave-up.svg").default}
+          width="100%"
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            zIndex: -1,
+          }}
+        ></img>
+        <div
+          className="subvideoContainer"
+          style={{
+            zIndex: 2,
+
+            paddingLeft: 0,
+            margin: "auto",
+            width: "80%",
+          }}
+        >
+          <GridContainer style={{ width: "90%", margin: "auto" }}>
+            <GridItem xs={12} sm={12} lg={5}>
+              <br />
+              <br />
+              <Typography
+                variant="h3"
+                style={{
+                  fontWeight: "700",
+                  letterSpacing: "4px",
+                  color: "#212121",
+                }}
+                className="head"
+              >
+                Message
+              </Typography>
+              <hr style={{ width: "70%", float: "left" }} />
+              <br />
+              <Typography
+                variant="body1"
+                className="subhead"
+                style={{ width: "100%" }}
+              >
+                Hear out Dr. Hassaan Furqan Khan, the principal investigator for
+                the Karachi water project talk about the water situation in
+                Karachi and how KWP plays a role. Follow our Instagram,
+                Facebook, and Twitter pages and for more information or email us
+                at{" "}
+                <a href="mailto:waterprojectkarachi@gmail.com">
+                  waterprojectkarachi@gmail.com
+                </a>
+                .
+              </Typography>
+            </GridItem>
+            <GridItem xs={12} sm={12} lg={1} />
             <GridItem
+              xs={12}
+              sm={12}
+              lg={6}
               style={{
-                backgroundImage: `url(${team})`,
-                height: "280px",
-                backgroundSize: "cover",
+                display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
-                flexDirection: "column",
-                display: "flex",
-                backgroundRepeat: "no-repeat",
+                paddingTop: "20px",
               }}
             >
-              <Typography
-                variant="h4"
-                style={{ fontWeight: "900", color: "white" }}
-              >
-                The Team
-              </Typography>
-              <Link to="/team">
-                <Button variant="outlined" className={classes.customButton}>
-                  See all Members
-                </Button>
-              </Link>
+              <iframe
+                className="video"
+                src="https://www.youtube.com/embed/30dV3VBoLes"
+                title="YouTube video player"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                style={{
+                  background: "#555555",
+                }}
+              ></iframe>
             </GridItem>
           </GridContainer>
+        </div>
+        <img
+          src={require("assets/img/wave.svg").default}
+          width="100%"
+          style={{
+            position: "absolute",
+            bottom: 0,
+            left: 0,
+            boxShadow: "0 .5rem 1rem rgba(0,0,0,.15)",
+          }}
+        ></img>
+      </GridContainer>
+      <div>
+        <div
+          style={{
+            backgroundImage: `url(${team})`,
+            width: "100%",
+            height: "350px",
+            backgroundSize: "cover",
+            justifyContent: "center",
+            alignItems: "center",
+            flexDirection: "column",
+            display: "flex",
+            backgroundRepeat: "no-repeat",
+          }}
+        >
+          <Typography
+            variant="h4"
+            style={{ fontWeight: "900", color: "white" }}
+          >
+            The Team
+          </Typography>
+          <Link to="/team">
+            <Button variant="outlined" className={classes.customButton}>
+              See all Members
+            </Button>
+          </Link>
+        </div>
+      </div>
+      <Container>
+        <div>
           <div className={classes.mainContainer + " main-container"}>
-            <Typography variant="h4">Supported through</Typography>
+            <Typography
+              variant="h4"
+              style={{ borderLeft: "4px #3977C9 solid", paddingLeft: "10px" }}
+            >
+              Supported through
+            </Typography>
             <Typography
               variant="h3"
-              style={{ color: "#461A55", fontWeight: "bold" }}
+              style={{
+                color: "#3977C9",
+                fontWeight: "bold",
+                borderLeft: "4px #000 solid",
+                paddingLeft: "10px",
+              }}
             >
               Grants
             </Typography>
             <br />
+            <br />
             <GridContainer style={{ justifyContent: "center" }}>
               <GridItem
                 xs={12}
-                sm={4}
+                sm={3}
                 className={classes.iconContainer + " icon-container"}
               >
                 <a href="https://habib.edu.pk" target="_blank">

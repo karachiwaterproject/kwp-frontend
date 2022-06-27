@@ -1,10 +1,17 @@
 import React from "react";
 import "./spinner.css";
+import icon from "./assets/img/kwp-logo.svg";
 
 export default function Spinner() {
   return (
     <div className="spinner-container">
-      <div className="loading-spinner"></div>
+      <img
+        className="icon"
+        src={icon}
+        alt="kwp"
+        height={"100px"}
+        width="220px"
+      />
     </div>
   );
 }

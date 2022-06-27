@@ -11,6 +11,8 @@ const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 345,
     height: "280px",
+    marginTop: 40,
+    marginBottom: 60,
   },
   media: {
     height: 0,
@@ -21,13 +23,35 @@ const useStyles = makeStyles((theme) => ({
 export const OnGoingProjects = ({ name, image }) => {
   const classes = useStyles();
   return (
-    <Card className={classes.root}>
-      <CardMedia className={classes.media} image={image} title={name} />
-      <CardContent>
+    <div
+      className={classes.root + " ccard"}
+      style={{
+        background: `url(${image})`,
+        backgroundSize: "cover",
+        boxShadow: ".5rem .5rem .5rem .5rem rgba(0,0,0,.15)",
+        borderRadius: "5px",
+
+        backgroundPosition: "center center",
+      }}
+    >
+      <div
+        style={{
+          background: "white",
+          boxShadow: "0 1rem 1rem 1rem  rgba(0,0,0,.15)",
+          height: "26%",
+          display: "flex",
+          borderRadius: "5px",
+          alignItems: "center",
+          position: "absolute",
+          left: "50px",
+          bottom: "20px",
+          padding: "12px 20px",
+        }}
+      >
         <Typography variant="body2" color="textSecondary" component="p">
           {name}
         </Typography>
-      </CardContent>
-    </Card>
+      </div>
+    </div>
   );
 };

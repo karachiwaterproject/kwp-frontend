@@ -24,8 +24,8 @@ const componentsStyle = {
     height: "70px",
     right: 0,
     boxShadow: "0 .125rem .25rem rgba(0,0,0,.075)",
-    borderBottom: "10px solid #CFB381",
-    borderRight: "10px solid #CFB381",
+    borderBottom: "10px solid #91BBF3",
+    borderRight: "10px solid #91BBF3",
   },
   icon: {
     position: "absolute",

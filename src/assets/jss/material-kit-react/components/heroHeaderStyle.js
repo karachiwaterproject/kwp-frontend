@@ -16,7 +16,7 @@ const headerStyle = {
     left: "0",
     width: "100%",
     zIndex: "2",
-    fill: "#E5E5E5",
+    fill: "white",
   },
   brand: {
     color: "#FFFFFF",

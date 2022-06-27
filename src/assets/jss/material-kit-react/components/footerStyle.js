@@ -4,16 +4,17 @@ const footerStyle = {
   footer: {
     minHeight: "70vh",
     display: "flex",
+    backgroundColor: "#212121",
     jusifyContent: "center",
     alignItems: "center",
     position: "relative",
     flexDirection: "column",
     paddingTop: "20%",
     paddingBottom: "50px",
-    backgroundColor: "white",
     left: 0,
     width: "100%",
     overflow: "hidden",
+    color: "white",
   },
   vector: {
     position: "absolute",
@@ -21,7 +22,7 @@ const footerStyle = {
     left: "0",
     width: "100%",
     zIndex: "2",
-    fill: "#E5E5E5",
+    fill: "white",
   },
   shapeWrapper: {
     position: "absolute",
@@ -68,12 +69,12 @@ const footerStyle = {
     float: "right!important",
   },
   icons: {
-    border: "solid #555555 2px",
+    border: "solid white 2px",
     borderRadius: "50%",
     padding: "5px",
     height: "45px",
     width: "45px",
-    color: "#555555",
+    color: "white",
 
     "&:hover": {
       color: "black",
