@@ -86,7 +86,7 @@ const App = () => {
     setTimeout(() => {
       setLoading(false);
     }, 300);
-  }, 5000);
+  }, 8000);
 
   React.useEffect(() => {
     disableScroll();
