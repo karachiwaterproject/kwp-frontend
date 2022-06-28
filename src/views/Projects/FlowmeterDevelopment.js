@@ -56,7 +56,7 @@ const FlowmeterDevelopment = (props) => {
       </FrontParallax>
       <Container>
         <div className={classNames(classes.main)}>
-          <GridContainer className={classes.mainContainer + " main-container"}>
+          <GridContainer className={classes.mainContainer2 + " main-container"}>
             <Typography
               variant="h4"
               style={{ fontWeight: "bold", marginBottom: 30 }}
@@ -93,12 +93,21 @@ const FlowmeterDevelopment = (props) => {
           </GridContainer>
 
           <div className={classes.mainContainer + " main-container"}>
-            <Typography variant="h4" className="h4">
+            <Typography
+              variant="h4"
+              className="h4"
+              style={{ borderLeft: "4px #3977C9 solid", paddingLeft: "10px" }}
+            >
               Ongoing
             </Typography>
             <Typography
               variant="h3"
-              style={{ color: "#461A55", fontWeight: "bold" }}
+              style={{
+                color: "#3977C9",
+                fontWeight: "bold",
+                borderLeft: "4px #000 solid",
+                paddingLeft: "10px",
+              }}
             >
               Projects
             </Typography>

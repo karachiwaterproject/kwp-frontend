@@ -36,8 +36,12 @@ const componentsStyle = {
   textCenter: {
     textAlign: "center",
   },
+  mainContainer2: {
+    marginTop: "-40px",
+    padding: "0px 100px",
+  },
   mainContainer: {
-    padding: "50px 100px",
+    padding: "0px 100px",
   },
 };
 

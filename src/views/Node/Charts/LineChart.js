@@ -13,7 +13,7 @@ function utcToDateTime(utcDt, showTime) {
     if (showTime) {
       return utcDt_conv.toLocaleTimeString();
     }
-    return utcDt_conv.toLocaleString();
+    return utcDt_conv.toLocaleTimeString();
   }
 }
 
@@ -37,7 +37,6 @@ export const LineChart = (props) => {
             },
           ],
         }}
-        xlabel={"dsad"}
         height={300}
         width={500}
         options={{
@@ -58,7 +57,7 @@ export const LineChart = (props) => {
             },
           },
           ticks: {
-            maxTicksLimit: 4.5,
+            maxTicksLimit: 2,
           },
           legend: {
             labels: {

@@ -78,86 +78,87 @@ function HeaderLinks({ auth: { isAuthenticated, loading }, logout }) {
 
   return (
     <GridContainer style={{ alignItems: "center" }}>
-      <ListItem className={classes.listItem}>
-        <NavLink
-          color="transparent"
-          to="/home"
-          className={classes.navLink}
-          activeClassName={classes.activeLink + " active-link"}
-        >
-          <HomeIcon className={classes.socialIcons} />
-          <Typography variant="body2" style={{ marginLeft: 10 }}>
-            Home
-          </Typography>
-        </NavLink>
-      </ListItem>
+      <ul style={{ margin: 0, padding: 0 }}>
+        <ListItem className={classes.listItem}>
+          <NavLink
+            color="transparent"
+            to="/home"
+            className={classes.navLink}
+            activeClassName={classes.activeLink + " active-link"}
+          >
+            <HomeIcon className={classes.socialIcons} />
+            <Typography variant="body2" style={{ marginLeft: 10 }}>
+              Home
+            </Typography>
+          </NavLink>
+        </ListItem>
 
-      <ListItem className={classes.listItem}>
-        <NavLink
-          to="/team"
-          className={classes.navLink}
-          activeClassName={classes.activeLink + " active-link"}
-        >
-          <GroupIcon className={classes.socialIcons} />
+        <ListItem className={classes.listItem}>
+          <NavLink
+            to="/team"
+            className={classes.navLink}
+            activeClassName={classes.activeLink + " active-link"}
+          >
+            <GroupIcon className={classes.socialIcons} />
 
-          <Typography variant="body2" style={{ marginLeft: 10 }}>
-            Team
-          </Typography>
-        </NavLink>
-      </ListItem>
-      <ListItem className={classes.listItem}>
-        <CustomDropdown
-          noLiPadding
-          buttonText="Projects"
-          buttonProps={{
-            className: classes.navLink,
-            color: "transparent",
-            style: {
-              fontSize: "14px",
-            },
-          }}
-          buttonIcon={Apps}
-          dropdownList={[
-            <NavLink
-              to="/projects/develop-low-cost"
-              className={classes.dropdownLink}
-              activeClassName={classes.activeDropdowLink}
-            >
-              Smart Device Development
-            </NavLink>,
-            <NavLink
-              to="/projects/water-security"
-              className={classes.dropdownLink}
-              activeClassName={classes.activeDropdowLink}
-            >
-              Water in Lyari
-            </NavLink>,
-            <NavLink
-              to="/projects/toward-sustainable/"
-              className={classes.dropdownLink}
-              activeClassName={classes.activeDropdowLink}
-            >
-              Water Pricing
-            </NavLink>,
-          ]}
-        />
-      </ListItem>
-      <ListItem className={classes.listItem}>
-        <NavLink
-          to="/blogs"
-          className={classes.navLink}
-          activeClassName={classes.activeLink + " active-link"}
-        >
-          <BookIcon className={classes.socialIcons} />
-          <Typography variant="body2" style={{ marginLeft: 10 }}>
-            Blogs {`&`} News
-          </Typography>
-        </NavLink>
-      </ListItem>
+            <Typography variant="body2" style={{ marginLeft: 10 }}>
+              Team
+            </Typography>
+          </NavLink>
+        </ListItem>
+        <ListItem className={classes.listItem}>
+          <CustomDropdown
+            noLiPadding
+            buttonText="Projects"
+            buttonProps={{
+              className: classes.navLink,
+              color: "transparent",
+              style: {
+                fontSize: "14px",
+              },
+            }}
+            buttonIcon={Apps}
+            dropdownList={[
+              <NavLink
+                to="/projects/develop-low-cost"
+                className={classes.dropdownLink}
+                activeClassName={classes.activeDropdowLink}
+              >
+                Smart Device Development
+              </NavLink>,
+              <NavLink
+                to="/projects/water-security"
+                className={classes.dropdownLink}
+                activeClassName={classes.activeDropdowLink}
+              >
+                Water in Lyari
+              </NavLink>,
+              <NavLink
+                to="/projects/toward-sustainable/"
+                className={classes.dropdownLink}
+                activeClassName={classes.activeDropdowLink}
+              >
+                Water Pricing
+              </NavLink>,
+            ]}
+          />
+        </ListItem>
+        <ListItem className={classes.listItem}>
+          <NavLink
+            to="/blogs"
+            className={classes.navLink}
+            activeClassName={classes.activeLink + " active-link"}
+          >
+            <BookIcon className={classes.socialIcons} />
+            <Typography variant="body2" style={{ marginLeft: 10 }}>
+              Blogs {`&`} News
+            </Typography>
+          </NavLink>
+        </ListItem>
 
-      {!loading && <>{isAuthenticated ? authLinks : guestLinks}</>}
+        {!loading && <>{isAuthenticated ? authLinks : guestLinks}</>}
 
-      {/* <ListItem className={classes.listItem} style={{ marginLeft: 20 }}>
+        {/* <ListItem className={classes.listItem} style={{ marginLeft: 20 }}>
         <Button
           href="https://www.creative-tim.com/product/material-kit-react?ref=mkr-navbar"
           color="white"
@@ -167,6 +168,7 @@ function HeaderLinks({ auth: { isAuthenticated, loading }, logout }) {
           <img src={headerLogo} height="45px" />
         </Button>
       </ListItem> */}
+      </ul>
     </GridContainer>
   );
 }

@@ -73,12 +73,19 @@ function enableScroll() {
   window.removeEventListener("touchmove", preventDefault, wheelOpt);
   window.removeEventListener("keydown", preventDefaultForScrollKeys, false);
 }
+
 const App = () => {
   const [loading, setLoading] = React.useState(true);
+  const [height, setHeight] = React.useState(100);
+
+  const triggerLoaderHide = () => {};
 
   setTimeout(() => {
-    setLoading(false);
     enableScroll();
+    setHeight(0);
+    setTimeout(() => {
+      setLoading(false);
+    }, 300);
   }, 5000);
 
   React.useEffect(() => {
@@ -96,7 +103,7 @@ const App = () => {
     <Provider store={store}>
       <Router history={hist}>
         <ScrollToTop />
-        {loading && <Spinner />}
+        {loading && <Spinner _height={`${height}vh`} />}
         <Switch>
           <Route path="/" component={HomePage} exact />
           <Route path="/test" component={TestHomePage} exact />

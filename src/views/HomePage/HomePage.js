@@ -101,7 +101,7 @@ const HomePage = (props) => {
         </div> */}
       </HomeParallax>
       <Container>
-        <div className={classes.mainContainer + " main-container"}>
+        <div className={classes.mainContainer2 + " main-container"}>
           <br />
           <Typography
             variant="h4"
@@ -146,6 +146,7 @@ const HomePage = (props) => {
         <img
           src={require("assets/img/wave-up.svg").default}
           width="100%"
+          alt="design-up"
           style={{
             position: "absolute",
             top: 0,
@@ -167,6 +168,7 @@ const HomePage = (props) => {
             <GridItem xs={12} sm={12} lg={5}>
               <br />
               <br />
+              <br />
               <Typography
                 variant="h3"
                 style={{
@@ -186,15 +188,18 @@ const HomePage = (props) => {
                 style={{ width: "100%" }}
               >
                 Hear out Dr. Hassaan Furqan Khan, the principal investigator for
-                the Karachi water project talk about the water situation in
+                the Karachi Water Project talk about the water situation in
                 Karachi and how KWP plays a role. Follow our Instagram,
                 Facebook, and Twitter pages and for more information or email us
                 at{" "}
-                <a href="mailto:waterprojectkarachi@gmail.com">
-                  waterprojectkarachi@gmail.com
+                <a href="mailto:hassaan.khan@sse.habib.edu.pk">
+                  hassaan.khan@sse.habib.edu.pk
                 </a>
                 .
               </Typography>
+              <br />
+              <br />
+              <br />
             </GridItem>
             <GridItem xs={12} sm={12} lg={1} />
             <GridItem
@@ -225,6 +230,7 @@ const HomePage = (props) => {
         <img
           src={require("assets/img/wave.svg").default}
           width="100%"
+          alt="design-down"
           style={{
             position: "absolute",
             bottom: 0,

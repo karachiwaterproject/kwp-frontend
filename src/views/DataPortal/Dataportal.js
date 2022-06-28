@@ -27,15 +27,29 @@ import PropTypes from "prop-types";
 import { Redirect } from "react-router-dom";
 import { CHANGE_NAV_ON_SCROLL } from "constrants";
 import FrontParallax from "components/Parallax/FrontParallax";
+import { HOST } from "constrants";
+import axios from "axios";
 
 const Dataportal = ({ login, isAuthenticated, auth }) => {
   const classes = useStyles();
   // const { ...rest } = props;
 
+  const [count, setCount] = React.useState(0);
+
+  const getCount = async () => {
+    const data = await axios.get(`${HOST}/api/node-count`);
+    return data["data"]["count"];
+  };
+
   const [formData, setFormData] = React.useState({
     username: "",
     password: "",
   });
+
+  React.useEffect(async () => {
+    let val = await getCount();
+    setCount(val);
+  }, [getCount]);
 
   const { username, password } = formData;
   const onChange = (e) =>
@@ -84,175 +98,187 @@ const Dataportal = ({ login, isAuthenticated, auth }) => {
         </div> */}
       </FrontParallax>
       <Container>
-        <div style={{ paddingLeft: 20, paddingRight: 20 }}>
-          <Container>
-            <Typography
-              variant="h3"
-              style={{ fontWeight: "bold" }}
-              gutterBottom
-            >
-              Overview
-            </Typography>
-
-            <hr style={{ width: "100%" }} />
-          </Container>
-          <GridContainer
-            className={"main-container"}
-            style={{ padding: "0 30px 0" }}
-            xs
-            direction="row"
+        <div className={classNames(classes.main)}>
+          <div
+            style={{ paddingLeft: 20, paddingRight: 20 }}
+            className={classes.mainContainer2}
           >
-            <GridItem xs={12}>
-              <Typography variant="body2">
-                The data portal allows you to observe the summary of data
-                received from our flowmeters installed all across the city. If
-                you are a home-owner, you may log in to this portal with the
-                credentials provided to you by the team. Following this login,
-                you will be directed to your personalized dashboard, where you
-                will see data collected from the node(s) installed in your home.{" "}
-                <br />
-              </Typography>
-            </GridItem>
-          </GridContainer>
-          <GridContainer
-            className={" main-container"}
-            direction="row"
-            style={{ padding: "0 30px 0" }}
-          >
-            <GridItem xs={12} sm={12} lg={7} style={{ padding: 30 }}>
-              <div
-                style={{
-                  height: "40vh",
-                  width: "100%",
-                  background: `url(${require("assets/img/map.webp").default})`,
-                  backgroundSize: "cover",
-                }}
-              />
-              <small>
-                Spatial distribution of installed smart flowmeters across
-                Karachi.
-              </small>
-            </GridItem>
-            <GridItem xs={12} sm={12} lg={5}>
-              <Card style={{ borderLeft: "3px solid #004AAD" }}>
-                <CardContent>
-                  <Typography
-                    style={{
-                      color: "#004AAD",
-                      textTransform: "uppercase",
-                      fontSize: "13px",
-                      fontWeight: "bold",
-                    }}
-                  >
-                    Active flowmeters
-                  </Typography>
-                  <Typography style={{ textTransform: "uppercase" }}>
-                    6
-                  </Typography>
-                </CardContent>
-              </Card>
-              <br />
-              <div
-                style={{
-                  height: "250px",
-                  width: "100%",
-                  background: `url(${
-                    require("assets/img/graph.webp").default
-                  })`,
-                  backgroundSize: "contain",
-                  backgroundRepeat: "no-repeat",
-                }}
-              />
-            </GridItem>
-          </GridContainer>
-          <br />
-          <br />
-          <GridContainer style={{ padding: "  0 30px 0px" }}>
-            <GridItem xs={12} sm={12} lg={12}>
-              <Typography variant="h3" style={{ fontWeight: "bold" }}>
-                Login
+            <Container>
+              <Typography
+                variant="h3"
+                style={{ fontWeight: "bold" }}
+                gutterBottom
+              >
+                Overview
               </Typography>
 
               <hr style={{ width: "100%" }} />
+            </Container>
+            <GridContainer
+              className={"main-container"}
+              style={{ padding: "0 30px 0" }}
+              xs
+              direction="row"
+            >
+              <GridItem xs={12}>
+                <br />
+                <Typography variant="body2">
+                  The data portal allows you to observe the summary of data
+                  received from our flowmeters installed all across the city. If
+                  you are a home-owner, you may log in to this portal with the
+                  credentials provided to you by the team. Following this login,
+                  you will be directed to your personalized dashboard, where you
+                  will see data collected from the node(s) installed in your
+                  home. <br />
+                </Typography>
+                <br />
+              </GridItem>
+            </GridContainer>
+            <GridContainer
+              className={" main-container"}
+              direction="row"
+              style={{ padding: "0 30px 0" }}
+            >
+              <GridItem xs={12} sm={12} lg={7} style={{ padding: 30 }}>
+                <div
+                  style={{
+                    height: "40vh",
+                    width: "100%",
+                    background: `url(${
+                      require("assets/img/map.webp").default
+                    })`,
+                    boxShadow: "0rem 0rem 0.5rem 0.5rem  rgba(0,0,0,.15)",
+                    backgroundSize: "cover",
+                    marginBottom: 10,
+                  }}
+                />
+                <small>
+                  Spatial distribution of installed smart flowmeters across
+                  Karachi.
+                </small>
+              </GridItem>
+              <GridItem xs={12} sm={12} lg={5}>
+                <Card style={{ borderLeft: "3px solid #004AAD" }}>
+                  <CardContent>
+                    <Typography
+                      style={{
+                        color: "#004AAD",
+                        textTransform: "uppercase",
+                        fontSize: "13px",
+                        fontWeight: "bold",
+                      }}
+                    >
+                      Active flowmeters
+                    </Typography>
+                    <Typography style={{ textTransform: "uppercase" }}>
+                      {count}
+                    </Typography>
+                  </CardContent>
+                </Card>
+                <br />
+                <div
+                  style={{
+                    height: "250px",
+                    width: "100%",
+                    background: `url(${
+                      require("assets/img/graph.webp").default
+                    })`,
+                    backgroundSize: "contain",
+                    backgroundRepeat: "no-repeat",
+                    boxShadow: "0rem 0rem 0.5rem 0.5rem  rgba(0,0,0,.15)",
+                  }}
+                />
+              </GridItem>
+            </GridContainer>
+            <br />
+            <br />
+            <GridContainer style={{ padding: "  0 30px 0px" }}>
+              <GridItem xs={12} sm={12} lg={12}>
+                <Typography variant="h3" style={{ fontWeight: "bold" }}>
+                  Login
+                </Typography>
 
-              <form
-                style={{ width: "100%", marginTop: "50px" }}
-                onSubmit={(e) => onSubmit(e)}
-              >
-                <GridContainer
-                  className={classes.formContainer}
-                  direction="column"
-                  style={{ width: "100%", margin: "auto" }}
+                <hr style={{ width: "100%" }} />
+
+                <form
+                  style={{ width: "100%", marginTop: "50px" }}
+                  onSubmit={(e) => onSubmit(e)}
                 >
-                  {auth.loginFailed && (
-                    <Alert severity="error">
-                      Oops ! Invalid username or password.
-                    </Alert>
-                  )}
-                  <br />
+                  <GridContainer
+                    className={classes.formContainer}
+                    direction="column"
+                    style={{ width: "100%", margin: "auto" }}
+                  >
+                    {auth.loginFailed && (
+                      <Alert severity="error">
+                        Oops ! Invalid username or password.
+                      </Alert>
+                    )}
+                    <br />
 
-                  <GridItem className={classes.formFields}>
-                    <TextField
-                      style={{ width: "100%" }}
-                      id="username"
-                      label="Username"
-                      name="username"
-                      variant="outlined"
-                      value={username}
-                      onChange={(e) => onChange(e)}
-                    />
-                  </GridItem>
-                  <GridItem className={classes.formFields}>
-                    <TextField
-                      style={{ width: "100%" }}
-                      id="password"
-                      label="Password"
-                      type="password"
-                      name="password"
-                      value={password}
-                      variant="outlined"
-                      onChange={(e) => onChange(e)}
-                    />
-                  </GridItem>
-                  <GridItem className={classes.formFields}>
-                    <GridContainer>
-                      <GridItem xs={12} md={6}>
-                        <input
-                          style={{
-                            float: "right",
-                            width: "100%",
-                            marginBottom: 10,
-                          }}
-                          type="submit"
-                          className={
-                            classes.darkButton +
-                            " MuiButtonBase-root MuiButton-root MuiButton-text"
-                          }
-                          value="Login"
-                        />
-                      </GridItem>
-                      <GridItem xs={12} md={6}>
-                        <Button
-                          style={{
-                            float: "left",
-                            width: "100%",
-                          }}
-                          color="primary"
-                          variant="contained"
-                          onClick={() => {
-                            const url = "https://forms.gle/JLPGHAGcKhKKxzjH7";
-                            window.open(url);
-                          }}
-                        >
-                          <Typography>JOIN US</Typography>
-                        </Button>
-                      </GridItem>
-                    </GridContainer>
-                  </GridItem>
-                </GridContainer>
-              </form>
-            </GridItem>
-          </GridContainer>
+                    <GridItem className={classes.formFields}>
+                      <TextField
+                        style={{ width: "100%" }}
+                        id="username"
+                        label="Username"
+                        name="username"
+                        variant="outlined"
+                        value={username}
+                        onChange={(e) => onChange(e)}
+                      />
+                    </GridItem>
+                    <GridItem className={classes.formFields}>
+                      <TextField
+                        style={{ width: "100%" }}
+                        id="password"
+                        label="Password"
+                        type="password"
+                        name="password"
+                        value={password}
+                        variant="outlined"
+                        onChange={(e) => onChange(e)}
+                      />
+                    </GridItem>
+                    <GridItem className={classes.formFields}>
+                      <GridContainer>
+                        <GridItem xs={12} md={6}>
+                          <input
+                            style={{
+                              float: "right",
+                              width: "100%",
+                              marginBottom: 10,
+                            }}
+                            type="submit"
+                            className={
+                              classes.darkButton +
+                              " MuiButtonBase-root MuiButton-root MuiButton-text"
+                            }
+                            value="Login"
+                          />
+                        </GridItem>
+                        <GridItem xs={12} md={6}>
+                          <Button
+                            style={{
+                              float: "left",
+                              width: "100%",
+                            }}
+                            color="primary"
+                            variant="contained"
+                            onClick={() => {
+                              const url = "https://forms.gle/JLPGHAGcKhKKxzjH7";
+                              window.open(url);
+                            }}
+                          >
+                            <Typography>JOIN US</Typography>
+                          </Button>
+                        </GridItem>
+                      </GridContainer>
+                    </GridItem>
+                  </GridContainer>
+                </form>
+              </GridItem>
+            </GridContainer>
+          </div>
         </div>
       </Container>
 

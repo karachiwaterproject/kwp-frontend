@@ -39,6 +39,10 @@ const componentsStyle = {
   mainContainer: {
     padding: "50px 100px",
   },
+  mainContainer2: {
+    marginTop: "-40px",
+    padding: "0px 100px",
+  },
   formContainer: {
     margin: 10,
   },

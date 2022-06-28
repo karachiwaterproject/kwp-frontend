@@ -152,10 +152,7 @@ const HomeNode = ({
         <div className={classNames(classes.main)}>
           {!loading ? (
             <>
-              <GridContainer
-                style={{ padding: "30px 50px 0 50px" }}
-                direction="column"
-              >
+              <GridContainer className="home-node-container" direction="column">
                 <div>
                   <Link to="/nodes" style={{ float: "left" }}>
                     <Button>
@@ -163,7 +160,11 @@ const HomeNode = ({
                     </Button>
                   </Link>
 
-                  <Typography variant="h4" style={{ float: "left" }}>
+                  <Typography
+                    variant="h4"
+                    component={"h4"}
+                    style={{ float: "left" }}
+                  >
                     {!loading && node && node.name}
                   </Typography>
                 </div>
@@ -325,7 +326,8 @@ const HomeNode = ({
                 </GridContainer>
               </GridContainer>
               <GridContainer
-                style={{ padding: "0px 50px 100px 50px", width: "100%" }}
+                className="home-container"
+                style={{ width: "100%" }}
                 direction="column"
               >
                 <h1>{!loading && `Flow Data`}</h1>

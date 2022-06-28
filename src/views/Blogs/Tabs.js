@@ -106,7 +106,27 @@ export default function SocialTabs() {
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>
-        Facebook Posts
+        <div className="twitterContainer">
+          <div
+            class="fb-page"
+            data-href="https://www.facebook.com/karachi.water.project/"
+            data-tabs="timeline"
+            data-small-header="false"
+            data-adapt-container-width="true"
+            data-hide-cover="false"
+            data-show-facepile="true"
+            data-width="500"
+          >
+            <blockquote
+              cite="https://www.facebook.com/karachi.water.project/"
+              class="fb-xfbml-parse-ignore"
+            >
+              <a href="https://www.facebook.com/karachi.water.project/">
+                Karachi Water Project
+              </a>
+            </blockquote>
+          </div>
+        </div>
       </TabPanel>
       <TabPanel value={value} index={1}>
         {/* <a

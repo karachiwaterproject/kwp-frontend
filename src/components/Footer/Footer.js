@@ -150,7 +150,7 @@ const Footer = (props) => {
           alignItems="center"
         >
           <Grid item xs={12} sm={4}>
-            <img src={footerLogo} height="60px" />
+            <img src={footerLogo} alt="header" height="60px" />
           </Grid>
         </Grid>
         <Grid
@@ -161,6 +161,7 @@ const Footer = (props) => {
         >
           <Grid item>
             <a
+              aria-label="Facebook"
               href="https://www.facebook.com/karachi.water.project/"
               target={"_blank"}
             >
@@ -168,12 +169,17 @@ const Footer = (props) => {
             </a>
           </Grid>
           <Grid item>
-            <a href="https://twitter.com/karachi_water" target={"_blank"}>
+            <a
+              aria-label="Twitter"
+              href="https://twitter.com/karachi_water"
+              target={"_blank"}
+            >
               <TwitterIcon className={classes.icons + " " + classes.padding} />
             </a>
           </Grid>
           <Grid item>
             <a
+              aria-label="Instagram"
               href="https://www.instagram.com/karachi.water.project/"
               target={"_blank"}
             >
@@ -184,6 +190,7 @@ const Footer = (props) => {
           </Grid>
           <Grid item>
             <a
+              aria-label="YouTube"
               href="https://www.youtube.com/channel/UCf2nWb5Xd2b_Duolu9SkmIA"
               target={"_blank"}
             >

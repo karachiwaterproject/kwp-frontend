@@ -12,7 +12,14 @@ const HomeParallax = ({ image, head }) => {
   const classes = useStyles();
 
   return (
-    <div className={classes.main}>
+    <div
+      className={classes.main}
+      style={{
+        backgroundImage: "url(" + require("assets/img/back.webp").default + ")",
+        backgroundPosition: "center center",
+        backgroundSize: "cover",
+      }}
+    >
       <video
         muted
         autoPlay

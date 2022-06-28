@@ -32,9 +32,12 @@ const componentsStyle = {
     textAlign: "center",
   },
   mainContainer: {
-    padding: "50px 100px",
+    padding: "50px 100px 50px",
   },
 
+  mainContainer2: {
+    padding: "0px 100px 50px",
+  },
   customButton: {
     marginTop: "10px",
     borderColor: "white",
