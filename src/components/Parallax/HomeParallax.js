@@ -44,29 +44,26 @@ const HomeParallax = ({ image, head }) => {
         {/* <polygon points="-30,300 355.167,210.5 1432.5,290 1920,198.5 1920,300"></polygon> */}
       </svg>
       <div
+        className="parralax-container"
         style={{
           zIndex: "1",
           position: "relative",
           color: "white",
-          padding: "100px 80px",
           backgroundColor: "rgba(0,0,0,.4)",
           height: "100vh",
         }}
       >
-        <div className={classes.container}>
+        <div className={classes.container + " "}>
           <GridContainer>
             <GridItem>
               <div
                 className={classes.brand + " brand"}
                 style={{ textAlign: "center" }}
               >
-                <br />
                 <h2 className={classes.title + " title"}>About us</h2>
                 <h3></h3>
-                <Typography
-                  variant="h6"
-                  component="p"
-                  className={classes.subtitle + " subtitle"}
+                <p
+                  className="parallax-subtitle"
                   style={{
                     textAlign: "center",
                     width: "100%",
@@ -77,7 +74,7 @@ const HomeParallax = ({ image, head }) => {
                   water management in Karachi. The group, headed by Dr. Hassaan
                   F. Khan, strives to develop technological and policy-based
                   solutions to Karachi’s water challenges.
-                </Typography>
+                </p>
               </div>
             </GridItem>
           </GridContainer>

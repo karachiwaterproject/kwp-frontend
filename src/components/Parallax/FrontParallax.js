@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "assets/jss/material-kit-react/components/heroHeaderStyle.js";
-import { makeStyles } from "@material-ui/core";
+import { Container, makeStyles } from "@material-ui/core";
 import GridContainer from "components/Grid/GridContainer";
 import GridItem from "components/Grid/GridItem";
 
@@ -37,7 +37,7 @@ const FrontParallax = ({ image, head }) => {
           height: "100vh",
         }}
       >
-        <div className={classes.container}>
+        <Container>
           <GridContainer>
             <GridItem>
               <div className={classes.brand + " brand"}>
@@ -48,7 +48,7 @@ const FrontParallax = ({ image, head }) => {
               </div>
             </GridItem>
           </GridContainer>
-        </div>
+        </Container>
       </div>
     </div>
   );
