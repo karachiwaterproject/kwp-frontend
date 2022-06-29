@@ -1,19 +1,30 @@
 import React from "react";
 import { Line } from "react-chartjs-2";
 
-function utcToDateTime(utcDt) {
-  var date = new Date(utcDt);
-  return date.toLocaleString();
+function utcToDateTime(utcDt, showTime) {
+  const utcDt_conv = new Date(utcDt * 1000);
+
+  // check if time is nan
+  if (utcDt_conv.getTime() != utcDt_conv.getTime()) {
+    return -1;
+  } else if (utcDt_conv.getMonth() < 3 && utcDt_conv.getFullYear() < 2021) {
+    return utcDt;
+  } else {
+    if (showTime) {
+      return utcDt_conv.toLocaleTimeString();
+    }
+    return utcDt_conv.toLocaleTimeString();
+  }
 }
 
 export const LineChart2 = (props) => {
   return (
-    <div className="chart-bar-all">
+    <div className="chart-bar-all" style={{ width: "100%" }}>
       {/*<DateTimeComponent />*/}
       {/*console.log('labels: '+props.labels.length.toString() + " data: " + props.data.length.toString())*/}
       <Line
         data={{
-          labels: props.labels.map((x) => utcToDateTime(x)),
+          labels: props.labels.map((x) => utcToDateTime(x, props.showTime)),
           datasets: [
             {
               // received
@@ -40,13 +51,13 @@ export const LineChart2 = (props) => {
             },
             x: {
               ticks: {
-                maxRotation: 0,
-                minRotation: 0,
+                maxRotation: 90,
+                minRotation: 90,
               },
             },
           },
           ticks: {
-            maxTicksLimit: 4.5,
+            maxTicksLimit: 1.01,
           },
           legend: {
             labels: {

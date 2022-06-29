@@ -21,7 +21,7 @@ import classNames from "classnames";
 import { CHANGE_NAV_ON_SCROLL } from "constrants";
 import Footer from "components/Footer/Footer";
 import { getReadingsWithTime } from "actions/readings";
-import { LineChart } from "./Charts/LineChart";
+import { LineChart2 as LineChart } from "./Charts/LineChart2";
 import { getHourlyStats } from "actions/readings";
 import { BarChart } from "./Charts/BarChart";
 import { ChevronLeft } from "@material-ui/icons";

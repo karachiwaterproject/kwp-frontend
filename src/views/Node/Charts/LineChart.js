@@ -13,13 +13,13 @@ function utcToDateTime(utcDt, showTime) {
     if (showTime) {
       return utcDt_conv.toLocaleTimeString();
     }
-    return utcDt_conv.toLocaleTimeString();
+    return utcDt_conv.toLocaleString();
   }
 }
 
 export const LineChart = (props) => {
   return (
-    <div className="chart-bar-all" style={{ width: "100%" }}>
+    <div className="chart-bar-all" style={{ width: "100%", height: "450px" }}>
       {/*<DateTimeComponent />*/}
       {/*console.log('labels: '+props.labels.length.toString() + " data: " + props.data.length.toString())*/}
       <Line
@@ -51,13 +51,13 @@ export const LineChart = (props) => {
             },
             x: {
               ticks: {
-                maxRotation: 0,
-                minRotation: 0,
+                maxRotation: 90,
+                minRotation: 90,
               },
             },
           },
           ticks: {
-            maxTicksLimit: 2,
+            maxTicksLimit: 4.5,
           },
           legend: {
             labels: {
