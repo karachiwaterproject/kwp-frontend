@@ -51,8 +51,8 @@ export const LineChart2 = (props) => {
             },
             x: {
               ticks: {
-                maxRotation: 90,
-                minRotation: 90,
+                maxRotation: 0,
+                minRotation: 0,
               },
             },
           },
