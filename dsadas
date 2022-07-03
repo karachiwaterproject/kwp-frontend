@@ -1,0 +1,19 @@
+[33mcommit 20ebaeaaa32b5337b862812616a2e14fb5373aea[m[33m ([m[1;36mHEAD -> [m[1;32mtest[m[33m, [m[1;31morg/main[m[33m, [m[1;32mmain[m[33m)[m
+Author: Muhammad Jazzel Mehmood <jazzelmehmood4@gmail.com>
+Date:   Thu Jun 30 23:46:36 2022 +0500
+
+    Fixed graph labels (2)
+
+[1mdiff --git a/src/views/Node/Charts/LineChart.js b/src/views/Node/Charts/LineChart.js[m
+[1mindex 8c976b2..0083899 100644[m
+[1m--- a/src/views/Node/Charts/LineChart.js[m
+[1m+++ b/src/views/Node/Charts/LineChart.js[m
+[36m@@ -19,7 +19,7 @@[m [mfunction utcToDateTime(utcDt, showTime) {[m
+ [m
+ export const LineChart = (props) => {[m
+   return ([m
+[31m-    <div className="chart-bar-all" style={{ width: "100%", height: "450px" }}>[m
+[32m+[m[32m    <div className="chart-bar-all" style={{ width: "100%" }}>[m
+       {/*<DateTimeComponent />*/}[m
+       {/*console.log('labels: '+props.labels.length.toString() + " data: " + props.data.length.toString())*/}[m
+       <Line[m

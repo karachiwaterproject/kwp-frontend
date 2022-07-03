@@ -29,6 +29,7 @@ import { Link } from "react-router-dom";
 import { CHANGE_NAV_ON_SCROLL } from "constrants";
 import { ChevronLeft } from "@material-ui/icons";
 import DateComponent from "./DateComponent";
+import { LineChart3 } from "./Charts/LineChart3";
 
 const useStyles = makeStyles(styles);
 
@@ -709,7 +710,7 @@ const Node = ({
                     <br />
                     {/* {occurrences.count.filter((data) => data !== null).length >
                     0 ? ( */}
-                    <LineChart2
+                    <LineChart3
                       labels={occurrences.time}
                       data={occurrences.count}
                       heading={`Number of Samples`}
