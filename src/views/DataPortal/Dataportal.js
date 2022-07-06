@@ -29,6 +29,8 @@ import { CHANGE_NAV_ON_SCROLL } from "constrants";
 import FrontParallax from "components/Parallax/FrontParallax";
 import { HOST } from "constrants";
 import axios from "axios";
+import Spinner from "Spinner";
+import { enableScroll } from "App";
 
 const Dataportal = ({ login, isAuthenticated, auth }) => {
   const classes = useStyles();
@@ -55,6 +57,15 @@ const Dataportal = ({ login, isAuthenticated, auth }) => {
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
+  const [loading, setLoading] = React.useState(true);
+  const [height, setHeight] = React.useState(100);
+  setTimeout(() => {
+    enableScroll();
+    setHeight(0);
+    setTimeout(() => {
+      setLoading(false);
+    }, 300);
+  }, 3000);
   if (isAuthenticated) {
     return <Redirect to="/dashboard" />;
   }
@@ -80,6 +91,8 @@ const Dataportal = ({ login, isAuthenticated, auth }) => {
         }}
         // {...rest}
       />
+      {loading && <Spinner _height={`${height}vh`} />}
+
       <FrontParallax
         image={require("assets/img/data.webp").default}
         head="Dashboard"

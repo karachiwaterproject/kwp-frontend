@@ -46,3 +46,5 @@ export const projects = [
   },
 ];
 // console.log(process.env.HOST);
+
+export const triggerLoader = () => {};

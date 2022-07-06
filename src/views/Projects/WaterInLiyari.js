@@ -15,13 +15,23 @@ import { OnGoingProjects } from "views/HomePage/OnGoingProjects/OnGoingProjects"
 import { projects } from "constrants";
 import { CHANGE_NAV_ON_SCROLL } from "constrants";
 import FrontParallax from "components/Parallax/FrontParallax";
+import { enableScroll } from "App";
+import Spinner from "Spinner";
 
 const useStyles = makeStyles(styles);
 
 const WaterInLiyari = (props) => {
   const classes = useStyles();
   const { ...rest } = props;
-
+  const [loading, setLoading] = React.useState(true);
+  const [height, setHeight] = React.useState(100);
+  setTimeout(() => {
+    enableScroll();
+    setHeight(0);
+    setTimeout(() => {
+      setLoading(false);
+    }, 300);
+  }, 3000);
   return (
     <div>
       <Header
@@ -34,6 +44,8 @@ const WaterInLiyari = (props) => {
         }}
         {...rest}
       />
+      {loading && <Spinner _height={`${height}vh`} />}
+
       <FrontParallax
         image={require("assets/img/project/project4.webp").default}
         style={{ height: 400 }}

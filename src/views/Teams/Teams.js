@@ -26,6 +26,8 @@ import {
 import Footer from "components/Footer/Footer";
 import { CHANGE_NAV_ON_SCROLL } from "constrants";
 import FrontParallax from "components/Parallax/FrontParallax";
+import Spinner from "Spinner";
+import { enableScroll } from "App";
 
 const useStyles = makeStyles(styles);
 const teams = "./../../assets/img/team/";
@@ -296,6 +298,16 @@ const aluminiMembers = members.filter((member) => member.status === false);
 const Teams = (props) => {
   const classes = useStyles();
 
+  const [loading, setLoading] = React.useState(true);
+  const [height, setHeight] = React.useState(100);
+  setTimeout(() => {
+    enableScroll();
+    setHeight(0);
+    setTimeout(() => {
+      setLoading(false);
+    }, 300);
+  }, 3000);
+
   const { ...rest } = props;
   return (
     <div>
@@ -309,6 +321,8 @@ const Teams = (props) => {
         }}
         {...rest}
       />
+      {loading && <Spinner _height={`${height}vh`} />}
+
       <FrontParallax
         image={require("assets/img/team-banner.webp").default}
         head="Our Team"

@@ -23,12 +23,16 @@ import CardHeader from "@material-ui/core/CardHeader";
 import CardContent from "@material-ui/core/CardContent";
 import ReactCardCarousel from "react-card-carousel";
 import HomeParallax from "components/Parallax/HomeParallax";
+import { triggerLoader } from "constrants";
+import Spinner from "Spinner";
+import { enableScroll } from "App";
 
 const useStyles = makeStyles(styles);
 
 const HomePage = (props) => {
   const classes = useStyles();
   const { ...rest } = props;
+  triggerLoader();
 
   const testimonials = [
     { name: "user 1", comment: "hello world", date: "May 27, 2022" },
@@ -57,6 +61,16 @@ const HomePage = (props) => {
     },
   };
 
+  const [loading, setLoading] = React.useState(true);
+  const [height, setHeight] = React.useState(100);
+  setTimeout(() => {
+    enableScroll();
+    setHeight(0);
+    setTimeout(() => {
+      setLoading(false);
+    }, 300);
+  }, 3000);
+
   return (
     <div>
       <Header
@@ -69,6 +83,8 @@ const HomePage = (props) => {
         }}
         {...rest}
       />
+      {loading && <Spinner _height={`${height}vh`} />}
+
       <HomeParallax image={require("assets/img/bg4.webp").default}>
         {/* <div className={classes.container}>
           <GridContainer>

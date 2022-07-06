@@ -10,12 +10,23 @@ import GridContainer from "components/Grid/GridContainer";
 import SocialTabs from "./Tabs";
 import Footer from "components/Footer/Footer";
 import FrontParallax from "components/Parallax/FrontParallax";
+import Spinner from "Spinner";
+import { enableScroll } from "App";
 
 const useStyles = makeStyles(styles);
 
 const Blogs = (props) => {
   const classes = useStyles();
 
+  const [loading, setLoading] = React.useState(true);
+  const [height, setHeight] = React.useState(100);
+  setTimeout(() => {
+    enableScroll();
+    setHeight(0);
+    setTimeout(() => {
+      setLoading(false);
+    }, 300);
+  }, 3000);
   const { ...rest } = props;
 
   return (
@@ -30,6 +41,8 @@ const Blogs = (props) => {
         }}
         {...rest}
       />
+      {loading && <Spinner _height={`${height}vh`} />}
+
       <FrontParallax
         image={require("assets/img/blogging.webp").default}
         head="Blogs"

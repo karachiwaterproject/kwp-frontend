@@ -59,34 +59,21 @@ var wheelOpt = supportsPassive ? { passive: false } : false;
 var wheelEvent =
   "onwheel" in document.createElement("div") ? "wheel" : "mousewheel";
 
-function disableScroll() {
+export const disableScroll = () => {
   window.addEventListener("DOMMouseScroll", preventDefault, false); // older FF
   window.addEventListener(wheelEvent, preventDefault, wheelOpt); // modern desktop
   window.addEventListener("touchmove", preventDefault, wheelOpt); // mobile
   window.addEventListener("keydown", preventDefaultForScrollKeys, false);
-}
+};
 
-function enableScroll() {
+export const enableScroll = () => {
   window.removeEventListener("DOMMouseScroll", preventDefault, false);
   window.removeEventListener(wheelEvent, preventDefault, wheelOpt);
   window.removeEventListener("touchmove", preventDefault, wheelOpt);
   window.removeEventListener("keydown", preventDefaultForScrollKeys, false);
-}
+};
 
 const App = () => {
-  const [loading, setLoading] = React.useState(true);
-  const [height, setHeight] = React.useState(100);
-
-  const triggerLoaderHide = () => {};
-
-  setTimeout(() => {
-    enableScroll();
-    setHeight(0);
-    setTimeout(() => {
-      setLoading(false);
-    }, 300);
-  }, 5000);
-
   React.useEffect(() => {
     disableScroll();
     if (localStorage.getItem("username")) {
@@ -94,15 +81,11 @@ const App = () => {
     } else {
       console.log("username error ! ");
     }
-    // setTimeout(() => {
-    //   setLoading(false);
-    // }, 2000);
   }, [localStorage.getItem("username")]);
   return (
     <Provider store={store}>
       <Router history={hist}>
         <ScrollToTop />
-        {loading && <Spinner _height={`${height}vh`} />}
         <Switch>
           <Route path="/" component={HomePage} exact />
           <Route path="/team" component={Teams} exact />
