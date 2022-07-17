@@ -30,7 +30,7 @@ const useStyles = makeStyles(styles);
 const Nodes = ({
   getNodes,
   node: { nodes, loading },
-  auth: { allowedNodes, admin, isStaff },
+  auth: { allowedNodes, admin, isStaff, role },
 }) => {
   const classes = useStyles();
 
@@ -75,91 +75,17 @@ const Nodes = ({
                 dashboardLinks.filter(({ page }) => page === currentPage)[0]
               }
               dashboardLinks={
-                !admin && !isStaff
+                role === "user"
                   ? dashboardLinks.filter(
                       ({ page }) => page !== "Readings" && page !== "Dashboard"
                     )
-                  : isStaff && !admin
+                  : role === "researcher" || role === "student_researcher"
                   ? dashboardLinks.filter(({ page }) => page !== "Dashboard")
                   : dashboardLinks.filter(({ page }) => page)
               }
             />
             <GridContainer>
-              {!loading && nodes && allowedNodes[0] !== "all" && !isStaff && (
-                <GridContainer style={{ width: "100%" }}>
-                  {!loading && nodes ? (
-                    nodes
-                      .filter((node) => allowedNodes.includes(node.slug))
-                      .map(({ name, total_flow, count, status, slug, si }) => {
-                        return (
-                          <GridItem key={name} xs={12} sm={12} lg={12}>
-                            <Link to={`/homenode/${slug}`}>
-                              <Card
-                                style={{
-                                  borderLeft: "5px solid",
-                                  borderColor:
-                                    status === "active"
-                                      ? "#1CC88A"
-                                      : status === "inactive"
-                                      ? "#E33775"
-                                      : "#F6C23E",
-                                }}
-                              >
-                                <CardContent>
-                                  <Typography
-                                    color="primary"
-                                    style={{
-                                      textTransform: "uppercase",
-                                      fontSize: "13px",
-                                      fontWeight: "bold",
-                                      color:
-                                        status === "active"
-                                          ? "#1CC88A"
-                                          : status === "inactive"
-                                          ? "#E33775"
-                                          : "#F6C23E",
-                                    }}
-                                  >
-                                    {name}
-                                  </Typography>
-                                  <Typography
-                                    style={{ textTransform: "uppercase" }}
-                                  >
-                                    <span style={{ fontWeight: "bold" }}>
-                                      Total flow (L):
-                                    </span>{" "}
-                                    {total_flow}
-                                  </Typography>
-                                  <Typography
-                                    style={{ textTransform: "uppercase" }}
-                                  >
-                                    <span style={{ fontWeight: "bold" }}>
-                                      Data points collected:
-                                    </span>{" "}
-                                    {count}
-                                  </Typography>
-                                  <Typography
-                                    style={{ textTransform: "uppercase" }}
-                                  >
-                                    <span style={{ fontWeight: "bold" }}>
-                                      Status:
-                                    </span>{" "}
-                                    {status}
-                                  </Typography>
-                                </CardContent>
-                              </Card>
-                            </Link>
-                          </GridItem>
-                        );
-                      })
-                  ) : (
-                    <>Loading...</>
-                  )}
-                </GridContainer>
-              )}
-            </GridContainer>
-            <GridContainer>
-              {!loading && nodes && allowedNodes[0] !== "all" && isStaff && (
+              {!loading && nodes && role === "student_researcher" && (
                 <GridContainer style={{ width: "100%" }}>
                   {!loading && nodes ? (
                     nodes
@@ -233,30 +159,34 @@ const Nodes = ({
               )}
             </GridContainer>
             <GridContainer>
-              {!loading && nodes && allowedNodes[0] === "all" && admin && (
-                <GridItem>
-                  <h4 style={{ fontWeight: "bolder" }}>Installed Nodes</h4>
-                  <hr />
-                  <GridContainer>
-                    {!loading && nodes ? (
-                      nodes
-                        .filter(
-                          (node) =>
-                            !node.name.includes("test") &&
-                            !node.name.includes("TEST") &&
-                            !node.name.includes("Test") &&
-                            node.name !== "LAB TESTBENCH 01" &&
-                            !node.name.includes("AR_TEST")
-                        )
-                        .map(
-                          ({ name, total_flow, count, status, slug, si }) => {
-                            return (
-                              <GridItem key={name} xs={12} sm={12} lg={4}>
-                                <Link to={`/node/${slug}`}>
-                                  <Card
+              {!loading && nodes && role === "user" && (
+                <GridContainer style={{ width: "100%" }}>
+                  {!loading && nodes ? (
+                    nodes
+                      .filter((node) => allowedNodes.includes(node.slug))
+                      .map(({ name, total_flow, count, status, slug, si }) => {
+                        return (
+                          <GridItem key={name} xs={12} sm={12} lg={12}>
+                            <Link to={`/homenode/${slug}`}>
+                              <Card
+                                style={{
+                                  borderLeft: "5px solid",
+                                  borderColor:
+                                    status === "active"
+                                      ? "#1CC88A"
+                                      : status === "inactive"
+                                      ? "#E33775"
+                                      : "#F6C23E",
+                                }}
+                              >
+                                <CardContent>
+                                  <Typography
+                                    color="primary"
                                     style={{
-                                      borderLeft: "5px solid",
-                                      borderColor:
+                                      textTransform: "uppercase",
+                                      fontSize: "13px",
+                                      fontWeight: "bold",
+                                      color:
                                         status === "active"
                                           ? "#1CC88A"
                                           : status === "inactive"
@@ -264,147 +194,228 @@ const Nodes = ({
                                           : "#F6C23E",
                                     }}
                                   >
-                                    <CardContent>
-                                      <Typography
-                                        color="primary"
-                                        style={{
-                                          textTransform: "uppercase",
-                                          fontSize: "13px",
-                                          fontWeight: "bold",
-                                          color:
-                                            status === "active"
-                                              ? "#1CC88A"
-                                              : status === "inactive"
-                                              ? "#E33775"
-                                              : "#F6C23E",
-                                        }}
-                                      >
-                                        {name}
-                                      </Typography>
-                                      <Typography
-                                        style={{ textTransform: "uppercase" }}
-                                      >
-                                        <span style={{ fontWeight: "bold" }}>
-                                          Total flow (L):
-                                        </span>{" "}
-                                        {total_flow}
-                                      </Typography>
-                                      <Typography
-                                        style={{ textTransform: "uppercase" }}
-                                      >
-                                        <span style={{ fontWeight: "bold" }}>
-                                          Data points collected:
-                                        </span>{" "}
-                                        {count}
-                                      </Typography>
-                                      <Typography
-                                        style={{ textTransform: "uppercase" }}
-                                      >
-                                        <span style={{ fontWeight: "bold" }}>
-                                          Status:
-                                        </span>{" "}
-                                        {status}
-                                      </Typography>
-                                    </CardContent>
-                                  </Card>
-                                </Link>
-                              </GridItem>
-                            );
-                          }
-                        )
-                    ) : (
-                      <>Loading...</>
-                    )}
-                  </GridContainer>
-                </GridItem>
+                                    {name}
+                                  </Typography>
+                                  <Typography
+                                    style={{ textTransform: "uppercase" }}
+                                  >
+                                    <span style={{ fontWeight: "bold" }}>
+                                      Total flow (L):
+                                    </span>{" "}
+                                    {total_flow}
+                                  </Typography>
+                                  <Typography
+                                    style={{ textTransform: "uppercase" }}
+                                  >
+                                    <span style={{ fontWeight: "bold" }}>
+                                      Data points collected:
+                                    </span>{" "}
+                                    {count}
+                                  </Typography>
+                                  <Typography
+                                    style={{ textTransform: "uppercase" }}
+                                  >
+                                    <span style={{ fontWeight: "bold" }}>
+                                      Status:
+                                    </span>{" "}
+                                    {status}
+                                  </Typography>
+                                </CardContent>
+                              </Card>
+                            </Link>
+                          </GridItem>
+                        );
+                      })
+                  ) : (
+                    <>Loading...</>
+                  )}
+                </GridContainer>
               )}
             </GridContainer>
             <GridContainer>
-              {!loading && nodes && allowedNodes[0] === "all" && (
-                <GridItem>
-                  <h4 style={{ fontWeight: "bolder" }}>Test Nodes</h4>
-                  <hr />
-                  <GridContainer>
-                    {!loading && nodes ? (
-                      nodes
-                        .filter(
-                          (node) =>
-                            node.name.includes("test") ||
-                            node.name.includes("TEST") ||
-                            node.name.includes("Test") ||
-                            node.name === "LAB TESTBENCH 01" ||
-                            node.name.includes("AR_TEST")
-                        )
-                        .map(
-                          ({ name, total_flow, count, status, slug, key }) => {
-                            return (
-                              <GridItem key={name} xs={12} sm={12} lg={4}>
-                                <Link to={`/node/${slug}`}>
-                                  <Card
-                                    style={{
-                                      borderLeft: "5px solid",
-                                      borderColor:
-                                        status === "active"
-                                          ? "#1CC88A"
-                                          : status === "inactive"
-                                          ? "#E33775"
-                                          : "#F6C23E",
-                                    }}
-                                  >
-                                    <CardContent>
-                                      <Typography
-                                        color="primary"
-                                        style={{
-                                          textTransform: "uppercase",
-                                          fontSize: "13px",
-                                          fontWeight: "bold",
-                                          color:
-                                            status === "active"
-                                              ? "#1CC88A"
-                                              : status === "inactive"
-                                              ? "#E33775"
-                                              : "#F6C23E",
-                                        }}
-                                      >
-                                        {name}
-                                      </Typography>
-                                      <Typography
-                                        style={{ textTransform: "uppercase" }}
-                                      >
-                                        <span style={{ fontWeight: "bold" }}>
-                                          Total flow (L):
-                                        </span>{" "}
-                                        {total_flow}
-                                      </Typography>
-                                      <Typography
-                                        style={{ textTransform: "uppercase" }}
-                                      >
-                                        <span style={{ fontWeight: "bold" }}>
-                                          Data points collected:
-                                        </span>{" "}
-                                        {count}
-                                      </Typography>
-                                      <Typography
-                                        style={{ textTransform: "uppercase" }}
-                                      >
-                                        <span style={{ fontWeight: "bold" }}>
-                                          Status:
-                                        </span>{" "}
-                                        {status}
-                                      </Typography>
-                                    </CardContent>
-                                  </Card>
-                                </Link>
-                              </GridItem>
-                            );
-                          }
-                        )
-                    ) : (
-                      <>Loading...</>
-                    )}
-                  </GridContainer>
-                </GridItem>
-              )}
+              {!loading &&
+                nodes &&
+                (role === "admin" || role === "researcher") && (
+                  <GridItem>
+                    <h4 style={{ fontWeight: "bolder" }}>Installed Nodes</h4>
+                    <hr />
+                    <GridContainer>
+                      {!loading && nodes ? (
+                        nodes
+                          .filter(
+                            (node) =>
+                              !node.name.includes("test") &&
+                              !node.name.includes("TEST") &&
+                              !node.name.includes("Test") &&
+                              node.name !== "LAB TESTBENCH 01" &&
+                              !node.name.includes("AR_TEST")
+                          )
+                          .map(
+                            ({ name, total_flow, count, status, slug, si }) => {
+                              return (
+                                <GridItem key={name} xs={12} sm={12} lg={4}>
+                                  <Link to={`/node/${slug}`}>
+                                    <Card
+                                      style={{
+                                        borderLeft: "5px solid",
+                                        borderColor:
+                                          status === "active"
+                                            ? "#1CC88A"
+                                            : status === "inactive"
+                                            ? "#E33775"
+                                            : "#F6C23E",
+                                      }}
+                                    >
+                                      <CardContent>
+                                        <Typography
+                                          color="primary"
+                                          style={{
+                                            textTransform: "uppercase",
+                                            fontSize: "13px",
+                                            fontWeight: "bold",
+                                            color:
+                                              status === "active"
+                                                ? "#1CC88A"
+                                                : status === "inactive"
+                                                ? "#E33775"
+                                                : "#F6C23E",
+                                          }}
+                                        >
+                                          {name}
+                                        </Typography>
+                                        <Typography
+                                          style={{ textTransform: "uppercase" }}
+                                        >
+                                          <span style={{ fontWeight: "bold" }}>
+                                            Total flow (L):
+                                          </span>{" "}
+                                          {total_flow}
+                                        </Typography>
+                                        <Typography
+                                          style={{ textTransform: "uppercase" }}
+                                        >
+                                          <span style={{ fontWeight: "bold" }}>
+                                            Data points collected:
+                                          </span>{" "}
+                                          {count}
+                                        </Typography>
+                                        <Typography
+                                          style={{ textTransform: "uppercase" }}
+                                        >
+                                          <span style={{ fontWeight: "bold" }}>
+                                            Status:
+                                          </span>{" "}
+                                          {status}
+                                        </Typography>
+                                      </CardContent>
+                                    </Card>
+                                  </Link>
+                                </GridItem>
+                              );
+                            }
+                          )
+                      ) : (
+                        <>Loading...</>
+                      )}
+                    </GridContainer>
+                  </GridItem>
+                )}
+            </GridContainer>
+            <GridContainer>
+              {!loading &&
+                nodes &&
+                (role === "admin" || role === "researcher") && (
+                  <GridItem>
+                    <h4 style={{ fontWeight: "bolder" }}>Test Nodes</h4>
+                    <hr />
+                    <GridContainer>
+                      {!loading && nodes ? (
+                        nodes
+                          .filter(
+                            (node) =>
+                              node.name.includes("test") ||
+                              node.name.includes("TEST") ||
+                              node.name.includes("Test") ||
+                              node.name === "LAB TESTBENCH 01" ||
+                              node.name.includes("AR_TEST")
+                          )
+                          .map(
+                            ({
+                              name,
+                              total_flow,
+                              count,
+                              status,
+                              slug,
+                              key,
+                            }) => {
+                              return (
+                                <GridItem key={name} xs={12} sm={12} lg={4}>
+                                  <Link to={`/node/${slug}`}>
+                                    <Card
+                                      style={{
+                                        borderLeft: "5px solid",
+                                        borderColor:
+                                          status === "active"
+                                            ? "#1CC88A"
+                                            : status === "inactive"
+                                            ? "#E33775"
+                                            : "#F6C23E",
+                                      }}
+                                    >
+                                      <CardContent>
+                                        <Typography
+                                          color="primary"
+                                          style={{
+                                            textTransform: "uppercase",
+                                            fontSize: "13px",
+                                            fontWeight: "bold",
+                                            color:
+                                              status === "active"
+                                                ? "#1CC88A"
+                                                : status === "inactive"
+                                                ? "#E33775"
+                                                : "#F6C23E",
+                                          }}
+                                        >
+                                          {name}
+                                        </Typography>
+                                        <Typography
+                                          style={{ textTransform: "uppercase" }}
+                                        >
+                                          <span style={{ fontWeight: "bold" }}>
+                                            Total flow (L):
+                                          </span>{" "}
+                                          {total_flow}
+                                        </Typography>
+                                        <Typography
+                                          style={{ textTransform: "uppercase" }}
+                                        >
+                                          <span style={{ fontWeight: "bold" }}>
+                                            Data points collected:
+                                          </span>{" "}
+                                          {count}
+                                        </Typography>
+                                        <Typography
+                                          style={{ textTransform: "uppercase" }}
+                                        >
+                                          <span style={{ fontWeight: "bold" }}>
+                                            Status:
+                                          </span>{" "}
+                                          {status}
+                                        </Typography>
+                                      </CardContent>
+                                    </Card>
+                                  </Link>
+                                </GridItem>
+                              );
+                            }
+                          )
+                      ) : (
+                        <>Loading...</>
+                      )}
+                    </GridContainer>
+                  </GridItem>
+                )}
             </GridContainer>
           </GridContainer>
         </div>

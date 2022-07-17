@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Redirect, Route } from "react-router-dom";
 
-const AdminRoute = ({
+const ResearcherRoute = ({
   component: Component,
   auth: {
     isAuthenticated,
@@ -19,7 +19,9 @@ const AdminRoute = ({
     render={(props) =>
       !isAuthenticated && !loading ? (
         <Redirect to="/nodes" />
-      ) : role === "admin" ? (
+      ) : role === "student_researcher" ||
+        role === "researcher" ||
+        role === "admin" ? (
         <Component {...props} />
       ) : (
         <Redirect to="/nodes" />
@@ -27,7 +29,7 @@ const AdminRoute = ({
     }
   />
 );
-AdminRoute.propTypes = {
+ResearcherRoute.propTypes = {
   auth: PropTypes.object.isRequired,
 };
 
@@ -35,4 +37,4 @@ const mapStateToProps = (state) => ({
   auth: state.auth,
 });
 
-export default connect(mapStateToProps, {})(AdminRoute);
+export default connect(mapStateToProps, {})(ResearcherRoute);

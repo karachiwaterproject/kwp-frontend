@@ -26,6 +26,7 @@ import AdminRoute from "routing/AdminRoute";
 import Blogs from "views/Blogs/Blogs";
 import AdminStaffRoute from "routing/AdminStaffRoute";
 import Spinner from "Spinner";
+import ResearcherRoute from "routing/ResearcherRoute";
 
 var keys = { 37: 1, 38: 1, 39: 1, 40: 1 };
 
@@ -109,11 +110,16 @@ const App = () => {
           <Route path="/blogs" component={Blogs} exact />
 
           <AdminRoute path="/dashboard" component={Dashboard} exact />
+
           <PrivateRoute path="/nodes" component={Nodes} exact />
-          <AdminStaffRoute path="/readings" component={Readings} exact />
+
+          <ResearcherRoute path="/readings" component={Readings} exact />
+
           <PrivateRoute path="/readings/:slug" component={Readings} exact />
-          <AdminStaffRoute path="/node/:slug" component={Node} exact />
-          <PrivateRoute
+
+          <ResearcherRoute path="/node/:slug" component={Node} exact />
+
+          <ResearcherRoute
             path="/node/:slug/:time1/:time2"
             component={NodeWithTime}
             exact

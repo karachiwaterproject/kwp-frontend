@@ -40,7 +40,7 @@ const Dashboard = ({
   getNodes,
   node: { nodes, loading },
   auth: {
-    user: { nodes_access },
+    user: { nodes_access, role },
   },
 }) => {
   const history = useHistory();
@@ -117,7 +117,15 @@ const Dashboard = ({
               currentPage={
                 dashboardLinks.filter(({ page }) => page === currentPage)[0]
               }
-              dashboardLinks={dashboardLinks.filter(({ page }) => page)}
+              dashboardLinks={
+                role === "user"
+                  ? dashboardLinks.filter(
+                      ({ page }) => page !== "Readings" && page !== "Dashboard"
+                    )
+                  : role === "researcher" || role === "student_researcher"
+                  ? dashboardLinks.filter(({ page }) => page !== "Dashboard")
+                  : dashboardLinks.filter(({ page }) => page)
+              }
             />
             <GridContainer>
               <GridItem style={{ height: "500px", padding: 0 }}>

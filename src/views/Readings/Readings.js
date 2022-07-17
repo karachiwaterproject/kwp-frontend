@@ -39,7 +39,7 @@ const Readings = ({
   node,
   getNodes,
   getReadings,
-  auth: { allowedNodes },
+  auth: { allowedNodes, role },
 }) => {
   const classes = useStyles();
 
@@ -92,7 +92,15 @@ const Readings = ({
               currentPage={
                 dashboardLinks.filter(({ page }) => page === currentPage)[0]
               }
-              dashboardLinks={dashboardLinks.filter(({ page }) => page)}
+              dashboardLinks={
+                role === "user"
+                  ? dashboardLinks.filter(
+                      ({ page }) => page !== "Readings" && page !== "Dashboard"
+                    )
+                  : role === "researcher" || role === "student_researcher"
+                  ? dashboardLinks.filter(({ page }) => page !== "Dashboard")
+                  : dashboardLinks.filter(({ page }) => page)
+              }
             />
             <GridContainer style={{ width: "100%", margin: 0, padding: 0 }}>
               {!node.loading && node.nodes && (
@@ -127,14 +135,19 @@ const Readings = ({
                         value={nodeToFetch}
                         onChange={(e) => setNodeToFetch(e.target.value)}
                       >
-                        {node.nodes &&
-                          node.nodes
-                            .filter((node) =>
-                              allowedNodes[0] !== "all"
-                                ? allowedNodes.includes(node.slug)
-                                : true
-                            )
-                            .map((node) => (
+                        {node.nodes && role === "student_researcher"
+                          ? node.nodes
+                              .filter((node) =>
+                                allowedNodes[0] !== "all"
+                                  ? allowedNodes.includes(node.slug)
+                                  : true
+                              )
+                              .map((node) => (
+                                <MenuItem value={node.slug} key={node.slug}>
+                                  {node.name}
+                                </MenuItem>
+                              ))
+                          : node.nodes.map((node) => (
                               <MenuItem value={node.slug} key={node.slug}>
                                 {node.name}
                               </MenuItem>

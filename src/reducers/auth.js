@@ -29,6 +29,7 @@ export default function auth(state = initialState, action) {
         admin: payload.data.nodes_access[0] === "all",
         allowedNodes: payload.data.nodes_access,
         isStaff: payload.data.user_info.is_staff,
+        role: payload.data.role,
       };
     case REGISTER_SUCCESS:
     case LOGIN_SUCCESS:
