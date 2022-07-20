@@ -76,7 +76,6 @@ export const enableScroll = () => {
 
 const App = () => {
   React.useEffect(() => {
-    disableScroll();
     if (localStorage.getItem("username")) {
       store.dispatch(loadUser());
     } else {
