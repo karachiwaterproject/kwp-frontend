@@ -143,7 +143,7 @@ function HeaderLinks({ auth: { isAuthenticated, loading }, logout }) {
             ]}
           />
         </ListItem>
-        <ListItem className={classes.listItem}>
+        {/* <ListItem className={classes.listItem}>
           <NavLink
             to="/blogs"
             className={classes.navLink}
@@ -154,7 +154,7 @@ function HeaderLinks({ auth: { isAuthenticated, loading }, logout }) {
               Blogs {`&`} News
             </Typography>
           </NavLink>
-        </ListItem>
+        </ListItem> */}
 
         {!loading && <>{isAuthenticated ? authLinks : guestLinks}</>}
 
