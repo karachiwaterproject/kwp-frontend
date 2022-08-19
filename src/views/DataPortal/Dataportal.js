@@ -61,11 +61,11 @@ const Dataportal = ({ login, isAuthenticated, auth }) => {
   const [height, setHeight] = React.useState(100);
   setTimeout(() => {
     enableScroll();
-    setHeight(0);
-    setTimeout(() => {
-      setLoading(false);
-    }, 300);
-  }, 1000);
+    // setHeight(0);
+    // setTimeout(() => {
+    //   setLoading(false);
+    // }, 300);
+  }, 10);
   if (isAuthenticated) {
     return <Redirect to="/dashboard" />;
   }
@@ -91,7 +91,7 @@ const Dataportal = ({ login, isAuthenticated, auth }) => {
         }}
         // {...rest}
       />
-      {loading && <Spinner _height={`${height}vh`} />}
+      {/* {loading && <Spinner _height={`${height}vh`} />} */}
 
       <FrontParallax
         image={require("assets/img/data.webp").default}
