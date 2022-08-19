@@ -23,32 +23,17 @@ import { Link } from "react-router-dom";
 import DashboardHeader from "components/DashboardHeader/DashboardHeader";
 import { dashboardLinks } from "constrants";
 
-import { MapContainer, TileLayer, useMap, Marker, Popup } from "react-leaflet";
-
-import "leaflet/dist/leaflet.css";
-
 // import { Wrapper, Status } from "@googlemaps/react-wrapper";
 import { MAPS_KEY } from "constrants";
 // import Map from "./Map/Map";
 
-// import { Map, InfoWindow, GoogleApiWrapper, Marker } from "google-maps-react";
+import { Map, InfoWindow, GoogleApiWrapper, Marker } from "google-maps-react";
 import { CHANGE_NAV_ON_SCROLL } from "constrants";
 
 import { useHistory } from "react-router-dom";
 import Spinner from "Spinner";
 
-import L from "leaflet";
-import icon from "leaflet/dist/images/marker-icon.png";
-import iconShadow from "leaflet/dist/images/marker-shadow.png";
-
 const useStyles = makeStyles(styles);
-
-let DefaultIcon = L.icon({
-  iconUrl: icon,
-  shadowUrl: iconShadow,
-});
-
-L.Marker.prototype.options.icon = DefaultIcon;
 
 const Dashboard = ({
   google,
@@ -97,13 +82,6 @@ const Dashboard = ({
       setShowingInfoWindow(false);
     }
   };
-
-  const [center, setCenter] = React.useState({
-    lat: 13.084622,
-    lng: 80.248357,
-  });
-  const ZOOM_LEVEL = 9;
-  const mapRef = React.useRef();
 
   return (
     <div>
@@ -155,86 +133,80 @@ const Dashboard = ({
                 <Map />
               </Wrapper> */}
                 {!loading && nodes ? (
-                  <MapContainer
-                    center={[24.8607, 67.0011]}
-                    zoom={10}
-                    scrollWheelZoom={true}
+                  <Map
+                    google={google}
+                    zoom={15}
+                    // style={mapStyles}
+                    onClick={onMapClicked}
+                    initialCenter={{
+                      lat: 24.8607,
+                      lng: 67.0011,
+                    }}
+                    style={{ width: "100%", height: "100%" }}
                   >
-                    <TileLayer
-                      attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                      url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                    />
-                    {nodes
-                      .filter((node) => node.latitude && node.longitude)
-                      .map(
-                        ({
-                          latitude,
-                          longitude,
-                          name,
-                          total_flow,
-                          count,
-                          status,
-                          slug,
-                        }) => (
-                          <Marker position={[latitude, longitude]}>
-                            <Popup>
-                              <div>
-                                {/* <h1>{selectedPlace.name}</h1> */}
-                                <Typography
-                                  color="primary"
-                                  style={{
-                                    textTransform: "uppercase",
-                                    fontSize: "13px",
-                                    fontWeight: "bold",
-                                    color:
-                                      status === "active"
-                                        ? "#1CC88A"
-                                        : status === "inactive"
-                                        ? "#F6C23E"
-                                        : "#E33775",
-                                  }}
-                                >
-                                  {name}
-                                </Typography>
-                                <Typography
-                                  style={{ textTransform: "uppercase" }}
-                                >
-                                  <span style={{ fontWeight: "bold" }}>
-                                    Total flow (L):
-                                  </span>{" "}
-                                  {total_flow}
-                                </Typography>
-                                <Typography
-                                  style={{ textTransform: "uppercase" }}
-                                >
-                                  <span style={{ fontWeight: "bold" }}>
-                                    Data points collected:
-                                  </span>{" "}
-                                  {count}
-                                </Typography>
-                                <Typography
-                                  style={{ textTransform: "uppercase" }}
-                                >
-                                  <span style={{ fontWeight: "bold" }}>
-                                    Status:
-                                  </span>{" "}
-                                  {status}
-                                </Typography>
-                              </div>
-                            </Popup>
-                          </Marker>
-                          // <Marker
-                          //   key={slug}
-                          //   name={name}
-                          //   total_flow={total_flow}
-                          //   count={count}
-                          //   status={status}
-                          //   onClick={onMarkerClick}
-                          //   position={{ lat: latitude, lng: longitude }}
-                          // />
-                        )
-                      )}
-                  </MapContainer>
+                    {nodes.map(
+                      ({
+                        latitude,
+                        longitude,
+                        name,
+                        total_flow,
+                        count,
+                        status,
+                        slug,
+                      }) => (
+                        <Marker
+                          key={slug}
+                          name={name}
+                          total_flow={total_flow}
+                          count={count}
+                          status={status}
+                          onClick={onMarkerClick}
+                          position={{ lat: latitude, lng: longitude }}
+                        />
+                      )
+                    )}
+                    <InfoWindow
+                      marker={activeMarker}
+                      onClose={onInfoWindowClose}
+                      visible={showingInfoWindow}
+                    >
+                      <div>
+                        {/* <h1>{selectedPlace.name}</h1> */}
+                        <Typography
+                          color="primary"
+                          style={{
+                            textTransform: "uppercase",
+                            fontSize: "13px",
+                            fontWeight: "bold",
+                            color:
+                              status === "active"
+                                ? "#1CC88A"
+                                : status === "inactive"
+                                ? "#F6C23E"
+                                : "#E33775",
+                          }}
+                        >
+                          {selectedPlace.name}
+                        </Typography>
+                        <Typography style={{ textTransform: "uppercase" }}>
+                          <span style={{ fontWeight: "bold" }}>
+                            Total flow (L):
+                          </span>{" "}
+                          {selectedPlace.total_flow}
+                        </Typography>
+                        <Typography style={{ textTransform: "uppercase" }}>
+                          <span style={{ fontWeight: "bold" }}>
+                            Data points collected:
+                          </span>{" "}
+                          {selectedPlace.count}
+                        </Typography>
+                        <Typography style={{ textTransform: "uppercase" }}>
+                          <span style={{ fontWeight: "bold" }}>Status:</span>{" "}
+                          {selectedPlace.status}
+                        </Typography>
+                      </div>
+                    </InfoWindow>
+                  </Map>
                 ) : (
                   <Spinner />
                 )}
@@ -260,4 +232,8 @@ const mapStateToProps = (state) => ({
   auth: state.auth,
 });
 
-export default connect(mapStateToProps, { getNodes })(Dashboard);
+export default connect(mapStateToProps, { getNodes })(
+  GoogleApiWrapper({
+    apiKey: MAPS_KEY,
+  })(Dashboard)
+);
