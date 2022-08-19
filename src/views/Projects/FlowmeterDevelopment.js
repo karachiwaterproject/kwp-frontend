@@ -31,7 +31,7 @@ const FlowmeterDevelopment = (props) => {
     setTimeout(() => {
       setLoading(false);
     }, 300);
-  }, 3000);
+  }, 1000);
 
   return (
     <div>

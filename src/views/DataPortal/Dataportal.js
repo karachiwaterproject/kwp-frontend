@@ -65,7 +65,7 @@ const Dataportal = ({ login, isAuthenticated, auth }) => {
     setTimeout(() => {
       setLoading(false);
     }, 300);
-  }, 3000);
+  }, 1000);
   if (isAuthenticated) {
     return <Redirect to="/dashboard" />;
   }

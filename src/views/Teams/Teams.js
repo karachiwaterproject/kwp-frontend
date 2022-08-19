@@ -306,7 +306,7 @@ const Teams = (props) => {
     setTimeout(() => {
       setLoading(false);
     }, 300);
-  }, 3000);
+  }, 1000);
 
   const { ...rest } = props;
   return (
