@@ -45,6 +45,15 @@ export const projects = [
     url: "/projects/water-security/",
   },
 ];
+
+export const research = [
+  {
+    name: "Dawn News: Study highlights severe inequities in water access in Karachi",
+    image: require("assets/img/research1.webp").default,
+    url: "https://www.dawn.com/news/1703958",
+  },
+];
+
 // console.log(process.env.HOST);
 
 export const triggerLoader = () => {};

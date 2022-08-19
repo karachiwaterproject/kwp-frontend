@@ -10,12 +10,15 @@ import styles from "assets/jss/material-kit-react/views/homePage.js";
 import classNames from "classnames";
 import Footer from "components/Footer/Footer";
 import { OnGoingProjects } from "./OnGoingProjects/OnGoingProjects";
-import team from "./../../assets/img/team-banner.webp";
+
+// import team from "./../../assets/img/team-banner.webp";
+import team from "./../../assets/img/team.webp";
+
 import hu from "./../../assets/img/hu-logo.svg";
 import hec from "./../../assets/img/hec-logo.svg";
 import hashoo from "./../../assets/img/hashoo-logo.svg";
 import { Link } from "react-router-dom";
-import { projects } from "constrants";
+import { projects, research } from "constrants";
 import { CHANGE_NAV_ON_SCROLL } from "constrants";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import Card from "components/Card/Card";
@@ -255,31 +258,81 @@ const HomePage = (props) => {
           }}
         ></img>
       </GridContainer>
+
+      <Container>
+        <div className={classes.mainContainer2 + " main-container"}>
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <Typography
+            variant="h4"
+            className="h4"
+            style={{ borderLeft: "4px #3977C9 solid", paddingLeft: "10px" }}
+          >
+            Ongoing
+          </Typography>
+          <Typography
+            variant="h4"
+            style={{
+              color: "#3977C9",
+              fontWeight: "bold",
+              borderLeft: "4px #000 solid",
+              paddingLeft: "10px",
+            }}
+          >
+            Research
+          </Typography>
+          <GridContainer>
+            {research.map(({ name, image, url }) => (
+              <GridItem key={name} xs={12} sm={6} lg={4}>
+                <Link to={url}>
+                  <OnGoingProjects name={name} image={image} />
+                </Link>
+              </GridItem>
+            ))}
+          </GridContainer>
+          <br />
+          <br />
+        </div>
+      </Container>
+
       <div>
         <div
           style={{
             backgroundImage: `url(${team})`,
             width: "100%",
-            height: "350px",
+            height: "450px",
             backgroundSize: "cover",
-            justifyContent: "center",
-            alignItems: "center",
-            flexDirection: "column",
-            display: "flex",
+
             backgroundRepeat: "no-repeat",
+            backgroundPosition: "center",
           }}
         >
-          <Typography
-            variant="h4"
-            style={{ fontWeight: "900", color: "white" }}
+          <div
+            style={{
+              justifyContent: "center",
+              alignItems: "center",
+              display: "flex",
+              width: "100%",
+              flexDirection: "column",
+              height: "100%",
+              backgroundColor: "rgba(0,0,0,0.4)",
+            }}
           >
-            The Team
-          </Typography>
-          <Link to="/team">
-            <Button variant="outlined" className={classes.customButton}>
-              See all Members
-            </Button>
-          </Link>
+            <Typography
+              variant="h4"
+              style={{ fontWeight: "900", color: "white" }}
+            >
+              The Team
+            </Typography>
+            <Link to="/team">
+              <Button variant="outlined" className={classes.customButton}>
+                See all Members
+              </Button>
+            </Link>
+          </div>
         </div>
       </div>
       <Container>
