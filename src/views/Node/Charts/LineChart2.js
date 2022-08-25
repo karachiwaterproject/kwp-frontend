@@ -48,16 +48,17 @@ export const LineChart2 = (props) => {
             y: {
               min: props.ymin,
               max: props.ymax,
+              ticks: {
+                maxTicksLimit: 4.5,
+              },
             },
             x: {
               ticks: {
                 maxRotation: 0,
                 minRotation: 0,
+                maxTicksLimit: 2.5,
               },
             },
-          },
-          ticks: {
-            maxTicksLimit: 1.01,
           },
           legend: {
             labels: {

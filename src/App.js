@@ -27,6 +27,7 @@ import Blogs from "views/Blogs/Blogs";
 import AdminStaffRoute from "routing/AdminStaffRoute";
 import Spinner from "Spinner";
 import ResearcherRoute from "routing/ResearcherRoute";
+import Research from "views/Research/Research";
 
 var keys = { 37: 1, 38: 1, 39: 1, 40: 1 };
 
@@ -107,6 +108,7 @@ const App = () => {
           />
           <Route path="/login" component={Dataportal} exact />
           <Route path="/blogs" component={Blogs} exact />
+          <Route path="/research-outreach" component={Research} exact />
 
           <AdminRoute path="/dashboard" component={Dashboard} exact />
 

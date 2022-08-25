@@ -22,7 +22,7 @@ import { CHANGE_NAV_ON_SCROLL } from "constrants";
 import Footer from "components/Footer/Footer";
 import { getReadingsWithTime } from "actions/readings";
 import { LineChart2 as LineChart } from "./Charts/LineChart2";
-import { LineChart as LineChart2 } from "./Charts/LineChart";
+import { LineChart3 as LineChart2 } from "./Charts/LineChart3";
 import { getHourlyStats } from "actions/readings";
 import { BarChart } from "./Charts/BarChart";
 import { ChevronLeft } from "@material-ui/icons";
@@ -360,7 +360,7 @@ const HomeNode = ({
                 </ButtonGroup>
                 {showGraph && (
                   <>
-                    <LineChart2
+                    <LineChart
                       showTime={true}
                       labels={readingsData.time_sampled}
                       data={readingsData.flow_rate}

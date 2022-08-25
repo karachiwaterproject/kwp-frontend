@@ -27,6 +27,7 @@ import BookIcon from "@material-ui/icons/Book";
 import DashboardIcon from "@material-ui/icons/Dashboard";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 
+import ReceiptIcon from "@material-ui/icons/Receipt";
 const useStyles = makeStyles(styles);
 
 function HeaderLinks({ auth: { isAuthenticated, loading }, logout }) {
@@ -103,6 +104,19 @@ function HeaderLinks({ auth: { isAuthenticated, loading }, logout }) {
 
             <Typography variant="body2" style={{ marginLeft: 10 }}>
               Team
+            </Typography>
+          </NavLink>
+        </ListItem>
+        <ListItem className={classes.listItem}>
+          <NavLink
+            to="/research-outreach"
+            className={classes.navLink}
+            activeClassName={classes.activeLink + " active-link"}
+          >
+            <ReceiptIcon className={classes.socialIcons} />
+
+            <Typography variant="body2" style={{ marginLeft: 10 }}>
+              Research & Outreach
             </Typography>
           </NavLink>
         </ListItem>

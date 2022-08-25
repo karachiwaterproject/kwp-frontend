@@ -48,7 +48,9 @@ export const projects = [
 
 export const research = [
   {
-    name: "Dawn News: Study highlights severe inequities in water access in Karachi",
+    name: "Study highlights severe inequities in water access in Karachi",
+    description:
+      "KARACHI: Lyari’s water problem, and those of similar settlements across Karachi, cannot be resolved by only augmenting water supply as often stated in public discourse and water utility plans. Rather, institutional structures and policies are needed to ensure equitable access to existing water supply system, says a study recently published in an international journal.",
     image: require("assets/img/research1.webp").default,
     url: "https://www.dawn.com/news/1703958",
   },
