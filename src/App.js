@@ -4,7 +4,6 @@ import { createBrowserHistory } from "history";
 import { Router, Route, Switch, Redirect } from "react-router-dom";
 import Dataportal from "views/DataPortal/Dataportal";
 import FlowmeterDevelopment from "views/Projects/FlowmeterDevelopment";
-import WaterInLiyar from "views/Projects/WaterInLiyari";
 import WaterPricing from "views/Projects/WaterPricing";
 import HomePage from "views/HomePage/HomePage";
 import Teams from "views/Teams/Teams";
@@ -28,6 +27,9 @@ import AdminStaffRoute from "routing/AdminStaffRoute";
 import Spinner from "Spinner";
 import ResearcherRoute from "routing/ResearcherRoute";
 import Research from "views/Research/Research";
+import WaterJustice from "views/Projects/WaterJustice";
+import WaterDemand from "views/Projects/WaterDemand";
+import AlternateNetworks from "views/Projects/AlternateNetworks";
 
 var keys = { 37: 1, 38: 1, 39: 1, 40: 1 };
 
@@ -97,13 +99,20 @@ const App = () => {
             component={FlowmeterDevelopment}
           />
           <Route
-            path="/projects/water-security"
-            component={WaterInLiyar}
+            path="/projects/water-justice"
+            component={WaterJustice}
             exact
           />
           <Route
             path="/projects/toward-sustainable"
             component={WaterPricing}
+            exact
+          />
+          <Route path="/projects/water-demand" component={WaterDemand} exact />
+
+          <Route
+            path="/projects/alternate-networks"
+            component={AlternateNetworks}
             exact
           />
           <Route path="/login" component={Dataportal} exact />

@@ -128,7 +128,7 @@ const Research = (props) => {
                   autoHeight={false}
                   sourceType="profile"
                   screenName="karachi_water"
-                  options={{ height: 400 }}
+                  options={{ height: 600 }}
                 />
               </div>
             </GridItem>
@@ -173,7 +173,7 @@ const OnGoingProjects = ({ name, description, image }) => {
         style={{
           background: "white",
           boxShadow: "0 1rem 1.5rem 0.5rem  rgba(0,0,0,.15)",
-          height: "45%",
+          minHeight: "45%",
           display: "flex",
           borderRadius: "5px",
           alignItems: "center",
@@ -182,6 +182,7 @@ const OnGoingProjects = ({ name, description, image }) => {
           bottom: "20px",
           width: "90%",
           padding: "12px 20px",
+          opacity: 0.9,
         }}
       >
         <div>

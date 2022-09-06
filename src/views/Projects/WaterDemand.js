@@ -1,7 +1,6 @@
 import { Container, makeStyles, Typography } from "@material-ui/core";
 import GridContainer from "components/Grid/GridContainer";
 import { Link } from "react-router-dom";
-
 import Header from "components/Header/Header";
 import HeaderLinks from "components/Header/HeaderLinks";
 import React from "react";
@@ -11,8 +10,8 @@ import GridItem from "components/Grid/GridItem";
 import styles from "assets/jss/material-kit-react/views/dataPortal.js";
 import classNames from "classnames";
 import Footer from "components/Footer/Footer";
-import { OnGoingProjects } from "views/HomePage/OnGoingProjects/OnGoingProjects";
 import { projects } from "constrants";
+import { OnGoingProjects } from "views/HomePage/OnGoingProjects/OnGoingProjects";
 import { CHANGE_NAV_ON_SCROLL } from "constrants";
 import FrontParallax from "components/Parallax/FrontParallax";
 import { enableScroll } from "App";
@@ -20,7 +19,7 @@ import Spinner from "Spinner";
 
 const useStyles = makeStyles(styles);
 
-const WaterInLiyari = (props) => {
+const WaterDemand = ({ props }) => {
   const classes = useStyles();
   const { ...rest } = props;
   const [loading, setLoading] = React.useState(true);
@@ -45,25 +44,11 @@ const WaterInLiyari = (props) => {
         {...rest}
       />
       {loading && <Spinner _height={`${height}vh`} />}
-
       <FrontParallax
-        image={require("assets/img/project/project4.webp").default}
+        image={require("assets/img/project/project5.webp").default}
         style={{ height: 400 }}
-        head="Water In Lyari"
-      >
-        <div className={classes.container}>
-          <GridContainer>
-            <GridItem>
-              <div className={classes.brand + " brand"}>
-                <br />
-                <br />
-                <h2 className={classes.title}>Water In Lyari</h2>
-                <h3 className={classes.subtitle}></h3>
-              </div>
-            </GridItem>
-          </GridContainer>
-        </div>
-      </FrontParallax>
+        head="Water Demand"
+      ></FrontParallax>
       <Container>
         <div className={classNames(classes.main)}>
           <GridContainer className={classes.mainContainer2 + " main-container"}>
@@ -71,30 +56,23 @@ const WaterInLiyari = (props) => {
               variant="h4"
               style={{ fontWeight: "bold", marginBottom: 30 }}
             >
-              Water security through a political-ecological lens: A case study
-              of Lyari Township
+              Quantifying household water use and its determinants in low-income
+              water scarce households.
             </Typography>
             <Typography variant="body2">
-              In traditional water resource management, studies to estimate the
-              reliability of water supply tend to remain “apolitical”, i.e.,
-              there is little to no mention of power asymmetries that create
-              differential bargaining power in unequal societies.
-              <br />
-              <br />
-              Water security requires not only ensuring water availability, but
-              also ensuring citizens’ “access” to the water supply. In Karachi’s
-              context, the myopic focus on increasing water supplies often fails
-              to consider social inequalities that render large portions of the
-              population water insecure. This study assesses water scarcity
-              using a political-ecological lens, through a case study of Lyari,
-              a low-income and multiethnic township situated at the tail-end of
-              the city’s water supply infrastructure and suffering from acute
-              water scarcity. By employing a mixed-methods approach, we combine
-              household surveys (selected through purposive sampling),
-              interviews with relevant stakeholders, and participant
-              observations to investigate tangible and intangible factors that
-              influence the households’ ability to purchase, access, and consume
-              a safe and adequate volume of water for domestic purposes.
+              Water discourse in Karachi revolves around a theme of scarcity.
+              KWSB projects a demand of over 1200 million gallons a day (MGD)
+              for Karachi. With current water supply around 550 MGD, most of
+              Karachi's water problems are reduced to that of a "shortage" of
+              water. However, the KWSB projections of water demand are not based
+              on actual usage locally; instead, the projections are based on a
+              uniform and exaggerated assumed per capita demand that is not
+              representative of household usage in Karachi. In this study, we
+              conduct household surveys in the low income township of Lyari to
+              understand how and how much water households use for their daily
+              activities. A better understanding of actual water demands in the
+              city can help lead to better targeted water infrastructure
+              investments and policies.
             </Typography>
           </GridContainer>
           <div className={classes.mainContainer + " main-container"}>
@@ -133,4 +111,4 @@ const WaterInLiyari = (props) => {
   );
 };
 
-export default WaterInLiyari;
+export default WaterDemand;

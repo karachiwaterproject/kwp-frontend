@@ -259,7 +259,7 @@ const HomePage = (props) => {
         ></img>
       </GridContainer>
 
-      <Container>
+      {/* <Container>
         <div className={classes.mainContainer2 + " main-container"}>
           <br />
           <br />
@@ -296,7 +296,7 @@ const HomePage = (props) => {
           <br />
           <br />
         </div>
-      </Container>
+      </Container> */}
 
       <div>
         <div

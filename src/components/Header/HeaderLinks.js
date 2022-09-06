@@ -141,11 +141,11 @@ function HeaderLinks({ auth: { isAuthenticated, loading }, logout }) {
                 Smart Device Development
               </NavLink>,
               <NavLink
-                to="/projects/water-security"
+                to="/projects/water-justice"
                 className={classes.dropdownLink}
                 activeClassName={classes.activeDropdowLink}
               >
-                Water in Lyari
+                Water Justice
               </NavLink>,
               <NavLink
                 to="/projects/toward-sustainable/"
@@ -153,6 +153,20 @@ function HeaderLinks({ auth: { isAuthenticated, loading }, logout }) {
                 activeClassName={classes.activeDropdowLink}
               >
                 Water Pricing
+              </NavLink>,
+              <NavLink
+                to="/projects/water-demand/"
+                className={classes.dropdownLink}
+                activeClassName={classes.activeDropdowLink}
+              >
+                Water Demand
+              </NavLink>,
+              <NavLink
+                to="/projects/alternate-networks"
+                className={classes.dropdownLink}
+                activeClassName={classes.activeDropdowLink}
+              >
+                Alternate Networks
               </NavLink>,
             ]}
           />
