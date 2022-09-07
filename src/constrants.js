@@ -49,11 +49,11 @@ export const projects = [
     image: require("assets/img/project5.webp").default,
     url: "/projects/water-demand/",
   },
-  // {
-  //   name: "",
-  //   // image: require("assets/img/project5.webp").default,
-  //   url: "/projects/water-demand/",
-  // },
+  {
+    name: "Rapid urbanization in Karachi’s low income settlements has resulted in a growing ‘infrastructural deficit’ that challenges citizens’ access to water.",
+    image: require("assets/img/research/alternate.png").default,
+    url: "/projects/alternate-networks",
+  },
 ];
 
 export const research = [
