@@ -116,7 +116,7 @@ function HeaderLinks({ auth: { isAuthenticated, loading }, logout }) {
             <ReceiptIcon className={classes.socialIcons} />
 
             <Typography variant="body2" style={{ marginLeft: 10 }}>
-              Research & Outreach
+              Outreach
             </Typography>
           </NavLink>
         </ListItem>

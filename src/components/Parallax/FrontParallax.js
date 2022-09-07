@@ -33,7 +33,7 @@ const FrontParallax = ({ image, head }) => {
           position: "relative",
           color: "white",
           padding: "100px 80px",
-          backgroundColor: "rgba(0,0,0,.4)",
+          backgroundColor: "rgba(0,0,0,.5)",
           height: "100vh",
         }}
       >

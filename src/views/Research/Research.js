@@ -52,7 +52,7 @@ const Research = (props) => {
       {loading && <Spinner _height={`${height}vh`} />}
 
       <FrontParallax
-        image={require("assets/img/research.webp").default}
+        image={require("assets/img/panel-talk-team2.jpeg").default}
         head="Research & Outreach"
         // style={{ height: 430 }}
       >
@@ -92,13 +92,25 @@ const Research = (props) => {
               <GridContainer>
                 {research.map(({ name, image, description, url }) => (
                   <GridItem key={name} xs={12} sm={12} lg={12}>
-                    <a href={url} target="_blank" style={{ pointer: "cursor" }}>
+                    {url ? (
+                      <a
+                        href={url}
+                        target="_blank"
+                        style={{ pointer: "cursor" }}
+                      >
+                        <OnGoingProjects
+                          name={name}
+                          description={description}
+                          image={image}
+                        />
+                      </a>
+                    ) : (
                       <OnGoingProjects
                         name={name}
                         description={description}
                         image={image}
                       />
-                    </a>
+                    )}
                   </GridItem>
                 ))}
               </GridContainer>

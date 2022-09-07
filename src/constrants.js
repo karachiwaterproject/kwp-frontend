@@ -83,7 +83,6 @@ export const research = [
     description:
       "Several HU student researchers talked about the extensive research work they carried out to study the water challenges in Karachi. Our team includes students from social development and policy (SDP), electrical engineering (EE), computer engineering (CE), and communication and design (CND). It is a showcase of how interdisciplinary research work is carried out to address the water-related issues faced by residents of Karachi.",
     image: require("assets/img/research/panel-talk-2.webp").default,
-    url: "",
   },
   {
     name: "Solving out water crises through technology: challenges and opportinities.",
@@ -97,14 +96,12 @@ export const research = [
     description:
       "Water insecurity and social justice. The study focuses on Lyari as a multi-ethnic area and how water plays a significant role in the lives of its residents. Students from Habib University who are working on the study presents their perspective and learnings. Students and faculty from different schools attend the talk and gained knowledge about the study and its findings.",
     image: require("assets/img/research/panel-talk-liyari.webp").default,
-    url: "",
   },
   {
     name: "Linking Water (In)Security to Social Justice",
     description:
       "On March 17, 2022 KWP hosted a panel discussion featuring invited speakers discussing access to water from a social justice perspective. The invited speakers included Ms. Mahim Maher, Dr. Noman Ahmed, and Farhan Anwar. The panel discussion was moderated by Dr. Hassaan F. Khan. ",
     image: require("assets/img/research/mahim-nouman.webp").default,
-    url: "",
   },
 ];
 
