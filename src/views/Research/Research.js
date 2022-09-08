@@ -53,7 +53,7 @@ const Research = (props) => {
 
       <FrontParallax
         image={require("assets/img/panel-talk-team2.jpeg").default}
-        head="Research & Outreach"
+        head="Outreach"
         // style={{ height: 430 }}
       >
         {/* <div className={classes.container}>

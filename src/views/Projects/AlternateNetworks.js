@@ -45,7 +45,7 @@ const AlternateNetworks = ({ props }) => {
       />
       {loading && <Spinner _height={`${height}vh`} />}
       <FrontParallax
-        image={require("assets/img/project/project3.webp").default}
+        image={require("assets/img/alternate.webp").default}
         style={{ height: 400 }}
         head="Alternate Networks"
       ></FrontParallax>
