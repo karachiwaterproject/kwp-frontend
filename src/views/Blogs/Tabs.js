@@ -4,22 +4,15 @@ import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
-import PhoneIcon from "@material-ui/icons/Phone";
-import FavoriteIcon from "@material-ui/icons/Favorite";
-import PersonPinIcon from "@material-ui/icons/PersonPin";
-import HelpIcon from "@material-ui/icons/Help";
-import ShoppingBasket from "@material-ui/icons/ShoppingBasket";
-import ThumbDown from "@material-ui/icons/ThumbDown";
-import ThumbUp from "@material-ui/icons/ThumbUp";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 
-import FacebookIcon from "@material-ui/icons/Facebook";
-import TwitterIcon from "@material-ui/icons/Twitter";
-import InstagramIcon from "@material-ui/icons/Instagram";
-import YouTubeIcon from "@material-ui/icons/YouTube";
-
-import { TwitterTimelineEmbed } from "react-twitter-embed";
+import VideoLibraryIcon from "@material-ui/icons/VideoLibrary";
+import DescriptionIcon from "@material-ui/icons/Description";
+import { research } from "constrants";
+import GridItem from "components/Grid/GridItem";
+import GridContainer from "components/Grid/GridContainer";
+import { videos } from "constrants";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -82,77 +75,130 @@ export default function SocialTabs() {
           textColor="primary"
           aria-label="scrollable force tabs example"
         >
-          <Tab
-            label="Facebook Posts"
-            icon={<FacebookIcon />}
-            {...a11yProps(0)}
-          />
-          <Tab
-            label="Twitter Tweets"
-            icon={<TwitterIcon />}
-            {...a11yProps(1)}
-          />
-          <Tab
-            label="Instagram Reels"
-            icon={<InstagramIcon />}
-            {...a11yProps(2)}
-          />
-          <Tab
-            label="Youtube Videos"
-            icon={<YouTubeIcon />}
-            {...a11yProps(3)}
-          />
-          <Tab label="Blogs" icon={<ThumbUp />} {...a11yProps(6)} />
+          <Tab label="Articles" icon={<DescriptionIcon />} {...a11yProps(0)} />
+          <Tab label="Videos" icon={<VideoLibraryIcon />} {...a11yProps(1)} />
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>
-        <div className="twitterContainer">
-          <div
-            class="fb-page"
-            data-href="https://www.facebook.com/karachi.water.project/"
-            data-tabs="timeline"
-            data-small-header="false"
-            data-adapt-container-width="true"
-            data-hide-cover="false"
-            data-show-facepile="true"
-            data-width="500"
-          >
-            <blockquote
-              cite="https://www.facebook.com/karachi.water.project/"
-              class="fb-xfbml-parse-ignore"
-            >
-              <a href="https://www.facebook.com/karachi.water.project/">
-                Karachi Water Project
-              </a>
-            </blockquote>
-          </div>
-        </div>
+        <Typography
+          variant="h3"
+          style={{ fontWeight: "bold", marginBottom: "30px" }}
+        >
+          Articles
+        </Typography>
+        <hr style={{ width: "100%" }} />
+        <br />
+        <GridContainer>
+          {research.map(({ name, image, description, url }) => (
+            <GridItem key={name} xs={12} sm={12} lg={12}>
+              {url ? (
+                <a href={url} target="_blank" style={{ pointer: "cursor" }}>
+                  <OnGoingProjects
+                    name={name}
+                    description={description}
+                    image={image}
+                  />
+                </a>
+              ) : (
+                <OnGoingProjects
+                  name={name}
+                  description={description}
+                  image={image}
+                />
+              )}
+            </GridItem>
+          ))}
+        </GridContainer>
       </TabPanel>
       <TabPanel value={value} index={1}>
-        {/* <a
-          class="twitter-timeline"
-          href="https://twitter.com/karachi_water?ref_src=twsrc%5Etfw"
+        <Typography
+          variant="h3"
+          style={{ fontWeight: "bold", marginBottom: "30px" }}
         >
-          Tweets by karachi_water
-        </a>{" "} */}
-        <div className="twitterContainer">
-          <TwitterTimelineEmbed
-            sourceType="profile"
-            screenName="karachi_water"
-            scrolling="no"
-            options={{ height: 1500 }}
-          />
-        </div>
-      </TabPanel>
-      <TabPanel value={value} index={2}>
-        Instagram
-      </TabPanel>
-      <TabPanel value={value} index={3}>
-        Yotuuvbe videos
-      </TabPanel>
-      <TabPanel value={value} index={4}>
-        Blogs
+          Videos
+        </Typography>
+        <hr style={{ width: "100%" }} />
+        <br />
+        <GridContainer>
+          {videos.map(({ name, url }) => (
+            <GridItem key={name} xs={12} sm={12} lg={12}>
+              <iframe
+                width="100%"
+                height="315"
+                src={url}
+                frameborder="0"
+                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen
+              ></iframe>
+              <div>
+                <br />{" "}
+                <Typography
+                  variant="body1"
+                  color="textSecondary"
+                  component="h6"
+                >
+                  <b style={{ marginBottom: "10px" }}>Title: {name}</b>
+                </Typography>
+              </div>
+            </GridItem>
+          ))}
+        </GridContainer>
       </TabPanel>
     </div>
   );
 }
+
+const useCustomStyles = makeStyles((theme) => ({
+  root: {
+    width: "97%",
+    height: "280px",
+    marginTop: 40,
+    marginBottom: 60,
+  },
+  media: {
+    height: 0,
+    paddingTop: "56.25%",
+  },
+}));
+
+const OnGoingProjects = ({ name, image, description }) => {
+  const classes = useCustomStyles();
+  return (
+    <div
+      className={classes.root + " ccard"}
+      style={{
+        background: `url(${image})`,
+        backgroundSize: "cover",
+        boxShadow: ".5rem .5rem .5rem .5rem rgba(0,0,0,.15)",
+        borderRadius: "5px",
+        marginTop: "60px",
+        backgroundPosition: "center center",
+      }}
+    >
+      <div
+        style={{
+          background: "white",
+          boxShadow: "0 1rem 1.5rem 0.5rem  rgba(0,0,0,.15)",
+          minHeight: "60%",
+          display: "flex",
+          borderRadius: "5px",
+          alignItems: "center",
+          position: "absolute",
+          right: "0px",
+          bottom: "-40px",
+          width: "90%",
+          padding: "12px 20px",
+          opacity: 0.89,
+        }}
+      >
+        <div>
+          <Typography variant="body1" color="textSecondary" component="p">
+            <b style={{ marginBottom: "10px" }}>{name}</b>
+            <br />
+            <span style={{ marginTop: "30px" }}>{description}</span>
+          </Typography>
+        </div>
+      </div>
+    </div>
+  );
+};

@@ -19,6 +19,7 @@ import { enableScroll } from "App";
 import { research } from "constrants";
 import { Link } from "react-router-dom";
 import { TwitterTimelineEmbed } from "react-twitter-embed";
+import SocialTabs from "views/Blogs/Tabs";
 
 const useStyles = makeStyles(styles);
 const teams = "./../../assets/img/team/";
@@ -82,15 +83,9 @@ const Research = (props) => {
               lg={8}
               style={{ paddingRight: 50 }}
             >
-              <Typography
-                variant="h3"
-                style={{ fontWeight: "bold", marginBottom: "30px" }}
-              >
-                Articles
-              </Typography>
-              <hr style={{ width: "100%" }} />
               <GridContainer>
-                {research.map(({ name, image, description, url }) => (
+                <SocialTabs />
+                {/* {research.map(({ name, image, description, url }) => (
                   <GridItem key={name} xs={12} sm={12} lg={12}>
                     {url ? (
                       <a
@@ -112,7 +107,7 @@ const Research = (props) => {
                       />
                     )}
                   </GridItem>
-                ))}
+                ))} */}
               </GridContainer>
               <br />
               <br />
@@ -153,58 +148,3 @@ const Research = (props) => {
 };
 
 export default Research;
-
-const useCustomStyles = makeStyles((theme) => ({
-  root: {
-    width: "97%",
-    height: "280px",
-    marginTop: 40,
-    marginBottom: 60,
-  },
-  media: {
-    height: 0,
-    paddingTop: "56.25%",
-  },
-}));
-
-const OnGoingProjects = ({ name, description, image }) => {
-  const classes = useCustomStyles();
-  return (
-    <div
-      className={classes.root + " ccard"}
-      style={{
-        background: `url(${image})`,
-        backgroundSize: "cover",
-        boxShadow: ".5rem .5rem .5rem .5rem rgba(0,0,0,.15)",
-        borderRadius: "5px",
-        height: 400,
-        backgroundPosition: "center center",
-      }}
-    >
-      <div
-        style={{
-          background: "white",
-          boxShadow: "0 1rem 1.5rem 0.5rem  rgba(0,0,0,.15)",
-          minHeight: "45%",
-          display: "flex",
-          borderRadius: "5px",
-          alignItems: "center",
-          position: "absolute",
-          right: "0px",
-          bottom: "20px",
-          width: "90%",
-          padding: "12px 20px",
-          opacity: 0.9,
-        }}
-      >
-        <div>
-          <Typography variant="body1" color="textSecondary" component="p">
-            <b style={{ marginBottom: "10px" }}>{name}</b>
-            <br />
-            <span style={{ marginTop: "30px" }}>{description}</span>
-          </Typography>
-        </div>
-      </div>
-    </div>
-  );
-};

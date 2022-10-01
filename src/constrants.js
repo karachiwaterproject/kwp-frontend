@@ -103,6 +103,112 @@ export const research = [
       "On March 17, 2022 KWP hosted a panel discussion featuring invited speakers discussing access to water from a social justice perspective. The invited speakers included Ms. Mahim Maher, Dr. Noman Ahmed, and Farhan Anwar. The panel discussion was moderated by Dr. Hassaan F. Khan. ",
     image: require("assets/img/research/mahim-nouman.webp").default,
   },
+  {
+    name: "Beyond Water Scarcity: Water (In)Security and Social Justice in Karachi",
+    description:
+      "Karachi Water Project hosted its second event of the semester on Thursday, September 15th. The event focused on sharing findings from our recently published study that uses a mixed-methods approach to quantify socioeconomic and political factors that contribute to household water insecurity beyond just a 'shortage' of water.",
+    image: require("assets/img/research/panel-talk-3.jpg").default,
+    url: "https://www.sciencedirect.com/science/article/pii/S2214581822001537",
+  },
+];
+
+export const videos = [
+  {
+    name: "An Introduction to the Karachi Water Project",
+    url: "https://www.youtube.com/embed/30dV3VBoLes",
+  },
+  {
+    name: "Cost-effective smart device",
+    url: "https://www.youtube.com/embed/Fpv2CX679q0",
+  },
+  {
+    name: "Cost-effective smart device - FAQs",
+    url: "https://www.youtube.com/embed/A_6zjkllR8M",
+  },
+  {
+    name: "A common man's struggle for water",
+    url: "https://www.youtube.com/embed/mCzbuNsy86U",
+  },
+  {
+    name: "کیا غریب کا حق نہیں ہے صاف پانی؟",
+    url: "https://www.youtube.com/embed/5PXUfJw4wgc",
+  },
+  {
+    name: "کیا غریب کا حق نہیں ہے صاف پانی؟",
+    url: "https://www.youtube.com/embed/r2MwrQ3tYb4",
+  },
+  {
+    name: "Asim - Ro Plant vendor",
+    url: "https://www.youtube.com/embed/imWgmsGAEMg",
+  },
+  {
+    name: "کیا ہم جناور ہے؟",
+    url: "https://www.youtube.com/embed/eoxbz5vYpyA",
+  },
+  {
+    name: "We asked our interns what they think of Lyari before and after visiting it",
+    url: "https://www.youtube.com/embed/c0-29N9dD3U",
+  },
+  {
+    name: "Notes from the field",
+    url: "https://www.youtube.com/embed/vec0CS-t0YE",
+  },
+  {
+    name: "Meet The Team",
+    url: "https://www.youtube.com/embed/3WPDwaoFhj4",
+  },
+  {
+    name: "Meet The Team",
+    url: "https://www.youtube.com/embed/MZkJmHiJeeg",
+  },
+  {
+    name: "Meet The Team",
+    url: "https://www.youtube.com/embed/hE73yvfhSqY",
+  },
+  {
+    name: "Meet The Team",
+    url: "https://www.youtube.com/embed/ctrblp18if0",
+  },
+  {
+    name: "Meet The Team",
+    url: "https://www.youtube.com/embed/HYcsJuZmOls",
+  },
+  {
+    name: "Meet The Team",
+    url: "https://www.youtube.com/embed/AliHpdMuRPA",
+  },
+  {
+    name: "Meet The Team",
+    url: "https://www.youtube.com/embed/FuhRJlIl2G8",
+  },
+  {
+    name: "Meet The Team",
+    url: "https://www.youtube.com/embed/o0Q_FXM5Qgg",
+  },
+  {
+    name: "Meet The Team",
+    url: "https://www.youtube.com/embed/KXJ8uduPqhU",
+  },
+  {
+    name: "27 July 2022",
+    url: "https://www.youtube.com/embed/Y9JLyfIwSmw",
+  },
+  {
+    name: "Testing solar panel with our smart device",
+    url: "https://www.youtube.com/embed/swoL1L1B5XE",
+  },
+  {
+    name: "Testing solar panel for our smart device",
+    url: "https://www.youtube.com/embed/25Jf0dtpEa0",
+  },
+  {
+    name: "Meet The Team",
+    url: "https://www.youtube.com/embed/ff0bxK8CaAw",
+  },
+  {
+    name: "48th Annual Conference of the Industrial Electronics Society - IECON",
+    url: "https://www.youtube.com/embed/a5j0j6hMSfA",
+  },
 ];
 
 // console.log(process.env.HOST);
