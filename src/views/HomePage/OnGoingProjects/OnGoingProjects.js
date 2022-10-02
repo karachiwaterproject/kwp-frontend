@@ -38,7 +38,7 @@ export const OnGoingProjects = ({ name, image }) => {
         style={{
           background: "white",
           boxShadow: "0 1rem 1rem 1rem  rgba(0,0,0,.15)",
-          height: "26%",
+          height: "30%",
           display: "flex",
           borderRadius: "5px",
           alignItems: "center",
