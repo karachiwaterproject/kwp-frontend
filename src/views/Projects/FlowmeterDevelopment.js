@@ -77,7 +77,7 @@ const FlowmeterDevelopment = (props) => {
               Development of a low-cost smart device network for domestic
               consumers
             </Typography>
-            <Typography variant="body2">
+            <Typography variant="body1">
               A major cause of the dysfunctional water management in Karachi is
               the high level of non-revenue water (NRW) in the system which
               prevents Karachi’s water utility (KWSB) from being financially

@@ -107,10 +107,18 @@ export const research = [
     name: "Beyond Water Scarcity: Water (In)Security and Social Justice in Karachi",
     description:
       "Karachi Water Project hosted its second event of the semester on Thursday, September 15th. The event focused on sharing findings from our recently published study that uses a mixed-methods approach to quantify socioeconomic and political factors that contribute to household water insecurity beyond just a 'shortage' of water.",
-    image: require("assets/img/research/panel-talk-3.jpg").default,
+    image: require("assets/img/research/panel-talk-3.webp").default,
     url: "https://www.sciencedirect.com/science/article/pii/S2214581822001537",
   },
+  {
+    name: "Investigating Water Use in Low-Income Households",
+    description:
+      "On September 22, 2022 KWP hosted an event that focused on discussing findings from its study that seeks to quantify household water use and its determinants in low-income water-scarce communities. Habib Alum Sara Intikhab from the class of 2022 and Ali Arif from the class of 2023 presented the study findings and insights from the field.",
+    image: require("assets/img/research/panel-talk-4.webp").default,
+  },
 ];
+
+research.reverse();
 
 export const videos = [
   {

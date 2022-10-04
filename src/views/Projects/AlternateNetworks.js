@@ -58,7 +58,7 @@ const AlternateNetworks = ({ props }) => {
             >
               Rethinking the Network
             </Typography>
-            <Typography variant="body2">
+            <Typography variant="body1">
               Rapid urbanization in Karachi’s low income settlements has
               resulted in a growing ‘infrastructural deficit’ that challenges
               citizens’ access to water. A diverse range of off-grid modes of
@@ -87,7 +87,10 @@ const AlternateNetworks = ({ props }) => {
               />
             </div>
             <br />
-            <Typography variant="body2">
+            <Typography
+              variant="body2"
+              style={{ fontWeight: "bold", textAlign: "center" }}
+            >
               A new mode of water delivery: 100-liter tanks on Suzukis spotted
               in Bihar Colony, Lyari
             </Typography>

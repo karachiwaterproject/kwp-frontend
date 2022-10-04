@@ -74,7 +74,7 @@ const WaterPricing = (props) => {
               Towards a sustainable and equitable water pricing strategy for
               Karachi
             </Typography>
-            <Typography variant="body2">
+            <Typography variant="body1">
               The Karachi Water and Sewerage Board (KWSB) is stuck in a vicious
               cycle: low revenue collection restricts its ability to maintain
               and expand the water system; the resultant poor performance

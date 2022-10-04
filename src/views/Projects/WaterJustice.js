@@ -74,7 +74,7 @@ const WaterJustice = (props) => {
               Water security through a political-ecological lens: A case study
               of Lyari Township
             </Typography>
-            <Typography variant="body2">
+            <Typography variant="body1">
               In traditional water resource management, studies to estimate the
               reliability of water supply tend to remain “apolitical”, i.e.,
               there is little to no mention of power asymmetries that create

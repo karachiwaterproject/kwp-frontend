@@ -59,7 +59,7 @@ const WaterDemand = ({ props }) => {
               Quantifying household water use and its determinants in low-income
               water scarce households.
             </Typography>
-            <Typography variant="body2">
+            <Typography variant="body1">
               Water discourse in Karachi revolves around a theme of scarcity.
               KWSB projects a demand of over 1200 million gallons a day (MGD)
               for Karachi. With current water supply around 550 MGD, most of
