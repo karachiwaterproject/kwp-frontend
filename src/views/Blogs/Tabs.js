@@ -121,10 +121,16 @@ export default function SocialTabs() {
         <br />
         <GridContainer>
           {videos.map(({ name, url }) => (
-            <GridItem key={name} xs={12} sm={12} lg={12}>
+            <GridItem
+              key={name}
+              xs={12}
+              sm={12}
+              lg={6}
+              style={{ marginBottom: 20 }}
+            >
               <iframe
                 width="100%"
-                height="315"
+                height="250px"
                 src={url}
                 frameborder="0"
                 allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
