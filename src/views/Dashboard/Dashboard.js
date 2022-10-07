@@ -236,7 +236,7 @@ const Dashboard = ({
                       )}
                   </MapContainer>
                 ) : (
-                  <Spinner />
+                  <div style={{ textAlign: "center" }}>Loading ...</div>
                 )}
               </GridItem>
             </GridContainer>
