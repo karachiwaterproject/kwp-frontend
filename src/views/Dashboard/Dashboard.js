@@ -160,10 +160,8 @@ const Dashboard = ({
                     zoom={10}
                     scrollWheelZoom={true}
                   >
-                    <TileLayer
-                      attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                      url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                    />
+                    <TileLayer url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png" />
+
                     {nodes
                       .filter((node) => node.latitude && node.longitude)
                       .map(

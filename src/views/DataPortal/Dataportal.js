@@ -18,6 +18,7 @@ import classNames from "classnames";
 import Footer from "components/Footer/Footer";
 import Card from "components/Card/Card";
 import MuiAlert from "@material-ui/lab/Alert";
+import { getNodes } from "../../actions/node";
 
 const useStyles = makeStyles(styles);
 
@@ -31,8 +32,15 @@ import { HOST } from "constrants";
 import axios from "axios";
 import Spinner from "Spinner";
 import { enableScroll } from "App";
+import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 
-const Dataportal = ({ login, isAuthenticated, auth }) => {
+const Dataportal = ({
+  login,
+  isAuthenticated,
+  auth,
+  getNodes,
+  node: { nodes, loading },
+}) => {
   const classes = useStyles();
   // const { ...rest } = props;
 
@@ -49,15 +57,16 @@ const Dataportal = ({ login, isAuthenticated, auth }) => {
   });
 
   React.useEffect(async () => {
+    await getNodes();
     let val = await getCount();
     setCount(val);
-  }, [getCount]);
+  }, [getCount, getNodes]);
 
   const { username, password } = formData;
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
-  const [loading, setLoading] = React.useState(true);
+  // const [loading, setLoading] = React.useState(true);
   const [height, setHeight] = React.useState(100);
   setTimeout(() => {
     enableScroll();
@@ -153,18 +162,109 @@ const Dataportal = ({ login, isAuthenticated, auth }) => {
               style={{ padding: "0 30px 0" }}
             >
               <GridItem xs={12} sm={12} lg={7} style={{ padding: 30 }}>
-                <div
-                  style={{
-                    height: "40vh",
-                    width: "100%",
-                    background: `url(${
-                      require("assets/img/map.webp").default
-                    })`,
-                    boxShadow: "0rem 0rem 0.5rem 0.5rem  rgba(0,0,0,.15)",
-                    backgroundSize: "cover",
-                    marginBottom: 10,
-                  }}
-                />
+                {!loading && nodes ? (
+                  <div
+                    style={{
+                      height: "40vh",
+                      width: "100%",
+                      boxShadow: "0rem 0rem 0.5rem 0.5rem  rgba(0,0,0,.15)",
+                      backgroundSize: "cover",
+                      marginBottom: 10,
+                    }}
+                  >
+                    <MapContainer
+                      style={{ height: "100%", width: "100%" }}
+                      center={[24.8607, 67.0011]}
+                      zoom={10}
+                      scrollWheelZoom={false}
+                      zoomControl={false}
+                    >
+                      <TileLayer url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png" />
+                      {nodes
+                        .filter((node) => node.latitude && node.longitude)
+                        .map(
+                          ({
+                            latitude,
+                            longitude,
+                            name,
+                            total_flow,
+                            count,
+                            status,
+                            slug,
+                          }) => (
+                            <Marker position={[latitude, longitude]}>
+                              <Popup>
+                                <div>
+                                  {/* <h1>{selectedPlace.name}</h1> */}
+                                  <Typography
+                                    color="primary"
+                                    style={{
+                                      textTransform: "uppercase",
+                                      fontSize: "13px",
+                                      fontWeight: "bold",
+                                      color:
+                                        status === "active"
+                                          ? "#1CC88A"
+                                          : status === "inactive"
+                                          ? "#F6C23E"
+                                          : "#E33775",
+                                    }}
+                                  >
+                                    {name}
+                                  </Typography>
+                                  <Typography
+                                    style={{ textTransform: "uppercase" }}
+                                  >
+                                    <span style={{ fontWeight: "bold" }}>
+                                      Total flow (L):
+                                    </span>{" "}
+                                    {total_flow}
+                                  </Typography>
+                                  <Typography
+                                    style={{ textTransform: "uppercase" }}
+                                  >
+                                    <span style={{ fontWeight: "bold" }}>
+                                      Data points collected:
+                                    </span>{" "}
+                                    {count}
+                                  </Typography>
+                                  <Typography
+                                    style={{ textTransform: "uppercase" }}
+                                  >
+                                    <span style={{ fontWeight: "bold" }}>
+                                      Status:
+                                    </span>{" "}
+                                    {status}
+                                  </Typography>
+                                </div>
+                              </Popup>
+                            </Marker>
+                            // <Marker
+                            //   key={slug}
+                            //   name={name}
+                            //   total_flow={total_flow}
+                            //   count={count}
+                            //   status={status}
+                            //   onClick={onMarkerClick}
+                            //   position={{ lat: latitude, lng: longitude }}
+                            // />
+                          )
+                        )}
+                    </MapContainer>
+                  </div>
+                ) : (
+                  <div
+                    style={{
+                      textAlign: "center",
+                      height: "100%",
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                    }}
+                  >
+                    Loading ...
+                  </div>
+                )}
                 <small>
                   Spatial distribution of installed smart flowmeters across
                   Karachi.
@@ -302,6 +402,7 @@ const Dataportal = ({ login, isAuthenticated, auth }) => {
 
 Dataportal.propTypes = {
   login: PropTypes.func.isRequired,
+  getNodes: PropTypes.func.isRequired,
   isAuthenticated: PropTypes.bool,
   auth: PropTypes.object,
 };
@@ -309,6 +410,7 @@ Dataportal.propTypes = {
 const mapStateToProps = (state) => ({
   isAuthenticated: state.auth.isAuthenticated,
   auth: state.auth,
+  node: state.node,
 });
 
-export default connect(mapStateToProps, { login })(Dataportal);
+export default connect(mapStateToProps, { login, getNodes })(Dataportal);
