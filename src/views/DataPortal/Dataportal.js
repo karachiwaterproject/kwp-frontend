@@ -193,51 +193,7 @@ const Dataportal = ({
                             slug,
                           }) => (
                             <Marker position={[latitude, longitude]}>
-                              <Popup>
-                                <div>
-                                  {/* <h1>{selectedPlace.name}</h1> */}
-                                  <Typography
-                                    color="primary"
-                                    style={{
-                                      textTransform: "uppercase",
-                                      fontSize: "13px",
-                                      fontWeight: "bold",
-                                      color:
-                                        status === "active"
-                                          ? "#1CC88A"
-                                          : status === "inactive"
-                                          ? "#F6C23E"
-                                          : "#E33775",
-                                    }}
-                                  >
-                                    {name}
-                                  </Typography>
-                                  <Typography
-                                    style={{ textTransform: "uppercase" }}
-                                  >
-                                    <span style={{ fontWeight: "bold" }}>
-                                      Total flow (L):
-                                    </span>{" "}
-                                    {total_flow}
-                                  </Typography>
-                                  <Typography
-                                    style={{ textTransform: "uppercase" }}
-                                  >
-                                    <span style={{ fontWeight: "bold" }}>
-                                      Data points collected:
-                                    </span>{" "}
-                                    {count}
-                                  </Typography>
-                                  <Typography
-                                    style={{ textTransform: "uppercase" }}
-                                  >
-                                    <span style={{ fontWeight: "bold" }}>
-                                      Status:
-                                    </span>{" "}
-                                    {status}
-                                  </Typography>
-                                </div>
-                              </Popup>
+                              
                             </Marker>
                             // <Marker
                             //   key={slug}

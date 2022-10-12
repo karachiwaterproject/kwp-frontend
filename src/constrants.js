@@ -71,13 +71,7 @@ export const research = [
     image: require("assets/img/research/paper.webp").default,
     url: "https://doi.org/10.1016/j.ejrh.2022.101140",
   },
-  {
-    name: "48th Annual Conference of the Industrial Electronics Society-IECON.",
-    description:
-      "KWP's work on the design and development of Smart Devices is accepted in the 48th Annual Conference of the Industrial Electronics Society-IECON. Paper title: 'Design and Implementation of Smart Flowmeter for Urban Water Metering'. Authors: Junaid Ahmed Memon, Abdul Rehman, Ahsan Ali, Sarwan Shah, Hassaan F. Khan",
-    image: require("assets/img/research/junaid-paper.webp").default,
-    url: "https://doi.org/10.1016/j.ejrh.2022.101140",
-  },
+
   {
     name: "Karachi Water Project hosted its first event of the fall semester 2022.",
     description:
@@ -103,6 +97,7 @@ export const research = [
       "On March 17, 2022 KWP hosted a panel discussion featuring invited speakers discussing access to water from a social justice perspective. The invited speakers included Ms. Mahim Maher, Dr. Noman Ahmed, and Farhan Anwar. The panel discussion was moderated by Dr. Hassaan F. Khan. ",
     image: require("assets/img/research/mahim-nouman.webp").default,
   },
+
   {
     name: "Beyond Water Scarcity: Water (In)Security and Social Justice in Karachi",
     description:
@@ -115,6 +110,13 @@ export const research = [
     description:
       "On September 22, 2022 KWP hosted an event that focused on discussing findings from its study that seeks to quantify household water use and its determinants in low-income water-scarce communities. Habib Alum Sara Intikhab from the class of 2022 and Ali Arif from the class of 2023 presented the study findings and insights from the field.",
     image: require("assets/img/research/panel-talk-4.webp").default,
+  },
+  {
+    name: "48th Annual Conference of the Industrial Electronics Society-IECON.",
+    description:
+      "KWP's work on the design and development of Smart Devices is accepted in the 48th Annual Conference of the Industrial Electronics Society-IECON. Paper title: 'Design and Implementation of Smart Flowmeter for Urban Water Metering'. Authors: Junaid Ahmed Memon, Abdul Rehman, Ahsan Ali, Sarwan Shah, Hassaan F. Khan",
+    image: require("assets/img/research/junaid-paper.webp").default,
+    url: "https://doi.org/10.1016/j.ejrh.2022.101140",
   },
 ];
 
@@ -129,9 +131,14 @@ export const videos = [
     name: "Cost-effective smart device",
     url: "https://www.youtube.com/embed/Fpv2CX679q0",
   },
+
   {
     name: "Cost-effective smart device - FAQs",
     url: "https://www.youtube.com/embed/A_6zjkllR8M",
+  },
+  {
+    name: "48th Annual Conference of the Industrial Electronics Society - IECON",
+    url: "https://www.youtube.com/embed/a5j0j6hMSfA",
   },
   {
     name: "A common man's struggle for water",
@@ -161,42 +168,42 @@ export const videos = [
     name: "Notes from the field",
     url: "https://www.youtube.com/embed/vec0CS-t0YE",
   },
-  {
-    name: "Meet The Team",
-    url: "https://www.youtube.com/embed/3WPDwaoFhj4",
-  },
-  {
-    name: "Meet The Team",
-    url: "https://www.youtube.com/embed/MZkJmHiJeeg",
-  },
-  {
-    name: "Meet The Team",
-    url: "https://www.youtube.com/embed/hE73yvfhSqY",
-  },
-  {
-    name: "Meet The Team",
-    url: "https://www.youtube.com/embed/ctrblp18if0",
-  },
-  {
-    name: "Meet The Team",
-    url: "https://www.youtube.com/embed/HYcsJuZmOls",
-  },
-  {
-    name: "Meet The Team",
-    url: "https://www.youtube.com/embed/AliHpdMuRPA",
-  },
-  {
-    name: "Meet The Team",
-    url: "https://www.youtube.com/embed/FuhRJlIl2G8",
-  },
-  {
-    name: "Meet The Team",
-    url: "https://www.youtube.com/embed/o0Q_FXM5Qgg",
-  },
-  {
-    name: "Meet The Team",
-    url: "https://www.youtube.com/embed/KXJ8uduPqhU",
-  },
+  // {
+  //   name: "Meet The Team",
+  //   url: "https://www.youtube.com/embed/3WPDwaoFhj4",
+  // },
+  // {
+  //   name: "Meet The Team",
+  //   url: "https://www.youtube.com/embed/MZkJmHiJeeg",
+  // },
+  // {
+  //   name: "Meet The Team",
+  //   url: "https://www.youtube.com/embed/hE73yvfhSqY",
+  // },
+  // {
+  //   name: "Meet The Team",
+  //   url: "https://www.youtube.com/embed/ctrblp18if0",
+  // },
+  // {
+  //   name: "Meet The Team",
+  //   url: "https://www.youtube.com/embed/HYcsJuZmOls",
+  // },
+  // {
+  //   name: "Meet The Team",
+  //   url: "https://www.youtube.com/embed/AliHpdMuRPA",
+  // },
+  // {
+  //   name: "Meet The Team",
+  //   url: "https://www.youtube.com/embed/FuhRJlIl2G8",
+  // },
+  // {
+  //   name: "Meet The Team",
+  //   url: "https://www.youtube.com/embed/o0Q_FXM5Qgg",
+  // },
+  // {
+  //   name: "Meet The Team",
+  //   url: "https://www.youtube.com/embed/KXJ8uduPqhU",
+  // },
   {
     name: "27 July 2022",
     url: "https://www.youtube.com/embed/Y9JLyfIwSmw",
@@ -209,14 +216,10 @@ export const videos = [
     name: "Testing solar panel for our smart device",
     url: "https://www.youtube.com/embed/25Jf0dtpEa0",
   },
-  {
-    name: "Meet The Team",
-    url: "https://www.youtube.com/embed/ff0bxK8CaAw",
-  },
-  {
-    name: "48th Annual Conference of the Industrial Electronics Society - IECON",
-    url: "https://www.youtube.com/embed/a5j0j6hMSfA",
-  },
+  // {
+  //   name: "Meet The Team",
+  //   url: "https://www.youtube.com/embed/ff0bxK8CaAw",
+  // },
 ];
 
 // console.log(process.env.HOST);
