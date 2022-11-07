@@ -20,6 +20,7 @@ import { research } from "constrants";
 import { Link } from "react-router-dom";
 import { TwitterTimelineEmbed } from "react-twitter-embed";
 import SocialTabs from "views/Blogs/Tabs";
+import Sidebar from "components/Sidebar/Sidebar";
 
 const useStyles = makeStyles(styles);
 const teams = "./../../assets/img/team/";
@@ -51,7 +52,6 @@ const Research = (props) => {
         {...rest}
       />
       {loading && <Spinner _height={`${height}vh`} />}
-
       <FrontParallax
         image={require("assets/img/panel-talk-team2.jpeg").default}
         head="Outreach"
@@ -70,6 +70,19 @@ const Research = (props) => {
           </GridContainer>
         </div> */}
       </FrontParallax>
+      <Sidebar>
+        <div
+          className="twitterContainer"
+          style={{ padding: 0, margin: "auto", width: "70%" }}
+        >
+          <TwitterTimelineEmbed
+            autoHeight={false}
+            sourceType="profile"
+            screenName="karachi_water"
+            options={{ height: 700 }}
+          />
+        </div>
+      </Sidebar>
       <Container>
         <div className={classNames(classes.main)}>
           <GridContainer
@@ -79,35 +92,12 @@ const Research = (props) => {
             <GridItem
               xs={12}
               sm={12}
-              md={8}
-              lg={8}
+              md={12}
+              lg={12}
               style={{ paddingRight: 50 }}
             >
               <GridContainer>
                 <SocialTabs />
-                {/* {research.map(({ name, image, description, url }) => (
-                  <GridItem key={name} xs={12} sm={12} lg={12}>
-                    {url ? (
-                      <a
-                        href={url}
-                        target="_blank"
-                        style={{ pointer: "cursor" }}
-                      >
-                        <OnGoingProjects
-                          name={name}
-                          description={description}
-                          image={image}
-                        />
-                      </a>
-                    ) : (
-                      <OnGoingProjects
-                        name={name}
-                        description={description}
-                        image={image}
-                      />
-                    )}
-                  </GridItem>
-                ))} */}
               </GridContainer>
               <br />
               <br />
@@ -119,25 +109,6 @@ const Research = (props) => {
                 Papers
               </Typography>
               <hr style={{ width: "100%" }} /> */}
-            </GridItem>
-            <GridItem
-              style={{ margin: 0, padding: 0 }}
-              xs={12}
-              sm={12}
-              md={4}
-              lg={4}
-            >
-              <div
-                className="twitterContainer"
-                style={{ padding: 0, margin: "auto", width: "90%" }}
-              >
-                <TwitterTimelineEmbed
-                  autoHeight={false}
-                  sourceType="profile"
-                  screenName="karachi_water"
-                  options={{ height: 600 }}
-                />
-              </div>
             </GridItem>
           </GridContainer>
         </div>

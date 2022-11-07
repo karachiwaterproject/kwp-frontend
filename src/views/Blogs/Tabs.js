@@ -59,6 +59,8 @@ export default function SocialTabs() {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
+  let toggle = false;
+
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
@@ -89,25 +91,30 @@ export default function SocialTabs() {
         <hr style={{ width: "100%" }} />
         <br />
         <GridContainer>
-          {research.map(({ name, image, description, url }) => (
-            <GridItem key={name} xs={12} sm={12} lg={12}>
-              {url ? (
-                <a href={url} target="_blank" style={{ pointer: "cursor" }}>
+          {research.map(({ name, image, description, url }) => {
+            toggle = !toggle;
+            return (
+              <GridItem key={name} xs={12} sm={12} lg={12}>
+                {url ? (
+                  <a href={url} target="_blank" style={{ pointer: "cursor" }}>
+                    <OnGoingProjects
+                      name={name}
+                      description={description}
+                      image={image}
+                      toggle={toggle}
+                    />
+                  </a>
+                ) : (
                   <OnGoingProjects
                     name={name}
                     description={description}
                     image={image}
+                    toggle={toggle}
                   />
-                </a>
-              ) : (
-                <OnGoingProjects
-                  name={name}
-                  description={description}
-                  image={image}
-                />
-              )}
-            </GridItem>
-          ))}
+                )}
+              </GridItem>
+            );
+          })}
         </GridContainer>
       </TabPanel>
       <TabPanel value={value} index={1}>
@@ -167,44 +174,116 @@ const useCustomStyles = makeStyles((theme) => ({
   },
 }));
 
-const OnGoingProjects = ({ name, image, description }) => {
+const OnGoingProjects = ({ name, image, description, toggle }) => {
   const classes = useCustomStyles();
   return (
-    <div
-      className={classes.root + " ccard"}
-      style={{
-        background: `url(${image})`,
-        backgroundSize: "cover",
-        boxShadow: ".5rem .5rem .5rem .5rem rgba(0,0,0,.15)",
-        borderRadius: "5px",
-        marginTop: "60px",
-        backgroundPosition: "center center",
-      }}
-    >
-      <div
-        style={{
-          background: "white",
-          boxShadow: "0 1rem 1.5rem 0.5rem  rgba(0,0,0,.15)",
-          minHeight: "60%",
-          display: "flex",
-          borderRadius: "5px",
-          alignItems: "center",
-          position: "absolute",
-          right: "0px",
-          bottom: "-40px",
-          width: "90%",
-          padding: "12px 20px",
-          opacity: 0.89,
-        }}
-      >
-        <div>
-          <Typography variant="body1" color="textSecondary" component="p">
-            <b style={{ marginBottom: "10px" }}>{name}</b>
-            <br />
-            <span style={{ marginTop: "30px" }}>{description}</span>
-          </Typography>
-        </div>
-      </div>
-    </div>
+    <>
+      <GridContainer style={{ minHeight: "400px" }}>
+        {toggle ? (
+          <>
+            <GridItem xs={12} sm={12} lg={8} style={{ padding: 0, margin: 0 }}>
+              <div
+                style={{
+                  background: `url(${image})`,
+                  backgroundSize: "cover",
+                  boxShadow: ".5rem .5rem .5rem .5rem rgba(0,0,0,.15)",
+                  borderRadius: "5px",
+                  width: "100%",
+                  height: "100%",
+                  minHeight: "300px",
+                  backgroundPosition: "center center",
+                }}
+              ></div>
+            </GridItem>
+            <GridItem
+              xs={12}
+              sm={12}
+              lg={4}
+              style={{ padding: 0, margin: 0, background: "red" }}
+            >
+              <div
+                style={{
+                  background: "white",
+                  boxShadow: "0 1rem 1.5rem 0.5rem  rgba(0,0,0,.15)",
+                  width: "100%",
+                  height: "100%",
+                  padding: "12px 20px",
+                  display: "flex",
+                  alignItems: "center",
+                }}
+              >
+                <div>
+                  <Typography
+                    variant="body1"
+                    color="textSecondary"
+                    component="p"
+                  >
+                    <b style={{ marginBottom: "10px" }}>{name}</b>
+                    <br />
+                    <span style={{ marginTop: "30px" }}>{description}</span>
+                  </Typography>
+                </div>
+              </div>
+            </GridItem>
+          </>
+        ) : (
+          <>
+            <GridItem
+              xs={12}
+              sm={12}
+              lg={4}
+              style={{ padding: 0, margin: 0, background: "red" }}
+            >
+              <div
+                style={{
+                  background: "white",
+                  boxShadow: "0 1rem 1.5rem 0.5rem  rgba(0,0,0,.15)",
+                  width: "100%",
+                  height: "100%",
+                  padding: "12px 20px",
+                  display: "flex",
+                  alignItems: "center",
+                }}
+              >
+                <div>
+                  <Typography
+                    variant="body1"
+                    color="textSecondary"
+                    component="p"
+                  >
+                    <b style={{ marginBottom: "10px" }}>{name}</b>
+                    <br />
+                    <span style={{ marginTop: "30px" }}>{description}</span>
+                  </Typography>
+                </div>
+              </div>
+            </GridItem>
+            <GridItem
+              xs={12}
+              sm={12}
+              lg={8}
+              style={{ padding: 0, margin: 0, background: "red" }}
+            >
+              <div
+                style={{
+                  background: `url(${image})`,
+                  backgroundSize: "cover",
+                  boxShadow: ".5rem .5rem .5rem .5rem rgba(0,0,0,.15)",
+                  borderRadius: "5px",
+                  width: "100%",
+                  minHeight: "300px",
+                  height: "100%",
+                  backgroundPosition: "center center",
+                }}
+              ></div>
+            </GridItem>
+          </>
+        )}
+      </GridContainer>
+      <br />
+      <br />
+      <br />
+      <br />
+    </>
   );
 };

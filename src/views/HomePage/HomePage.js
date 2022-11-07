@@ -29,6 +29,7 @@ import HomeParallax from "components/Parallax/HomeParallax";
 import { triggerLoader } from "constrants";
 import Spinner from "Spinner";
 import { enableScroll } from "App";
+import { videos } from "constrants";
 
 const useStyles = makeStyles(styles);
 
@@ -184,7 +185,11 @@ const HomePage = (props) => {
           }}
         >
           <GridContainer style={{ width: "90%", margin: "auto" }}>
-            <GridItem xs={12} sm={12} lg={5}>
+            <GridItem xs={12} sm={12} lg={12}>
+              <br />
+              <br />
+              <br />
+              <br />
               <br />
               <br />
               <br />
@@ -194,12 +199,13 @@ const HomePage = (props) => {
                   fontWeight: "700",
                   letterSpacing: "4px",
                   color: "#212121",
+                  textTransform: "uppercase",
+                  textAlign: "center",
                 }}
                 className="head"
               >
                 Message
               </Typography>
-              <hr style={{ width: "70%", float: "left" }} />
               <br />
               <Typography
                 variant="body1"
@@ -220,29 +226,61 @@ const HomePage = (props) => {
               <br />
               <br />
             </GridItem>
-            <GridItem xs={12} sm={12} lg={1} />
-            <GridItem
-              xs={12}
-              sm={12}
-              lg={6}
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                paddingTop: "20px",
-              }}
-            >
-              <iframe
-                className="video"
-                src="https://www.youtube.com/embed/30dV3VBoLes"
-                title="YouTube video player"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
+          </GridContainer>
+          <div style={{ display: "flex", justifyContent: "center" }}>
+            <hr style={{ width: "70%", float: "left", margin: "auto" }} />
+          </div>
+          <GridContainer style={{ width: "90%", margin: "auto" }}>
+            <GridItem xs={12} sm={12} lg={12}>
+              <br />
+              <br />
+              <br />
+              <Typography
+                variant="h4"
                 style={{
-                  background: "#555555",
+                  fontWeight: "700",
+                  letterSpacing: "4px",
+                  color: "#212121",
                 }}
-              ></iframe>
+                className="head"
+              >
+                Video Showcase
+              </Typography>
+              <hr style={{ width: "100%", float: "left" }} />
+              <br />
+              <GridContainer>
+                {videos.map(({ name, url }) => (
+                  <GridItem
+                    key={name}
+                    xs={12}
+                    sm={12}
+                    lg={6}
+                    style={{ marginBottom: 20 }}
+                  >
+                    <iframe
+                      width="100%"
+                      height="250px"
+                      src={url}
+                      frameborder="0"
+                      allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                      allowfullscreen
+                    ></iframe>
+                    <div>
+                      <br />{" "}
+                      <Typography
+                        variant="body1"
+                        color="textSecondary"
+                        component="h6"
+                      >
+                        <b style={{ marginBottom: "10px" }}>Title: {name}</b>
+                      </Typography>
+                    </div>
+                  </GridItem>
+                ))}
+              </GridContainer>
+              <br />
+              <br />
+              <br />
             </GridItem>
           </GridContainer>
         </div>
@@ -335,6 +373,7 @@ const HomePage = (props) => {
           </div>
         </div>
       </div>
+
       <Container>
         <div>
           <div className={classes.mainContainer + " main-container"}>

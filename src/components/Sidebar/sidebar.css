@@ -1,0 +1,33 @@
+.sidebar {
+  background-color: black;
+  height: 100vh;
+  position: absolute;
+  right: 0;
+  z-index: 999;
+  border-radius: 5px;
+  box-shadow: 0 1rem 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+  transition: width 0.3s ease-in;
+}
+
+.open {
+  position: absolute;
+  top: 50%;
+  left: -30px;
+  font-size: 30px !important;
+  font-weight: bolder;
+  padding: 5px 20px !important;
+  border-radius: 50% !important;
+  box-shadow: 0 0rem 0.5rem 0.5rem rgba(0, 0, 0, 0.15) !important;
+}
+
+@media screen and (max-width: 800px) {
+  .sidebar {
+    display: none;
+  }
+}
+
+.container {
+  justify-content: center;
+  align-items: center;
+  width: 600px;
+}

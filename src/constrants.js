@@ -50,7 +50,7 @@ export const projects = [
     url: "/projects/water-demand/",
   },
   {
-    name: "Rapid urbanization in Karachi’s low income settlements has resulted in a growing ‘infrastructural deficit’ that challenges citizens’ access to water.",
+    name: "Rapid urbanization in Karachi’s low income settlements has resulted in a growing infrastructural deficit that challenges access to water.",
     image: require("assets/img/research/alternate.png").default,
     url: "/projects/alternate-networks",
   },
@@ -63,13 +63,6 @@ export const research = [
       "KARACHI: Lyari’s water problem, and those of similar settlements across Karachi, cannot be resolved by only augmenting water supply as often stated in public discourse and water utility plans. Rather, institutional structures and policies are needed to ensure equitable access to existing water supply system, says a study recently published in an international journal.",
     image: require("assets/img/research/research1.webp").default,
     url: "https://www.dawn.com/news/1703958",
-  },
-  {
-    name: "KWP is pleased to announce that our first research paper was published in the prestigious Journal of Hydrology.",
-    description:
-      "We demonstrate the effect of socioeconomic and political inequalities in determining a community’s level of water security, using a mixed-methods approach. We conduct a total of 465 household surveys supplemented with participant observation and stakeholder interviews.",
-    image: require("assets/img/research/paper.webp").default,
-    url: "https://doi.org/10.1016/j.ejrh.2022.101140",
   },
 
   {
@@ -112,6 +105,13 @@ export const research = [
     image: require("assets/img/research/panel-talk-4.webp").default,
   },
   {
+    name: "KWP is pleased to announce that our first research paper was published in the prestigious Journal of Hydrology.",
+    description:
+      "We demonstrate the effect of socioeconomic and political inequalities in determining a community’s level of water security, using a mixed-methods approach. We conduct a total of 465 household surveys supplemented with participant observation and stakeholder interviews.",
+    image: require("assets/img/research/paper.webp").default,
+    url: "https://doi.org/10.1016/j.ejrh.2022.101140",
+  },
+  {
     name: "48th Annual Conference of the Industrial Electronics Society-IECON.",
     description:
       "KWP's work on the design and development of Smart Devices is accepted in the 48th Annual Conference of the Industrial Electronics Society-IECON. Paper title: 'Design and Implementation of Smart Flowmeter for Urban Water Metering'. Authors: Junaid Ahmed Memon, Abdul Rehman, Ahsan Ali, Sarwan Shah, Hassaan F. Khan",
@@ -140,34 +140,34 @@ export const videos = [
     name: "48th Annual Conference of the Industrial Electronics Society - IECON",
     url: "https://www.youtube.com/embed/a5j0j6hMSfA",
   },
-  {
-    name: "A common man's struggle for water",
-    url: "https://www.youtube.com/embed/mCzbuNsy86U",
-  },
-  {
-    name: "کیا غریب کا حق نہیں ہے صاف پانی؟",
-    url: "https://www.youtube.com/embed/5PXUfJw4wgc",
-  },
-  {
-    name: "کیا غریب کا حق نہیں ہے صاف پانی؟",
-    url: "https://www.youtube.com/embed/r2MwrQ3tYb4",
-  },
-  {
-    name: "Asim - Ro Plant vendor",
-    url: "https://www.youtube.com/embed/imWgmsGAEMg",
-  },
-  {
-    name: "کیا ہم جناور ہے؟",
-    url: "https://www.youtube.com/embed/eoxbz5vYpyA",
-  },
-  {
-    name: "We asked our interns what they think of Lyari before and after visiting it",
-    url: "https://www.youtube.com/embed/c0-29N9dD3U",
-  },
-  {
-    name: "Notes from the field",
-    url: "https://www.youtube.com/embed/vec0CS-t0YE",
-  },
+  // {
+  //   name: "A common man's struggle for water",
+  //   url: "https://www.youtube.com/embed/mCzbuNsy86U",
+  // },
+  // {
+  //   name: "کیا غریب کا حق نہیں ہے صاف پانی؟",
+  //   url: "https://www.youtube.com/embed/5PXUfJw4wgc",
+  // },
+  // {
+  //   name: "کیا غریب کا حق نہیں ہے صاف پانی؟",
+  //   url: "https://www.youtube.com/embed/r2MwrQ3tYb4",
+  // },
+  // {
+  //   name: "Asim - Ro Plant vendor",
+  //   url: "https://www.youtube.com/embed/imWgmsGAEMg",
+  // },
+  // {
+  //   name: "کیا ہم جناور ہے؟",
+  //   url: "https://www.youtube.com/embed/eoxbz5vYpyA",
+  // },
+  // {
+  //   name: "We asked our interns what they think of Lyari before and after visiting it",
+  //   url: "https://www.youtube.com/embed/c0-29N9dD3U",
+  // },
+  // {
+  //   name: "Notes from the field",
+  //   url: "https://www.youtube.com/embed/vec0CS-t0YE",
+  // },
   // {
   //   name: "Meet The Team",
   //   url: "https://www.youtube.com/embed/3WPDwaoFhj4",
@@ -204,18 +204,18 @@ export const videos = [
   //   name: "Meet The Team",
   //   url: "https://www.youtube.com/embed/KXJ8uduPqhU",
   // },
-  {
-    name: "27 July 2022",
-    url: "https://www.youtube.com/embed/Y9JLyfIwSmw",
-  },
-  {
-    name: "Testing solar panel with our smart device",
-    url: "https://www.youtube.com/embed/swoL1L1B5XE",
-  },
-  {
-    name: "Testing solar panel for our smart device",
-    url: "https://www.youtube.com/embed/25Jf0dtpEa0",
-  },
+  // {
+  //   name: "27 July 2022",
+  //   url: "https://www.youtube.com/embed/Y9JLyfIwSmw",
+  // },
+  // {
+  //   name: "Testing solar panel with our smart device",
+  //   url: "https://www.youtube.com/embed/swoL1L1B5XE",
+  // },
+  // {
+  //   name: "Testing solar panel for our smart device",
+  //   url: "https://www.youtube.com/embed/25Jf0dtpEa0",
+  // },
   // {
   //   name: "Meet The Team",
   //   url: "https://www.youtube.com/embed/ff0bxK8CaAw",
