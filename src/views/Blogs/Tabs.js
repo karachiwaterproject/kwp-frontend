@@ -169,7 +169,7 @@ const useCustomStyles = makeStyles((theme) => ({
     marginBottom: 60,
   },
   media: {
-    height: 0,
+    height: "0px",
     paddingTop: "56.25%",
   },
 }));
