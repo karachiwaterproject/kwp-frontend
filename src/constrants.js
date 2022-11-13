@@ -50,7 +50,7 @@ export const projects = [
     url: "/projects/water-demand/",
   },
   {
-    name: "Rapid urbanization in Karachi’s low income settlements has resulted in a growing infrastructural deficit that challenges access to water.",
+    name: "Alternate Networks for Water Supply in Karachi",
     image: require("assets/img/research/alternate.png").default,
     url: "/projects/alternate-networks",
   },
