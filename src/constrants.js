@@ -128,6 +128,10 @@ export const videos = [
     url: "https://www.youtube.com/embed/30dV3VBoLes",
   },
   {
+    name: "48th Annual Conference of the Industrial Electronics Society - IECON",
+    url: "https://www.youtube.com/embed/a5j0j6hMSfA",
+  },
+  {
     name: "Cost-effective smart device",
     url: "https://www.youtube.com/embed/Fpv2CX679q0",
   },
@@ -136,10 +140,7 @@ export const videos = [
     name: "Cost-effective smart device - FAQs",
     url: "https://www.youtube.com/embed/A_6zjkllR8M",
   },
-  {
-    name: "48th Annual Conference of the Industrial Electronics Society - IECON",
-    url: "https://www.youtube.com/embed/a5j0j6hMSfA",
-  },
+
   // {
   //   name: "A common man's struggle for water",
   //   url: "https://www.youtube.com/embed/mCzbuNsy86U",
