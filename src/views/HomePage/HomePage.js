@@ -249,7 +249,7 @@ const HomePage = (props) => {
               <hr style={{ width: "100%", float: "left" }} />
               <br />
               <GridContainer>
-                {videos.map(({ name, url }) => (
+                {videos.slice(0, 4).map(({ name, url }) => (
                   <GridItem
                     key={name}
                     xs={12}
